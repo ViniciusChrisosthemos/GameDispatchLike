@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class MissionUnit
 {
     public enum MissionStatus
@@ -13,13 +15,15 @@ public class MissionUnit
         Lost
     }
 
-    private MissionSO _missionSO;
-    private MissionStatus _missionStatus;
-    private float _startTime;
-    private Team _currentTeam;
+    [SerializeField] private int _id;
+    [SerializeField] private MissionSO _missionSO;
+    [SerializeField] private MissionStatus _missionStatus;
+    [SerializeField] private float _startTime;
+    [SerializeField] private Team _currentTeam;
 
-    public MissionUnit(MissionSO missionSO, float startTime)
+    public MissionUnit(int id, MissionSO missionSO, float startTime)
     {
+        _id = id;
         _missionSO = missionSO;
 
         _missionStatus = MissionStatus.WaitingToBeAccepted;
@@ -48,20 +52,22 @@ public class MissionUnit
         return _missionStatus == MissionStatus.Claimed;
     }
 
-    public bool IsMissionComplete(float currentTime)
+    public void UpdateMission(float currentTime)
     {
-        if (!IsMissionInProgress())
-            return false;
-        
-        return (currentTime - _startTime) >= _missionSO.TimeToComplete;
-    }
-
-    public bool IsMissionAvailable(float currentTime)
-    {
-        if (!IsMissionWaitingToBeAccepted())
-            return false;
-        
-        return (currentTime - _startTime) >= _missionSO.TimeToAccept;
+        if (_missionStatus == MissionStatus.WaitingToBeAccepted)
+        {
+            if (currentTime - _startTime >= _missionSO.TimeToAccept)
+            {
+                _missionStatus = MissionStatus.Lost;
+            }
+        }
+        else if (_missionStatus == MissionStatus.InProgress)
+        {
+            if (currentTime - _startTime >= _missionSO.TimeToComplete)
+            {
+                _missionStatus = MissionStatus.Completed;
+            }
+        }
     }
 
     public bool IsMissionLost()
@@ -83,4 +89,20 @@ public class MissionUnit
     {
         _missionStatus = MissionStatus.Claimed;
     }
+    public bool IsMissionCompleted()
+    {
+        return _missionStatus == MissionStatus.Completed;
+    }
+
+    public float GetTotalTimeFromGetMission(float currentTime) => (currentTime - _startTime) / _missionSO.TimeToAccept;
+
+    public float GetTotalTimeFromAcceptMission(float currentTime) => (currentTime - _startTime) / _missionSO.TimeToComplete;
+
+
+    public string Name => _missionSO.Name;
+    public string Description => _missionSO.Description;
+    public int Exp => _missionSO.RewardExperience;
+    public int Gold => _missionSO.RewardExperience;
+
+    public int ID => _id;
 }

@@ -11,24 +11,30 @@ public class DayManager : MonoBehaviour
     [SerializeField] private int _totalMissions = 12;
     [SerializeField] private List<MissionSO> _missionsSO;
 
-    private List<MissionUnit> _currentMissions;
-    private List<TimelineMission> _timelineMissions;
-    private float _startTime;
+    [SerializeField] private List<MissionUnit> _currentMissions;
+    [SerializeField] private List<TimelineMission> _timelineMissions;
+    private float _elapseTime;
+    private int _currentMissionID = 0;
 
     [Header("Events")]
     public UnityEvent OnDayStart;
     public UnityEvent OnDayEnd;
     public UnityEvent<float> OnTimeUpdated;
-    public UnityEvent<MissionUnit> OnMissionAvailable;
-    public UnityEvent<MissionUnit> OnMissionCompleted;
-    public UnityEvent<MissionUnit> OnMissionLost;
+    public UnityEvent<List<MissionUnit>> OnMissionAvailable;
+    public UnityEvent<List<MissionUnit>> OnMissionCompleted;
+    public UnityEvent<List<MissionUnit>> OnMissionLost;
+
+    private void Start()
+    {
+        StartDay();
+    }
 
     public void StartDay()
     {
         _currentMissions = new List<MissionUnit>();
 
         _timelineMissions = GetTimelineMissions();
-        _startTime = Time.time;
+        _currentMissionID = 0;
 
         StartCoroutine(DayLoopCoroutine());
     }
@@ -37,76 +43,90 @@ public class DayManager : MonoBehaviour
     {
         OnDayStart?.Invoke();
 
+        InvokeRepeating("CheckMissionsStatus", 1, 1);
+        _elapseTime = 0f;
+
         while (true)
         {
-            var elapsedTime = Time.time - _startTime;
+            _elapseTime += Time.deltaTime;
 
-            var indexToRemove = new List<int>();
-            for(int i = 0; i < _timelineMissions.Count; i++)
-            {
-                var timelineMission = _timelineMissions[i];
-
-                if (elapsedTime >= timelineMission.StartTime)
-                {
-                    var mission = new MissionUnit(timelineMission.MissionSO, elapsedTime);
-                    
-                    _currentMissions.Add(mission);
-                    indexToRemove.Add(i);
-
-                    OnMissionAvailable?.Invoke(mission);
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            indexToRemove.ForEach(i => _timelineMissions.RemoveAt(i));
-
-            indexToRemove.Clear();
-            for(int i = 0; i < _currentMissions.Count; i++)
-            {
-                var missionUnit = _currentMissions[i];
-
-                if (missionUnit.IsMissionWaitingToBeAccepted())
-                {
-                    if (!missionUnit.IsMissionAvailable(elapsedTime))
-                    {
-                        indexToRemove.Add(i);
-
-                        missionUnit.LostMission();
-
-                        OnMissionLost?.Invoke(missionUnit);
-                    }
-                }
-                else if (missionUnit.IsMissionInProgress())
-                {
-                    if (missionUnit.IsMissionComplete(elapsedTime))
-                    {
-                        missionUnit.CompleteMission();
-
-                        OnMissionCompleted?.Invoke(missionUnit);
-                    }
-                }
-                else if (missionUnit.IsMissionClaimed())
-                {
-                    indexToRemove.Add(i);
-                }
-            }
-
-            if (elapsedTime >= _dayDurationInSeconds)
+            if (_elapseTime >= _dayDurationInSeconds)
             {
                 break;
             }
             else
             {
-                OnTimeUpdated?.Invoke(elapsedTime);
+                OnTimeUpdated?.Invoke(_elapseTime);
             }
 
             yield return null;
         }
 
+        CancelInvoke("CheckMissionsStatus");
+
         OnDayEnd?.Invoke();
+    }
+
+    private void CheckMissionsStatus()
+    {
+        var indexToRemove = new List<int>();
+        var missionToUpdate = new List<MissionUnit>();
+
+        for (int i = 0; i < _timelineMissions.Count; i++)
+        {
+            var timelineMission = _timelineMissions[i];
+
+            if (_elapseTime >= timelineMission.StartTime)
+            {
+                var mission = new MissionUnit(_currentMissionID, timelineMission.MissionSO, _elapseTime);
+
+                _currentMissions.Add(mission);
+                missionToUpdate.Add(mission);
+                indexToRemove.Add(i);
+
+                _currentMissionID++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        indexToRemove.ForEach(i => _timelineMissions.RemoveAt(i));
+
+        if (missionToUpdate.Count > 0)
+        {
+            OnMissionAvailable?.Invoke(missionToUpdate);
+            missionToUpdate.Clear();
+        }
+
+
+        indexToRemove = new List<int>();
+        var missionLosted = new List<MissionUnit>();
+        var missionCompleted = new List<MissionUnit>();
+
+        foreach (var missionUnit in _currentMissions.ToArray())
+        {
+            missionUnit.UpdateMission(_elapseTime);
+
+            if (missionUnit.IsMissionLost())
+            {
+                missionLosted.Add(missionUnit);
+                _currentMissions.Remove(missionUnit);
+            }
+            else if (missionUnit.IsMissionCompleted())
+            {
+                missionCompleted.Add(missionUnit);
+                _currentMissions.Remove(missionUnit);
+            }
+            else if (missionUnit.IsMissionClaimed())
+            {
+                _currentMissions.Remove(missionUnit);
+            }
+        }
+
+        if (missionLosted.Count > 0) OnMissionLost?.Invoke(missionLosted);
+        if (missionCompleted.Count > 0) OnMissionCompleted?.Invoke(missionCompleted);
     }
 
     public void ClaimMission(MissionUnit missionUnit)
@@ -130,10 +150,13 @@ public class DayManager : MonoBehaviour
         return timelineMissions;
     }
 
-    public void AcceptMission(Team team)
+    public void AcceptMission(MissionUnit mission, Team team)
     {
-
+        _dayCharacterManager.HandleTeamInMission(team);
+        mission.StartMission(team, _elapseTime);
     }
+
+    public int TotalDayTime { get => _dayDurationInSeconds; }
 
     private class TimelineMission
     {

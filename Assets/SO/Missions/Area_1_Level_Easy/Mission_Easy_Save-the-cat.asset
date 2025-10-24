@@ -31,6 +31,9 @@ MonoBehaviour:
     _intelligence:
       BaseValue: 1
       Bonus: 
+  MaxTeamSize: 1
   MissionImage: {fileID: 0}
   RewardExperience: 20
   RewardGold: 10
+  TimeToAccept: 10
+  TimeToComplete: 10
