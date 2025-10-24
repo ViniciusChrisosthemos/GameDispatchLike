@@ -58,9 +58,14 @@ public class UIDayManager : MonoBehaviour
         {
             var instance = Instantiate(_missionPrefab, _missionParent);
 
-            instance.Init(mission);
+            instance.Init(mission, HandleMissionSelected);
 
             _uiMissionControllers.Add(instance);
         }
+    }
+
+    private void HandleMissionSelected(MissionUnit missionSelected)
+    {
+
     }
 }
