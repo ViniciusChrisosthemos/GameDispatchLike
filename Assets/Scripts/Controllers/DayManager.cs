@@ -69,20 +69,18 @@ public class DayManager : MonoBehaviour
 
     private void CheckMissionsStatus()
     {
-        var indexToRemove = new List<int>();
         var missionToUpdate = new List<MissionUnit>();
 
-        for (int i = 0; i < _timelineMissions.Count; i++)
+        foreach(var timelineMission in _timelineMissions.ToArray())
         {
-            var timelineMission = _timelineMissions[i];
-
             if (_elapseTime >= timelineMission.StartTime)
             {
                 var mission = new MissionUnit(_currentMissionID, timelineMission.MissionSO, _elapseTime);
 
                 _currentMissions.Add(mission);
                 missionToUpdate.Add(mission);
-                indexToRemove.Add(i);
+
+                _timelineMissions.Remove(timelineMission);
 
                 _currentMissionID++;
             }
@@ -92,8 +90,6 @@ public class DayManager : MonoBehaviour
             }
         }
 
-        indexToRemove.ForEach(i => _timelineMissions.RemoveAt(i));
-
         if (missionToUpdate.Count > 0)
         {
             OnMissionAvailable?.Invoke(missionToUpdate);
@@ -101,7 +97,6 @@ public class DayManager : MonoBehaviour
         }
 
 
-        indexToRemove = new List<int>();
         var missionLosted = new List<MissionUnit>();
         var missionCompleted = new List<MissionUnit>();
 

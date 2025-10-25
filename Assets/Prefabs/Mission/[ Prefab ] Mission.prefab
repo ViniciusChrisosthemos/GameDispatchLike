@@ -580,6 +580,7 @@ MonoBehaviour:
   _txtMissionName: {fileID: 8946490014045449462}
   _txtExp: {fileID: 4981967690495814215}
   _txtGold: {fileID: 7767810411689704894}
+  _btnMission: {fileID: 3379161860824965491}
 --- !u!1 &8800323531988080053
 GameObject:
   m_ObjectHideFlags: 0

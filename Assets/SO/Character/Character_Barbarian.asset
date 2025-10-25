@@ -30,3 +30,4 @@ MonoBehaviour:
       BaseValue: 0
       Bonus: 
   Sprite: {fileID: 0}
+  LevelProgression: {fileID: 0}

@@ -9,6 +9,7 @@ public class UIRadarChartController : MonoBehaviour
     [SerializeField] private CanvasRenderer _canvasRenderer;
     [SerializeField] private Material _radarChartMaterial;
     [SerializeField] private CharacterSO CharacterSO;
+    [SerializeField] private float _radarChartSize = 200f;
 
     private void Update()
     {
@@ -18,7 +19,9 @@ public class UIRadarChartController : MonoBehaviour
 
             foreach (StatType stat in Enum.GetValues(typeof(StatType)))
             {
-                var value = CharacterSO.BaseStats.GetStat(stat).BaseValue / 10;
+                var value = CharacterSO.BaseStats.GetStat(stat).BaseValue / 10f;
+
+                Debug.Log($"{value} {stat}");
 
                 values.Add(value);
             }
@@ -38,7 +41,6 @@ public class UIRadarChartController : MonoBehaviour
         int[] traingles = new int[3 * valuesAmount] ;
 
         float angleIncrement = 360f / valuesAmount;
-        float radarChartSize = 74f;
 
         vertices[0] = Vector3.zero;
 
@@ -46,7 +48,7 @@ public class UIRadarChartController : MonoBehaviour
         {
             float normalizedStat = Mathf.Min(values[i - 1], 1f);
 
-            vertices[i] = Quaternion.Euler(0.0f, 0.0f, -angleIncrement * (i-1)) * Vector3.up * radarChartSize * normalizedStat;
+            vertices[i] = Quaternion.Euler(0.0f, 0.0f, -angleIncrement * (i-1)) * Vector3.up * _radarChartSize * normalizedStat;
         }
 
         int counter = 0;
