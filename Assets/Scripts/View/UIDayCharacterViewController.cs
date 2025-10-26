@@ -10,6 +10,8 @@ public class UIDayCharacterViewController : MonoBehaviour
     private const string STATUS_BUSY = "Busy";
     private const string STATUS_REST = "Resting";
     private const string STATUS_AVAILABLE = "Available";
+    private const string STATUS_MOVING = "Moving";
+    private const string STATUS_RETURNING = "Returning";
 
     [SerializeField] private UICharacterViewController _uiCharacterViewController;
 
@@ -46,6 +48,8 @@ public class UIDayCharacterViewController : MonoBehaviour
 
         _btnCharacter.onClick.AddListener(HandleCharacterSelected);
 
+        _characterUnit.OnCharacterGoingToMission.AddListener(_ => SetStatusInMoving());
+        _characterUnit.OnCharacterReturning.AddListener(_ => SetCharacterReturning());
         _characterUnit.OnCharacterInMission.AddListener(_ => SetStatusInMission());
         _characterUnit.OnCharacterInResting.AddListener(_ => SetStatusInResting());
         _characterUnit.OnCharacterInAvailable.AddListener(_ => SetStatusAvailable());
@@ -96,6 +100,20 @@ public class UIDayCharacterViewController : MonoBehaviour
     public void SetStatusInResting()
     {
         _txtStatus.text = STATUS_REST;
+
+        _unavailableOverlay.SetActive(true);
+    }
+
+    private void SetStatusInMoving()
+    {
+        _txtStatus.text = STATUS_MOVING;
+
+        _unavailableOverlay.SetActive(true);
+    }
+
+    private void SetCharacterReturning()
+    {
+        _txtStatus.text = STATUS_RETURNING;
 
         _unavailableOverlay.SetActive(true);
     }

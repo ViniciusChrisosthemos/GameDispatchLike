@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class CharacterUnit
 {
-    public enum CharacterStatus { Available, InMission, Resting  } 
+    public enum CharacterStatus { Available, Going, InMission, Returning, Resting  } 
 
     private CharacterSO _baseCharacter;
     private StatManager _statManager;
@@ -22,6 +22,8 @@ public class CharacterUnit
     public UnityEvent<CharacterUnit> OnCharacterLevelUP = new UnityEvent<CharacterUnit>();
     public UnityEvent<CharacterUnit> OnCharacterEXPChanged = new UnityEvent<CharacterUnit>();
     public UnityEvent<CharacterUnit> OnCharacterStatChanged = new UnityEvent<CharacterUnit>();
+    public UnityEvent<CharacterUnit> OnCharacterGoingToMission = new UnityEvent<CharacterUnit>();
+    public UnityEvent<CharacterUnit> OnCharacterReturning = new UnityEvent<CharacterUnit>();
 
     private float _startTime;
 
@@ -59,15 +61,34 @@ public class CharacterUnit
         OnCharacterInMission?.Invoke(this);
     }
 
+    public void SetStatusToInGoingToMission()
+    {
+        _status = CharacterStatus.Going;
+
+        OnCharacterGoingToMission?.Invoke(this);
+    }
+
+    public void SetStatusToReturning()
+    {
+        _status = CharacterStatus.Returning;
+
+        OnCharacterReturning?.Invoke(this);
+    }
+
     public void HandleMissionCompleted(int exp, float currentTime)
     {
+        _status = CharacterStatus.Returning;
+        AddExp(exp);
+
+        OnCharacterReturning?.Invoke(this);
+    }
+
+    public void SetCharacterResting(float currentTime)
+    {
+        _startTime = currentTime;
         _status = CharacterStatus.Resting;
 
         OnCharacterInResting?.Invoke(this);
-
-        _startTime = currentTime;
-
-        AddExp(exp);
     }
 
     public void AddPointInStat(StatManager.StatType stat)

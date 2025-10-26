@@ -28,7 +28,7 @@ MonoBehaviour:
       Bonus: 
     _intelligence:
       BaseValue: 0
-      Bonus: 0100000001000000010000000100000001000000010000000100000001000000
+      Bonus: 
     _maxStatValue: 10
   FaceArt: {fileID: 840439290, guid: 0cf0d0292e07ef54bb6adbf82d8ad034, type: 3}
   BodyArt: {fileID: 906190911, guid: 0cf0d0292e07ef54bb6adbf82d8ad034, type: 3}

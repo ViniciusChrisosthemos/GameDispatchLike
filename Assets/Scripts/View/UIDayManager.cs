@@ -10,8 +10,10 @@ public class UIDayManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private DayManager _dayManager;
     [SerializeField] private UIMissionInfoController _missionInfoController;
+    [SerializeField] private AnimatePathController _animatePathController;
 
     [Header("UI/Missions")]
+    [SerializeField] private Transform _baseTransform;
     [SerializeField] private Transform _missionParent;
     [SerializeField] private UIMissionController _missionPrefab;
 
@@ -61,6 +63,7 @@ public class UIDayManager : MonoBehaviour
         foreach(var mission in missions)
         {
             var instance = Instantiate(_missionPrefab, _missionParent);
+            instance.transform.position = mission.Location.position;
 
             instance.Init(mission, HandleMissionSelected, HandleCallForDeleteMission);
 
@@ -97,6 +100,11 @@ public class UIDayManager : MonoBehaviour
 
             var controller = _uiMissionControllers.Find(m => m.MissionUnit.ID == missionSelected.ID);
             HandleCallForDeleteMission(controller);
+
+            _animatePathController.AnimatePath(missionSelected.Team, missionSelected.Location, _baseTransform, () =>
+            {
+                _dayManager.HandleCharacterArriveBase(missionSelected.Team, _dayManager.CurrentTime);
+            });
         }
         else if (missionSelected.IsMissionWaitingToBeAccepted())
         {
@@ -114,6 +122,11 @@ public class UIDayManager : MonoBehaviour
     public void SendTeam(MissionUnit mission, Team currentTeam)
     {
         _dayManager.AcceptMission(mission, currentTeam);
+
+        _animatePathController.AnimatePath(currentTeam, _baseTransform, mission.Location, () =>
+        {
+            _dayManager.StartMission(mission);
+        });
     }
 
     public void OpenLevelUpScreen(CharacterUnit characterUnit)

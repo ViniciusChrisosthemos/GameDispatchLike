@@ -10,6 +10,7 @@ public class MissionUnit
     public enum MissionStatus
     {
         WaitingToBeAccepted,
+        Accepted,
         InProgress,
         Completed,
         Claimed,
@@ -23,25 +24,30 @@ public class MissionUnit
     [SerializeField] private Team _currentTeam;
 
     public UnityEvent<MissionUnit> OnMissionAccepted = new UnityEvent<MissionUnit>();
+    public UnityEvent<MissionUnit> OnMissionStarted = new UnityEvent<MissionUnit>();
     public UnityEvent<MissionUnit> OnMissionCompleted = new UnityEvent<MissionUnit>();
     public UnityEvent<MissionUnit> OnMissionLose = new UnityEvent<MissionUnit>();
+    public UnityEvent<MissionUnit> OnMissionClaimed = new UnityEvent<MissionUnit>();
 
-    public MissionUnit(int id, MissionSO missionSO, float startTime)
+    public Transform Location {  get; private set; }
+
+    public MissionUnit(int id, MissionSO missionSO, Transform location, float startTime)
     {
         _id = id;
         _missionSO = missionSO;
 
         _missionStatus = MissionStatus.WaitingToBeAccepted;
         _startTime = startTime;
+
+        Location = location;
     }
 
-    public void StartMission(Team team, float startTime)
+    public void StartMission(float startTime)
     {
-        _currentTeam = team;
         _missionStatus = MissionStatus.InProgress;
         _startTime = startTime;
 
-        OnMissionAccepted?.Invoke(this);
+        OnMissionStarted?.Invoke(this);
     }
 
     public bool IsMissionWaitingToBeAccepted()
@@ -57,6 +63,11 @@ public class MissionUnit
     public bool IsMissionClaimed()
     {
         return _missionStatus == MissionStatus.Claimed;
+    }
+
+    public bool IsAccepted()
+    {
+        return _missionStatus == MissionStatus.Accepted;
     }
 
     public void UpdateMission(float currentTime)
@@ -86,19 +97,11 @@ public class MissionUnit
         return _missionStatus == MissionStatus.Lost;
     }
 
-    public void LostMission()
-    {
-        _missionStatus = MissionStatus.Lost;
-    }
-
-    public void CompleteMission()
-    {
-        _missionStatus = MissionStatus.Completed;
-    }
-
     public void ClaimMission()
     {
         _missionStatus = MissionStatus.Claimed;
+
+        OnMissionClaimed?.Invoke(this);
     }
     public bool IsMissionCompleted()
     {
@@ -109,6 +112,13 @@ public class MissionUnit
 
     public float GetTotalTimeFromAcceptMission(float currentTime) => (currentTime - _startTime) / _missionSO.TimeToComplete;
 
+    public void AcceptMission(Team team)
+    {
+        _currentTeam = team;
+        _missionStatus = MissionStatus.Accepted;
+
+        OnMissionAccepted?.Invoke(this);
+    }
 
     public string Name => _missionSO.Name;
     public string Description => _missionSO.Description;

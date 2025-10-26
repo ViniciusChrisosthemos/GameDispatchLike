@@ -11,12 +11,17 @@ public class UIMissionController : MonoBehaviour
     [Header("Available View")]
     [SerializeField] private GameObject _availableView;
     [SerializeField] private Image _imgSliderTime;
+    [SerializeField] private Color _colorMissionAvailable = Color.red;
+    [SerializeField] private Color _colorMissionInProgress = Color.yellow;
+
+    [Header("(Optional)")]
     [SerializeField] private TextMeshProUGUI _txtMissionName;
     [SerializeField] private TextMeshProUGUI _txtExp;
     [SerializeField] private TextMeshProUGUI _txtGold;
 
     [Header("In Progress View")]
     [SerializeField] private GameObject _inProgressView;
+    [SerializeField] private Image _imgInProgress;
 
     [Header("Completed")]
     [SerializeField] private GameObject _completedView;
@@ -36,34 +41,56 @@ public class UIMissionController : MonoBehaviour
     {
         _missionUnit = mission;
 
-        _txtMissionName.text = mission.Name;
-        _txtExp.text = mission.Exp.ToString();
-        _txtGold.text = mission.Gold.ToString();
+        if (_txtMissionName != null) _txtMissionName.text = mission.Name;
+        if (_txtExp != null) _txtExp.text = mission.Exp.ToString();
+        if (_txtGold != null) _txtGold.text = mission.Gold.ToString();
 
         _imgSliderTime.fillAmount = 1;
 
         _btnMission.onClick.AddListener(() => callback?.Invoke(MissionUnit));
 
         mission.OnMissionLose.AddListener(m => handleCallForDeleteMission?.Invoke(this));
-        mission.OnMissionAccepted.AddListener(m => SetMissionInProgress());
+        mission.OnMissionAccepted.AddListener(m => SetMissionAccepted());
+        mission.OnMissionStarted.AddListener(m => SetMissionInProgress());
         mission.OnMissionCompleted.AddListener(m => SetMissionCompleted());
+
+        _imgSliderTime.color = _colorMissionAvailable;
     }
 
 
     public void UpdateTime(float elapsedTime)
     {
-        if (_missionUnit.IsMissionCompleted()) return;
+        if (_missionUnit.IsMissionCompleted() || _missionUnit.IsAccepted()) return;
 
         var normalizedTime = _missionUnit.IsMissionInProgress() ? _missionUnit.GetTotalTimeFromAcceptMission(elapsedTime) : _missionUnit.GetTotalTimeFromGetMission(elapsedTime);
 
         _imgSliderTime.fillAmount = 1 - normalizedTime;
     }
 
-    public void SetMissionInProgress()
+    private void SetMissionAccepted()
     {
         _availableView.SetActive(false);
 
         _inProgressView.SetActive(true);
+
+        _imgSliderTime.fillAmount = 1;
+        _imgSliderTime.color = _colorMissionInProgress;
+        _imgInProgress.sprite = _missionUnit.Team.Members[0].FaceArt;
+
+        var color = _imgInProgress.color;
+        color.a = 0.5f;
+
+        _imgInProgress.color = color;
+
+        Debug.Log("Accepted");
+    }
+
+    public void SetMissionInProgress()
+    {
+        var color = _imgInProgress.color;
+        color.a = 1f;
+
+        _imgInProgress.color = color;
     }
 
     public void SetMissionCompleted()

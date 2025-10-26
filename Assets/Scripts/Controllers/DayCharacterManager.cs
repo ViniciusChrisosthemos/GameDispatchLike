@@ -14,11 +14,11 @@ public class DayCharacterManager : MonoBehaviour
 
     public List<CharacterUnit> Characters => _availableCharacters;
 
-    public void HandleTeamInMission(Team team)
+    public void HandleTeamAcceptMission(Team team)
     {
         foreach (CharacterUnit character in team.Members)
         {
-            character.SetStatusToInMission();
+            character.SetStatusToInGoingToMission();
 
             OnCharacterChangeStatus?.Invoke(character);
         }
@@ -36,8 +36,14 @@ public class DayCharacterManager : MonoBehaviour
         team.Members.ForEach(c => c.HandleMissionCompleted(missionUnit.Exp, currentTime));
     }
 
+    public void HandleTeamStartMission(Team team)
+    {
+        team.Members.ForEach(c => c.SetStatusToInMission());
+    }
+
     public void UpdateCharacters(float elapseTime)
     {
         _availableCharacters.ForEach(c => c.UpdateCharacter(elapseTime));
     }
+
 }
