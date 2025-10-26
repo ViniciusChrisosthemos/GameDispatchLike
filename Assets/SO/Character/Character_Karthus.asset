@@ -10,24 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebe3c9202a8965a4e8c6451367f8518f, type: 3}
-  m_Name: Character_Barbarian
+  m_Name: Character_Karthus
   m_EditorClassIdentifier: 
-  Name: Barbarian
+  Name: Karthus
   BaseStats:
     _strengh:
-      BaseValue: 5
+      BaseValue: 3
       Bonus: 
     _endurance:
-      BaseValue: 2
+      BaseValue: 4
       Bonus: 
     _agility:
-      BaseValue: 2
+      BaseValue: 1
       Bonus: 
     _charisma:
-      BaseValue: 2
+      BaseValue: 1
       Bonus: 
     _intelligence:
-      BaseValue: 0
+      BaseValue: 2
       Bonus: 
-  Sprite: {fileID: 0}
-  LevelProgression: {fileID: 0}
+    _maxStatValue: 10
+  FaceArt: {fileID: -1738728981, guid: 0ea579f4c4c025943aed69beddad7265, type: 3}
+  BodyArt: {fileID: 1333566221, guid: 0ea579f4c4c025943aed69beddad7265, type: 3}
+  FullArt: {fileID: 1246303599, guid: 0ea579f4c4c025943aed69beddad7265, type: 3}
+  LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
+  TimeToRest: 5

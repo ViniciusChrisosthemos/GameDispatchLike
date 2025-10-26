@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class DayManager : MonoBehaviour
 {
@@ -15,14 +16,13 @@ public class DayManager : MonoBehaviour
     [SerializeField] private List<TimelineMission> _timelineMissions;
     private float _elapseTime;
     private int _currentMissionID = 0;
+    private bool _isPaused = false;
 
     [Header("Events")]
-    public UnityEvent OnDayStart;
+    public UnityEvent<List<CharacterUnit>> OnDayStart;
     public UnityEvent OnDayEnd;
     public UnityEvent<float> OnTimeUpdated;
     public UnityEvent<List<MissionUnit>> OnMissionAvailable;
-    public UnityEvent<List<MissionUnit>> OnMissionCompleted;
-    public UnityEvent<List<MissionUnit>> OnMissionLost;
 
     private void Start()
     {
@@ -35,31 +35,43 @@ public class DayManager : MonoBehaviour
 
         _timelineMissions = GetTimelineMissions();
         _currentMissionID = 0;
+        _isPaused = false;
 
         StartCoroutine(DayLoopCoroutine());
     }
 
     private IEnumerator DayLoopCoroutine()
     {
-        OnDayStart?.Invoke();
+        OnDayStart?.Invoke(_dayCharacterManager.Characters);
 
-        InvokeRepeating("CheckMissionsStatus", 1, 1);
         _elapseTime = 0f;
+        var accumTimeToUpdateMissions = 0f;
 
         while (true)
         {
-            _elapseTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
 
-            if (_elapseTime >= _dayDurationInSeconds)
+            if (!_isPaused)
             {
-                break;
-            }
-            else
-            {
-                OnTimeUpdated?.Invoke(_elapseTime);
-            }
+                _elapseTime += Time.deltaTime;
+                accumTimeToUpdateMissions += Time.deltaTime;
 
-            yield return null;
+                if (accumTimeToUpdateMissions > 0.5f)
+                {
+                    CheckMissionsStatus();
+                    accumTimeToUpdateMissions = 0f;
+                }
+
+                if (_elapseTime >= _dayDurationInSeconds)
+                {
+                    break;
+                }
+                else
+                {
+                    OnTimeUpdated?.Invoke(_elapseTime);
+                }
+
+            }
         }
 
         CancelInvoke("CheckMissionsStatus");
@@ -96,32 +108,22 @@ public class DayManager : MonoBehaviour
             missionToUpdate.Clear();
         }
 
-
-        var missionLosted = new List<MissionUnit>();
-        var missionCompleted = new List<MissionUnit>();
-
         foreach (var missionUnit in _currentMissions.ToArray())
         {
             missionUnit.UpdateMission(_elapseTime);
 
-            if (missionUnit.IsMissionLost())
-            {
-                missionLosted.Add(missionUnit);
-                _currentMissions.Remove(missionUnit);
-            }
-            else if (missionUnit.IsMissionCompleted())
-            {
-                missionCompleted.Add(missionUnit);
-                _currentMissions.Remove(missionUnit);
-            }
-            else if (missionUnit.IsMissionClaimed())
+            if (missionUnit.IsMissionLost() || missionUnit.IsMissionClaimed())
             {
                 _currentMissions.Remove(missionUnit);
+                
+                if (missionUnit.IsMissionClaimed())
+                {
+                    _dayCharacterManager.HandleTeamCompleteMission(missionUnit, missionUnit.Team, _elapseTime);
+                }
             }
         }
 
-        if (missionLosted.Count > 0) OnMissionLost?.Invoke(missionLosted);
-        if (missionCompleted.Count > 0) OnMissionCompleted?.Invoke(missionCompleted);
+        _dayCharacterManager.UpdateCharacters(_elapseTime);
     }
 
     public void ClaimMission(MissionUnit missionUnit)
@@ -149,6 +151,16 @@ public class DayManager : MonoBehaviour
     {
         _dayCharacterManager.HandleTeamInMission(team);
         mission.StartMission(team, _elapseTime);
+    }
+
+    public void PauseDay()
+    {
+        _isPaused = true;
+    }
+
+    public void ResumoDay()
+    {
+        _isPaused = false;
     }
 
     public int TotalDayTime { get => _dayDurationInSeconds; }

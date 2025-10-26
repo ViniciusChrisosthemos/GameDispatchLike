@@ -10,23 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebe3c9202a8965a4e8c6451367f8518f, type: 3}
-  m_Name: Character_Warrior
+  m_Name: Character_Irelia
   m_EditorClassIdentifier: 
-  Name: Warrior
+  Name: Irelia
   BaseStats:
     _strengh:
-      BaseValue: 3
+      BaseValue: 2
       Bonus: 
     _endurance:
-      BaseValue: 4
+      BaseValue: 3
       Bonus: 
     _agility:
-      BaseValue: 1
+      BaseValue: 2
       Bonus: 
     _charisma:
-      BaseValue: 1
+      BaseValue: 2
       Bonus: 
     _intelligence:
       BaseValue: 2
       Bonus: 
-  Sprite: {fileID: 0}
+    _maxStatValue: 10
+  FaceArt: {fileID: 490325165, guid: 2a1c1c46b75b09b4589ecc5f923e290f, type: 3}
+  BodyArt: {fileID: 933082151, guid: 2a1c1c46b75b09b4589ecc5f923e290f, type: 3}
+  FullArt: {fileID: 610707062, guid: 2a1c1c46b75b09b4589ecc5f923e290f, type: 3}
+  LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
+  TimeToRest: 5

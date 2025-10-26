@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [Serializable]
 public class MissionUnit
@@ -21,6 +22,10 @@ public class MissionUnit
     [SerializeField] private float _startTime;
     [SerializeField] private Team _currentTeam;
 
+    public UnityEvent<MissionUnit> OnMissionAccepted = new UnityEvent<MissionUnit>();
+    public UnityEvent<MissionUnit> OnMissionCompleted = new UnityEvent<MissionUnit>();
+    public UnityEvent<MissionUnit> OnMissionLose = new UnityEvent<MissionUnit>();
+
     public MissionUnit(int id, MissionSO missionSO, float startTime)
     {
         _id = id;
@@ -35,6 +40,8 @@ public class MissionUnit
         _currentTeam = team;
         _missionStatus = MissionStatus.InProgress;
         _startTime = startTime;
+
+        OnMissionAccepted?.Invoke(this);
     }
 
     public bool IsMissionWaitingToBeAccepted()
@@ -59,6 +66,8 @@ public class MissionUnit
             if (currentTime - _startTime >= _missionSO.TimeToAccept)
             {
                 _missionStatus = MissionStatus.Lost;
+
+                OnMissionLose?.Invoke(this);
             }
         }
         else if (_missionStatus == MissionStatus.InProgress)
@@ -66,6 +75,8 @@ public class MissionUnit
             if (currentTime - _startTime >= _missionSO.TimeToComplete)
             {
                 _missionStatus = MissionStatus.Completed;
+
+                OnMissionCompleted?.Invoke(this);
             }
         }
     }
@@ -105,4 +116,6 @@ public class MissionUnit
     public int Gold => _missionSO.RewardExperience;
     public int MaxTeamSize => _missionSO.MaxTeamSize;
     public int ID => _id;
+
+    public Team Team => _currentTeam;
 }

@@ -10,23 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebe3c9202a8965a4e8c6451367f8518f, type: 3}
-  m_Name: Character_Rogue
+  m_Name: Character_Ashe
   m_EditorClassIdentifier: 
-  Name: Rogue
+  Name: Ashe
   BaseStats:
     _strengh:
-      BaseValue: 1
+      BaseValue: 0
       Bonus: 
     _endurance:
-      BaseValue: 1
+      BaseValue: 0
       Bonus: 
     _agility:
-      BaseValue: 4
+      BaseValue: 3
       Bonus: 
     _charisma:
-      BaseValue: 1
+      BaseValue: 5
       Bonus: 
     _intelligence:
-      BaseValue: 4
+      BaseValue: 3
       Bonus: 
-  Sprite: {fileID: 0}
+    _maxStatValue: 10
+  FaceArt: {fileID: -1345997793, guid: d8514756f7ad8f04685ce2d1490dfb8f, type: 3}
+  BodyArt: {fileID: 567318141, guid: d8514756f7ad8f04685ce2d1490dfb8f, type: 3}
+  FullArt: {fileID: 1233826800, guid: d8514756f7ad8f04685ce2d1490dfb8f, type: 3}
+  LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
+  TimeToRest: 5

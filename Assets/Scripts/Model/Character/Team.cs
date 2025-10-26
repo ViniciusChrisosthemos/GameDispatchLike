@@ -44,6 +44,9 @@ public class Team
         return teamStates;
     }
 
+    public bool HasMember(CharacterUnit characterUnit) => _members.Contains(characterUnit);
+
+    public int Size => _members.Count;
     public int MaxSize { get { return _maxSize; } }
     public List<CharacterUnit> Members { get { return _members; } }
 }

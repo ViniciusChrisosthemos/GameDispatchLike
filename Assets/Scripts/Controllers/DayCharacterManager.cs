@@ -12,6 +12,8 @@ public class DayCharacterManager : MonoBehaviour
     [Header("Events")]
     public UnityEvent<CharacterUnit> OnCharacterChangeStatus;
 
+    public List<CharacterUnit> Characters => _availableCharacters;
+
     public void HandleTeamInMission(Team team)
     {
         foreach (CharacterUnit character in team.Members)
@@ -27,5 +29,15 @@ public class DayCharacterManager : MonoBehaviour
         _availableCharacters = new List<CharacterUnit>();
 
         _characterSO.ForEach(characterSO => _availableCharacters.Add(new CharacterUnit(characterSO)));
+    }
+
+    public void HandleTeamCompleteMission(MissionUnit missionUnit, Team team, float currentTime)
+    {
+        team.Members.ForEach(c => c.HandleMissionCompleted(missionUnit.Exp, currentTime));
+    }
+
+    public void UpdateCharacters(float elapseTime)
+    {
+        _availableCharacters.ForEach(c => c.UpdateCharacter(elapseTime));
     }
 }

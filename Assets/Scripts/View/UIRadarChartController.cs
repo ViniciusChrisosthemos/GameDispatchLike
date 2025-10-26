@@ -66,4 +66,9 @@ public class UIRadarChartController : MonoBehaviour
         _canvasRenderer.SetMesh(mesh);
         _canvasRenderer.SetMaterial(_radarChartMaterial, null);
     }
+
+    private void OnDisable()
+    {
+        _canvasRenderer.Clear();
+    }
 }

@@ -10,23 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebe3c9202a8965a4e8c6451367f8518f, type: 3}
-  m_Name: Character_Mage
+  m_Name: Character_Mel
   m_EditorClassIdentifier: 
-  Name: Mage
+  Name: Mel
   BaseStats:
     _strengh:
-      BaseValue: 0
+      BaseValue: 1
       Bonus: 
     _endurance:
       BaseValue: 1
       Bonus: 
     _agility:
-      BaseValue: 2
+      BaseValue: 4
       Bonus: 
     _charisma:
-      BaseValue: 3
+      BaseValue: 1
       Bonus: 
     _intelligence:
-      BaseValue: 5
+      BaseValue: 4
       Bonus: 
-  Sprite: {fileID: 0}
+    _maxStatValue: 10
+  FaceArt: {fileID: 1434294522, guid: 4f3f5ffecb3a75145a6dbf4f8b6a9589, type: 3}
+  BodyArt: {fileID: 1132903764, guid: 4f3f5ffecb3a75145a6dbf4f8b6a9589, type: 3}
+  FullArt: {fileID: -300501334, guid: 4f3f5ffecb3a75145a6dbf4f8b6a9589, type: 3}
+  LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
+  TimeToRest: 5

@@ -12,7 +12,7 @@ public class LevelProgression : ScriptableObject
     public int GetXPForLevel(int level)
     {
         var clampedLevel = Mathf.Clamp(level, 1, MaxLevel);
-        var normalizedLevel = (float)(clampedLevel - 1) / (MaxLevel - 1);
+        var normalizedLevel = (float)(clampedLevel) / (MaxLevel - 1);
 
         return Mathf.RoundToInt(XPCurve.Evaluate(normalizedLevel) * MultiplyXPBy);
     }

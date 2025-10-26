@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebe3c9202a8965a4e8c6451367f8518f, type: 3}
-  m_Name: Character_Cleric
+  m_Name: Character_Viego
   m_EditorClassIdentifier: 
-  Name: Cleric
+  Name: Viego
   BaseStats:
     _strengh:
-      BaseValue: 2
+      BaseValue: 5
       Bonus: 
     _endurance:
-      BaseValue: 3
+      BaseValue: 2
       Bonus: 
     _agility:
       BaseValue: 2
@@ -27,6 +27,11 @@ MonoBehaviour:
       BaseValue: 2
       Bonus: 
     _intelligence:
-      BaseValue: 2
-      Bonus: 
-  Sprite: {fileID: 0}
+      BaseValue: 0
+      Bonus: 0100000001000000010000000100000001000000010000000100000001000000
+    _maxStatValue: 10
+  FaceArt: {fileID: 840439290, guid: 0cf0d0292e07ef54bb6adbf82d8ad034, type: 3}
+  BodyArt: {fileID: 906190911, guid: 0cf0d0292e07ef54bb6adbf82d8ad034, type: 3}
+  FullArt: {fileID: -924060390, guid: 0cf0d0292e07ef54bb6adbf82d8ad034, type: 3}
+  LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
+  TimeToRest: 5
