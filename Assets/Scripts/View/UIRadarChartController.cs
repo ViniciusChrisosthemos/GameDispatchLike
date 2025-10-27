@@ -1,74 +1,138 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static StatManager;
 
 public class UIRadarChartController : MonoBehaviour
 {
-    [SerializeField] private CanvasRenderer _canvasRenderer;
+    [Header("Referências Principais")]
+    [SerializeField] private CanvasRenderer _canvasRenderer; // Mesh principal
     [SerializeField] private Material _radarChartMaterial;
-    [SerializeField] private CharacterSO CharacterSO;
-    [SerializeField] private float _radarChartSize = 200f;
+    [SerializeField] private Transform _middleReference;
+    [SerializeField] private Transform _topReference;
 
-    private void Update()
+    [Header("Border (optional)")]
+    [SerializeField] private bool _drawBorder = true;
+    [SerializeField] private CanvasRenderer _borderRenderer;
+    [SerializeField] private Material _borderMaterial;
+    [SerializeField] private float _borderThickness = 1f;
+
+     // CanvasRenderer da borda
+    private Mesh _mainMesh;
+    private Mesh _borderMesh;
+
+    private Vector3[] _vertices;
+
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            var values = new List<float>();
-
-            foreach (StatType stat in Enum.GetValues(typeof(StatType)))
-            {
-                var value = CharacterSO.BaseStats.GetStat(stat).BaseValue / 10f;
-
-                Debug.Log($"{value} {stat}");
-
-                values.Add(value);
-            }
-
-            UpdateStats(values);
-        }
+        // Cria dinamicamente um segundo CanvasRenderer para a borda
+        GameObject borderObj = new GameObject("RadarChartBorder");
+        borderObj.transform.SetParent(transform, false);
     }
 
     public void UpdateStats(List<float> values)
     {
-        Mesh mesh = new Mesh();
+        if (values == null || values.Count < 3)
+        {
+            Debug.LogWarning("RadarChart precisa de pelo menos 3 valores para formar um polígono.");
+            return;
+        }
 
         int valuesAmount = values.Count;
-
-        Vector3[] vertices = new Vector3[valuesAmount + 1];
-        Vector2[] uvs = new Vector2[valuesAmount + 1];
-        int[] traingles = new int[3 * valuesAmount] ;
-
         float angleIncrement = 360f / valuesAmount;
+        float radarChartSize = Mathf.Abs(_middleReference.position.y - _topReference.position.y);
 
-        vertices[0] = Vector3.zero;
+        // --- MESH PRINCIPAL ---
+        _mainMesh = new Mesh();
+
+        _vertices = new Vector3[valuesAmount + 1];
+        Vector2[] uvs = new Vector2[valuesAmount + 1];
+        int[] triangles = new int[3 * valuesAmount];
+
+        _vertices[0] = Vector3.zero;
 
         for (int i = 1; i <= valuesAmount; i++)
         {
-            float normalizedStat = Mathf.Min(values[i - 1], 1f);
-
-            vertices[i] = Quaternion.Euler(0.0f, 0.0f, -angleIncrement * (i-1)) * Vector3.up * _radarChartSize * normalizedStat;
+            float normalizedStat = Mathf.Clamp01(values[i - 1]);
+            _vertices[i] = Quaternion.Euler(0, 0, -angleIncrement * (i - 1)) * Vector3.up * radarChartSize * normalizedStat;
         }
 
         int counter = 0;
         for (int i = 1; i <= valuesAmount; i++)
         {
-            traingles[counter++] = 0;
-            traingles[counter++] = i;
-            traingles[counter++] = (i + 1) % (valuesAmount + 1) + (i / valuesAmount);
+            triangles[counter++] = 0;
+            triangles[counter++] = i;
+            triangles[counter++] = (i % valuesAmount) + 1;
         }
 
-        mesh.vertices = vertices;
-        mesh.uv = uvs;
-        mesh.triangles = traingles;
+        _mainMesh.vertices = _vertices;
+        _mainMesh.uv = uvs;
+        _mainMesh.triangles = triangles;
 
-        _canvasRenderer.SetMesh(mesh);
+        // Renderiza o polígono principal
+        _canvasRenderer.SetMesh(_mainMesh);
         _canvasRenderer.SetMaterial(_radarChartMaterial, null);
+
+        // --- BORDA SEPARADA ---
+        if (_drawBorder && _borderMaterial != null)
+            DrawBorder(_vertices);
+        else
+            _borderRenderer.Clear();
+    }
+
+    private void DrawBorder(Vector3[] vertices)
+    {
+        if (vertices.Length < 2)
+            return;
+
+        if (_borderMesh == null)
+            _borderMesh = new Mesh();
+
+        List<Vector3> borderVertices = new List<Vector3>();
+        List<int> borderTriangles = new List<int>();
+
+        for (int i = 1; i < vertices.Length; i++)
+        {
+            Vector3 current = vertices[i];
+            Vector3 next = vertices[i == vertices.Length - 1 ? 1 : i + 1];
+
+            Vector3 dir = (next - current).normalized;
+            Vector3 normal = new Vector3(-dir.y, dir.x, 0) * _borderThickness;
+
+            int startIndex = borderVertices.Count;
+
+            // quatro vértices para cada segmento da borda
+            borderVertices.Add(current - normal);
+            borderVertices.Add(current + normal);
+            borderVertices.Add(next - normal);
+            borderVertices.Add(next + normal);
+
+            // dois triângulos (quad)
+            borderTriangles.Add(startIndex);
+            borderTriangles.Add(startIndex + 1);
+            borderTriangles.Add(startIndex + 2);
+
+            borderTriangles.Add(startIndex + 1);
+            borderTriangles.Add(startIndex + 3);
+            borderTriangles.Add(startIndex + 2);
+        }
+
+        _borderMesh.Clear();
+        _borderMesh.SetVertices(borderVertices);
+        _borderMesh.SetTriangles(borderTriangles, 0);
+
+        _borderRenderer.SetMesh(_borderMesh);
+        _borderRenderer.SetMaterial(_borderMaterial, null);
     }
 
     private void OnDisable()
     {
         _canvasRenderer.Clear();
+        if (_borderRenderer != null)
+            _borderRenderer.Clear();
+    }
+
+    public List<Vector3> GetVertices()
+    {
+        return new List<Vector3>(_vertices);
     }
 }
