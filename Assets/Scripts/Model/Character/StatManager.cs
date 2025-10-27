@@ -23,6 +23,8 @@ public class StatManager
     [SerializeField] private Stat _charisma;
     [SerializeField] private Stat _intelligence;
 
+    [SerializeField] private int _maxStatValue = 10;
+
     public StatManager()
     {
         _strengh = new Stat(0, new List<int>());
@@ -30,6 +32,15 @@ public class StatManager
         _agility = new Stat(0, new List<int>());
         _charisma = new Stat(0, new List<int>());
         _intelligence = new Stat(0, new List<int>());
+    }
+
+    public StatManager(StatManager statManager)
+    {
+        _strengh = new Stat(statManager._strengh);
+        _endurance = new Stat(statManager._endurance);
+        _agility = new Stat(statManager._agility);
+        _charisma = new Stat(statManager._charisma);
+        _intelligence = new Stat(statManager._intelligence);
     }
 
     public Stat GetStat(StatType statType)
@@ -77,5 +88,29 @@ public class StatManager
             case StatType.Intelligence: _intelligence = newStat; break;
             default: throw new ArgumentOutOfRangeException(nameof(statType), statType, string.Format(EXPCETION_MESSAGE_STAT_NOT_FOUND, statType, "SetStat"));
         }
+    }
+
+    public List<float> GetValues()
+    {
+        var order = new List<StatType>() { StatType.Strengh, StatType.Endurance, StatType.Agility, StatType.Charisma, StatType.Intelligence };
+        
+        var values = new List<float>();
+        order.ForEach(stat => values.Add(GetStat(stat).GetValue() / (float)_maxStatValue));
+
+        return values;
+    }
+
+    public void AddBonusToStat(StatType statType, int bonus)
+    {
+        var stat = GetStat(statType);
+
+        stat.AddBonus(bonus);
+    }
+
+    public void RmvBonusToStat(StatType statType, int bonus)
+    {
+        var stat = GetStat(statType);
+
+        stat.RmvBonus(bonus);
     }
 }
