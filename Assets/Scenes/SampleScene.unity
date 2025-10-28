@@ -10150,7 +10150,6 @@ MonoBehaviour:
   _failText: {fileID: 1076236252}
   _animator: {fileID: 1009324680}
   _createRadarChartTrigger: CreateRadarCharts
-  _createRadarChartState: CreateRadarCharts
 --- !u!95 &1009324680
 Animator:
   serializedVersion: 5
@@ -19801,6 +19800,14 @@ PrefabInstance:
     - target: {fileID: 6368781121850715815, guid: 23290f0139e06254a9d66051b73af7c3, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -1.3999939
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699613834343100371, guid: 23290f0139e06254a9d66051b73af7c3, type: 3}
+      propertyPath: _speed
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699613834343100371, guid: 23290f0139e06254a9d66051b73af7c3, type: 3}
+      propertyPath: _duration
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8058284252147180694, guid: 23290f0139e06254a9d66051b73af7c3, type: 3}
       propertyPath: m_AnchorMax.x

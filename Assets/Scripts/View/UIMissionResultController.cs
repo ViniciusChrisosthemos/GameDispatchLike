@@ -39,7 +39,7 @@ public class UIMissionResultController : MonoBehaviour
         var teamStats = mission.Team.GetTeamStats().GetValues();
         var requiredStats = mission.GetRequiredStats().GetValues();
 
-        _uiCompareStatsController.CreateRadarChartForStats(teamStats, requiredStats);
+        _uiCompareStatsController.CreateRadarChartForStats(requiredStats, teamStats);
 
         _animator.SetTrigger(_createRadarChartTrigger);
 
