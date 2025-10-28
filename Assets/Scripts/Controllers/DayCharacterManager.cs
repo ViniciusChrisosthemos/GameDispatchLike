@@ -31,9 +31,9 @@ public class DayCharacterManager : MonoBehaviour
         _characterSO.ForEach(characterSO => _availableCharacters.Add(new CharacterUnit(characterSO)));
     }
 
-    public void HandleTeamCompleteMission(MissionUnit missionUnit, Team team, float currentTime)
+    public void HandleTeamCompleteMission(MissionUnit missionUnit, Team team, bool isSuccess, float currentTime)
     {
-        team.Members.ForEach(c => c.HandleMissionCompleted(missionUnit.Exp, currentTime));
+        team.Members.ForEach(c => c.HandleMissionCompleted(isSuccess ? missionUnit.Exp : 0, currentTime));
     }
 
     public void HandleTeamStartMission(Team team)

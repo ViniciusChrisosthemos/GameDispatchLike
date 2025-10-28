@@ -120,6 +120,11 @@ public class MissionUnit
         OnMissionAccepted?.Invoke(this);
     }
 
+    public StatManager GetRequiredStats()
+    {
+        return _missionSO.RequiredStats;
+    }
+
     public string Name => _missionSO.Name;
     public string Description => _missionSO.Description;
     public int Exp => _missionSO.RewardExperience;

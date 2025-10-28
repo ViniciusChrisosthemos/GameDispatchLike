@@ -83,10 +83,10 @@ public class DayManager : MonoBehaviour
         _dayCharacterManager.UpdateCharacters(_elapseTime);
     }
 
-    public void ClaimMission(MissionUnit missionUnit)
+    public void ClaimMission(MissionUnit missionUnit, bool isSuccess)
     {
         missionUnit.ClaimMission();
-        _dayCharacterManager.HandleTeamCompleteMission(missionUnit, missionUnit.Team, _elapseTime);
+        _dayCharacterManager.HandleTeamCompleteMission(missionUnit, missionUnit.Team, isSuccess, _elapseTime);
     }
 
     public void AcceptMission(MissionUnit mission, Team team)

@@ -1,36 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class UIAnimatePolygonBounceController : MonoBehaviour
 {
-    [Header("Definição do Polígono (em coordenadas locais)")]
-    public List<Transform> tranforms = new List<Transform>();
+    [Header("References")]
+    [SerializeField] private Transform _target;
 
-    [Header("Movimento")]
+    [Header("Parameters")]
+    [SerializeField] private AnimationCurve speedCurve;
+
     private Vector2 direction;
-    public AnimationCurve speedCurve;
-
     private bool isMoving = false;
+    private Transform _pivot;
 
-    private void Start()
-    {
-        // Define uma direção inicial aleatória normalizada
-        direction = Random.insideUnitCircle.normalized;
-    }
-
-    /*
+    private List<Vector2> _polygon;
+    
     private void OnDrawGizmos()
     {
-        if (polygonVertices == null || polygonVertices.Count < 2)
+        if (_polygon == null || _polygon.Count < 2)
             return;
 
         Gizmos.color = Color.yellow;
-        for (int i = 0; i < polygonVertices.Count; i++)
+        for (int i = 0; i < _polygon.Count; i++)
         {
-            Vector2 a = polygonVertices[i];
-            Vector2 b = polygonVertices[(i + 1) % polygonVertices.Count];
+            Vector2 a = _polygon[i];
+            Vector2 b = _polygon[(i + 1) % _polygon.Count];
             Gizmos.DrawLine(a, b);
         }
 
@@ -41,28 +39,35 @@ public class UIAnimatePolygonBounceController : MonoBehaviour
             Gizmos.DrawRay(transform.position, direction * 0.5f);
         }
     }
-    */
+    
     /// <summary>
     /// Inicia o movimento com duração e desaceleração controlada.
     /// </summary>
-    public void Animate(List<Vector2> polygon, float duration, float speed)
+    public void Animate(List<Vector2> polygon, Transform pivot, float duration, float speed, Action callback)
     {
         if (isMoving)
             StopAllCoroutines();
 
-        StartCoroutine(MoveInsidePolygon(polygon, duration, speed));
+        StartCoroutine(MoveInsidePolygon(polygon, pivot, duration, speed, callback));
     }
 
-    private IEnumerator MoveInsidePolygon(List<Vector2> polygon, float duration, float speed)
+    private IEnumerator MoveInsidePolygon(List<Vector2> polygon, Transform pivot, float duration, float speed, Action callback)
     {
         isMoving = true;
         float elapsed = 0f;
 
-        Vector2 center = Vector3.zero;
-        polygon.ForEach(p => center += p);
-        center *= (1 / (float)polygon.Count);
+        _pivot = pivot;
+        _polygon = new List<Vector2>();
 
-        transform.position = center;
+        polygon.ForEach(p => _polygon.Add(p + (Vector2)pivot.position));
+
+        var center = Vector2.zero;
+        _polygon.ForEach(p => center += p);
+        center *= 1 / (float)_polygon.Count;
+
+        _target.position = center;
+
+        direction = Random.insideUnitCircle.normalized;
 
         while (elapsed < duration)
         {
@@ -70,14 +75,14 @@ public class UIAnimatePolygonBounceController : MonoBehaviour
             float speedFactor = speedCurve.Evaluate(t); // curva define desaceleração
             float currentSpeed = speed * speedFactor;
 
-            Vector2 pos = transform.position;
+            Vector2 pos = _target.position;
             Vector2 newPos = pos + direction * currentSpeed * Time.deltaTime;
 
             // Verifica colisões com as bordas
-            for (int i = 0; i < polygon.Count; i++)
+            for (int i = 0; i < _polygon.Count; i++)
             {
-                Vector2 a = polygon[i];
-                Vector2 b = polygon[(i + 1) % polygon.Count];
+                Vector2 a = _polygon[i];
+                Vector2 b = _polygon[(i + 1) % _polygon.Count];
 
                 if (SegmentIntersection(pos, newPos, a, b, out Vector2 intersection))
                 {
@@ -94,13 +99,15 @@ public class UIAnimatePolygonBounceController : MonoBehaviour
                 }
             }
 
-            transform.position = newPos;
+            _target.position = newPos;
 
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         isMoving = false;
+
+        callback?.Invoke();
     }
 
     /// <summary>
@@ -128,4 +135,7 @@ public class UIAnimatePolygonBounceController : MonoBehaviour
 
         return false;
     }
+
+    public Transform Point => _target;
+    public Transform Pivot => _pivot;
 }

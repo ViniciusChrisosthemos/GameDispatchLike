@@ -16,6 +16,7 @@ public class UIDayManager : MonoBehaviour
     [SerializeField] private Transform _baseTransform;
     [SerializeField] private Transform _missionParent;
     [SerializeField] private UIMissionController _missionPrefab;
+    [SerializeField] private UIMissionResultController _uiMissionResultController;
 
     [Header("UI/Character")]
     [SerializeField] private Transform _dayCharacterParent;
@@ -96,15 +97,7 @@ public class UIDayManager : MonoBehaviour
     {
         if (missionSelected.IsMissionCompleted())
         {
-            _dayManager.ClaimMission(missionSelected);
-
-            var controller = _uiMissionControllers.Find(m => m.MissionUnit.ID == missionSelected.ID);
-            HandleCallForDeleteMission(controller);
-
-            _animatePathController.AnimatePath(missionSelected.Team, missionSelected.Location, _baseTransform, () =>
-            {
-                _dayManager.HandleCharacterArriveBase(missionSelected.Team, _dayManager.CurrentTime);
-            });
+            HandleMissionCompletedSelected(missionSelected);
         }
         else if (missionSelected.IsMissionWaitingToBeAccepted())
         {
@@ -112,6 +105,22 @@ public class UIDayManager : MonoBehaviour
 
             _missionInfoController.OpenScreen(missionSelected);
         }
+    }
+
+    private void HandleMissionCompletedSelected(MissionUnit missionUnit)
+    {
+        _uiMissionResultController.OpenResultScreen(missionUnit, result =>
+        {
+            _dayManager.ClaimMission(missionUnit, result);
+
+            var controller = _uiMissionControllers.Find(m => m.MissionUnit.ID == missionUnit.ID);
+            HandleCallForDeleteMission(controller);
+
+            _animatePathController.AnimatePath(missionUnit.Team, missionUnit.Location, _baseTransform, () =>
+            {
+                _dayManager.HandleCharacterArriveBase(missionUnit.Team, _dayManager.CurrentTime);
+            });
+        });
     }
 
     public void ResumeDay()
