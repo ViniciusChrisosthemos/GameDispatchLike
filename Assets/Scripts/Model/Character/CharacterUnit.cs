@@ -40,12 +40,18 @@ public class CharacterUnit
         _expToLevelUp = _baseCharacter.LevelProgression.GetXPForLevel(_currentLevel);
     }
 
-    public string Name => _baseCharacter.Name;
-    public Sprite FaceArt => _baseCharacter.FaceArt;
-    public Sprite BodyArt => _baseCharacter.BodyArt;
-    public Sprite FullArt => _baseCharacter.FullArt;
+    public CharacterUnit(CharacterSO baseCharacter, int currentLevel, int currentXP, StatManager statManager)
+    {
+        _baseCharacter = baseCharacter;
 
-    public StatManager StatManager { get { return _statManager; } }
+        _status = CharacterStatus.Available;
+        _statManager = statManager;
+
+        _currentLevel = currentLevel;
+        _currentXP = currentXP;
+
+        _expToLevelUp = _baseCharacter.LevelProgression.GetXPForLevel(currentLevel);
+    }
 
     public void SetStatusToAvailable()
     {
@@ -145,4 +151,13 @@ public class CharacterUnit
     public float NormalizedExp => _currentXP / (float)_expToLevelUp;
     public int Level => _currentLevel;
     public int AvailablePoints => _availablePoints;
+    public int CurrentXP => _currentXP;
+
+    public string Name => _baseCharacter.Name;
+    public Sprite FaceArt => _baseCharacter.FaceArt;
+    public Sprite BodyArt => _baseCharacter.BodyArt;
+    public Sprite FullArt => _baseCharacter.FullArt;
+
+    public CharacterSO BaseCharacterSO => _baseCharacter;
+    public StatManager StatManager { get { return _statManager; } }
 }

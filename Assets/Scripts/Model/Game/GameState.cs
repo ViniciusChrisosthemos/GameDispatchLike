@@ -13,6 +13,11 @@ public class GameState
         _currentDay = day;
     }
 
+    public void IncrementDay()
+    {
+        _currentDay++;
+    }
+
     public int Day => _currentDay;
 
     public Guild Guild => _guild;

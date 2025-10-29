@@ -11,13 +11,13 @@ public class Guild
     private List<CharacterUnit> _hiredCharacters;
     private List<CharacterUnit> _scheduledCharacters;
 
-    public Guild(string name, int balance, int popularity, List<CharacterUnit> characters)
+    public Guild(string name, int balance, int popularity, List<CharacterUnit> characters, List<CharacterUnit> scheduled)
     {
         _name = name;
         _balance = balance;
         _reputation = popularity;
         _hiredCharacters = characters;
-        _scheduledCharacters = new List<CharacterUnit>();
+        _scheduledCharacters = scheduled;
     }
 
     public void SetScheduledCharacters(List<CharacterUnit> scheduledCharacters)

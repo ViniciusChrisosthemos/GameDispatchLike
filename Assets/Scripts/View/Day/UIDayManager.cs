@@ -54,6 +54,8 @@ public class UIDayManager : MonoBehaviour
         {
             CloseScreen();
 
+            GameManager.Instance.CompleteDay();
+
             _uiGuildViewManager.OpenScreen();
         });
     }

@@ -12,6 +12,7 @@ public class UIGuildViewManager : MonoBehaviour
 
     [Header("Screen References")]
     [SerializeField] private GameObject _view;
+    [SerializeField] private Button _btnQuit;
 
     [Header("Guild")]
     [SerializeField] private TextMeshProUGUI _txtGuildName;
@@ -31,13 +32,11 @@ public class UIGuildViewManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private GameSettingsSO _gameSettingsSO;
 
-    private void Awake()
-    {
-        _btnStartDay.onClick.AddListener(StartDay);
-    }
-
     private void Start()
     {
+        _btnStartDay.onClick.AddListener(StartDay);
+        _btnQuit.onClick.AddListener(QuitGame);
+        
         OpenScreen();
     }
 
@@ -50,6 +49,13 @@ public class UIGuildViewManager : MonoBehaviour
         _dayManager.StartDay(guild.ScheduledCharacters);
 
         CloseWindow();
+    }
+
+    public void QuitGame()
+    {
+        CommitChanges();
+
+        GameManager.Instance.Quit();
     }
 
     public void Init()
@@ -82,6 +88,7 @@ public class UIGuildViewManager : MonoBehaviour
 
     public void HandleScheduledCharacterSelected(UICharacterViewController controller)
     {
+        controller.UpdateCharacter(controller.CharacterUnit, HandleAvailableCharacterSelected);
         controller.transform.SetParent(_availableCharactersParent, false);
     }
 
@@ -89,6 +96,7 @@ public class UIGuildViewManager : MonoBehaviour
     {
         if (_scheduledCharactersParent.childCount >= _gameSettingsSO.MaxScheduledCharacters) return;
 
+        controller.UpdateCharacter(controller.CharacterUnit, HandleScheduledCharacterSelected);
         controller.transform.SetParent(_scheduledCharactersParent, false);
     }
 
