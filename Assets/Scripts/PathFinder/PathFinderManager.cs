@@ -13,38 +13,12 @@ public class PathFinderManager : MonoBehaviour
 
 
     [Header("Debug")]
+    [SerializeField] private bool _debug = false;
     [SerializeField] private Node Origin;
     [SerializeField] private Node Destiny;
     [SerializeField] private List<Node> _currentPath = new List<Node>();
     [SerializeField] private Transform _playerTransform;
     [SerializeField] private float _animationSpeed = 0.5f;
-
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.P))
-        {
-            if (Origin == null || Destiny == null) return;
-
-            _currentPath = GetPath(Origin, Destiny);
-
-            StopAllCoroutines();
-            StartCoroutine(AnimatePathWalkCoroutine());
-        }
-    }
-
-    private IEnumerator AnimatePathWalkCoroutine()
-    {
-        int index = 0;
-
-        while (index < _currentPath.Count)
-        {
-            _playerTransform.position = _currentPath[index].transform.position;
-
-            yield return new WaitForSeconds(_animationSpeed);
-
-            index++;
-        }
-    }
 
     void Start()
     {
@@ -123,7 +97,7 @@ public class PathFinderManager : MonoBehaviour
     // ============================================================
     private void OnDrawGizmos()
     {
-        if (nodesParent == null) return;
+        if (nodesParent == null || !_debug) return;
         Gizmos.color = lineColor;
 
         foreach (Transform child in nodesParent)

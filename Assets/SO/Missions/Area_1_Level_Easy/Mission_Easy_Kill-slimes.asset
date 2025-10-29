@@ -36,5 +36,6 @@ MonoBehaviour:
   MissionImage: {fileID: 0}
   RewardExperience: 200
   RewardGold: 15
+  RewardReputation: 5
   TimeToAccept: 30
   TimeToComplete: 10

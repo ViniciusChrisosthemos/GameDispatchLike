@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class UIDayManager : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] private GameObject _view;
     [SerializeField] private DayManager _dayManager;
     [SerializeField] private UIMissionInfoController _missionInfoController;
     [SerializeField] private AnimatePathController _animatePathController;
@@ -28,6 +29,11 @@ public class UIDayManager : MonoBehaviour
     [Header("UI/Level Up")]
     [SerializeField] private UILevelUpController _uiLevelUpController;
 
+    [Header("Screens")]
+    [SerializeField] private UIDayReportController _uiDayReportController;
+    [SerializeField] private UIGuildViewManager _uiGuildViewManager;
+
+
     [Header("Events")]
     public UnityEvent<CharacterUnit> OnCharacterSelected;
 
@@ -39,17 +45,22 @@ public class UIDayManager : MonoBehaviour
         _dayManager.OnDayStart.AddListener(HandleDayStarted);
         _dayManager.OnMissionAvailable.AddListener(HandleMissionAvailableEvent);
         _dayManager.OnTimeUpdated.AddListener(HandleTimeUpdatedEvet);
+        _dayManager.OnDayEnd.AddListener(HandleDayEnded);
     }
 
-    private void Start()
+    private void HandleDayEnded(DayReport report)
     {
-        _missionInfoController.CloseScreen();
+        _uiDayReportController.OpenScreen(report, () =>
+        {
+            CloseScreen();
 
-        _missionParent.ClearChilds();
+            _uiGuildViewManager.OpenScreen();
+        });
+    }
 
-        _uiMissionControllers = new List<UIMissionController>();
-
-        _sliderDayTimer.value = 1;
+    private void CloseScreen()
+    {
+        _view.SetActive(false);
     }
 
     private void HandleTimeUpdatedEvet(float currentTime)
@@ -80,7 +91,14 @@ public class UIDayManager : MonoBehaviour
 
     private void HandleDayStarted(List<CharacterUnit> characters)
     {
+        _view.SetActive(true);
+
+        _sliderDayTimer.value = 1;
+
+        _missionParent.ClearChilds();
         _dayCharacterParent.ClearChilds();
+
+        _uiMissionControllers = new List<UIMissionController>();
         _uiDayCharacterControllers = new List<UIDayCharacterViewController>();
 
         foreach (var character in characters)
@@ -91,6 +109,8 @@ public class UIDayManager : MonoBehaviour
 
             _uiDayCharacterControllers.Add(controller);
         }
+
+        _missionInfoController.CloseScreen();
     }
 
     private void HandleMissionSelected(MissionUnit missionSelected)

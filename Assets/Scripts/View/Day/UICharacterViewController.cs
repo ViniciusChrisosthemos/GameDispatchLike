@@ -13,8 +13,20 @@ public class UICharacterViewController : MonoBehaviour
     [SerializeField] private UIRadarChartController _radarChartStatController;
     [SerializeField] private CharacterArtType _characterArtType;
 
+    [Header("(optional)")]
+    [SerializeField] private Button _btnButton;
+
+    private CharacterUnit _characterUnit;
+
     public void UpdateCharacter(CharacterUnit characterUnit)
     {
+        UpdateCharacter(characterUnit, null);
+    }
+
+    public void UpdateCharacter(CharacterUnit characterUnit, Action<UICharacterViewController> callback)
+    {
+        _characterUnit = characterUnit;
+
         switch (_characterArtType)
         {
             case CharacterArtType.Face: _imgCharacterView.sprite = characterUnit.FaceArt; break;
@@ -25,5 +37,13 @@ public class UICharacterViewController : MonoBehaviour
 
         var values = characterUnit.StatManager.GetValues();
         _radarChartStatController.UpdateStats(values);
+
+        if (callback != null && _btnButton != null)
+        {
+            Debug.Log("BUTTON");
+            _btnButton.onClick.AddListener(() => { callback?.Invoke(this); Debug.Log("CLICK"); });
+        }
     }
+
+    public CharacterUnit CharacterUnit => _characterUnit;
 }

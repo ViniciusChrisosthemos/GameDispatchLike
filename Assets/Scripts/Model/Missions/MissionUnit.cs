@@ -129,6 +129,7 @@ public class MissionUnit
     public string Description => _missionSO.Description;
     public int Exp => _missionSO.RewardExperience;
     public int Gold => _missionSO.RewardExperience;
+    public int Reputation => _missionSO.RewardReputation;
     public int MaxTeamSize => _missionSO.MaxTeamSize;
     public int ID => _id;
 

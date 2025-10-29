@@ -8,33 +8,37 @@ using Random = UnityEngine.Random;
 
 public class DayManager : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private DayCharacterManager _dayCharacterManager;
     [SerializeField] private DayMissionManager _missionManager;
 
+    [Header("Parameters")]
     [SerializeField] private int _dayDurationInSeconds = 5 * 60;
     [SerializeField] private int _totalMissions = 12;
 
-    private float _elapseTime;
-    private bool _isPaused = false;
-
     [Header("Events")]
     public UnityEvent<List<CharacterUnit>> OnDayStart;
-    public UnityEvent OnDayEnd;
+    public UnityEvent<DayReport> OnDayEnd;
     public UnityEvent<float> OnTimeUpdated;
     public UnityEvent<List<MissionUnit>> OnMissionAvailable;
 
     [Header("Debug")]
     [SerializeField] private bool _runOnStart = false;
 
-    private void Start()
-    {
-        if (_runOnStart) StartDay();
-    }
+    private float _elapseTime;
+    private bool _isPaused = false;
+    private DayReport _dayReport;
 
-    public void StartDay()
+    private GameState _gameState;
+
+    public void StartDay(List<CharacterUnit> characters)
     {
+        _gameState = GameManager.Instance.GameState;
+
         _isPaused = false;
+        _dayReport = new DayReport();
 
+        _dayCharacterManager.Init(characters);
         _missionManager.Init(_totalMissions, _dayDurationInSeconds, HandleNewMissions);
 
         StartCoroutine(DayLoopCoroutine());
@@ -74,7 +78,9 @@ public class DayManager : MonoBehaviour
             }
         }
 
-        OnDayEnd?.Invoke();
+        yield return new WaitUntil(() => _dayCharacterManager.AllCharacterInBase());
+
+        OnDayEnd?.Invoke(_dayReport);
     }
 
     private void UpdateManagers()
@@ -87,6 +93,20 @@ public class DayManager : MonoBehaviour
     {
         missionUnit.ClaimMission();
         _dayCharacterManager.HandleTeamCompleteMission(missionUnit, missionUnit.Team, isSuccess, _elapseTime);
+
+        if (isSuccess)
+        {
+            _dayReport.HandleMissionSucceded(missionUnit.Gold);
+
+            _gameState.Guild.AddGold(missionUnit.Gold);
+            _gameState.Guild.AddReputation(missionUnit.Reputation);
+        }
+        else
+        {
+            _dayReport.HandleMissionFailed();
+
+            _gameState.Guild.RmvReputation(missionUnit.Reputation);
+        }
     }
 
     public void AcceptMission(MissionUnit mission, Team team)
@@ -94,6 +114,8 @@ public class DayManager : MonoBehaviour
         _dayCharacterManager.HandleTeamAcceptMission(team);
 
         mission.AcceptMission(team);
+
+        _dayReport.HandleMissionAccepted(team.Members);
     }
 
     public void StartMission(MissionUnit mission)
@@ -120,11 +142,6 @@ public class DayManager : MonoBehaviour
     public void HandleCharacterArriveBase(Team team, float currentTime)
     {
         team.Members.ForEach(m => m.SetCharacterResting(currentTime));
-    }
-
-    internal void HandleCharacterArriveBase(Team team, object currentTime)
-    {
-        throw new NotImplementedException();
     }
 
     public int TotalDayTime { get => _dayDurationInSeconds; }

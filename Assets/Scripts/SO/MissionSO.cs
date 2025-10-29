@@ -13,6 +13,7 @@ public class MissionSO : ScriptableObject
     public Sprite MissionImage;
     public int RewardExperience;
     public int RewardGold;
+    public int RewardReputation;
     public int TimeToAccept;
     public int TimeToComplete;
 }

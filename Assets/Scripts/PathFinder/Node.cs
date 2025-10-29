@@ -12,7 +12,9 @@ public class Node : MonoBehaviour
     public bool _isBidirectional = false;
 
     [Header("Debug")]
+    [SerializeField] private bool _debug = false;
     [SerializeField] private TextMeshProUGUI _txtNumber;
+    [SerializeField] private GameObject _circle;
 
     private void Awake()
     {
@@ -28,6 +30,13 @@ public class Node : MonoBehaviour
     
     private void OnValidate()
     {
+        if (!_debug)
+        {
+            _circle.gameObject.SetActive(false);
+            return;
+        }
+
+        _circle.gameObject.SetActive(true);
         try
         {
 

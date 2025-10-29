@@ -21,6 +21,7 @@ public class DayMissionManager : MonoBehaviour
     public void Init(int missionAmount, int totalTimeInSeconds, Action<List<MissionUnit>> OnMissionAvailable)
     {
         _currentMissionID = 0;
+        _currentMissions = new List<MissionUnit>();
         _timelineMissions = new List<TimelineMission>();
         
         var auxMissionInfoList = new List<TimelineMission>();
@@ -52,6 +53,7 @@ public class DayMissionManager : MonoBehaviour
 
         _timelineMissions.Sort((a, b) => a.StartTime.CompareTo(b.StartTime));
 
+        OnNewMissionAvailable.RemoveAllListeners();
         OnNewMissionAvailable.AddListener(newMissions => OnMissionAvailable?.Invoke(newMissions));
     }
 

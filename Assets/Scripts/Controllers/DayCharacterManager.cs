@@ -6,13 +6,15 @@ using UnityEngine.Events;
 
 public class DayCharacterManager : MonoBehaviour
 {
-    [SerializeField] private List<CharacterSO> _characterSO;
-    [SerializeField] private List<CharacterUnit> _availableCharacters;
-
     [Header("Events")]
     public UnityEvent<CharacterUnit> OnCharacterChangeStatus;
 
-    public List<CharacterUnit> Characters => _availableCharacters;
+    private List<CharacterUnit> _availableCharacters;
+
+    public void Init(List<CharacterUnit> characters)
+    {
+        _availableCharacters = characters;
+    }
 
     public void HandleTeamAcceptMission(Team team)
     {
@@ -22,13 +24,6 @@ public class DayCharacterManager : MonoBehaviour
 
             OnCharacterChangeStatus?.Invoke(character);
         }
-    }
-
-    private void Awake()
-    {
-        _availableCharacters = new List<CharacterUnit>();
-
-        _characterSO.ForEach(characterSO => _availableCharacters.Add(new CharacterUnit(characterSO)));
     }
 
     public void HandleTeamCompleteMission(MissionUnit missionUnit, Team team, bool isSuccess, float currentTime)
@@ -46,4 +41,15 @@ public class DayCharacterManager : MonoBehaviour
         _availableCharacters.ForEach(c => c.UpdateCharacter(elapseTime));
     }
 
+    public bool AllCharacterInBase()
+    {
+        foreach (var  character in _availableCharacters)
+        {
+            if (!character.IsAvailable() && !character.IsResting()) return false;
+        }
+
+        return true;
+    }
+
+    public List<CharacterUnit> Characters => _availableCharacters;
 }
