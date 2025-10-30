@@ -10,10 +10,10 @@ public class UICharacterViewController : MonoBehaviour
     public enum CharacterArtType { Face, Body, Full }
 
     [SerializeField] private Image _imgCharacterView;
-    [SerializeField] private UIRadarChartController _radarChartStatController;
     [SerializeField] private CharacterArtType _characterArtType;
 
     [Header("(optional)")]
+    [SerializeField] private UIRadarChartController _radarChartStatController;
     [SerializeField] private Button _btnButton;
 
     private CharacterUnit _characterUnit;
@@ -35,9 +35,11 @@ public class UICharacterViewController : MonoBehaviour
             default: _imgCharacterView.sprite = null; break;
         }
 
-        var values = characterUnit.StatManager.GetValues();
-        _radarChartStatController.UpdateStats(values);
-
+        if (_radarChartStatController != null)
+        {
+            var values = characterUnit.StatManager.GetValues();
+            _radarChartStatController.UpdateStats(values);
+        }
 
         if (callback != null && _btnButton != null)
         {
