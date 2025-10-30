@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Transform: {fileID: 8028026334820004364}
   Neighbors: []
-  _isBidirectional: 0
-  _debug: 1
+  _isBidirectional: 1
+  _debug: 0
   _txtNumber: {fileID: 2898961393253390264}
   _circle: {fileID: 8669543044804194142}
 --- !u!1 &3076258239734332494
@@ -238,7 +238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7778952355171303827
 Transform:
   m_ObjectHideFlags: 0

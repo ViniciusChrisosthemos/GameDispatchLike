@@ -7,5 +7,9 @@ using static StatManager;
 
 public class Temp : MonoBehaviour
 {
+    private void OnMouseUp()
+    {
+        Debug.Log($"Mouse UP {name}");
+    }
 
 }

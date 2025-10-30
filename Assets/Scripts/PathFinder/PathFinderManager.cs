@@ -34,6 +34,16 @@ public class PathFinderManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.I))
+        {
+            var path = GetPath(Origin, Destiny);
+            _currentPath = path;
+            Debug.Log($"Path {_currentPath.Count}");
+        }
+    }
+
     // ============================================================
     // MÉTODO PARA ENCONTRAR O MENOR CAMINHO ENTRE DOIS NÓS
     // ============================================================

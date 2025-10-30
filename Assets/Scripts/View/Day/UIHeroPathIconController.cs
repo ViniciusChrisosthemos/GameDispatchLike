@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class UIHeroPathIconController : MonoBehaviour
 {
-    [SerializeField] private Image _imgHero;
+    [SerializeField] private SpriteRenderer _spriteHero;
 
     public void Init(Team team)
     {
-        _imgHero.sprite = team.Members[0].FaceArt;
+        _spriteHero.sprite = team.Members[0].FaceArt;
     }
 }
