@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe3c9202a8965a4e8c6451367f8518f, type: 3}
   m_Name: Character_Viego
   m_EditorClassIdentifier: 
+  ID: 3a26eadbea5066eb0517d1e2329284ff920f6c6e
   Name: Viego
   BaseStats:
     _strengh:

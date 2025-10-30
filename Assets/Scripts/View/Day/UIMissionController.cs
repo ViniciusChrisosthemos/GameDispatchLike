@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIMissionController : MonoBehaviour
+public class UIMissionController : MonoBehaviour, IPointerClickHandler
 {
     [Header("Available View")]
     [SerializeField] private GameObject _availableView;
-    [SerializeField] private Image _imgSliderTime;
+    [SerializeField] private SpriteFill _spriteSliderTime;
     [SerializeField] private Color _colorMissionAvailable = Color.red;
     [SerializeField] private Color _colorMissionInProgress = Color.yellow;
 
@@ -21,14 +22,13 @@ public class UIMissionController : MonoBehaviour
 
     [Header("In Progress View")]
     [SerializeField] private GameObject _inProgressView;
-    [SerializeField] private Image _imgInProgress;
+    [SerializeField] private SpriteRenderer _spriteInProgress;
 
     [Header("Completed")]
     [SerializeField] private GameObject _completedView;
 
-    [SerializeField] private Button _btnMission;
-
     private MissionUnit _missionUnit;
+    private UnityEvent OnClickCallback;
 
     private void Start()
     {
@@ -45,16 +45,16 @@ public class UIMissionController : MonoBehaviour
         if (_txtExp != null) _txtExp.text = mission.Exp.ToString();
         if (_txtGold != null) _txtGold.text = mission.Gold.ToString();
 
-        _imgSliderTime.fillAmount = 1;
+        _spriteSliderTime.fillAmount = 1;
 
-        _btnMission.onClick.AddListener(() => callback?.Invoke(MissionUnit));
+        OnClickCallback.AddListener(() => callback?.Invoke(MissionUnit));
 
         mission.OnMissionLose.AddListener(m => handleCallForDeleteMission?.Invoke(this));
         mission.OnMissionAccepted.AddListener(m => SetMissionAccepted());
         mission.OnMissionStarted.AddListener(m => SetMissionInProgress());
         mission.OnMissionCompleted.AddListener(m => SetMissionCompleted());
 
-        _imgSliderTime.color = _colorMissionAvailable;
+        _spriteSliderTime.Color = _colorMissionAvailable;
     }
 
 
@@ -64,7 +64,7 @@ public class UIMissionController : MonoBehaviour
 
         var normalizedTime = _missionUnit.IsMissionInProgress() ? _missionUnit.GetTotalTimeFromAcceptMission(elapsedTime) : _missionUnit.GetTotalTimeFromGetMission(elapsedTime);
 
-        _imgSliderTime.fillAmount = 1 - normalizedTime;
+        _spriteSliderTime.fillAmount = 1 - normalizedTime;
     }
 
     private void SetMissionAccepted()
@@ -73,24 +73,24 @@ public class UIMissionController : MonoBehaviour
 
         _inProgressView.SetActive(true);
 
-        _imgSliderTime.fillAmount = 1;
-        _imgSliderTime.color = _colorMissionInProgress;
-        _imgInProgress.sprite = _missionUnit.Team.Members[0].FaceArt;
+        _spriteSliderTime.fillAmount = 1;
+        _spriteSliderTime.Color = _colorMissionInProgress;
+        _spriteInProgress.sprite = _missionUnit.Team.Members[0].FaceArt;
 
-        var color = _imgInProgress.color;
+        var color = _spriteInProgress.color;
         color.a = 0.5f;
 
-        _imgInProgress.color = color;
+        _spriteInProgress.color = color;
 
         Debug.Log("Accepted");
     }
 
     public void SetMissionInProgress()
     {
-        var color = _imgInProgress.color;
+        var color = _spriteInProgress.color;
         color.a = 1f;
 
-        _imgInProgress.color = color;
+        _spriteInProgress.color = color;
     }
 
     public void SetMissionCompleted()
@@ -98,6 +98,11 @@ public class UIMissionController : MonoBehaviour
         _inProgressView.SetActive(false);
 
         _completedView.SetActive(true);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        OnClickCallback?.Invoke();
     }
 
     public MissionUnit MissionUnit => _missionUnit;

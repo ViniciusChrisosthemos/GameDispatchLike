@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe3c9202a8965a4e8c6451367f8518f, type: 3}
   m_Name: Character_Mel
   m_EditorClassIdentifier: 
+  ID: 2f629c4d93e35c3d371f0463b040c6ef04a5c1e5
   Name: Mel
   BaseStats:
     _strengh:

@@ -13,7 +13,7 @@ public class Node : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private bool _debug = false;
-    [SerializeField] private TextMeshProUGUI _txtNumber;
+    [SerializeField] private TextMeshPro _txtNumber;
     [SerializeField] private GameObject _circle;
 
     private void Awake()
@@ -30,6 +30,7 @@ public class Node : MonoBehaviour
     
     private void OnValidate()
     {
+
         if (!_debug)
         {
             _circle.gameObject.SetActive(false);
@@ -64,7 +65,7 @@ public class Node : MonoBehaviour
     {
         Transform = t;
     }
-    /*
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -73,5 +74,5 @@ public class Node : MonoBehaviour
         {
             Gizmos.DrawLine(Transform.position, node.transform.position);
         }
-    }*/
+    }
 }

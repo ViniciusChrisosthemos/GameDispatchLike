@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe3c9202a8965a4e8c6451367f8518f, type: 3}
   m_Name: Character_Irelia
   m_EditorClassIdentifier: 
+  ID: fedc88c593c4afa53153387ae96e83cf8b6d0c4a
   Name: Irelia
   BaseStats:
     _strengh:

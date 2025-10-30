@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe3c9202a8965a4e8c6451367f8518f, type: 3}
   m_Name: Character_Ashe
   m_EditorClassIdentifier: 
+  ID: d89d1e1607ca3a85d5a7677b6e385665382717f1
   Name: Ashe
   BaseStats:
     _strengh:

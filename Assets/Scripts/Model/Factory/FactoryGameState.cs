@@ -19,8 +19,11 @@ public class FactoryGameState
         var balance = gameStateData.GuildData.Balance;
         var reputation = gameStateData.GuildData.Reputation;
 
-        var allCharacters = gameStateData.GuildData.AllCharacters.Select(c => _factoryCharacterUnit.CreateCharacterUnit(c)).ToList();
-        
+
+        var allCharacters = new List<CharacterUnit>();
+
+        allCharacters = gameStateData.GuildData.AllCharacters.Select(c => _factoryCharacterUnit.CreateCharacterUnit(c)).ToList();
+
         var guild = new Guild(guildName, balance, reputation, allCharacters);
 
         return new GameState(saveFile, gameStateData.CurrentDay, guild);

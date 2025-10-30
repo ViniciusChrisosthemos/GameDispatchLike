@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe3c9202a8965a4e8c6451367f8518f, type: 3}
   m_Name: Character_Sivir
   m_EditorClassIdentifier: 
+  ID: 2c9bec9dee60593784f1b906e5796a7984966223
   Name: Sivir
   BaseStats:
     _strengh:

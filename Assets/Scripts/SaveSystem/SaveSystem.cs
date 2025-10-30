@@ -37,7 +37,9 @@ public static class SaveSystem
         try
         {
             string json = File.ReadAllText(saveFilePath);
+
             var data = JsonUtility.FromJson<GameStateData>(json);
+
             Debug.Log("[SaveSystem] Jogo carregado com sucesso.");
             return data;
         }

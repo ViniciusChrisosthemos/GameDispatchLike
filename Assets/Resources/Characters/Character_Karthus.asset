@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe3c9202a8965a4e8c6451367f8518f, type: 3}
   m_Name: Character_Karthus
   m_EditorClassIdentifier: 
+  ID: f5a1cb5687b9c2c05cc59cb3f942e920195b2536
   Name: Karthus
   BaseStats:
     _strengh:
