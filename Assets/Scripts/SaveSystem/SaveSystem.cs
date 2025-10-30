@@ -1,17 +1,23 @@
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 public static class SaveSystem
 {
-    private static string SavePath => Path.Combine(Application.persistentDataPath, "save.json");
+    private static string SaveFolder => Application.persistentDataPath;
 
     public static void Save(GameStateData data)
     {
         try
         {
+            string saveFilePath = Path.Combine(SaveFolder, data.SaveFile);
             string json = JsonUtility.ToJson(data, true);
-            File.WriteAllText(SavePath, json);
-            Debug.Log($"[SaveSystem] Jogo salvo em: {SavePath}");
+
+            File.WriteAllText(saveFilePath, json);
+
+            Debug.Log($"[SaveSystem] Jogo salvo em: {saveFilePath}");
         }
         catch (System.Exception ex)
         {
@@ -19,16 +25,18 @@ public static class SaveSystem
         }
     }
 
-    public static GameStateData Load()
+    public static GameStateData Load(string saveFile)
     {
-        if (!File.Exists(SavePath))
+        string saveFilePath = Path.Combine(SaveFolder, saveFile);
+
+        if (!File.Exists(saveFilePath))
         {
             throw new GameNotFoundException();
         }
 
         try
         {
-            string json = File.ReadAllText(SavePath);
+            string json = File.ReadAllText(saveFilePath);
             var data = JsonUtility.FromJson<GameStateData>(json);
             Debug.Log("[SaveSystem] Jogo carregado com sucesso.");
             return data;
@@ -39,11 +47,26 @@ public static class SaveSystem
         }
     }
 
-    public static bool HasSave() => File.Exists(SavePath);
-
-    public static void DeleteSave()
+    public static List<string> GetAllSaveFileNames()
     {
-        if (File.Exists(SavePath))
-            File.Delete(SavePath);
+        string savesDirectory = SaveFolder;
+        if (!Directory.Exists(savesDirectory))
+            return new List<string>();
+
+        var files = Directory.GetFiles(savesDirectory, "*.json");
+
+        for (int i = 0; i < files.Length; i++) files[i] = Path.GetFileName(files[i]);
+
+        return files.ToList();
+    }
+
+    public static void DeleteSave(string saveFile)
+    {
+        var path = Path.Combine(SaveFolder, saveFile);
+
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
     }
 }

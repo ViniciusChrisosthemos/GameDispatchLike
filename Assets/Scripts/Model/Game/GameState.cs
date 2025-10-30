@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class GameState
 {
+    public string _saveFile;
     private Guild _guild;
     private int _currentDay;
 
-    public GameState(int day, Guild guild)
+    public GameState(string saveFile, int day, Guild guild)
     {
+        _saveFile = saveFile;
         _guild = guild;
         _currentDay = day;
     }
@@ -21,4 +23,6 @@ public class GameState
     public int Day => _currentDay;
 
     public Guild Guild => _guild;
+
+    public string SaveFile => _saveFile;
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,21 +18,19 @@ public class GameManager : Singleton<GameManager>
     {
         _factoryCharacterUnit = new FactoryCharacterUnit(CharacterDatabase.Instance);
         _factoryGameState = new FactoryGameState(_factoryCharacterUnit);
-
-        LoadData();
     }
 
     public UnityEvent OnQuitGame;
 
-    private void LoadData()
+    private void LoadData(string saveFile)
     {
         Debug.Log($"[{GetType()}][LoadData] Loading GameData ...");
 
         try
         {
-            var gameStateData = SaveSystem.Load();
+            var gameStateData = SaveSystem.Load(saveFile);
 
-            _gameState = _factoryGameState.CreateGameState(gameStateData);
+            _gameState = _factoryGameState.CreateGameState(saveFile, gameStateData);
 
             Debug.Log($"[{GetType()}][LoadData]         GameData Loaded!");
         }
@@ -39,12 +38,12 @@ public class GameManager : Singleton<GameManager>
         {
             Debug.LogWarning($"[{GetType()}][LoadData] Game Not found!");
 
-            _gameState = _factoryGameState.CreateGameState("Guilda", DefaultGameState);
+            _gameState = _factoryGameState.CreateGameState(saveFile, "Guilda", DefaultGameState);
 
         }catch (BadFormatGameException ex)
         {
             Debug.LogWarning($"[{GetType()}][LoadData] Bad format game data!");
-            _gameState = _factoryGameState.CreateGameState("Guilda", DefaultGameState);
+            _gameState = _factoryGameState.CreateGameState(saveFile, "Guilda", DefaultGameState);
         }
     }
 
@@ -53,8 +52,6 @@ public class GameManager : Singleton<GameManager>
         _gameState.IncrementDay();
     }
 
-    public UIGuildViewManager guildView;
-
     public void Quit()
     {
         Application.Quit();
@@ -62,8 +59,31 @@ public class GameManager : Singleton<GameManager>
 
     private void OnApplicationQuit()
     {
-        guildView.CommitChanges();
-        SaveSystem.Save(new GameStateData(_gameState));
+        if (_gameState != null)
+        {
+            SaveSystem.Save(new GameStateData(_gameState));
+        }
+    }
+
+    public void LoadSave(string currentSave)
+    {
+        LoadData(currentSave);
+    }
+
+    public void NewGame(string guildName)
+    {
+        var saveFile = guildName.Replace(" ", "_") + ".json";
+        _gameState = _factoryGameState.CreateGameState(saveFile, guildName, DefaultGameState);
+    }
+
+    public List<string> GetSaves()
+    {
+        return SaveSystem.GetAllSaveFileNames();
+    }
+
+    public void DeleteSave(string saveFile)
+    {
+        SaveSystem.DeleteSave(saveFile);
     }
 
     public GameState GameState => _gameState;

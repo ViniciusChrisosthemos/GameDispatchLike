@@ -15,9 +15,10 @@ public class FactoryCharacterUnit
 
     public CharacterUnit CreateCharacterUnit(CharacterUnitData data)
     {
-        var baseCharacterSO = _characterDatabase.GetCharacterSO(data.ID);
+        var baseCharacterSO = _characterDatabase.GetCharacterSO(data.CharacterID);
         var currentXP = data.CurrentXP;
         var currentLevel = data.CurrentLevel;
+        var isScheduled = data.IsScheduled;
 
         var statManager = new StatManager();
 
@@ -27,7 +28,7 @@ public class FactoryCharacterUnit
         statManager.SetStat(StatType.Charisma, new Stat(data.StatManagerData.Charisma.BaseValue, data.StatManagerData.Charisma.Bonus));
         statManager.SetStat(StatType.Intelligence, new Stat(data.StatManagerData.Intelligence.BaseValue, data.StatManagerData.Intelligence.Bonus));
 
-        return new CharacterUnit(baseCharacterSO, currentXP, currentLevel, statManager);
+        return new CharacterUnit(baseCharacterSO, currentXP, currentLevel, statManager, isScheduled);
     }
 
     public CharacterUnit CreateCharacterUnit(CharacterSO character)

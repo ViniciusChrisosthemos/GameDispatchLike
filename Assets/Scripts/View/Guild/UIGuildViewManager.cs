@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class UIGuildViewManager : MonoBehaviour
@@ -32,18 +35,18 @@ public class UIGuildViewManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private GameSettingsSO _gameSettingsSO;
 
+    private Guild _guild;
+
     private void Start()
     {
         _btnStartDay.onClick.AddListener(StartDay);
         _btnQuit.onClick.AddListener(QuitGame);
-        
-        OpenScreen();
+
+        CloseWindow();
     }
 
     public void StartDay()
     {
-        CommitChanges();
-
         var guild = GameManager.Instance.GameState.Guild;
 
         _dayManager.StartDay(guild.ScheduledCharacters);
@@ -53,43 +56,48 @@ public class UIGuildViewManager : MonoBehaviour
 
     public void QuitGame()
     {
-        CommitChanges();
-
         GameManager.Instance.Quit();
     }
 
     public void Init()
     {
         var gameState = GameManager.Instance.GameState;
+        _guild = gameState.Guild;
 
-        _txtGuildName.text = gameState.Guild.Name;
-        _txtBalance.text = gameState.Guild.Balance.ToString();
-        _txtPopularity.text = gameState.Guild.Reputation.ToString();
+        _txtGuildName.text = _guild.Name;
+        _txtBalance.text = _guild.Balance.ToString();
+        _txtPopularity.text = _guild.Reputation.ToString();
 
         _txtDay.text = gameState.Day.ToString();
 
         _scheduledCharactersParent.ClearChilds();
         _availableCharactersParent.ClearChilds();
 
-        foreach (var character in gameState.Guild.ScheduledCharacters)
+        foreach (var character in _guild.AllCharacters)
         {
-            var controller = Instantiate(_characterViewControllerPrefab, _scheduledCharactersParent);
-            controller.UpdateCharacter(character, HandleScheduledCharacterSelected);
+            if (character.IsScheduled)
+            {
+                InstantiateCharacter(_scheduledCharactersParent, character, HandleScheduledCharacterSelected);
+            }
+            else
+            {
+                InstantiateCharacter(_availableCharactersParent, character, HandleAvailableCharacterSelected);
+            }
         }
+    }
 
-        foreach (var character in gameState.Guild.HiredCharacters)
-        {
-            if (gameState.Guild.ScheduledCharacters.Contains(character)) continue;
-
-            var controller = Instantiate(_characterViewControllerPrefab, _availableCharactersParent);
-            controller.UpdateCharacter(character, HandleAvailableCharacterSelected);
-        }
+    private void InstantiateCharacter(Transform parent, CharacterUnit character, Action<UICharacterViewController> handler)
+    {
+        var controller = Instantiate(_characterViewControllerPrefab, parent);
+        controller.UpdateCharacter(character, handler);
     }
 
     public void HandleScheduledCharacterSelected(UICharacterViewController controller)
     {
         controller.UpdateCharacter(controller.CharacterUnit, HandleAvailableCharacterSelected);
         controller.transform.SetParent(_availableCharactersParent, false);
+
+        _guild.SetScheduledCharacter(controller.CharacterUnit, false);
     }
 
     public void HandleAvailableCharacterSelected(UICharacterViewController controller)
@@ -98,16 +106,8 @@ public class UIGuildViewManager : MonoBehaviour
 
         controller.UpdateCharacter(controller.CharacterUnit, HandleScheduledCharacterSelected);
         controller.transform.SetParent(_scheduledCharactersParent, false);
-    }
 
-    public void CommitChanges()
-    {
-        var scheduledCharacters = _scheduledCharactersParent.GetComponentsInChildren<UICharacterViewController>().Select(c => c.CharacterUnit).ToList();
-
-        var guild = GameManager.Instance.GameState.Guild;
-
-        guild.ScheduledCharacters.Clear();
-        guild.SetScheduledCharacters(scheduledCharacters);
+        _guild.SetScheduledCharacter(controller.CharacterUnit, true);
     }
 
     public void CloseWindow()

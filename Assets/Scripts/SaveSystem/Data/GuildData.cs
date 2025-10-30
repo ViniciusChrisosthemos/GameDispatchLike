@@ -10,16 +10,14 @@ public class GuildData
     public string Name;
     public int Balance;
     public int Reputation;
-    public List<CharacterUnitData> HiredCharacters;
-    public List<string> ScheduledCharacters;
+    public List<CharacterUnitData> AllCharacters;
 
     public GuildData(Guild guild)
     {
         Name = guild.Name;
         Balance = guild.Balance;
         Reputation = guild.Reputation;
-        HiredCharacters = guild.HiredCharacters.Select(c => new CharacterUnitData(c)).ToList();
-        ScheduledCharacters = guild.ScheduledCharacters.Select(c => c.BaseCharacterSO.ID).ToList();
+        AllCharacters = guild.AllCharacters.Select(c => new CharacterUnitData(c)).ToList();
     }
 
     public GuildData()
@@ -27,7 +25,6 @@ public class GuildData
         Name = "ERROR";
         Balance = 0;
         Reputation = 0;
-        HiredCharacters = new List<CharacterUnitData>();
-        ScheduledCharacters = new List<string>();
+        AllCharacters = new List<CharacterUnitData>();
     }
 }

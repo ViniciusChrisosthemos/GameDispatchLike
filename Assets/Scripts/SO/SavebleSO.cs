@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SavebleSO : ScriptableObject
 {
-    private string _id;
+    [SerializeField] private string _id;
 
     private void OnValidate()
     {

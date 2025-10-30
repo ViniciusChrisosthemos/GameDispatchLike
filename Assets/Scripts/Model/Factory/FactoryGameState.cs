@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,31 +13,28 @@ public class FactoryGameState
         _factoryCharacterUnit = factoryCharacterUnit;
     }
 
-    public GameState CreateGameState(GameStateData gameStateData)
+    public GameState CreateGameState(string saveFile, GameStateData gameStateData)
     {
         var guildName = gameStateData.GuildData.Name;
         var balance = gameStateData.GuildData.Balance;
         var reputation = gameStateData.GuildData.Reputation;
 
-        var hiredCharacter = gameStateData.GuildData.HiredCharacters.Select(c => _factoryCharacterUnit.CreateCharacterUnit(c)).ToList();
-        var scheduledCharacters = hiredCharacter.Where(c => gameStateData.GuildData.ScheduledCharacters.Contains(c.BaseCharacterSO.ID)).ToList();
+        var allCharacters = gameStateData.GuildData.AllCharacters.Select(c => _factoryCharacterUnit.CreateCharacterUnit(c)).ToList();
         
-        scheduledCharacters.ForEach(c => hiredCharacter.Remove(c));
+        var guild = new Guild(guildName, balance, reputation, allCharacters);
 
-        var guild = new Guild(guildName, balance, reputation, hiredCharacter, scheduledCharacters);
-
-        return new GameState(gameStateData.CurrentDay, guild);
+        return new GameState(saveFile, gameStateData.CurrentDay, guild);
     }
 
-    public GameState CreateGameState(string guildName, GameStateSO defaultGameState)
+    public GameState CreateGameState(string saveFile, string guildName, GameStateSO defaultGameState)
     {
         var balance = defaultGameState.Balance;
         var reputation = defaultGameState.Reputation;
 
-        var hiredCharacter = defaultGameState.AvailableCharacters.Select(c => _factoryCharacterUnit.CreateCharacterUnit(c)).ToList();
+        var allcharacters = defaultGameState.AvailableCharacters.Select(c => _factoryCharacterUnit.CreateCharacterUnit(c)).ToList();
 
-        var guild = new Guild(guildName, balance, reputation, hiredCharacter, new List<CharacterUnit>());
+        var guild = new Guild(guildName, balance, reputation, allcharacters);
 
-        return new GameState(defaultGameState.CurrentDay, guild);
+        return new GameState(saveFile, defaultGameState.CurrentDay, guild);
     }
 }

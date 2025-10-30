@@ -38,10 +38,10 @@ public class UICharacterViewController : MonoBehaviour
         var values = characterUnit.StatManager.GetValues();
         _radarChartStatController.UpdateStats(values);
 
-        _btnButton.onClick.RemoveAllListeners();
 
         if (callback != null && _btnButton != null)
         {
+            _btnButton.onClick.RemoveAllListeners();
             _btnButton.onClick.AddListener(() => callback?.Invoke(this));
         }
     }

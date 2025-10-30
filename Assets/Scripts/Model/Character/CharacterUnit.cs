@@ -15,6 +15,7 @@ public class CharacterUnit
     private int _expToLevelUp;
     private int _currentLevel;
     private int _availablePoints;
+    private bool _isScheduled;
 
     public UnityEvent<CharacterUnit> OnCharacterInAvailable = new UnityEvent<CharacterUnit>();
     public UnityEvent<CharacterUnit> OnCharacterInMission = new UnityEvent<CharacterUnit>();
@@ -38,9 +39,10 @@ public class CharacterUnit
         _currentXP = _availablePoints = 0;
 
         _expToLevelUp = _baseCharacter.LevelProgression.GetXPForLevel(_currentLevel);
+        _isScheduled = false;
     }
 
-    public CharacterUnit(CharacterSO baseCharacter, int currentLevel, int currentXP, StatManager statManager)
+    public CharacterUnit(CharacterSO baseCharacter, int currentLevel, int currentXP, StatManager statManager, bool isScheduled)
     {
         _baseCharacter = baseCharacter;
 
@@ -51,6 +53,7 @@ public class CharacterUnit
         _currentXP = currentXP;
 
         _expToLevelUp = _baseCharacter.LevelProgression.GetXPForLevel(currentLevel);
+        _isScheduled = isScheduled;
     }
 
     public void SetStatusToAvailable()
@@ -142,6 +145,11 @@ public class CharacterUnit
         OnCharacterEXPChanged?.Invoke(this);
     }
 
+    public void SetScheduledCharater(bool isScheduled)
+    {
+        _isScheduled = isScheduled;
+    }
+
     public bool IsInMission() => _status == CharacterStatus.InMission;
     public bool IsResting() => _status == CharacterStatus.Resting;
     public bool IsAvailable() => _status == CharacterStatus.Available;
@@ -157,7 +165,7 @@ public class CharacterUnit
     public Sprite FaceArt => _baseCharacter.FaceArt;
     public Sprite BodyArt => _baseCharacter.BodyArt;
     public Sprite FullArt => _baseCharacter.FullArt;
-
+    public bool IsScheduled => _isScheduled;
     public CharacterSO BaseCharacterSO => _baseCharacter;
     public StatManager StatManager { get { return _statManager; } }
 }
