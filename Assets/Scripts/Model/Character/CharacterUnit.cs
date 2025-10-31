@@ -123,6 +123,17 @@ public class CharacterUnit
         }
     }
 
+    public float GetNormalizedTimeToBeAvailable(float currentTime)
+    {
+        var timeDiff = currentTime - _startTime;
+
+        switch (_status)
+        {
+            case CharacterStatus.Resting: return timeDiff / _baseCharacter.TimeToRest;
+            default : return 0f;
+        }
+    }
+
     public void AddExp(int exp)
     {
         _currentXP += exp;
@@ -168,4 +179,5 @@ public class CharacterUnit
     public bool IsScheduled => _isScheduled;
     public CharacterSO BaseCharacterSO => _baseCharacter;
     public StatManager StatManager { get { return _statManager; } }
+
 }

@@ -72,6 +72,7 @@ public class UIDayManager : MonoBehaviour
     private void HandleTimeUpdatedEvet(float currentTime)
     {
         _uiMissionControllers.ForEach(controller => controller.UpdateTime(currentTime));
+        _uiDayCharacterControllers.ForEach(controllers => controllers.UpdateTime(currentTime));
 
         _sliderDayTimer.value = 1 - (currentTime / _dayManager.TotalDayTime);
     }

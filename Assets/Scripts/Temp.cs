@@ -6,10 +6,18 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using static StatManager;
 
-public class Temp : MonoBehaviour, IPointerClickHandler
+public class Temp : MonoBehaviour
+
 {
-    public void OnPointerClick(PointerEventData eventData)
+    public UIRadarChartController radar;
+
+    public List<float> values = new List<float>() { 0, 0, 0, 0.3f, 0.5f, 0.3f };
+
+    private void Update()
     {
-        Debug.Log($"Click {name}");
+        if (Input.GetKeyUp(KeyCode.K))
+        {
+            radar.UpdateStats(values);
+        }
     }
 }

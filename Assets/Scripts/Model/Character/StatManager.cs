@@ -113,4 +113,10 @@ public class StatManager
 
         stat.RmvBonus(bonus);
     }
+
+
+    public override string ToString()
+    {
+        return $"S:{_strengh.GetValue()};E:{_endurance.GetValue()};A:{_agility.GetValue()};C:{_charisma.GetValue()};I:{_intelligence.GetValue()}";
+    }
 }

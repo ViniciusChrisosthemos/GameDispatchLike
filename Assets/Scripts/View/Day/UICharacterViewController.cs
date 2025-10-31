@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,7 @@ public class UICharacterViewController : MonoBehaviour
     [Header("(optional)")]
     [SerializeField] private UIRadarChartController _radarChartStatController;
     [SerializeField] private Button _btnButton;
+    [SerializeField] private TextMeshProUGUI _txtName;
 
     private CharacterUnit _characterUnit;
 
@@ -33,6 +35,11 @@ public class UICharacterViewController : MonoBehaviour
             case CharacterArtType.Body: _imgCharacterView.sprite = characterUnit.BodyArt; break;
             case CharacterArtType.Full: _imgCharacterView.sprite = characterUnit.FullArt; break;
             default: _imgCharacterView.sprite = null; break;
+        }
+
+        if (_txtName != null)
+        {
+            _txtName.text = _characterUnit.Name;
         }
 
         if (_radarChartStatController != null)

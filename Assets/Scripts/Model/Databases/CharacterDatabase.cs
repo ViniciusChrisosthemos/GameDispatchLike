@@ -22,13 +22,6 @@ public class CharacterDatabase : Singleton<CharacterDatabase>
 
     public CharacterSO GetCharacterSO(string characterID)
     {
-        Debug.Log($"Key: {characterID}   {_characterSOs.ContainsKey(characterID)}");
-
-        foreach (var key in _characterSOs.Keys)
-        {
-            Debug.Log($"    {key}");
-        }
-
         if (_characterSOs.ContainsKey(characterID)) return _characterSOs[characterID];
 
         return null;

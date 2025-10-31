@@ -38,4 +38,6 @@ MonoBehaviour:
   RewardGold: 15
   RewardReputation: 5
   TimeToAccept: 30
-  TimeToComplete: 10
+  TimeToComplete: 20
+  TimeToAnswerEvent: 10
+  RandomMissionEvents: []

@@ -19,12 +19,19 @@ public class UIDayCharacterViewController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _txtStatus;
     [SerializeField] private Button _btnCharacter;
     [SerializeField] private GameObject _unavailableOverlay;
+    [SerializeField] private Slider _sliderResting;
+    [SerializeField] private Image _imgStatus;
 
     [Header("Level")]
     [SerializeField] private Image _imgLevelSlider;
     [SerializeField] private GameObject _levelUpOverlay;
     [SerializeField] private TextMeshProUGUI _txtAvailablePoints;
     [SerializeField] private Button _btnLevelUp;
+
+    [Header("Status")]
+    [SerializeField] private Color _colorMovingStatus;
+    [SerializeField] private Color _colorBusyStatus;
+    [SerializeField] private Color _colorReturningStatus;
 
     private CharacterUnit _characterUnit;
     private Action<CharacterUnit> _onSelected;
@@ -60,6 +67,13 @@ public class UIDayCharacterViewController : MonoBehaviour
         _btnLevelUp.onClick.AddListener(HandleBTNLevelUPEvent);
     }
 
+    public void UpdateTime(float currentTime)
+    {
+        if (!_characterUnit.IsResting()) return;
+
+        _sliderResting.value = 1 - _characterUnit.GetNormalizedTimeToBeAvailable(currentTime);
+    }
+
     private void HandleStatChangedEvent(CharacterUnit character)
     {
         _levelUpOverlay.SetActive(character.AvailablePoints != 0);
@@ -88,6 +102,9 @@ public class UIDayCharacterViewController : MonoBehaviour
         _txtStatus.text = STATUS_BUSY;
 
         _unavailableOverlay.SetActive(true);
+        _statusView.SetActive(true);
+
+        _imgStatus.color = _colorBusyStatus;
     }
 
     public void SetStatusAvailable()
@@ -95,6 +112,9 @@ public class UIDayCharacterViewController : MonoBehaviour
         _txtStatus.text = STATUS_AVAILABLE;
 
         _unavailableOverlay.SetActive(false);
+        _sliderResting.value = 0f;
+        _statusView.SetActive(false);
+        _sliderResting.gameObject.SetActive(false);
     }
 
     public void SetStatusInResting()
@@ -102,6 +122,9 @@ public class UIDayCharacterViewController : MonoBehaviour
         _txtStatus.text = STATUS_REST;
 
         _unavailableOverlay.SetActive(true);
+        _statusView.SetActive(true);
+
+        _sliderResting.gameObject.SetActive(true);
     }
 
     private void SetStatusInMoving()
@@ -109,6 +132,9 @@ public class UIDayCharacterViewController : MonoBehaviour
         _txtStatus.text = STATUS_MOVING;
 
         _unavailableOverlay.SetActive(true);
+        _statusView.SetActive(true);
+
+        _imgStatus.color = _colorMovingStatus;
     }
 
     private void SetCharacterReturning()
@@ -116,5 +142,9 @@ public class UIDayCharacterViewController : MonoBehaviour
         _txtStatus.text = STATUS_RETURNING;
 
         _unavailableOverlay.SetActive(true);
+        _statusView.SetActive(true);
+
+        _imgStatus.color = _colorReturningStatus;
     }
+
 }

@@ -67,7 +67,7 @@ public class UIMissionController : MonoBehaviour, IPointerClickHandler
 
     public void UpdateTime(float elapsedTime)
     {
-        if (_missionUnit.IsMissionCompleted() || _missionUnit.IsAccepted()) return;
+        if (_missionUnit.IsMissionCompleted() || _missionUnit.IsMissionCompletedTheEvent() || _missionUnit.IsAccepted()) return;
 
         var normalizedTime = _missionUnit.GetTimeLeftToMakeAction(elapsedTime);
 

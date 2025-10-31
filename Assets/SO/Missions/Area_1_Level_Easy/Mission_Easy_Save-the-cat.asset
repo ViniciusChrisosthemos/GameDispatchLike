@@ -38,7 +38,8 @@ MonoBehaviour:
   RewardGold: 10
   RewardReputation: 1
   TimeToAccept: 30
-  TimeToComplete: 10
+  TimeToComplete: 20
+  TimeToAnswerEvent: 10
   RandomMissionEvents:
   - Description: "N\xE3o era um gato, era a porra de uma ratazana. O que eu fa\xE7o?"
     MissionChoices:
