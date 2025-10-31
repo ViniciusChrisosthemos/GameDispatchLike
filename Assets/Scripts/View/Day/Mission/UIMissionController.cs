@@ -59,6 +59,7 @@ public class UIMissionController : MonoBehaviour, IPointerClickHandler
         mission.OnMissionStarted.AddListener(m => SetMissionInProgress());
         mission.OnMissionCompleted.AddListener(m => SetMissionCompleted());
         mission.OnMissionHasEvent.AddListener((m, me) => SetMissionHasEvent());
+        mission.OnChoiceMaded.AddListener(m => SetMissionInProgress());
 
         _spriteSliderTime.Color = _colorMissionAvailable;
     }
@@ -75,6 +76,7 @@ public class UIMissionController : MonoBehaviour, IPointerClickHandler
 
     private void SetMissionHasEvent()
     {
+        _inProgressView.SetActive(false);
         _hasEventView.SetActive(true);
     }
 
@@ -98,6 +100,9 @@ public class UIMissionController : MonoBehaviour, IPointerClickHandler
 
     public void SetMissionInProgress()
     {
+        _inProgressView.SetActive(true);
+        _hasEventView.SetActive(false);
+
         var color = _spriteInProgress.color;
         color.a = 1f;
 

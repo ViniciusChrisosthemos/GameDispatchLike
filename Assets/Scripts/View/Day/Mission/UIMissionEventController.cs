@@ -14,6 +14,11 @@ public class UIMissionEventController : MonoBehaviour
 
     private Action<MissionChoice> _choiceSelectedCallback;
 
+    private void Start()
+    {
+        CloseScreen();
+    }
+
     public void OpenScreen(List<CharacterSO> characters, RandomMissionEvent missionEvent, Action<MissionChoice> choiceSelectedCallback)
     {
         _view.SetActive(true);
@@ -28,15 +33,15 @@ public class UIMissionEventController : MonoBehaviour
 
             controller.Init(choice, HandleChoiceSelected);
 
-            controller.SetUnavailableOverlay(choice.Character != null && characters.Contains(choice.Character));
+            controller.SetUnavailableOverlay(choice.Character != null && !characters.Contains(choice.Character));
         }
 
         _choiceSelectedCallback = choiceSelectedCallback;
     }
 
-    private void HandleChoiceSelected(object obj)
+    private void HandleChoiceSelected(UIItemController controller)
     {
-        var choice = (MissionChoice)obj;
+        var choice = controller.GetItem<MissionChoice>();
 
         _choiceSelectedCallback?.Invoke(choice);
 

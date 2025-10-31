@@ -18,8 +18,14 @@ public class UIChoiceViewController : UIItemController
 
     [Header("All")]
     [SerializeField] private GameObject _unavailableOverlay;
+    [SerializeField] private Button _btnClick;
 
     private MissionChoice _missionChoice;
+
+    private void Start()
+    {
+        _btnClick.onClick.AddListener(() => SelectItem());
+    }
 
     protected override void HandleInit(object obj)
     {
@@ -29,6 +35,8 @@ public class UIChoiceViewController : UIItemController
         {
             _normalChoiceView.SetActive(true);
             _characterChoiceView.SetActive(false);
+
+            _txtNormalChoiceDescription.text = _missionChoice.Description;
         }
         else
         {

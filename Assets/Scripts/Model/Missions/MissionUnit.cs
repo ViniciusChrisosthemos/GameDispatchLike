@@ -34,6 +34,7 @@ public class MissionUnit
     public UnityEvent<MissionUnit> OnMissionLose = new UnityEvent<MissionUnit>();
     public UnityEvent<MissionUnit> OnMissionClaimed = new UnityEvent<MissionUnit>();
     public UnityEvent<MissionUnit, RandomMissionEvent> OnMissionHasEvent = new UnityEvent<MissionUnit, RandomMissionEvent>();
+    public UnityEvent<MissionUnit> OnChoiceMaded = new UnityEvent<MissionUnit>();
 
     private RandomMissionEvent _randomMissionEvent;
     private MissionChoice _choiceMade;
@@ -142,6 +143,8 @@ public class MissionUnit
         _startTime = currentTime - (_missionSO.TimeToComplete * 0.5f);
 
         _missionStatus = MissionStatus.InProgressWithEvent;
+
+        OnChoiceMaded?.Invoke(this);
     }
 
     public bool IsMissionLost()
@@ -159,10 +162,6 @@ public class MissionUnit
     {
         return _missionStatus == MissionStatus.Completed;
     }
-
-    public float GetTotalTimeFromGetMission(float currentTime) => (currentTime - _startTime) / _missionSO.TimeToAccept;
-
-    public float GetTotalTimeFromAcceptMission(float currentTime) => (currentTime - _startTime) / _missionSO.TimeToComplete;
 
     public void AcceptMission(Team team)
     {
@@ -195,6 +194,7 @@ public class MissionUnit
     public int MaxTeamSize => _missionSO.MaxTeamSize;
     public int ID => _id;
     public RandomMissionEvent MissionEvent => _randomMissionEvent;
+    public MissionChoice MissionChoice => _choiceMade;
     public Team Team => _currentTeam;
 
     public Transform Location { get; private set; }

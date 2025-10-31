@@ -21,6 +21,7 @@ public class UIDayManager : MonoBehaviour
     [SerializeField] private UIMissionController _missionPrefab;
     [SerializeField] private UIMissionResultController _uiMissionResultController;
     [SerializeField] private UIMissionEventController _uiMissionEventController;
+    [SerializeField] private UIEventCompleteController _uiEventCompleteController;
 
     [Header("UI/Character")]
     [SerializeField] private Transform _dayCharacterParent;
@@ -120,6 +121,8 @@ public class UIDayManager : MonoBehaviour
 
     private void HandleMissionSelected(MissionUnit missionSelected)
     {
+        Debug.Log($"{missionSelected.Name} {missionSelected.IsMissionCompletedTheEvent()}");
+
         if (missionSelected.HasRandomEvent())
         {
             _dayManager.PauseDay();
@@ -130,7 +133,7 @@ public class UIDayManager : MonoBehaviour
         }
         else if (missionSelected.IsMissionCompleted())
         {
-            HandleMissionCompletedSelected(missionSelected);
+            HandleMissionCompletedByStats(missionSelected);
         }
         else if (missionSelected.IsMissionWaitingToBeAccepted())
         {
@@ -140,7 +143,7 @@ public class UIDayManager : MonoBehaviour
 
         }else if (missionSelected.IsMissionCompletedTheEvent())
         {
-
+            _uiEventCompleteController.OpenScreen(missionSelected, () => HandleMissionCompletedByChoices(missionSelected));
         }
     }
 
@@ -151,7 +154,12 @@ public class UIDayManager : MonoBehaviour
         ResumeDay();
     }
 
-    private void HandleMissionCompletedSelected(MissionUnit missionUnit)
+    private void HandleMissionCompletedByChoices(MissionUnit missionUnit)
+    {
+        HandleMissionCompleted(missionUnit, true);
+    }
+
+    private void HandleMissionCompletedByStats(MissionUnit missionUnit)
     {
         _dayManager.PauseDay();
         
@@ -159,15 +167,20 @@ public class UIDayManager : MonoBehaviour
         {
             ResumeDay();
 
-            _dayManager.ClaimMission(missionUnit, result);
+            HandleMissionCompleted(missionUnit, result);
+        });
+    }
 
-            var controller = _uiMissionControllers.Find(m => m.MissionUnit.ID == missionUnit.ID);
-            HandleCallForDeleteMission(controller);
+    private void HandleMissionCompleted(MissionUnit missionUnit, bool result)
+    {
+        _dayManager.ClaimMission(missionUnit, result);
 
-            _animatePathController.AnimatePath(missionUnit.Team, missionUnit.Location, _baseTransform, () =>
-            {
-                _dayManager.HandleCharacterArriveBase(missionUnit.Team, _dayManager.CurrentTime);
-            });
+        var controller = _uiMissionControllers.Find(m => m.MissionUnit.ID == missionUnit.ID);
+        HandleCallForDeleteMission(controller);
+
+        _animatePathController.AnimatePath(missionUnit.Team, missionUnit.Location, _baseTransform, () =>
+        {
+            _dayManager.HandleCharacterArriveBase(missionUnit.Team, _dayManager.CurrentTime);
         });
     }
 
