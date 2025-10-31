@@ -129,7 +129,7 @@ public class DayManager : MonoBehaviour
         _isPaused = true;
     }
 
-    public void ResumoDay()
+    public void ResumeDay()
     {
         _isPaused = false;
     }

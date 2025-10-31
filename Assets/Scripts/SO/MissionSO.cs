@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Mission", menuName = "ScriptableObjects/Mission")]
 public class MissionSO : ScriptableObject
 {
+    [Header("Mission")]
     public string Name;
     public string Description;
     public int DifficultyLevel;
@@ -16,4 +18,29 @@ public class MissionSO : ScriptableObject
     public int RewardReputation;
     public int TimeToAccept;
     public int TimeToComplete;
+    public int TimeToAnswerEvent;
+
+    [Header("Addicional Events")]
+    public List<RandomMissionEvent> RandomMissionEvents = new List<RandomMissionEvent>();
+
+    [Serializable]
+    public class RandomMissionEvent
+    {
+        public string Description;
+        public List<MissionChoice> MissionChoices;
+    }
+
+    [Serializable]
+    public class MissionChoice
+    {
+        [Header("Choice Info")]
+        public string Description;
+        public StatManager.StatType StatType;
+        public int StatAmountRequired;
+        public string SucceededDescription;
+        public string FailedDescription;
+
+        [Header("Hero Required (optional)")]
+        public CharacterSO Character;
+    }
 }

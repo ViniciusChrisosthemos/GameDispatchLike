@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using static MissionSO;
 
 public class UIDayManager : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class UIDayManager : MonoBehaviour
     [SerializeField] private Transform _missionParent;
     [SerializeField] private UIMissionController _missionPrefab;
     [SerializeField] private UIMissionResultController _uiMissionResultController;
+    [SerializeField] private UIMissionEventController _uiMissionEventController;
 
     [Header("UI/Character")]
     [SerializeField] private Transform _dayCharacterParent;
@@ -117,7 +120,15 @@ public class UIDayManager : MonoBehaviour
 
     private void HandleMissionSelected(MissionUnit missionSelected)
     {
-        if (missionSelected.IsMissionCompleted())
+        if (missionSelected.HasRandomEvent())
+        {
+            _dayManager.PauseDay();
+
+            var herosSO = missionSelected.Team.Members.Select(m => m.BaseCharacterSO).ToList();
+
+            _uiMissionEventController.OpenScreen(herosSO, missionSelected.MissionEvent, choice => HandleChoiceMade(missionSelected, choice));
+        }
+        else if (missionSelected.IsMissionCompleted())
         {
             HandleMissionCompletedSelected(missionSelected);
         }
@@ -126,13 +137,28 @@ public class UIDayManager : MonoBehaviour
             _dayManager.PauseDay();
 
             _missionInfoController.OpenScreen(missionSelected);
+
+        }else if (missionSelected.IsMissionCompletedTheEvent())
+        {
+
         }
+    }
+
+    private void HandleChoiceMade(MissionUnit mission, MissionChoice choice)
+    {
+        mission.MakeChoice(_dayManager.CurrentTime, choice);
+
+        ResumeDay();
     }
 
     private void HandleMissionCompletedSelected(MissionUnit missionUnit)
     {
+        _dayManager.PauseDay();
+        
         _uiMissionResultController.OpenResultScreen(missionUnit, result =>
         {
+            ResumeDay();
+
             _dayManager.ClaimMission(missionUnit, result);
 
             var controller = _uiMissionControllers.Find(m => m.MissionUnit.ID == missionUnit.ID);
@@ -147,7 +173,12 @@ public class UIDayManager : MonoBehaviour
 
     public void ResumeDay()
     {
-        _dayManager.ResumoDay();
+        _dayManager.ResumeDay();
+    }
+
+    public void PauseDay()
+    {
+        _dayManager.PauseDay();
     }
 
     public void SendTeam(MissionUnit mission, Team currentTeam)

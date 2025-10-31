@@ -24,6 +24,9 @@ public class UIMissionController : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject _inProgressView;
     [SerializeField] private SpriteRenderer _spriteInProgress;
 
+    [Header("Has Event View")]
+    [SerializeField] private GameObject _hasEventView;
+
     [Header("Completed")]
     [SerializeField] private GameObject _completedView;
 
@@ -36,6 +39,7 @@ public class UIMissionController : MonoBehaviour, IPointerClickHandler
         _availableView.SetActive(true);
         _inProgressView.SetActive(false);
         _completedView.SetActive(false);
+        _hasEventView.SetActive(false);
     }
 
     public void Init(MissionUnit mission, Action<MissionUnit> callback, Action<UIMissionController> handleCallForDeleteMission)
@@ -54,6 +58,7 @@ public class UIMissionController : MonoBehaviour, IPointerClickHandler
         mission.OnMissionAccepted.AddListener(m => SetMissionAccepted());
         mission.OnMissionStarted.AddListener(m => SetMissionInProgress());
         mission.OnMissionCompleted.AddListener(m => SetMissionCompleted());
+        mission.OnMissionHasEvent.AddListener((m, me) => SetMissionHasEvent());
 
         _spriteSliderTime.Color = _colorMissionAvailable;
     }
@@ -63,9 +68,14 @@ public class UIMissionController : MonoBehaviour, IPointerClickHandler
     {
         if (_missionUnit.IsMissionCompleted() || _missionUnit.IsAccepted()) return;
 
-        var normalizedTime = _missionUnit.IsMissionInProgress() ? _missionUnit.GetTotalTimeFromAcceptMission(elapsedTime) : _missionUnit.GetTotalTimeFromGetMission(elapsedTime);
+        var normalizedTime = _missionUnit.GetTimeLeftToMakeAction(elapsedTime);
 
         _spriteSliderTime.fillAmount = 1 - normalizedTime;
+    }
+
+    private void SetMissionHasEvent()
+    {
+        _hasEventView.SetActive(true);
     }
 
     private void SetMissionAccepted()

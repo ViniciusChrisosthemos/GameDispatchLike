@@ -128,8 +128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _imgCharacterView: {fileID: 2029795222998611453}
-  _radarChartStatController: {fileID: 3111301459900865397}
   _characterArtType: 0
+  _radarChartStatController: {fileID: 3111301459900865397}
   _btnButton: {fileID: 2499544485328847397}
 --- !u!1 &2844329870255615803
 GameObject:
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1345997793, guid: d8514756f7ad8f04685ce2d1490dfb8f, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -518,11 +518,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8021224038508730834, guid: 5ca3a4909754c0c42bde54e11504f708, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -0.000002861023
+      value: -30.000002
       objectReference: {fileID: 0}
     - target: {fileID: 8021224038508730834, guid: 5ca3a4909754c0c42bde54e11504f708, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -0.000005722046
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8021224038508730834, guid: 5ca3a4909754c0c42bde54e11504f708, type: 3}
       propertyPath: m_LocalPosition.x
@@ -554,7 +554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8021224038508730834, guid: 5ca3a4909754c0c42bde54e11504f708, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8021224038508730834, guid: 5ca3a4909754c0c42bde54e11504f708, type: 3}
       propertyPath: m_AnchoredPosition.y

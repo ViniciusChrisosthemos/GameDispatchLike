@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mission_Easy_Save-the-cat
   m_EditorClassIdentifier: 
   Name: Save the cat
-  Description: Save the cat
+  Description: "Escale a arvore e ajude o gato a descer com seguran\xE7a."
   DifficultyLevel: 1
   RequiredStats:
     _strengh:
@@ -39,3 +39,24 @@ MonoBehaviour:
   RewardReputation: 1
   TimeToAccept: 30
   TimeToComplete: 10
+  RandomMissionEvents:
+  - Description: "N\xE3o era um gato, era a porra de uma ratazana. O que eu fa\xE7o?"
+    MissionChoices:
+    - Description: Mate a ratazana.
+      StatType: 0
+      StatAmountRequired: 3
+      SucceededDescription: A ratazana morreu com 1 soco.
+      FailedDescription: "A ratazana me mordeu, mas n\xE3o deve dar nada, n\xE9?"
+      Character: {fileID: 0}
+    - Description: Corra da ratazana.
+      StatType: 2
+      StatAmountRequired: 2
+      SucceededDescription: Consegui despistar a ratazana.
+      FailedDescription: Fudeu!
+      Character: {fileID: 0}
+    - Description: Acertar uma flecha na ratazana
+      StatType: 0
+      StatAmountRequired: 2
+      SucceededDescription: Consegui despistar a ratazana.
+      FailedDescription: Fudeu!
+      Character: {fileID: 11400000, guid: d135369027352da49b2a84974e4c9aea, type: 2}

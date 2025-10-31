@@ -477,6 +477,7 @@ MonoBehaviour:
   _txtGold: {fileID: 0}
   _inProgressView: {fileID: 7476104268271549518}
   _spriteInProgress: {fileID: 7503949981121912750}
+  _hasEventView: {fileID: 0}
   _completedView: {fileID: 5033909828986729024}
 --- !u!61 &5090140463456145405
 BoxCollider2D:

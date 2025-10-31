@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
+using static MissionSO;
 
 [Serializable]
 public class MissionUnit
@@ -12,7 +14,10 @@ public class MissionUnit
         WaitingToBeAccepted,
         Accepted,
         InProgress,
+        HasEvent,
+        InProgressWithEvent,
         Completed,
+        CompletedTheEvent,
         Claimed,
         Lost
     }
@@ -28,8 +33,10 @@ public class MissionUnit
     public UnityEvent<MissionUnit> OnMissionCompleted = new UnityEvent<MissionUnit>();
     public UnityEvent<MissionUnit> OnMissionLose = new UnityEvent<MissionUnit>();
     public UnityEvent<MissionUnit> OnMissionClaimed = new UnityEvent<MissionUnit>();
+    public UnityEvent<MissionUnit, RandomMissionEvent> OnMissionHasEvent = new UnityEvent<MissionUnit, RandomMissionEvent>();
 
-    public Transform Location {  get; private set; }
+    private RandomMissionEvent _randomMissionEvent;
+    private MissionChoice _choiceMade;
 
     public MissionUnit(int id, MissionSO missionSO, Transform location, float startTime)
     {
@@ -83,13 +90,58 @@ public class MissionUnit
         }
         else if (_missionStatus == MissionStatus.InProgress)
         {
-            if (currentTime - _startTime >= _missionSO.TimeToComplete)
+            if (_missionSO.RandomMissionEvents.Count != 0)
+            {
+                if ((currentTime - _startTime) / _missionSO.TimeToComplete >= 0.5f)
+                {
+                    _missionStatus = MissionStatus.HasEvent;
+                    
+                    _startTime = currentTime;
+
+                    _randomMissionEvent = _missionSO.RandomMissionEvents[0];
+
+                    OnMissionHasEvent?.Invoke(this, _randomMissionEvent);
+                }
+            }
+            else if (currentTime - _startTime >= _missionSO.TimeToComplete)
             {
                 _missionStatus = MissionStatus.Completed;
 
                 OnMissionCompleted?.Invoke(this);
             }
         }
+        else if (_missionStatus == MissionStatus.InProgressWithEvent)
+        {
+            if (currentTime - _startTime >= _missionSO.TimeToComplete)
+            {
+                _missionStatus = MissionStatus.CompletedTheEvent;
+
+                OnMissionCompleted?.Invoke(this);
+            }
+        }
+    }
+
+    public float GetTimeLeftToMakeAction(float currentTime)
+    {
+        var timeDiff = currentTime - _startTime;
+
+        switch (_missionStatus)
+        {
+            case MissionStatus.WaitingToBeAccepted: return timeDiff / _missionSO.TimeToAccept;
+            case MissionStatus.HasEvent: return timeDiff / _missionSO.TimeToAnswerEvent;
+            case MissionStatus.InProgress:
+            case MissionStatus.InProgressWithEvent: return timeDiff / _missionSO.TimeToComplete;
+            default : return 0;
+        }
+    }
+
+    public void MakeChoice(float currentTime, MissionChoice choice)
+    {
+        _choiceMade = choice;
+
+        _startTime = currentTime - (_missionSO.TimeToComplete * 0.5f);
+
+        _missionStatus = MissionStatus.InProgressWithEvent;
     }
 
     public bool IsMissionLost()
@@ -125,6 +177,16 @@ public class MissionUnit
         return _missionSO.RequiredStats;
     }
 
+    public bool HasRandomEvent()
+    {
+        return _missionStatus == MissionStatus.HasEvent;
+    }
+
+    public bool IsMissionCompletedTheEvent()
+    {
+        return _missionStatus == MissionStatus.CompletedTheEvent;
+    }
+
     public string Name => _missionSO.Name;
     public string Description => _missionSO.Description;
     public int Exp => _missionSO.RewardExperience;
@@ -132,6 +194,8 @@ public class MissionUnit
     public int Reputation => _missionSO.RewardReputation;
     public int MaxTeamSize => _missionSO.MaxTeamSize;
     public int ID => _id;
-
+    public RandomMissionEvent MissionEvent => _randomMissionEvent;
     public Team Team => _currentTeam;
+
+    public Transform Location { get; private set; }
 }
