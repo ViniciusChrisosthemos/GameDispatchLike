@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using static StatManager;
 
-public class Temp : MonoBehaviour
+public class Temp : MonoBehaviour, IPointerClickHandler
 {
-    private void OnMouseUp()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log($"Mouse UP {name}");
+        Debug.Log($"Click {name}");
     }
-
 }

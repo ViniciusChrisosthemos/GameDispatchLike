@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Collider2D))]
-public class SpriteDragHandler : MonoBehaviour
+public class SpriteDragHandler : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
     [Header("Limites de Movimento")]
     public bool usarLimites = false;
@@ -69,19 +70,6 @@ public class SpriteDragHandler : MonoBehaviour
         }
     }
 
-    void OnMouseDown()
-    {
-        arrastando = true;
-        Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = transform.position.z;
-        offset = transform.position - mousePos;
-    }
-
-    void OnMouseUp()
-    {
-        arrastando = false;
-    }
-
     private Vector3 AplicarLimites(Vector3 pos)
     {
         pos.x = Mathf.Clamp(pos.x, limiteMin.x, limiteMax.x);
@@ -106,5 +94,18 @@ public class SpriteDragHandler : MonoBehaviour
             );
             Gizmos.DrawWireCube(centro, tamanho);
         }
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        arrastando = true;
+        Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = transform.position.z;
+        offset = transform.position - mousePos;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        arrastando = false;
     }
 }

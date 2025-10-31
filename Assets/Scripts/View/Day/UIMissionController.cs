@@ -7,7 +7,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIMissionController : MonoBehaviour
+public class UIMissionController : MonoBehaviour, IPointerClickHandler
 {
     [Header("Available View")]
     [SerializeField] private GameObject _availableView;
@@ -101,9 +101,16 @@ public class UIMissionController : MonoBehaviour
         _completedView.SetActive(true);
     }
 
+    /*
     private void OnMouseUp()
     {
         Debug.Log($"Mouse UP {name}");
+        OnClickCallback?.Invoke();
+    }
+    */
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Debug.Log("Point Click Handler");
         OnClickCallback?.Invoke();
     }
 
