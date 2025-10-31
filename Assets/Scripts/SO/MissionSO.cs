@@ -6,19 +6,26 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Mission", menuName = "ScriptableObjects/Mission")]
 public class MissionSO : ScriptableObject
 {
+    public enum MissionType { Rescure, Attack, Negociation }
+
     [Header("Mission")]
     public string Name;
     public string Description;
+    public string RequirementDescription;
     public int DifficultyLevel;
     public StatManager RequiredStats;
     public int MaxTeamSize;
-    public Sprite MissionImage;
     public int RewardExperience;
     public int RewardGold;
     public int RewardReputation;
     public int TimeToAccept;
     public int TimeToComplete;
     public int TimeToAnswerEvent;
+
+    [Header("Addiciona Info")]
+    public Sprite ClientArt;
+    public Sprite EnvironmentArt;
+    public MissionType Type;
 
     [Header("Addicional Events")]
     public List<RandomMissionEvent> RandomMissionEvents = new List<RandomMissionEvent>();

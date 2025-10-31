@@ -4,15 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UITeamMemberController : MonoBehaviour
+public class UITeamMemberController : UIItemController
 {
     [SerializeField] private Image _imgCharacter;
+    [SerializeField] private Button _btnCLick;
 
-    private CharacterUnit _characterUnit;
+    private void Awake()
+    {
+        _btnCLick.onClick.AddListener(SelectItem);
+    }
 
     public void AddCharacter(CharacterUnit character)
     {
-        _characterUnit = character;
+        _item = character;
 
         _imgCharacter.sprite = character.FaceArt;
     }
@@ -20,8 +24,14 @@ public class UITeamMemberController : MonoBehaviour
     public void RmvCharacter()
     {
         _imgCharacter.sprite = null;
-        _characterUnit = null;
+        _item = null;
     }
 
-    public CharacterUnit CharacterUnit => _characterUnit;
+    protected override void HandleInit(object obj)
+    {
+        _item = obj as CharacterUnit;
+
+        RmvCharacter();
+    }
+
 }

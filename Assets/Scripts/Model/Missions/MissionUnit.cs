@@ -196,6 +196,6 @@ public class MissionUnit
     public RandomMissionEvent MissionEvent => _randomMissionEvent;
     public MissionChoice MissionChoice => _choiceMade;
     public Team Team => _currentTeam;
-
+    public MissionSO MissionSO => _missionSO;
     public Transform Location { get; private set; }
 }
