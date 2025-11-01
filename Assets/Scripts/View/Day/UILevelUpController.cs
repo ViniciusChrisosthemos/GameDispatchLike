@@ -18,23 +18,23 @@ public class UILevelUpController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _txtCharacterName;
     [SerializeField] private TextMeshProUGUI _txtCharacterLevel;
     [SerializeField] private TextMeshProUGUI _txtAvailablePoints;
-    [SerializeField] private Transform _statButtonParent;
-    [SerializeField] private UIStatLevelUpViewController _uiStatLevelUpViewControllerPrefab;
+    [SerializeField] private List<UIStatLevelUpViewController> _uiStatLevelUpViewControllers;
 
     [Header("Right Side")]
     [SerializeField] private UIRadarChartController _uiRadarChartController;
 
-    [Header("Parameters")]
-    [SerializeField] private List<StatInfoSO> _statInfos;
-
     private CharacterUnit _characterUnit;
-    private List<UIStatLevelUpViewController> _statControllers;
 
     private void Start()
     {
         _btnCloseScreen.onClick.AddListener(CloseScreen);
 
         _view.SetActive(false);
+
+        foreach (var controller in _uiStatLevelUpViewControllers)
+        {
+            controller.Init(HandleDecreaseStat, HandleIncreaseStat);
+        }
     }
 
     public void OpenScreen(CharacterUnit characterUnit)
@@ -46,18 +46,6 @@ public class UILevelUpController : MonoBehaviour
         _imgCharacter.sprite = characterUnit.FullArt;
         _txtCharacterName.text = characterUnit.Name;
         _txtCharacterLevel.text = $"{STRING_LEVEL}{characterUnit.Level}";
-
-        _statButtonParent.ClearChilds();
-        _statControllers = new List<UIStatLevelUpViewController>();
-
-        foreach (StatType type in Enum.GetValues(typeof(StatType)))
-        {
-            var stat = characterUnit.StatManager.GetStat(type);
-            var statInfo = _statInfos.Find(s => s.Type == type);
-
-            var controller = Instantiate(_uiStatLevelUpViewControllerPrefab, _statButtonParent);
-            controller.Init(statInfo, stat, HandleDecreaseStat, HandleIncreaseStat);
-        }
 
         UpdateScreen();
     }
@@ -82,10 +70,10 @@ public class UILevelUpController : MonoBehaviour
     {
         _txtAvailablePoints.text = _characterUnit.AvailablePoints.ToString();
 
-        foreach (var controller in _statControllers)
+        foreach (var controller in _uiStatLevelUpViewControllers)
         {
-            controller.SetBTNIncrease(_characterUnit.AvailablePoints == 0);
-            controller.SetStatAmount(controller.Stat.GetValue());
+            var statValue = _characterUnit.StatManager.GetStat(controller.Type).GetValue();
+            controller.UpdateStatInfo(statValue, _characterUnit.AvailablePoints != 0);
         }
 
         _uiRadarChartController.UpdateStats(_characterUnit.StatManager.GetValues());

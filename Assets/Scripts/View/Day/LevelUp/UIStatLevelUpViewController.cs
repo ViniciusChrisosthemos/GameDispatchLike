@@ -16,29 +16,29 @@ public class UIStatLevelUpViewController : MonoBehaviour
     [SerializeField] private GameObject _overlayBTNDecrease;
     [SerializeField] private GameObject _overlayBTNIncrease;
 
+    [SerializeField] private StatType _type;
+
     private Action<StatType> _onDecreaseCallback;
     private Action<StatType> _onIncreaseCallback;
 
-    private Stat _currentStat;
-    private StatType _type;
-
-    public void Init(StatInfoSO statInfo, Stat currentStat, Action<StatType> onDecreaseCallback, Action<StatType> onIncreaseCallback)
+    public void Init(Action<StatType> onDecreaseCallback, Action<StatType> onIncreaseCallback)
     {
-        _imgStat.sprite = statInfo.Sprite;
-        _txtStatName.text = statInfo.Description.ToUpper();
-        _txtStatAmount.text = currentStat.GetValue().ToString();
-
         _onDecreaseCallback = onDecreaseCallback;
         _onIncreaseCallback = onIncreaseCallback;
 
-        _btnDecreaseValue.onClick.AddListener(() => HandleDecreaseStat(statInfo.Type));
-        _btnIncreaseValue.onClick.AddListener(() => HandleIncreaseStat(statInfo.Type));
+        _btnDecreaseValue.onClick.AddListener(() => HandleDecreaseStat(_type));
+        _btnIncreaseValue.onClick.AddListener(() => HandleIncreaseStat(_type));
 
         _overlayBTNDecrease.SetActive(true);
         _overlayBTNIncrease.SetActive(true);
+    }
 
-        _type = statInfo.Type;
-        _currentStat = currentStat;
+    public void UpdateStatInfo(int statValue, bool hasPoints)
+    {
+        _overlayBTNDecrease.SetActive(true);
+        _overlayBTNIncrease.SetActive(!hasPoints);
+
+        _txtStatAmount.text = statValue.ToString();
     }
 
     private void HandleDecreaseStat(StatType statType)
@@ -66,6 +66,5 @@ public class UIStatLevelUpViewController : MonoBehaviour
         _overlayBTNDecrease.SetActive(isActive);
     }
 
-    public Stat Stat => _currentStat;
     public StatType Type => _type;
 }
