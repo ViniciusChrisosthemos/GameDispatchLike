@@ -211,6 +211,7 @@ MonoBehaviour:
   _characterArtType: 0
   _radarChartStatController: {fileID: 4598785285747060149}
   _btnButton: {fileID: 1225799854168592580}
+  _txtName: {fileID: 0}
 --- !u!1 &5959904505082367571
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,6 +520,26 @@ PrefabInstance:
     - target: {fileID: 3434112482245738706, guid: 5ca3a4909754c0c42bde54e11504f708, type: 3}
       propertyPath: _drawBorder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434112482245738706, guid: 5ca3a4909754c0c42bde54e11504f708, type: 3}
+      propertyPath: _drawCircles
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434112482245738706, guid: 5ca3a4909754c0c42bde54e11504f708, type: 3}
+      propertyPath: _circleRadius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434112482245738706, guid: 5ca3a4909754c0c42bde54e11504f708, type: 3}
+      propertyPath: _circleColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434112482245738706, guid: 5ca3a4909754c0c42bde54e11504f708, type: 3}
+      propertyPath: _circleColor.g
+      value: 0.8113208
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434112482245738706, guid: 5ca3a4909754c0c42bde54e11504f708, type: 3}
+      propertyPath: _circleColor.r
+      value: 0.10605364
       objectReference: {fileID: 0}
     - target: {fileID: 3434112482245738706, guid: 5ca3a4909754c0c42bde54e11504f708, type: 3}
       propertyPath: _radarChartSize

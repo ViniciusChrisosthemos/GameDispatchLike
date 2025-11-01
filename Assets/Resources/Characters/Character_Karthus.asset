@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Karthus
   BaseStats:
     _strengh:
-      BaseValue: 3
+      BaseValue: 0
       Bonus: 
     _endurance:
       BaseValue: 4

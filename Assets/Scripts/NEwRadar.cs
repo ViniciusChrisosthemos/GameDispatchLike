@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIRadarChartController : MonoBehaviour
+public class NEwRadar : MonoBehaviour
 {
     [Header("Referências Principais")]
     [SerializeField] private CanvasRenderer _canvasRenderer;
@@ -18,7 +18,7 @@ public class UIRadarChartController : MonoBehaviour
 
     [Header("Pontas (círculos)")]
     [SerializeField] private bool _drawCircles = true;
-    [SerializeField] private float _circleRadius = 2f;
+    [SerializeField] private float _circleRadius = 5f;
     [SerializeField] private Color _circleColor = Color.white;
     [SerializeField] private int _circleSegments = 12;
 
@@ -67,9 +67,7 @@ public class UIRadarChartController : MonoBehaviour
         for (int i = 1; i <= valuesAmount; i++)
         {
             float normalizedStat = Mathf.Clamp01(values[i - 1]);
-            // Usa coordenadas LOCAIS, relativo ao centro
-            Vector3 localPos = Quaternion.Euler(0, 0, -angleIncrement * (i - 1)) * Vector3.up * radarChartSize * normalizedStat;
-            _vertices[i] = localPos;
+            _vertices[i] = Quaternion.Euler(0, 0, -angleIncrement * (i - 1)) * Vector3.up * radarChartSize * normalizedStat;
         }
 
         int counter = 0;
@@ -152,13 +150,9 @@ public class UIRadarChartController : MonoBehaviour
         List<int> circleTris = new List<int>();
         List<Color> circleColors = new List<Color>();
 
-        // Corrigir o centro — usa a posição do _middleReference como base
-        Vector3 centerOffset = _middleReference != null ? _middleReference.localPosition : Vector3.zero;
-
         for (int i = 1; i < vertices.Length; i++)
         {
-            // Garante que as posições estejam relativas ao centro correto
-            Vector3 center = vertices[i] + centerOffset;
+            Vector3 center = vertices[i];
 
             int startIndex = circleVerts.Count;
             circleVerts.Add(center);
@@ -187,14 +181,12 @@ public class UIRadarChartController : MonoBehaviour
         _circlesMesh.SetTriangles(circleTris, 0);
         _circlesMesh.SetColors(circleColors);
 
-        // Mantém material transparente
         Material mat = new Material(Shader.Find("UI/Unlit/Transparent"));
         mat.color = _circleColor;
 
         _circlesRenderer.SetMesh(_circlesMesh);
         _circlesRenderer.SetMaterial(mat, null);
     }
-
 
     private void OnDisable()
     {

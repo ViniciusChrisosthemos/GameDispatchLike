@@ -1,36 +1,37 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static StatManager;
 
 public class UILevelUpController : MonoBehaviour
 {
-    private const string LABEL_AVAILABLE_POINTS = "Available points: {0}";
+    private readonly string STRING_LEVEL = "Lvl. ";
 
     [SerializeField] private GameObject _view;
-    [SerializeField] private UICharacterViewController _uiCharacterViewController;
-    [SerializeField] private TextMeshProUGUI _txtAvailablePoints;
-    [SerializeField] private GameObject _buttonsView;
     [SerializeField] private Button _btnCloseScreen;
 
-    [Header("Buttons")]
-    [SerializeField] private Button _btnStrengh;
-    [SerializeField] private Button _btnEndurance;
-    [SerializeField] private Button _btnAgility;
-    [SerializeField] private Button _btnCharisma;
-    [SerializeField] private Button _btnIntelligence;
+    [Header("Left Side")]
+    [SerializeField] private Image _imgCharacter;
+    [SerializeField] private TextMeshProUGUI _txtCharacterName;
+    [SerializeField] private TextMeshProUGUI _txtCharacterLevel;
+    [SerializeField] private TextMeshProUGUI _txtAvailablePoints;
+    [SerializeField] private Transform _statButtonParent;
+    [SerializeField] private UIStatLevelUpViewController _uiStatLevelUpViewControllerPrefab;
+
+    [Header("Right Side")]
+    [SerializeField] private UIRadarChartController _uiRadarChartController;
+
+    [Header("Parameters")]
+    [SerializeField] private List<StatInfoSO> _statInfos;
 
     private CharacterUnit _characterUnit;
+    private List<UIStatLevelUpViewController> _statControllers;
 
     private void Start()
     {
-        _btnStrengh.onClick.AddListener(() => AddBonusToStat(StatManager.StatType.Strengh));
-        _btnEndurance.onClick.AddListener(() => AddBonusToStat(StatManager.StatType.Endurance));
-        _btnAgility.onClick.AddListener(() => AddBonusToStat(StatManager.StatType.Agility));
-        _btnCharisma.onClick.AddListener(() => AddBonusToStat(StatManager.StatType.Charisma));
-        _btnIntelligence.onClick.AddListener(() => AddBonusToStat(StatManager.StatType.Intelligence));
-
         _btnCloseScreen.onClick.AddListener(CloseScreen);
 
         _view.SetActive(false);
@@ -42,25 +43,51 @@ public class UILevelUpController : MonoBehaviour
 
         _characterUnit = characterUnit;
 
+        _imgCharacter.sprite = characterUnit.FullArt;
+        _txtCharacterName.text = characterUnit.Name;
+        _txtCharacterLevel.text = $"{STRING_LEVEL}{characterUnit.Level}";
+
+        _statButtonParent.ClearChilds();
+        _statControllers = new List<UIStatLevelUpViewController>();
+
+        foreach (StatType type in Enum.GetValues(typeof(StatType)))
+        {
+            var stat = characterUnit.StatManager.GetStat(type);
+            var statInfo = _statInfos.Find(s => s.Type == type);
+
+            var controller = Instantiate(_uiStatLevelUpViewControllerPrefab, _statButtonParent);
+            controller.Init(statInfo, stat, HandleDecreaseStat, HandleIncreaseStat);
+        }
+
         UpdateScreen();
+    }
+
+    private void HandleIncreaseStat(StatType statType)
+    {
+        _characterUnit.AddPointInStat(statType);
+
+        UpdateScreen();
+    }
+
+    private void HandleDecreaseStat(StatType statType)
+    {
+
     }
 
     public void CloseScreen()
     {
         _view.SetActive(false);
     }
-
-    private void AddBonusToStat(StatManager.StatType stat)
-    {
-        _characterUnit.AddPointInStat(stat);
-
-        UpdateScreen();
-    }
-
     private void UpdateScreen()
     {
-        _buttonsView.SetActive(_characterUnit.AvailablePoints != 0);
-        _uiCharacterViewController.UpdateCharacter(_characterUnit);
-        _txtAvailablePoints.text = string.Format(LABEL_AVAILABLE_POINTS, _characterUnit.AvailablePoints);
+        _txtAvailablePoints.text = _characterUnit.AvailablePoints.ToString();
+
+        foreach (var controller in _statControllers)
+        {
+            controller.SetBTNIncrease(_characterUnit.AvailablePoints == 0);
+            controller.SetStatAmount(controller.Stat.GetValue());
+        }
+
+        _uiRadarChartController.UpdateStats(_characterUnit.StatManager.GetValues());
     }
 }

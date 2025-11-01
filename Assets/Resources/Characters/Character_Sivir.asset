@@ -19,7 +19,7 @@ MonoBehaviour:
       BaseValue: 0
       Bonus: 
     _endurance:
-      BaseValue: 1
+      BaseValue: 0
       Bonus: 
     _agility:
       BaseValue: 2
@@ -28,7 +28,7 @@ MonoBehaviour:
       BaseValue: 3
       Bonus: 
     _intelligence:
-      BaseValue: 5
+      BaseValue: 2
       Bonus: 
     _maxStatValue: 10
   FaceArt: {fileID: -939292511, guid: c42b61b3a371d3440808b810a3aa5a45, type: 3}
