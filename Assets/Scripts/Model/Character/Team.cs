@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static StatManager;
 
 public class Team
 {
@@ -46,6 +47,7 @@ public class Team
 
     public bool HasMember(CharacterUnit characterUnit) => _members.Contains(characterUnit);
 
+    public Stat GetStat(StatType statType) => GetTeamStats().GetStat(statType);
     public int Size => _members.Count;
     public int MaxSize { get { return _maxSize; } }
     public List<CharacterUnit> Members { get { return _members; } }

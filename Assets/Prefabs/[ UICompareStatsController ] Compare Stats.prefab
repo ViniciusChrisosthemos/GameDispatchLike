@@ -198,6 +198,41 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3319849399641609604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1495604569027731695}
+  m_Layer: 5
+  m_Name: Circle Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1495604569027731695
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3319849399641609604}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5070681038568741709}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3798157306938687589
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,6 +335,41 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &5133735059585711217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2625945991624782114}
+  m_Layer: 5
+  m_Name: Circle Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2625945991624782114
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5133735059585711217}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4767705042273645584}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5185773452360331612
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +579,7 @@ RectTransform:
   m_Children:
   - {fileID: 1494294550445819823}
   - {fileID: 5558320460120697804}
+  - {fileID: 2625945991624782114}
   m_Father: {fileID: 8058284252147180694}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -537,9 +608,10 @@ MonoBehaviour:
   _borderMaterial: {fileID: 2100000, guid: 18ea6b8d1b920c84da158b75226c07c3, type: 2}
   _borderThickness: 1
   _drawCircles: 1
-  _circleRadius: 6
+  _circlePrefab: {fileID: 6479808608738477491, guid: 018fd126be6416141952a325f925fdf7, type: 3}
+  _circleParent: {fileID: 2625945991624782114}
+  _circleRadius: 20
   _circleColor: {r: 0, g: 0.8867924, b: 0.003170571, a: 1}
-  _circleSegments: 12
 --- !u!1 &7726945974300653231
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,6 +846,7 @@ RectTransform:
   m_Children:
   - {fileID: 8797546810753325739}
   - {fileID: 3392056275552174227}
+  - {fileID: 1495604569027731695}
   m_Father: {fileID: 8058284252147180694}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -802,9 +875,10 @@ MonoBehaviour:
   _borderMaterial: {fileID: 2100000, guid: 298b86fd9459f7244a3273a1db75e0bc, type: 2}
   _borderThickness: 1
   _drawCircles: 1
-  _circleRadius: 6
+  _circlePrefab: {fileID: 6479808608738477491, guid: 018fd126be6416141952a325f925fdf7, type: 3}
+  _circleParent: {fileID: 1495604569027731695}
+  _circleRadius: 20
   _circleColor: {r: 1, g: 1, b: 1, a: 1}
-  _circleSegments: 12
 --- !u!1 &9202750535701634026
 GameObject:
   m_ObjectHideFlags: 0

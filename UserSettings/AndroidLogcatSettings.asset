@@ -1,59 +1,41 @@
 {
     "m_SelectedDeviceId": "ZF5254X5VW",
     "m_SelectedProcess": {
-        "deviceId": "ZF5254X5VW",
-        "name": "com.MeusApps.Dispatch",
-        "processId": 14962,
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownProcessesForSerialization": [
         {
             "deviceId": "ZF5254X5VW",
-            "name": "com.motorola.launcher3",
-            "processId": 2118,
-            "exited": false
-        },
-        {
-            "deviceId": "ZF5254X5VW",
-            "name": "com.MeusApps.Dispatch",
-            "processId": 2427,
-            "exited": true
-        },
-        {
-            "deviceId": "ZF5254X5VW",
-            "name": "com.MeusApps.Dispatch",
-            "processId": 4041,
-            "exited": true
-        },
-        {
-            "deviceId": "ZF5254X5VW",
-            "name": "com.MeusApps.Dispatch",
-            "processId": 6723,
-            "exited": true
-        },
-        {
-            "deviceId": "ZF5254X5VW",
-            "name": "com.MeusApps.Dispatch",
-            "processId": 7619,
-            "exited": true
-        },
-        {
-            "deviceId": "ZF5254X5VW",
-            "name": "com.MeusApps.Dispatch",
-            "processId": 8909,
-            "exited": false
-        },
-        {
-            "deviceId": "ZF5254X5VW",
-            "name": "com.MeusApps.Dispatch",
-            "processId": 10082,
-            "exited": false
-        },
-        {
-            "deviceId": "ZF5254X5VW",
             "name": "com.MeusApps.Dispatch",
             "processId": 14962,
+            "exited": true
+        },
+        {
+            "deviceId": "ZF5254X5VW",
+            "name": "com.MeusApps.Dispatch",
+            "processId": 12503,
+            "exited": true
+        },
+        {
+            "deviceId": "ZF5254X5VW",
+            "name": "com.MeusApps.Dispatch",
+            "processId": 15216,
+            "exited": true
+        },
+        {
+            "deviceId": "ZF5254X5VW",
+            "name": "com.MeusApps.Dispatch",
+            "processId": 17915,
+            "exited": true
+        },
+        {
+            "deviceId": "ZF5254X5VW",
+            "name": "com.MeusApps.Dispatch",
+            "processId": 11103,
             "exited": false
         }
     ],

@@ -44,7 +44,8 @@ MonoBehaviour:
   EnvironmentArt: {fileID: 21300000, guid: bf523ce472715f54c9cc1a760677644c, type: 3}
   Type: 0
   RandomMissionEvents:
-  - Description: "N\xE3o era um gato, era a porra de uma ratazana. O que eu fa\xE7o?"
+  - Title: Mal-entendido
+    Description: "N\xE3o era um gato, era a porra de uma ratazana. O que eu fa\xE7o?"
     MissionChoices:
     - Description: Mate a ratazana.
       StatType: 0

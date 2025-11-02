@@ -33,6 +33,7 @@ public class MissionSO : ScriptableObject
     [Serializable]
     public class RandomMissionEvent
     {
+        public string Title;
         public string Description;
         public List<MissionChoice> MissionChoices;
     }

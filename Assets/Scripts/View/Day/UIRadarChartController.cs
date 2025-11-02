@@ -18,13 +18,13 @@ public class UIRadarChartController : MonoBehaviour
 
     [Header("Pontas (círculos)")]
     [SerializeField] private bool _drawCircles = true;
+    [SerializeField] private UIRadarCircleController _circlePrefab;
+    [SerializeField] private Transform _circleParent;
     [SerializeField] private float _circleRadius = 2f;
     [SerializeField] private Color _circleColor = Color.white;
-    [SerializeField] private int _circleSegments = 12;
 
     private Mesh _mainMesh;
     private Mesh _borderMesh;
-    private Mesh _circlesMesh;
     private CanvasRenderer _circlesRenderer;
     private Vector3[] _vertices;
 
@@ -93,9 +93,13 @@ public class UIRadarChartController : MonoBehaviour
         else
             _borderRenderer.Clear();
 
+
         // --- CÍRCULOS NAS PONTAS ---
         if (_drawCircles)
-            DrawCircles(_vertices);
+        {
+            CreateCircles(_vertices);
+            //DrawCircles(_vertices);
+        }
         else
             _circlesRenderer.Clear();
     }
@@ -143,6 +147,23 @@ public class UIRadarChartController : MonoBehaviour
         _borderRenderer.SetMaterial(_borderMaterial, null);
     }
 
+    private void CreateCircles(Vector3[] vertices)
+    {
+        _circleParent.ClearChilds();
+
+        Vector3 centerOffset = _middleReference != null ? _middleReference.localPosition : Vector3.zero;
+
+        foreach (var vertex in vertices)
+        {
+            Vector3 center = vertex + centerOffset;
+
+            var controller = Instantiate(_circlePrefab, _circleParent);
+            controller.transform.localPosition = center;
+            controller.UpdateCircle(_circleRadius, _circleColor);
+        }
+    }
+
+    /*
     private void DrawCircles(Vector3[] vertices)
     {
         if (_circlesMesh == null)
@@ -188,13 +209,12 @@ public class UIRadarChartController : MonoBehaviour
         _circlesMesh.SetColors(circleColors);
 
         // Mantém material transparente
-        Material mat = new Material(Shader.Find("UI/Unlit/Transparent"));
-        mat.color = _circleColor;
+        _materialCircles.color = _circleColor;
 
         _circlesRenderer.SetMesh(_circlesMesh);
-        _circlesRenderer.SetMaterial(mat, null);
+        _circlesRenderer.SetMaterial(_materialCircles, null);
     }
-
+    */
 
     private void OnDisable()
     {

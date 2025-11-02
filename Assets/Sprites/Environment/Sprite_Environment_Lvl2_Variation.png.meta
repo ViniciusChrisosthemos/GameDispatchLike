@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0cf0d0292e07ef54bb6adbf82d8ad034
+guid: 78eb982ea80610a4594cd630c399ba27
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
@@ -121,70 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: SpashArt-Viego_Face
-      rect:
-        serializedVersion: 2
-        x: 1248
-        y: 741
-        width: 390
-        height: 420
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 03f067df07876244291031170970a98d
-      internalID: 840439290
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpashArt-Viego_Body
-      rect:
-        serializedVersion: 2
-        x: 950
-        y: 159
-        width: 750
-        height: 1000
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ea0bedb9e8e8f404dae377eae6754dd5
-      internalID: 906190911
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpashArt-Viego_Full
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 65
-        width: 1920
-        height: 1094
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9521a35a6b9fcad4da8ee4b18e24f42b
-      internalID: -924060390
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -195,10 +132,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      SpashArt-Viego_Body: 906190911
-      SpashArt-Viego_Face: 840439290
-      SpashArt-Viego_Full: -924060390
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

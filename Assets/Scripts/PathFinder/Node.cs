@@ -13,7 +13,7 @@ public class Node : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private bool _debug = false;
-    [SerializeField] private TextMeshPro _txtNumber;
+    [SerializeField] private TextMeshProUGUI _txtNumber;
     [SerializeField] private GameObject _circle;
 
     private void Awake()
@@ -38,6 +38,7 @@ public class Node : MonoBehaviour
         }
 
         _circle.gameObject.SetActive(true);
+
         try
         {
 

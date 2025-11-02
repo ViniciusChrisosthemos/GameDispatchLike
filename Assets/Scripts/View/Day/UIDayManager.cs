@@ -130,7 +130,11 @@ public class UIDayManager : MonoBehaviour
 
             var herosSO = missionSelected.Team.Members.Select(m => m.BaseCharacterSO).ToList();
 
-            _uiMissionEventController.OpenScreen(herosSO, missionSelected.MissionEvent, choice => HandleChoiceMade(missionSelected, choice));
+            _uiMissionEventController.OpenSelectChoiceScreen(missionSelected, missionSelected.MissionEvent, (result) =>
+            {
+                HandleMissionCompleted(missionSelected, result);
+                _dayManager.ResumeDay();
+            });
         }
         else if (missionSelected.IsMissionCompleted())
         {
