@@ -64,6 +64,8 @@ public class UIDayCharacterViewController : MonoBehaviour
         _characterUnit.OnCharacterEXPChanged.AddListener(HandleExpChangedEvent);
         _characterUnit.OnCharacterStatChanged.AddListener(HandleStatChangedEvent);
 
+        HandleExpChangedEvent(characterUnit);
+
         _btnLevelUp.onClick.AddListener(HandleBTNLevelUPEvent);
     }
 

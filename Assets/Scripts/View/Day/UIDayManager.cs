@@ -12,16 +12,14 @@ public class UIDayManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject _view;
     [SerializeField] private DayManager _dayManager;
-    [SerializeField] private UIMissionInfoController _missionInfoController;
+    [SerializeField] private UIMissionManagerViewController _missionInfoController;
     [SerializeField] private AnimatePathController _animatePathController;
 
     [Header("UI/Missions")]
     [SerializeField] private Transform _baseTransform;
     [SerializeField] private Transform _missionParent;
     [SerializeField] private UIMissionController _missionPrefab;
-    [SerializeField] private UIMissionResultController _uiMissionResultController;
-    [SerializeField] private UIMissionEventController _uiMissionEventController;
-    [SerializeField] private UIEventCompleteController _uiEventCompleteController;
+    [SerializeField] private UIMissionManagerViewController _uiMissionManagerViewController;
 
     [Header("UI/Character")]
     [SerializeField] private Transform _dayCharacterParent;
@@ -117,7 +115,7 @@ public class UIDayManager : MonoBehaviour
             _uiDayCharacterControllers.Add(controller);
         }
 
-        _missionInfoController.CloseScreen();
+        _uiMissionManagerViewController.CloseScreen();
     }
 
     private void HandleMissionSelected(MissionUnit missionSelected)
@@ -126,14 +124,14 @@ public class UIDayManager : MonoBehaviour
 
         if (missionSelected.HasRandomEvent())
         {
-            _dayManager.PauseDay();
+            PauseDay();
 
             var herosSO = missionSelected.Team.Members.Select(m => m.BaseCharacterSO).ToList();
 
-            _uiMissionEventController.OpenSelectChoiceScreen(missionSelected, missionSelected.MissionEvent, (result) =>
+            _uiMissionManagerViewController.OpenMissionEvent(missionSelected, missionSelected.MissionEvent, (result) =>
             {
                 HandleMissionCompleted(missionSelected, result);
-                _dayManager.ResumeDay();
+                ResumeDay();
             });
         }
         else if (missionSelected.IsMissionCompleted())
@@ -142,33 +140,23 @@ public class UIDayManager : MonoBehaviour
         }
         else if (missionSelected.IsMissionWaitingToBeAccepted())
         {
-            _dayManager.PauseDay();
+            PauseDay();
 
-            _missionInfoController.OpenScreen(missionSelected);
+            _uiMissionManagerViewController.OpenAcceptMissionScreen(missionSelected, (mission, team) =>
+            {
+                if (mission != null || team != null) SendTeam(mission, team);
 
-        }else if (missionSelected.IsMissionCompletedTheEvent())
-        {
-            _uiEventCompleteController.OpenScreen(missionSelected, () => HandleMissionCompletedByChoices(missionSelected));
+                ResumeDay();
+            });
+
         }
-    }
-
-    private void HandleChoiceMade(MissionUnit mission, MissionChoice choice)
-    {
-        mission.MakeChoice(_dayManager.CurrentTime, choice);
-
-        ResumeDay();
-    }
-
-    private void HandleMissionCompletedByChoices(MissionUnit missionUnit)
-    {
-        HandleMissionCompleted(missionUnit, true);
     }
 
     private void HandleMissionCompletedByStats(MissionUnit missionUnit)
     {
-        _dayManager.PauseDay();
+        PauseDay();
         
-        _uiMissionResultController.OpenResultScreen(missionUnit, result =>
+        _uiMissionManagerViewController.OpenMissionResult(missionUnit, result =>
         {
             ResumeDay();
 

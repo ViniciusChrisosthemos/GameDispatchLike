@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 5131304619194926802}
   - component: {fileID: 2047249446155199461}
   m_Layer: 5
-  m_Name: '[UIteamMemberController] Team Member'
+  m_Name: '[UITeamMemberController] Team Member'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

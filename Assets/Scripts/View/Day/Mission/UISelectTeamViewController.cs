@@ -1,52 +1,47 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIMissionInfoController : MonoBehaviour
+public class UISelectTeamViewController : MonoBehaviour
 {
+    [Header("Manager")]
+    [SerializeField] private UIDayManager _manager;
+
     [Header("References")]
     [SerializeField] private GameObject _view;
-    [SerializeField] private UIDayManager _manager;
     [SerializeField] private Button _btnCloseScreen;
-
-    [Header("Left Side")]
-    [SerializeField] private TextMeshProUGUI _txtMissionType;
-    [SerializeField] private Image _imgMissionClient;
-    [SerializeField] private Image _imgMissionBackground;
-    [SerializeField] private TextMeshProUGUI _txtMissionDescription;
-
-    [Header("Middle")]
-    [SerializeField] private UIRadarChartController _radarChartTeam;
     [SerializeField] private Transform _teamMembersParent;
     [SerializeField] private UITeamMemberController _teamMemberPrefab;
-
-    [Header("Right Side")]
-    [SerializeField] private UIRequirementDescriptionController _uiRequirementDescriptionController;
+    [SerializeField] private UIRadarChartController _radarChartTeam;
     [SerializeField] private Button _btnSendTeam;
+
 
     [Header("Settings")]
     [SerializeField] private GameSettingsSO _gameSettings;
 
     private Team _currentTeam;
     private MissionUnit _currentMission;
-
     private List<UITeamMemberController> _teamMemberControllers;
 
-    private void Awake()
+    private Action<MissionUnit, Team> _callback;
+
+    private void Start()
     {
         _btnSendTeam.onClick.AddListener(() => SendTeam());
-
-        _btnCloseScreen.onClick.AddListener(() => CloseScreen());
+        _btnCloseScreen.onClick.AddListener(() => SendTeam());
     }
 
-    public void OpenScreen(MissionUnit mission)
+    public void OpenScreen(MissionUnit mission, Action<MissionUnit, Team> callback)
     {
         _view.SetActive(true);
 
         _currentMission = mission;
         _manager.OnCharacterSelected.AddListener(HandleCharacterSelected);
+
+        _callback = callback;
 
         UpdateScreen(mission);
     }
@@ -67,13 +62,6 @@ public class UIMissionInfoController : MonoBehaviour
 
             _teamMemberControllers.Add(teamMemberController);
         }
-
-        _txtMissionType.text = mission.MissionSO.Type.ToString();
-        _imgMissionBackground.sprite = mission.MissionSO.EnvironmentArt;
-        _imgMissionClient.sprite = mission.MissionSO.ClientArt;
-        _txtMissionDescription.text = mission.MissionSO.Description;
-
-        _uiRequirementDescriptionController.SetDescription(mission.MissionSO.RequirementDescriptionItems, false);
 
         _btnSendTeam.interactable = false;
     }
@@ -130,18 +118,24 @@ public class UIMissionInfoController : MonoBehaviour
         _radarChartTeam.UpdateStats(_currentTeam.GetTeamStats().GetValues());
     }
 
-    public void CloseScreen()
+    public void Close()
     {
         _view.SetActive(false);
 
         _manager.OnCharacterSelected.RemoveListener(HandleCharacterSelected);
-        _manager.ResumeDay();
     }
 
     private void SendTeam()
     {
-        _manager.SendTeam(_currentMission, _currentTeam);
-
-        CloseScreen();
+        if (_currentTeam != null && _currentTeam.Members.Count != 0)
+        {
+            _callback?.Invoke(_currentMission, _currentTeam);
+        }
+        else
+        {
+            _callback?.Invoke(null, null);
+        }
+        
+        Close();
     }
 }

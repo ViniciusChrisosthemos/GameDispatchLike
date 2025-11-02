@@ -1,26 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIMissionResultController : MonoBehaviour
+public class UIMissionResultViewController : MonoBehaviour
 {
-    [SerializeField] private UICompareStatsController _uiCompareStatsController;
-
     [SerializeField] private GameObject _view;
-    [SerializeField] private Button _btnCloseScreen;
-    [SerializeField] private GameObject _successText;
-    [SerializeField] private GameObject _failText;
+    [SerializeField] private Button _btnOK;
     [SerializeField] private Animator _animator;
+    [SerializeField] private UICompareStatsController _uiCompareStatsController;
     [SerializeField] private string _createRadarChartTrigger = "CreateRadarCharts";
 
 
     private void Start()
     {
-        _btnCloseScreen.onClick.AddListener(HandleCloseScreen);
-
         _view.SetActive(false);
     }
 
@@ -33,9 +27,6 @@ public class UIMissionResultController : MonoBehaviour
 
     private IEnumerator AnimateResultCoroutine(MissionUnit mission, Action<bool> onResult)
     {
-        _successText.SetActive(false);
-        _failText.SetActive(false);
-
         var teamStats = mission.Team.GetTeamStats().GetValues();
         var requiredStats = mission.GetRequiredStats().GetValues();
 
@@ -49,13 +40,10 @@ public class UIMissionResultController : MonoBehaviour
 
         _uiCompareStatsController.CompareStatAnimation(requiredStats, teamStats, (result) =>
         {
-            _successText.SetActive(result);
-            _failText.SetActive(!result);
-
             WaitForSeconds(3, () =>
             {
                 onResult?.Invoke(result);
-                HandleCloseScreen();
+                Close();
             });
         });
     }
@@ -72,7 +60,7 @@ public class UIMissionResultController : MonoBehaviour
         callback?.Invoke();
     }
 
-    private void HandleCloseScreen()
+    public void Close()
     {
         _view.SetActive(false);
     }

@@ -53,20 +53,23 @@ MonoBehaviour:
     Description: The speech SDN prepared is boring the crowd! We're going to have
       to improvise.
     MissionChoices:
-    - Description: Sprinkle in <jokes>
-      StatType: 3
+    - Requirement:
+        Description: Sprinkle in <jokes>
+        StatType: 3
       StatAmountRequired: 3
       SucceededDescription: They like the jokes.
       FailedDescription: They don't like the jokes
       Character: {fileID: 0}
-    - Description: Incorporate fun <facts>
-      StatType: 4
+    - Requirement:
+        Description: Incorporate fun <facts>
+        StatType: 4
       StatAmountRequired: 5
       SucceededDescription: They like the facts
       FailedDescription: They don't like the facts
       Character: {fileID: 0}
-    - Description: Show off your <moves>
-      StatType: 2
+    - Requirement:
+        Description: Show off your <moves>
+        StatType: 2
       StatAmountRequired: 3
       SucceededDescription: They like the moves
       FailedDescription: They don't like the moves

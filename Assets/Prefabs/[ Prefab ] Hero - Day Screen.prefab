@@ -1538,10 +1538,10 @@ MonoBehaviour:
   _borderMaterial: {fileID: 2100000, guid: 18ea6b8d1b920c84da158b75226c07c3, type: 2}
   _borderThickness: 1
   _drawCircles: 0
+  _circlePrefab: {fileID: 0}
+  _circleParent: {fileID: 0}
   _circleRadius: 2
   _circleColor: {r: 1, g: 1, b: 1, a: 1}
-  _circleSegments: 12
-  _materialCircles: {fileID: 2100000, guid: 21084b8ef737d744ab0ddefd987568ff, type: 2}
 --- !u!1 &6661036828952978175
 GameObject:
   m_ObjectHideFlags: 0
