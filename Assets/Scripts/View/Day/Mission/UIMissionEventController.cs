@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -67,12 +68,24 @@ public class UIMissionEventController : MonoBehaviour
         _txtEventDescription.text = missionEvent.Description;
 
         _middleChoiceParent.ClearChilds();
+        var heros = missionUnit.Team.Members.Select(m => m.BaseCharacterSO).ToList();
 
         foreach (MissionChoice choice in missionEvent.MissionChoices)
         {
             var controller = Instantiate(_choiceViewControllerPrefab, _middleChoiceParent);
 
             controller.Init(choice, HandleSelectChoice);
+
+            if (choice.Character == null)
+            {
+                controller.SetUnavailableOverlay(false);
+            }
+            else
+            {
+                controller.SetUnavailableOverlay(!heros.Contains(choice.Character));
+            }
+
+            controller.ShowStats(false);
         }
 
         _selectChoiceUIRadarController.UpdateStats(missionUnit.Team.GetTeamStats().GetValues());
@@ -104,6 +117,7 @@ public class UIMissionEventController : MonoBehaviour
 
             controller.Init(choice, null);
             controller.SetUnavailableOverlay(choice != _missionChoice);
+            controller.ShowStats(true);
         }
 
         if (_missionChoice.Character == null)
@@ -116,7 +130,7 @@ public class UIMissionEventController : MonoBehaviour
             var totalStatAmount = Enum.GetValues(typeof(StatType)).Length;
 
             var expectedStatValue = _missionChoice.StatAmountRequired;
-            var givenStatValue = _missionUnit.Team.GetStat(_missionChoice.StatType).GetValue();
+            var givenStatValue = _missionUnit.Team.GetStat(_missionChoice.Requirement.StatType).GetValue();
 
             for (int i = 0; i < totalStatAmount; i++)
             {
@@ -127,7 +141,7 @@ public class UIMissionEventController : MonoBehaviour
             _choiceResultExpectedStatUIRadarController.UpdateStats(expectedValues);
             _choiceResultGivenStatUIRadarController.UpdateStats(givenValues);
 
-            var mask = _radarMasks.Find(m => m.Type == _missionChoice.StatType);
+            var mask = _radarMasks.Find(m => m.Type == _missionChoice.Requirement.StatType);
             _imgRadarMask.sprite = mask.Mask;
 
             _btnOk.onClick.AddListener(() => TriggerCallback(givenStatValue >= expectedStatValue));

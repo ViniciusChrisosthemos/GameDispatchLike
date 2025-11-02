@@ -23,8 +23,11 @@ public class UIMissionInfoController : MonoBehaviour
     [SerializeField] private UITeamMemberController _teamMemberPrefab;
 
     [Header("Right Side")]
-    [SerializeField] private TextMeshProUGUI _txtMissionRequirements;
+    [SerializeField] private UIRequirementDescriptionController _uiRequirementDescriptionController;
     [SerializeField] private Button _btnSendTeam;
+
+    [Header("Settings")]
+    [SerializeField] private GameSettingsSO _gameSettings;
 
     private Team _currentTeam;
     private MissionUnit _currentMission;
@@ -69,7 +72,8 @@ public class UIMissionInfoController : MonoBehaviour
         _imgMissionBackground.sprite = mission.MissionSO.EnvironmentArt;
         _imgMissionClient.sprite = mission.MissionSO.ClientArt;
         _txtMissionDescription.text = mission.MissionSO.Description;
-        _txtMissionRequirements.text = mission.MissionSO.RequirementDescription;
+
+        _uiRequirementDescriptionController.SetDescription(mission.MissionSO.RequirementDescriptionItems, false);
 
         _btnSendTeam.interactable = false;
     }

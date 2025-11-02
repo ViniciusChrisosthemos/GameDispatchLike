@@ -42,14 +42,14 @@ public class UIEventCompleteController : MonoBehaviour
             _normalChoiceView.SetActive(true);
             _characterChoiceView.SetActive(false);
 
-            var statInfo = _statsInfoSOs.Find(s => s.Type == choice.StatType);
+            var statInfo = _statsInfoSOs.Find(s => s.Type == choice.Requirement.StatType);
 
             if (statInfo != null)
             {
                 _imgTargetStat.sprite = statInfo.Sprite;
 
                 var statRequired = choice.StatAmountRequired;
-                var statGiven = mission.Team.GetTeamStats().GetStat(choice.StatType).GetValue();
+                var statGiven = mission.Team.GetTeamStats().GetStat(choice.Requirement.StatType).GetValue();
 
                 _txtStatRequired.text = statRequired.ToString();
                 _txtStatGiven.text = statGiven.ToString();
@@ -59,7 +59,7 @@ public class UIEventCompleteController : MonoBehaviour
             }
             else
             {
-                Debug.LogError($"[{GetType()}][OpenScreen] StatInfo '{choice.StatType}' não encontrado!");
+                Debug.LogError($"[{GetType()}][OpenScreen] StatInfo '{choice.Requirement.StatType}' não encontrado!");
             }
         }
         else

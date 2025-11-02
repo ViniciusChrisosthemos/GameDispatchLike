@@ -6,4 +6,5 @@ using UnityEngine;
 public class GameSettingsSO: ScriptableObject
 {
     public int MaxScheduledCharacters = 5;
+    public Color RequirementStringColor = Color.yellow;
 }

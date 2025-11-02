@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   MaxScheduledCharacters: 6
+  RequirementStringColor: {r: 0.98823535, g: 0.9490197, b: 0, a: 1}

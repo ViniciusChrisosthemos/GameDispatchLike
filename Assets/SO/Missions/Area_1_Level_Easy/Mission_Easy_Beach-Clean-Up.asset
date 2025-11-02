@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72154cb87e52ad345a73118aee8a7006, type: 3}
+  m_Name: Mission_Easy_Beach-Clean-Up
+  m_EditorClassIdentifier: 
+  Name: Beach Clean Up
+  Description: "\"There was an altercation with my team and a monster ... There\xB4s
+    body parts left behind.\""
+  RequirementDescriptionItems:
+  - Description: <Remove> giant monster remains from the beach
+    StatType: 0
+  - Description: <Load> giant monster parts into secure waste collection truck
+    StatType: 1
+  - Description: 'Large <media> and <civvie> presence '
+    StatType: 3
+  DifficultyLevel: 1
+  RequiredStats:
+    _strengh:
+      BaseValue: 2
+      Bonus: 
+    _endurance:
+      BaseValue: 0
+      Bonus: 
+    _agility:
+      BaseValue: 0
+      Bonus: 
+    _charisma:
+      BaseValue: 3
+      Bonus: 
+    _intelligence:
+      BaseValue: 3
+      Bonus: 
+    _maxStatValue: 10
+  MaxTeamSize: 2
+  RewardExperience: 200
+  RewardGold: 15
+  RewardReputation: 1
+  TimeToAccept: 30
+  TimeToComplete: 20
+  TimeToAnswerEvent: 10
+  ClientArt: {fileID: 21300000, guid: c73bb597bb8ae284e8a794520d394f10, type: 3}
+  EnvironmentArt: {fileID: 21300000, guid: bf523ce472715f54c9cc1a760677644c, type: 3}
+  Type: 0
+  RandomMissionEvents: []

@@ -2,16 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static StatManager;
 
 [CreateAssetMenu(fileName = "Mission", menuName = "ScriptableObjects/Mission")]
 public class MissionSO : ScriptableObject
 {
-    public enum MissionType { Rescure, Attack, Negociation }
+    public enum MissionType { Rescure, Attack, Negociation, Assault, Investigation, Pursuit, Minor_Inconvenience }
 
     [Header("Mission")]
     public string Name;
     public string Description;
-    public string RequirementDescription;
+    public List<MissionRequirement> RequirementDescriptionItems;
     public int DifficultyLevel;
     public StatManager RequiredStats;
     public int MaxTeamSize;
@@ -42,13 +43,19 @@ public class MissionSO : ScriptableObject
     public class MissionChoice
     {
         [Header("Choice Info")]
-        public string Description;
-        public StatManager.StatType StatType;
+        public MissionRequirement Requirement;
         public int StatAmountRequired;
         public string SucceededDescription;
         public string FailedDescription;
 
         [Header("Hero Required (optional)")]
         public CharacterSO Character;
+    }
+
+    [Serializable]
+    public class MissionRequirement
+    {
+        public string Description;
+        public StatType StatType;
     }
 }

@@ -10,38 +10,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72154cb87e52ad345a73118aee8a7006, type: 3}
-  m_Name: Mission_Easy_Kill-slimes
+  m_Name: Mission_Easy_Investigate-the-Dorm-Room!
   m_EditorClassIdentifier: 
-  Name: Kill slimes
-  Description: Kill all the slimes in the area.
-  RequirementDescription: Lute contra todos os slimes\nResista ao ataques dos slimes
+  Name: Investigate the Dorm Room!
+  Description: '"We''ve got a potential villain hideout on the college campus."'
+  RequirementDescriptionItems:
+  - Description: <Investigate> the potential villain hideout discovered at the local
+      college
+    StatType: 4
+  - Description: '<Decade> the mysterious <clues> to identify this <cryptic> criminal '
+    StatType: 4
   DifficultyLevel: 1
   RequiredStats:
     _strengh:
-      BaseValue: 2
+      BaseValue: 0
       Bonus: 
     _endurance:
       BaseValue: 2
       Bonus: 
     _agility:
-      BaseValue: 1
+      BaseValue: 2
       Bonus: 
     _charisma:
-      BaseValue: 0
+      BaseValue: 4
       Bonus: 
     _intelligence:
-      BaseValue: 0
+      BaseValue: 8
       Bonus: 
     _maxStatValue: 10
-  MaxTeamSize: 3
-  MissionImage: {fileID: 0}
-  RewardExperience: 200
-  RewardGold: 15
-  RewardReputation: 5
+  MaxTeamSize: 2
+  RewardExperience: 1000
+  RewardGold: 400
+  RewardReputation: 15
   TimeToAccept: 30
   TimeToComplete: 20
   TimeToAnswerEvent: 10
   ClientArt: {fileID: 21300000, guid: cb4b5543ec3fa8a4a847d34d4926b99a, type: 3}
   EnvironmentArt: {fileID: 21300000, guid: bf523ce472715f54c9cc1a760677644c, type: 3}
-  Type: 0
+  Type: 4
   RandomMissionEvents: []

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,7 +10,7 @@ public class UIChoiceViewController : UIItemController
 {
     [Header("Normal Choice")]
     [SerializeField] private GameObject _normalChoiceView;
-    [SerializeField] private TextMeshProUGUI _txtNormalChoiceDescription;
+    [SerializeField] private UIRequirementTextViewController _uiRequirementTextViewController;
 
     [Header("Character Choice")]
     [SerializeField] private GameObject _characterChoiceView;
@@ -19,6 +20,7 @@ public class UIChoiceViewController : UIItemController
     [Header("All")]
     [SerializeField] private GameObject _unavailableOverlay;
     [SerializeField] private Button _btnClick;
+    [SerializeField] private GameSettingsSO _gameSettingsSO;
 
     private MissionChoice _missionChoice;
 
@@ -36,14 +38,14 @@ public class UIChoiceViewController : UIItemController
             _normalChoiceView.SetActive(true);
             _characterChoiceView.SetActive(false);
 
-            _txtNormalChoiceDescription.text = _missionChoice.Description;
+            _uiRequirementTextViewController.SetText(_missionChoice.Requirement, _gameSettingsSO.RequirementStringColor);
         }
         else
         {
             _normalChoiceView.SetActive(false);
             _characterChoiceView.SetActive(true);
 
-            _txtCharacterChoiceDescription.text = _missionChoice.Description;
+            _txtCharacterChoiceDescription.text = _missionChoice.Requirement.Description;
             _imgCharacterRequired.sprite = _missionChoice.Character.FaceArt;
         }
 
@@ -52,6 +54,12 @@ public class UIChoiceViewController : UIItemController
 
     public void SetUnavailableOverlay(bool isUnavailable)
     {
+        _btnClick.interactable = !isUnavailable;
         _unavailableOverlay.SetActive(isUnavailable);
+    }
+
+    public void ShowStats(bool showStats)
+    {
+        _uiRequirementTextViewController.SetStatView(showStats);
     }
 }
