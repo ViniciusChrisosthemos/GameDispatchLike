@@ -1,10 +1,10 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class UIRadarChartController : MonoBehaviour
 {
-    [Header("Referências Principais")]
+    [Header("ReferÃªncias Principais")]
     [SerializeField] private CanvasRenderer _canvasRenderer;
     [SerializeField] private Material _radarChartMaterial;
     [SerializeField] private Transform _middleReference;
@@ -16,7 +16,7 @@ public class UIRadarChartController : MonoBehaviour
     [SerializeField] private Material _borderMaterial;
     [SerializeField] private float _borderThickness = 1f;
 
-    [Header("Pontas (círculos)")]
+    [Header("Pontas (cÃ­rculos)")]
     [SerializeField] private bool _drawCircles = true;
     [SerializeField] private UIRadarCircleController _circlePrefab;
     [SerializeField] private Transform _circleParent;
@@ -27,6 +27,7 @@ public class UIRadarChartController : MonoBehaviour
     private Mesh _borderMesh;
     private CanvasRenderer _circlesRenderer;
     private Vector3[] _vertices;
+    private Vector3[] _points;
 
     private void Awake()
     {
@@ -47,7 +48,7 @@ public class UIRadarChartController : MonoBehaviour
     {
         if (values == null || values.Count < 3)
         {
-            Debug.LogWarning("RadarChart precisa de pelo menos 3 valores para formar um polígono.");
+            Debug.LogWarning("RadarChart precisa de pelo menos 3 valores para formar um polÃ­gono.");
             return;
         }
 
@@ -58,6 +59,7 @@ public class UIRadarChartController : MonoBehaviour
         // --- MESH PRINCIPAL ---
         _mainMesh = new Mesh();
 
+        _points = new Vector3[valuesAmount];
         _vertices = new Vector3[valuesAmount + 1];
         Vector2[] uvs = new Vector2[valuesAmount + 1];
         int[] triangles = new int[3 * valuesAmount];
@@ -70,6 +72,7 @@ public class UIRadarChartController : MonoBehaviour
             // Usa coordenadas LOCAIS, relativo ao centro
             Vector3 localPos = Quaternion.Euler(0, 0, -angleIncrement * (i - 1)) * Vector3.up * radarChartSize * normalizedStat;
             _vertices[i] = localPos;
+            _points[i - 1] = localPos;
         }
 
         int counter = 0;
@@ -94,7 +97,7 @@ public class UIRadarChartController : MonoBehaviour
             _borderRenderer.Clear();
 
 
-        // --- CÍRCULOS NAS PONTAS ---
+        // --- CÃRCULOS NAS PONTAS ---
         if (_drawCircles)
         {
             CreateCircles(_vertices);
@@ -103,6 +106,67 @@ public class UIRadarChartController : MonoBehaviour
         else
             _circlesRenderer.Clear();
     }
+
+    public void UpdateStats(List<Vector2> vertices2D)
+    {
+        if (vertices2D == null || vertices2D.Count < 3)
+        {
+            Debug.LogWarning("RadarChart precisa de pelo menos 3 vÃ©rtices para formar um polÃ­gono.");
+            return;
+        }
+
+        int vertexCount = vertices2D.Count;
+
+        // --- MESH PRINCIPAL ---
+        _mainMesh = new Mesh();
+
+        // O centro (pivot) Ã© o vÃ©rtice 0
+        _vertices = new Vector3[vertexCount + 1];
+        Vector2[] uvs = new Vector2[vertexCount + 1];
+        int[] triangles = new int[3 * vertexCount];
+
+        // Centro
+        _vertices[0] = Vector3.zero;
+
+        // Converte Vector2 â†’ Vector3 (coordenadas locais)
+        for (int i = 0; i < vertexCount; i++)
+        {
+            _vertices[i + 1] = new Vector3(vertices2D[i].x, vertices2D[i].y, 0f);
+        }
+
+        // Cria triÃ¢ngulos ligando cada ponto ao centro
+        int counter = 0;
+        for (int i = 1; i <= vertexCount; i++)
+        {
+            triangles[counter++] = 0;
+            triangles[counter++] = i;
+            triangles[counter++] = (i % vertexCount) + 1;
+        }
+
+        _mainMesh.vertices = _vertices;
+        _mainMesh.uv = uvs;
+        _mainMesh.triangles = triangles;
+
+        _canvasRenderer.SetMesh(_mainMesh);
+        _canvasRenderer.SetMaterial(_radarChartMaterial, null);
+
+        // --- BORDA ---
+        if (_drawBorder && _borderMaterial != null)
+            DrawBorder(_vertices);
+        else
+            _borderRenderer.Clear();
+
+        // --- CÃRCULOS NAS PONTAS ---
+        if (_drawCircles)
+        {
+            CreateCircles(_vertices);
+        }
+        else
+        {
+            _circlesRenderer.Clear();
+        }
+    }
+
 
     private void DrawBorder(Vector3[] vertices)
     {
@@ -153,8 +217,9 @@ public class UIRadarChartController : MonoBehaviour
 
         Vector3 centerOffset = _middleReference != null ? _middleReference.localPosition : Vector3.zero;
 
-        foreach (var vertex in vertices)
+        for(int i=1; i < vertices.Length; i++)
         {
+            var vertex = vertices[i];
             Vector3 center = vertex + centerOffset;
 
             var controller = Instantiate(_circlePrefab, _circleParent);
@@ -173,12 +238,12 @@ public class UIRadarChartController : MonoBehaviour
         List<int> circleTris = new List<int>();
         List<Color> circleColors = new List<Color>();
 
-        // Corrigir o centro — usa a posição do _middleReference como base
+        // Corrigir o centro â€” usa a posiÃ§Ã£o do _middleReference como base
         Vector3 centerOffset = _middleReference != null ? _middleReference.localPosition : Vector3.zero;
 
         for (int i = 1; i < vertices.Length; i++)
         {
-            // Garante que as posições estejam relativas ao centro correto
+            // Garante que as posiÃ§Ãµes estejam relativas ao centro correto
             Vector3 center = vertices[i] + centerOffset;
 
             int startIndex = circleVerts.Count;
@@ -208,7 +273,7 @@ public class UIRadarChartController : MonoBehaviour
         _circlesMesh.SetTriangles(circleTris, 0);
         _circlesMesh.SetColors(circleColors);
 
-        // Mantém material transparente
+        // MantÃ©m material transparente
         _materialCircles.color = _circleColor;
 
         _circlesRenderer.SetMesh(_circlesMesh);
@@ -229,4 +294,6 @@ public class UIRadarChartController : MonoBehaviour
     {
         return new List<Vector3>(_vertices);
     }
+
+    public List<Vector3> GetPoints() => new List<Vector3>(_points);
 }

@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,10 +10,16 @@ public class UIMissionResultViewController : MonoBehaviour
 {
     [SerializeField] private GameObject _view;
     [SerializeField] private Button _btnOK;
-    [SerializeField] private Animator _animator;
     [SerializeField] private UICompareStatsController _uiCompareStatsController;
-    [SerializeField] private string _createRadarChartTrigger = "CreateRadarCharts";
+    [SerializeField] private UIRadarChartController _intersectionSuccessStatRadarController;
+    [SerializeField] private UIRadarChartController _intersectionFailedStatRadarController;
 
+    [Header("UI")]
+    [SerializeField] private GameObject _successIconPivot;
+    [SerializeField] private GameObject _failIconPivot;
+
+    private MissionUnit _missionUnit;
+    private Action<bool> _callback;
 
     private void Start()
     {
@@ -21,29 +29,71 @@ public class UIMissionResultViewController : MonoBehaviour
     public void OpenResultScreen(MissionUnit mission, Action<bool> onResult)
     {
         _view.SetActive(true);
+        _btnOK.gameObject.SetActive(false);
 
-        StartCoroutine(AnimateResultCoroutine(mission, onResult));
+        _successIconPivot.SetActive(false);
+        _failIconPivot.SetActive(false);
+
+        _intersectionFailedStatRadarController.gameObject.SetActive(false);
+        _intersectionSuccessStatRadarController.gameObject.SetActive(false);
+
+        _missionUnit = mission;
+        _callback = onResult;
+
+        CreateRadarCharts(mission);
     }
 
-    private IEnumerator AnimateResultCoroutine(MissionUnit mission, Action<bool> onResult)
+    public void CreateRadarCharts(MissionUnit mission)
     {
         var teamStats = mission.Team.GetTeamStats().GetValues();
         var requiredStats = mission.GetRequiredStats().GetValues();
 
         _uiCompareStatsController.CreateRadarChartForStats(requiredStats, teamStats);
+    }
 
-        _animator.SetTrigger(_createRadarChartTrigger);
+    public Transform _temp;
+    public GameObject prefab;
 
-        yield return new WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).IsName(_createRadarChartTrigger));
-
-        yield return new WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
+    public void StartAnimateResult()
+    {
+        var teamStats = _missionUnit.Team.GetTeamStats().GetValues();
+        var requiredStats = _missionUnit.GetRequiredStats().GetValues();
 
         _uiCompareStatsController.CompareStatAnimation(requiredStats, teamStats, (result) =>
         {
-            WaitForSeconds(3, () =>
+            _successIconPivot.SetActive(result);
+            _failIconPivot.SetActive(!result);
+
+            WaitForSeconds(1f, () =>
             {
-                onResult?.Invoke(result);
-                Close();
+                var expectedStatPolygon = _uiCompareStatsController.ExpectedStatPolygon;
+                var teamStatPolygon = _uiCompareStatsController.TeamStatPolygon;
+
+                var intersectionPolygon = PolygonIntersection.IntersectPolygons(expectedStatPolygon, teamStatPolygon);
+                var formattedPolygon = intersectionPolygon.Select(p => new Vector2(p.x, p.y)).ToList();
+
+                if (result)
+                {
+                    _intersectionSuccessStatRadarController.gameObject.SetActive(true);
+                    _intersectionSuccessStatRadarController.UpdateStats(formattedPolygon);
+                }
+                else
+                {
+                    _intersectionFailedStatRadarController.gameObject.SetActive(true);
+                    _intersectionFailedStatRadarController.UpdateStats(formattedPolygon);
+                }
+            });
+
+            WaitForSeconds(1.5f, () =>
+            {
+                _btnOK.onClick.RemoveAllListeners();
+                _btnOK.onClick.AddListener(() =>
+                {
+                    _callback?.Invoke(result);
+                    Close();
+                });
+
+                _btnOK.gameObject.SetActive(true);
             });
         });
     }

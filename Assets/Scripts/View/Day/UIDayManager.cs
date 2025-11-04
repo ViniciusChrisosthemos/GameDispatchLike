@@ -25,9 +25,6 @@ public class UIDayManager : MonoBehaviour
     [SerializeField] private Transform _dayCharacterParent;
     [SerializeField] private UIDayCharacterViewController _uiDayCharacterViewControllerPrefab;
 
-    [Header("UI/Day Timer")]
-    [SerializeField] private Slider _sliderDayTimer;
-
     [Header("UI/Level Up")]
     [SerializeField] private UILevelUpController _uiLevelUpController;
 
@@ -71,8 +68,6 @@ public class UIDayManager : MonoBehaviour
     {
         _uiMissionControllers.ForEach(controller => controller.UpdateTime(currentTime));
         _uiDayCharacterControllers.ForEach(controllers => controllers.UpdateTime(currentTime));
-
-        _sliderDayTimer.value = 1 - (currentTime / _dayManager.TotalDayTime);
     }
 
     private void HandleMissionAvailableEvent(List<MissionUnit> missions)
@@ -97,8 +92,6 @@ public class UIDayManager : MonoBehaviour
     private void HandleDayStarted(List<CharacterUnit> characters)
     {
         _view.SetActive(true);
-
-        _sliderDayTimer.value = 1;
 
         _missionParent.ClearChilds();
         _dayCharacterParent.ClearChilds();

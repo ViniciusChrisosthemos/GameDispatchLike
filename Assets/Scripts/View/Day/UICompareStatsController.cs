@@ -20,7 +20,6 @@ public class UICompareStatsController : MonoBehaviour
     {
         _expectedStatRadarController.UpdateStats(expectedValues);
         _teamStatRadarController.UpdateStats(teamValues);
-
     }
 
     public void CompareStatAnimation(List<float> expectedValues, List<float> teamValues, Action<bool> onResult)
@@ -36,8 +35,9 @@ public class UICompareStatsController : MonoBehaviour
             teamPolygon.Add(teamPolygon[0]);
 
             var point = _uiAnimatePolygonBounceController.Point.position - _uiAnimatePolygonBounceController.Pivot.position;
+            var result = IsPointInPolygon(point, teamPolygon);
 
-            onResult?.Invoke(IsPointInPolygon(point, teamPolygon));
+            onResult?.Invoke(result);
         });
     }
 
@@ -62,4 +62,7 @@ public class UICompareStatsController : MonoBehaviour
 
         return inside;
     }
+
+    public List<Vector3> ExpectedStatPolygon => _expectedStatRadarController.GetPoints();
+    public List<Vector3> TeamStatPolygon => _teamStatRadarController.GetPoints();
 }

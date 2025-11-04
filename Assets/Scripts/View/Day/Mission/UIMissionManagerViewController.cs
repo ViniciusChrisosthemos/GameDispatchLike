@@ -11,6 +11,7 @@ public class UIMissionManagerViewController: MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject _view;
+    [SerializeField] private Animator _animator;
 
     [Header("Left Side")]
     [SerializeField] private UIMissionInfoViewController _uiMissionInfoViewController;
@@ -26,6 +27,12 @@ public class UIMissionManagerViewController: MonoBehaviour
     [SerializeField] private UIChoiceSelectionViewController _rightUIChoiceSelectionViewController;
     [SerializeField] private UIAssignedHeroStatViewController _uiAssignedHeroStatViewController;
 
+    [Header("Animator Events")]
+    [SerializeField] private string _clearAnimationTrigger = "Clear";
+    [SerializeField] private string _openMissionAnimationTrigger = "OpenMission";
+    [SerializeField] private string _openMissionResultAnimationTrigger = "OpenMissionResult";
+
+
     public void OpenAcceptMissionScreen(MissionUnit mission, Action<MissionUnit, Team> callback)
     {
         CloseWindows();
@@ -39,10 +46,13 @@ public class UIMissionManagerViewController: MonoBehaviour
         {
             callback?.Invoke(selectedMission, team);
             CloseScreen();
+            _animator.SetTrigger(_clearAnimationTrigger);
         });
 
         // Right window
         _uiRequirementViewController.UpdateWindow(mission.MissionSO.RequirementDescriptionItems, false);
+
+        _animator.SetTrigger(_openMissionAnimationTrigger);
     }
 
     public void OpenMissionEvent(MissionUnit mission, RandomMissionEvent missionEvent, Action<bool> callback)
@@ -91,10 +101,14 @@ public class UIMissionManagerViewController: MonoBehaviour
         {
             callback?.Invoke(result);
             CloseScreen();
+            _animator.SetTrigger(_clearAnimationTrigger);
         });
 
         // Right window
         _uiRequirementViewController.UpdateWindow(mission.MissionSO.RequirementDescriptionItems, true);
+
+
+        _animator.SetTrigger(_openMissionResultAnimationTrigger);
     }
 
     public void CloseScreen()
