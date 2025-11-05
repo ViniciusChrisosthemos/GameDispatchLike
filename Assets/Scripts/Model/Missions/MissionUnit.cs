@@ -31,7 +31,7 @@ public class MissionUnit
     public UnityEvent<MissionUnit> OnMissionAccepted = new UnityEvent<MissionUnit>();
     public UnityEvent<MissionUnit> OnMissionStarted = new UnityEvent<MissionUnit>();
     public UnityEvent<MissionUnit> OnMissionCompleted = new UnityEvent<MissionUnit>();
-    public UnityEvent<MissionUnit> OnMissionLose = new UnityEvent<MissionUnit>();
+    public UnityEvent<MissionUnit> OnMissioMiss = new UnityEvent<MissionUnit>();
     public UnityEvent<MissionUnit> OnMissionClaimed = new UnityEvent<MissionUnit>();
     public UnityEvent<MissionUnit, RandomMissionEvent> OnMissionHasEvent = new UnityEvent<MissionUnit, RandomMissionEvent>();
     public UnityEvent<MissionUnit> OnChoiceMaded = new UnityEvent<MissionUnit>();
@@ -86,7 +86,7 @@ public class MissionUnit
             {
                 _missionStatus = MissionStatus.Lost;
 
-                OnMissionLose?.Invoke(this);
+                OnMissioMiss?.Invoke(this);
             }
         }
         else if (_missionStatus == MissionStatus.InProgress)

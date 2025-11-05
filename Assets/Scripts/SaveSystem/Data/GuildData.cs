@@ -8,6 +8,8 @@ using UnityEngine;
 public class GuildData
 {
     public string Name;
+    public int CurrentLevel;
+    public int CurrentExperience;
     public int Balance;
     public int Reputation;
     public List<CharacterUnitData> AllCharacters;
@@ -17,6 +19,8 @@ public class GuildData
         Name = guild.Name;
         Balance = guild.Balance;
         Reputation = guild.Reputation;
+        CurrentLevel = guild.CurrentLevel;
+        CurrentExperience = guild.CurrentExperience;
         AllCharacters = guild.AllCharacters.Select(c => new CharacterUnitData(c)).ToList();
     }
 
@@ -25,6 +29,8 @@ public class GuildData
         Name = "ERROR";
         Balance = 0;
         Reputation = 0;
+        CurrentLevel = 1;
+        CurrentExperience = 0;
         AllCharacters = new List<CharacterUnitData>();
     }
 }

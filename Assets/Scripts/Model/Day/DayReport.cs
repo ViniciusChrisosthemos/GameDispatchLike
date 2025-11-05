@@ -5,18 +5,24 @@ using UnityEngine;
 public class DayReport
 {
     public int MissionsAccepted { get; private set; }
-    public int MissionLosted { get; private set; }
+    public int MissionMisses { get; private set; }
     public int MissionSucceded { get; private set; }
     public int MissionFailed { get; private set; }
     public int TotalGoldGained { get; private set; }
     public int TotalReputationGained { get; private set; }
+    public int TotalCalls { get; private set; }
 
     private Dictionary<CharacterUnit, int> MissionAcceptedPerCharacters;
 
+    public int LevelGained { get; private set; }
+    public float LevelPercLostByFail { get; private set; }
+    public float LevelPercLostByMissed { get; private set; }
+
     public DayReport()
     {
+        TotalCalls = 0;
         MissionsAccepted = 0;
-        MissionLosted = 0;
+        MissionMisses = 0;
         MissionSucceded = 0;
         MissionFailed = 0;
         TotalGoldGained = 0;
@@ -39,9 +45,9 @@ public class DayReport
         }
     }
 
-    public void HandleMissionLost()
+    public void HandleMissionMiss()
     {
-        MissionFailed++;
+        MissionMisses++;
     }
 
     public void HandleMissionSucceded(int gold)
@@ -53,5 +59,10 @@ public class DayReport
     public void HandleMissionFailed()
     {
         MissionFailed++;
+    }
+
+    public void AddCalls(int callAmount)
+    {
+        TotalCalls += callAmount;
     }
 }

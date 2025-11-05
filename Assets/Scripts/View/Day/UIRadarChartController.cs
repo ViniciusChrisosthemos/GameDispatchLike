@@ -19,9 +19,12 @@ public class UIRadarChartController : MonoBehaviour
     [Header("Pontas (círculos)")]
     [SerializeField] private bool _drawCircles = true;
     [SerializeField] private UIRadarCircleController _circlePrefab;
-    [SerializeField] private Transform _circleParent;
+    [SerializeField] private Transform _circleReferencesParent;
+    [SerializeField] private Transform _circleInstancesParent;
     [SerializeField] private float _circleRadius = 2f;
     [SerializeField] private Color _circleColor = Color.white;
+    [SerializeField] private bool _addNumber = false;
+    [SerializeField] private bool _trackRadar = false;
 
     private Mesh _mainMesh;
     private Mesh _borderMesh;
@@ -45,6 +48,15 @@ public class UIRadarChartController : MonoBehaviour
     }
 
     public void UpdateStats(List<float> values)
+    {
+        var mask = new List<bool>();
+
+        values.ForEach(v => mask.Add(true));
+
+        UpdateStats(values, mask);
+    }
+
+    public void UpdateStats(List<float> values, List<bool> mask)
     {
         if (values == null || values.Count < 3)
         {
@@ -100,7 +112,7 @@ public class UIRadarChartController : MonoBehaviour
         // --- CÍRCULOS NAS PONTAS ---
         if (_drawCircles)
         {
-            CreateCircles(_vertices);
+            CreateCircles(_vertices, values, mask);
             //DrawCircles(_vertices);
         }
         else
@@ -159,7 +171,7 @@ public class UIRadarChartController : MonoBehaviour
         // --- CÍRCULOS NAS PONTAS ---
         if (_drawCircles)
         {
-            CreateCircles(_vertices);
+            CreateCircles(_vertices, new List<float>(), new List<bool>(_vertices.Length));
         }
         else
         {
@@ -211,20 +223,47 @@ public class UIRadarChartController : MonoBehaviour
         _borderRenderer.SetMaterial(_borderMaterial, null);
     }
 
-    private void CreateCircles(Vector3[] vertices)
+    private void CreateCircles(Vector3[] vertices, List<float> values, List<bool> mask)
     {
-        _circleParent.ClearChilds();
+        _circleInstancesParent.ClearChilds();
+        _circleReferencesParent.ClearChilds();
 
         Vector3 centerOffset = _middleReference != null ? _middleReference.localPosition : Vector3.zero;
 
         for(int i=1; i < vertices.Length; i++)
         {
+            if (!mask[i-1]) continue;
+
             var vertex = vertices[i];
             Vector3 center = vertex + centerOffset;
 
-            var controller = Instantiate(_circlePrefab, _circleParent);
-            controller.transform.localPosition = center;
-            controller.UpdateCircle(_circleRadius, _circleColor);
+            if (_trackRadar)
+            {
+                var reference = new GameObject($"Circle Reference - {i}");
+                reference.transform.SetParent(_circleReferencesParent);
+                reference.transform.localPosition = center;
+
+                var controller = Instantiate(_circlePrefab, _circleInstancesParent);
+                controller.SetReference(reference.transform);
+                controller.UpdateCircle(_circleRadius, _circleColor);
+
+                if (_addNumber && values.Count != 0)
+                {
+                    controller.SetNumber((int)(values[i - 1] * 10));
+                }
+            }
+            else
+            {
+                var controller = Instantiate(_circlePrefab, _circleInstancesParent);
+                controller.transform.localPosition = center;
+                controller.UpdateCircle(_circleRadius, _circleColor);
+
+                if (_addNumber && values.Count != 0)
+                {
+                    controller.SetNumber((int)(values[i - 1] * 10));
+                }
+            }
+
         }
     }
 

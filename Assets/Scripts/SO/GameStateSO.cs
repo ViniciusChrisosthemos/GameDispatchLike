@@ -9,4 +9,6 @@ public class GameStateSO : ScriptableObject
     public int Balance;
     public int Reputation;
     public int CurrentDay;
+    public int CurrentLevel;
+    public int CurrentExperience;
 }

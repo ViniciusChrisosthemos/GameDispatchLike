@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerMissionResultController : MonoBehaviour
+public class TriggerMissionScreenAnimationController : MonoBehaviour
 {
     [SerializeField] private UIMissionResultViewController _missionResultViewController;
-    
-    public void TriggerAnimation()
+    [SerializeField] private UIChoiceResultViewController _choiceResultViewController;
+
+    public void TriggerMissionResultAnimation()
     {
         _missionResultViewController.StartAnimateResult();
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class UIChoiceSelectionViewController : MonoBehaviour
     [SerializeField] private GameObject _view;
     [SerializeField] private Transform _choiceParent;
     [SerializeField] private UIChoiceViewController _choiceViewControllerPrefab;
+    [SerializeField] private UISendActionViewController _uiSendActionViewController;
 
     [Header("(Optional)")]
     [SerializeField] private TextMeshProUGUI _txtMissionName;
@@ -24,6 +26,8 @@ public class UIChoiceSelectionViewController : MonoBehaviour
     public void OpenScreen(MissionUnit missionUnit, RandomMissionEvent missionEvent, bool showStats, Action<MissionChoice> callback)
     {
         _view.SetActive(true);
+
+        Debug.Log($"{_txtMissionName == null} {missionUnit.Name}");
 
         if (_txtMissionName != null) _txtMissionName.text = missionUnit.Name;
         if (_txtEventDescription != null) _txtEventDescription.text = missionEvent.Description;
@@ -56,7 +60,11 @@ public class UIChoiceSelectionViewController : MonoBehaviour
     {
         var choice = controller.GetItem<MissionChoice>();
 
-        _choiceSelectionCallback?.Invoke(choice);
+        _uiSendActionViewController.StartSendAction(() =>
+        {
+            _choiceSelectionCallback?.Invoke(choice);
+        });
+
     }
 
     public void Close()

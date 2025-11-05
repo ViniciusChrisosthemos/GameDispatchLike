@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using static Guild;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -47,9 +48,10 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void CompleteDay()
+    public LevelUPDescription CompleteDay(DayReport dayReport)
     {
         _gameState.IncrementDay();
+        return _gameState.Guild.HandleDayReport(dayReport, CharacterLevelDatabase.Instance);
     }
 
     public void Quit()

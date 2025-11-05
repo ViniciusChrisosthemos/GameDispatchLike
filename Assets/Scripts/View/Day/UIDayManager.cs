@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
-using static MissionSO;
 
 public class UIDayManager : MonoBehaviour
 {
@@ -49,12 +47,11 @@ public class UIDayManager : MonoBehaviour
 
     private void HandleDayEnded(DayReport report)
     {
-        _uiDayReportController.OpenScreen(report, () =>
+        var levelUpDescription = GameManager.Instance.CompleteDay(report);
+        
+        _uiDayReportController.OpenScreen(report, levelUpDescription, () =>
         {
             CloseScreen();
-
-            GameManager.Instance.CompleteDay();
-
             _uiGuildViewManager.OpenScreen();
         });
     }

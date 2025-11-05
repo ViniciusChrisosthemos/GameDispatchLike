@@ -14,7 +14,8 @@ public class DayMissionManager : MonoBehaviour
     [SerializeField] private List<TimelineMission> _timelineMissions;
 
     [Header("Events")]
-    [SerializeField] private UnityEvent<List<MissionUnit>> OnNewMissionAvailable;
+    public UnityEvent<List<MissionUnit>> OnNewMissionAvailable;
+    public UnityEvent<MissionUnit> OnMissionMiss;
 
     private int _currentMissionID;
 
@@ -67,8 +68,8 @@ public class DayMissionManager : MonoBehaviour
             {
                 var mission = new MissionUnit(_currentMissionID, timelineMission.MissionSO, timelineMission.Location, currentTime);
 
-                mission.OnMissionLose.AddListener(HandleMissionLostOrClaimed);
-                mission.OnMissionClaimed.AddListener(HandleMissionLostOrClaimed);
+                mission.OnMissioMiss.AddListener(HandleMissionMiss);
+                mission.OnMissionClaimed.AddListener(HandleMissionClaimed);
 
                 _currentMissions.Add(mission);
                 missionToUpdate.Add(mission);
@@ -93,8 +94,14 @@ public class DayMissionManager : MonoBehaviour
             missionUnit.UpdateMission(currentTime);
         }
     }
-    
-    private void HandleMissionLostOrClaimed(MissionUnit missionUnit)
+
+    private void HandleMissionMiss(MissionUnit missionUnit)
+    {
+        _currentMissions.Remove(missionUnit);
+        OnMissionMiss?.Invoke(missionUnit);
+    }
+
+    private void HandleMissionClaimed(MissionUnit missionUnit)
     {
         _currentMissions.Remove(missionUnit);
     }

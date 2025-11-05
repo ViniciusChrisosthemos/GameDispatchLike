@@ -31,6 +31,7 @@ public class UIMissionManagerViewController: MonoBehaviour
     [SerializeField] private string _clearAnimationTrigger = "Clear";
     [SerializeField] private string _openMissionAnimationTrigger = "OpenMission";
     [SerializeField] private string _openMissionResultAnimationTrigger = "OpenMissionResult";
+    [SerializeField] private string _normalChoiceResultAnimationTrigger = "OpenChoiceResult-NormalResult";
 
 
     public void OpenAcceptMissionScreen(MissionUnit mission, Action<MissionUnit, Team> callback)
@@ -68,7 +69,8 @@ public class UIMissionManagerViewController: MonoBehaviour
         {
             OpenMissionEventResult(mission, missionEvent, choice, (result) => 
             { 
-                callback?.Invoke(result); 
+                callback?.Invoke(result);
+                _animator.SetTrigger(_clearAnimationTrigger);
                 CloseScreen(); 
             });
         });
@@ -83,9 +85,15 @@ public class UIMissionManagerViewController: MonoBehaviour
 
         _uiMissionInfoViewController.UpdateMissionInfo(mission);
 
-        _uiChoiceResultViewController.OpenScreen(mission, missionEvent, missionChoice, callback);
+        _uiChoiceResultViewController.OpenScreen(mission, missionEvent, missionChoice, (result) =>
+        {
+            callback?.Invoke(result);
+            CloseScreen();
+        });
 
         _rightUIChoiceSelectionViewController.OpenScreen(mission, missionEvent, true, null);
+
+        _animator.SetTrigger(_normalChoiceResultAnimationTrigger);
     }
 
     public void OpenMissionResult(MissionUnit mission, Action<bool> callback)

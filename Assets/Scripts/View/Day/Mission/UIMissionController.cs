@@ -54,7 +54,7 @@ public class UIMissionController : MonoBehaviour, IPointerClickHandler
 
         OnClickCallback.AddListener(() => callback?.Invoke(MissionUnit));
 
-        mission.OnMissionLose.AddListener(m => handleCallForDeleteMission?.Invoke(this));
+        mission.OnMissioMiss.AddListener(m => handleCallForDeleteMission?.Invoke(this));
         mission.OnMissionAccepted.AddListener(m => SetMissionAccepted());
         mission.OnMissionStarted.AddListener(m => SetMissionInProgress());
         mission.OnMissionCompleted.AddListener(m => SetMissionCompleted());

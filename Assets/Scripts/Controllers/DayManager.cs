@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UIElements;
-using Random = UnityEngine.Random;
 
 public class DayManager : MonoBehaviour
 {
@@ -30,6 +28,11 @@ public class DayManager : MonoBehaviour
     private DayReport _dayReport;
 
     private GameState _gameState;
+
+    private void Start()
+    {
+        _missionManager.OnMissionMiss.AddListener(HandleMissionMiss);
+    }
 
     public void StartDay(List<CharacterUnit> characters)
     {
@@ -118,6 +121,11 @@ public class DayManager : MonoBehaviour
         _dayReport.HandleMissionAccepted(team.Members);
     }
 
+    private void HandleMissionMiss(MissionUnit missionUnit)
+    {
+        _dayReport.HandleMissionMiss();
+    }
+
     public void StartMission(MissionUnit mission)
     {
         mission.StartMission(_elapseTime);
@@ -137,6 +145,8 @@ public class DayManager : MonoBehaviour
     private void HandleNewMissions(List<MissionUnit> newMissions)
     {
         OnMissionAvailable?.Invoke(newMissions);
+
+        _dayReport.AddCalls(newMissions.Count);
     }
 
     public void HandleCharacterArriveBase(Team team, float currentTime)

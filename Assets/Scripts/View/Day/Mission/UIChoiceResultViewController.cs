@@ -54,11 +54,18 @@ public class UIChoiceResultViewController : MonoBehaviour
                 givenValues.Add(givenStatValue / 10f);
             }
 
-            _choiceResultExpectedStatUIRadarController.UpdateStats(expectedValues);
-            _choiceResultGivenStatUIRadarController.UpdateStats(givenValues);
+            var mask = new List<bool>();
 
-            var mask = _radarMasks.Find(m => m.Type == missionChoice.Requirement.StatType);
-            _imgRadarMask.sprite = mask.Mask;
+            foreach (StatType statType in Enum.GetValues(typeof(StatType)))
+            {
+                mask.Add(statType == missionChoice.Requirement.StatType);
+            }
+
+            _choiceResultExpectedStatUIRadarController.UpdateStats(expectedValues, mask);
+            _choiceResultGivenStatUIRadarController.UpdateStats(givenValues, mask);
+
+            var srpiteMask = _radarMasks.Find(m => m.Type == missionChoice.Requirement.StatType);
+            _imgRadarMask.sprite = srpiteMask.Mask;
 
             _btnOk.onClick.AddListener(() => TriggerCallback(givenStatValue >= expectedStatValue));
         }
