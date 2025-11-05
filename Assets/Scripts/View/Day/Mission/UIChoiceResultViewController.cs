@@ -13,6 +13,8 @@ public class UIChoiceResultViewController : MonoBehaviour
     [SerializeField] private GameObject _statComparisonView;
     [SerializeField] private GameObject _characterChoiceView;
     [SerializeField] private Button _btnOk;
+    [SerializeField] private GameObject _successView;
+    [SerializeField] private GameObject _failView;
 
     [Header("Stat Comparison References")]
     [SerializeField] private UIRadarChartController _choiceResultExpectedStatUIRadarController;
@@ -33,6 +35,8 @@ public class UIChoiceResultViewController : MonoBehaviour
     public void OpenScreen(MissionUnit missionUnit, RandomMissionEvent missionEvent, MissionChoice missionChoice, Action<bool> callback)
     {
         _view.SetActive(true);
+        _successView.SetActive(false);
+        _failView.SetActive(false);
 
         _btnOk.onClick.RemoveAllListeners();
 
@@ -66,6 +70,9 @@ public class UIChoiceResultViewController : MonoBehaviour
 
             var srpiteMask = _radarMasks.Find(m => m.Type == missionChoice.Requirement.StatType);
             _imgRadarMask.sprite = srpiteMask.Mask;
+
+            _successView.SetActive(givenStatValue >= expectedStatValue);
+            _failView.SetActive(!_successView.activeSelf);
 
             _btnOk.onClick.AddListener(() => TriggerCallback(givenStatValue >= expectedStatValue));
         }

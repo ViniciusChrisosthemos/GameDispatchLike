@@ -14,6 +14,7 @@ public class UIDayReportController : MonoBehaviour
     private const string STRING_MISSION_MISSES = "{0} MISSES";
 
     [SerializeField] private GameObject _view;
+    [SerializeField] private Transform _contentView;
 
     [SerializeField] private TextMeshProUGUI _txtLevelDescription;
     [SerializeField] private TextMeshProUGUI _txtTotalCalls;
@@ -53,6 +54,7 @@ public class UIDayReportController : MonoBehaviour
         _slider.value = levelUpDescription.OldExpPerc;
         _sliderBackground.value = 0;
 
+
         _txtTotalCalls.text = string.Format(STRING_TOTAL_CALLS, 0);
         _txtMissionSuccess.text = string.Format(STRING_MISSION_SUCCESS, 0);
         _txtMissionFail.text = string.Format(STRING_MISSION_FAILURES, 0);
@@ -63,6 +65,15 @@ public class UIDayReportController : MonoBehaviour
         var targetScale = Vector3.one * 1.3f;
         var numberAnimationDuration = 0.7f;
         var currentExpPerc = levelUpDescription.TotalExpPerc;
+
+
+
+        var contentViewScaleTime = 0.8f;
+        _contentView.transform.localScale = Vector3.zero;
+
+        AnimateScaleElement(_contentView, Vector3.one, Vector3.one * 1.2f, contentViewScaleTime, Ease.Linear, 0.7f);
+
+        yield return new WaitForSeconds(contentViewScaleTime + 0.8f);
 
         Debug.Log($"{levelUpDescription.LevelGained} {currentExpPerc} {levelUpDescription.OldExpPerc} {levelUpDescription.ExpLostByFailures} {levelUpDescription.ExpLostByMissesPerc}");
 
@@ -197,13 +208,15 @@ public class UIDayReportController : MonoBehaviour
         seq.Append(textTransform.DOScale(currentScale, duration / 2f).SetEase(ease));
     }
 
-    public void AnimateScaleElement(Transform component, Vector3 currentScale, Vector3 targetScale, float duration, Ease ease = Ease.InQuad)
-    { 
+    public void AnimateScaleElement(Transform component, Vector3 currentScale, Vector3 targetScale, float duration, Ease ease = Ease.InQuad, float firstAnimationWeight=0.5f)
+    {
+        var firstAnimationDuration = duration * firstAnimationWeight;
+
         Sequence seq = DOTween.Sequence();
 
-        seq.Append(component.DOScale(targetScale, duration / 2f).SetEase(ease));
+        seq.Append(component.DOScale(targetScale, firstAnimationDuration).SetEase(ease));
         seq.AppendInterval(0.1f);
-        seq.Append(component.DOScale(currentScale, duration / 2f).SetEase(ease));
+        seq.Append(component.DOScale(currentScale, duration - firstAnimationDuration).SetEase(ease));
     }
 
     private void HandleCloseScreen()
