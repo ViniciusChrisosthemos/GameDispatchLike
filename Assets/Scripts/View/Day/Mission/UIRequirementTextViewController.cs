@@ -33,6 +33,11 @@ public class UIRequirementTextViewController : MonoBehaviour
         _txtDescription.text = formattedDescription;
     }
 
+    public void SetText(string label)
+    {
+        _txtDescription.text = label;
+    }
+
     public void SetStatView(bool showStats)
     {
         if (showStats)

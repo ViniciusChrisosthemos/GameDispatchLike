@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72154cb87e52ad345a73118aee8a7006, type: 3}
+  m_Name: Mission_Day-2_Juvenile-Pickpocket-at-Large
+  m_EditorClassIdentifier: 
+  Name: Juvenile Pickpoket at Large
+  Description: '"A kid just robbed me! That little shit! I want him begind bars!"'
+  RequirementDescriptionItems:
+  - Description: <Track> down the pickpocket and bring him home
+    StatType: 4
+  - Description: <Encourage>  him to turn his life around
+    StatType: 3
+  DifficultyLevel: 1
+  RequiredStats:
+    _strengh:
+      BaseValue: 1
+      Bonus: 
+    _endurance:
+      BaseValue: 1
+      Bonus: 
+    _agility:
+      BaseValue: 1
+      Bonus: 
+    _charisma:
+      BaseValue: 3
+      Bonus: 
+    _intelligence:
+      BaseValue: 3
+      Bonus: 
+    _maxStatValue: 10
+  MaxTeamSize: 1
+  RewardExperience: 150
+  RewardGold: 50
+  RewardReputation: 15
+  TimeToAccept: 15
+  TimeToComplete: 15
+  TimeToAnswerEvent: 15
+  ClientArt: {fileID: 21300000, guid: cb4b5543ec3fa8a4a847d34d4926b99a, type: 3}
+  EnvironmentArt: {fileID: 21300000, guid: bf523ce472715f54c9cc1a760677644c, type: 3}
+  Type: 6
+  RandomMissionEvents:
+  - Title: Junevile Pickpocket at Large
+    Description: They cought the kid but have no idea what to do with a twelve-year-old
+      thief.
+    MissionChoices:
+    - Requirement:
+        Description: <Escort> him home
+        StatType: 1
+      StatAmountRequired: 4
+      SucceededDescription: Success
+      FailedDescription: Fail
+      Character: {fileID: 0}
+    - Requirement:
+        Description: Give him a <pep talk>
+        StatType: 3
+      StatAmountRequired: 3
+      SucceededDescription: Success
+      FailedDescription: Fail
+      Character: {fileID: 0}

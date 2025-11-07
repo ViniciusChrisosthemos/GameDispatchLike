@@ -8,6 +8,8 @@ using static MissionSO;
 
 public class UIChoiceViewController : UIItemController
 {
+    private const string STRING_OPTION_UNAVAILABLE = "[OPTION UNAVAILABLE] {0} required.";
+
     [Header("Normal Choice")]
     [SerializeField] private GameObject _normalChoiceView;
     [SerializeField] private UIRequirementTextViewController _uiRequirementTextViewController;
@@ -58,8 +60,21 @@ public class UIChoiceViewController : UIItemController
         _unavailableOverlay.SetActive(isUnavailable);
     }
 
+    public void SetOptionLocked(string characterName)
+    {
+        _normalChoiceView.SetActive(true);
+        _characterChoiceView.SetActive(false);
+
+        _unavailableOverlay.SetActive(true);
+
+        _uiRequirementTextViewController.SetText(string.Format(STRING_OPTION_UNAVAILABLE, characterName));
+    }
+
     public void ShowStats(bool showStats)
     {
-        _uiRequirementTextViewController.SetStatView(showStats);
+        if (_missionChoice.Character == null)
+        {
+            _uiRequirementTextViewController.SetStatView(showStats);
+        }
     }
 }

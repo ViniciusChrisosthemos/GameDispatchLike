@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc6f69fc7801e24daf55f709e6aa15f, type: 3}
+  m_Name: Day_1
+  m_EditorClassIdentifier: 
+  MissionSOs:
+  - {fileID: 11400000, guid: 2cdf0b00f802e1142986f88ce369905b, type: 2}
+  - {fileID: 11400000, guid: 27179042713b4214e919cb4570535429, type: 2}
+  - {fileID: 11400000, guid: 1d5b5636a0e51f84f9cc96c620625d0d, type: 2}
+  - {fileID: 11400000, guid: 8e18b07a65c302c4ea0d0b97dc20c590, type: 2}
+  - {fileID: 11400000, guid: c4f8f0a8f6760aa4e853b5ae3d6681e4, type: 2}
+  - {fileID: 11400000, guid: 325f2589a4d4102419a853dda1b83ace, type: 2}
+  - {fileID: 11400000, guid: 9cf6c31a1b9496d44accace27338a743, type: 2}
+  - {fileID: 11400000, guid: 15cb62d9ffefbe84bbac01ac0a7f1869, type: 2}
+  - {fileID: 11400000, guid: aecc67fdf4556224c8a46bc089d715d6, type: 2}
+  - {fileID: 11400000, guid: 76a64d40e0c4ecb468d437ed7c5ff997, type: 2}
+  - {fileID: 11400000, guid: 08e98b42aa509fd49868e1d35f274ce7, type: 2}
+  UseAllMissions: 1
+  MissionAmount: 1
+  DayDurationInSeconds: 180

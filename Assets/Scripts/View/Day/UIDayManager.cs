@@ -30,9 +30,9 @@ public class UIDayManager : MonoBehaviour
     [SerializeField] private UIDayReportController _uiDayReportController;
     [SerializeField] private UIGuildViewManager _uiGuildViewManager;
 
-
     [Header("Events")]
     public UnityEvent<CharacterUnit> OnCharacterSelected;
+    public UnityEvent OnScreenOpened;
 
     private List<UIMissionController> _uiMissionControllers;
     private List<UIDayCharacterViewController> _uiDayCharacterControllers;
@@ -106,6 +106,7 @@ public class UIDayManager : MonoBehaviour
         }
 
         _uiMissionManagerViewController.CloseScreen();
+        OnScreenOpened?.Invoke();
     }
 
     private void HandleMissionSelected(MissionUnit missionSelected)

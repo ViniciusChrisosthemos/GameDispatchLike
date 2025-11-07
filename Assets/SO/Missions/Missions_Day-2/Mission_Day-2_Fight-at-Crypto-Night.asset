@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72154cb87e52ad345a73118aee8a7006, type: 3}
+  m_Name: Mission_Day-2_Fight-at-Crypto-Night
+  m_EditorClassIdentifier: 
+  Name: Fight at Crypto Night
+  Description: '"Get these idiots outta my bar before they destroy it. And don''t
+    send the flaming asshole."'
+  RequirementDescriptionItems:
+  - Description: Two 'heroes' are <fighting each other> at Crypto Night
+    StatType: 0
+  - Description: Break up the brawl <displomatically> if possible
+    StatType: 3
+  DifficultyLevel: 1
+  RequiredStats:
+    _strengh:
+      BaseValue: 1
+      Bonus: 
+    _endurance:
+      BaseValue: 1
+      Bonus: 
+    _agility:
+      BaseValue: 3
+      Bonus: 
+    _charisma:
+      BaseValue: 2
+      Bonus: 
+    _intelligence:
+      BaseValue: 1
+      Bonus: 
+    _maxStatValue: 10
+  MaxTeamSize: 2
+  RewardExperience: 150
+  RewardGold: 50
+  RewardReputation: 15
+  TimeToAccept: 15
+  TimeToComplete: 15
+  TimeToAnswerEvent: 15
+  ClientArt: {fileID: 21300000, guid: cb4b5543ec3fa8a4a847d34d4926b99a, type: 3}
+  EnvironmentArt: {fileID: 21300000, guid: bf523ce472715f54c9cc1a760677644c, type: 3}
+  Type: 6
+  RandomMissionEvents:
+  - Title: Fight at Crypto Night
+    Description: These idiots are fighting over the name "Fight Man" ... Let's trye
+      giving them new names. Maybe that'll solve it.
+    MissionChoices:
+    - Requirement:
+        Description: <Suggest> badass sounding names
+        StatType: 3
+      StatAmountRequired: 3
+      SucceededDescription: 
+      FailedDescription: 
+      Character: {fileID: 0}
+    - Requirement:
+        Description: <Suggest> bumbass sounding names.
+        StatType: 3
+      StatAmountRequired: 7
+      SucceededDescription: 
+      FailedDescription: 
+      Character: {fileID: 0}
+    - Requirement:
+        Description: <Suggest> becoming a dynamic duo.
+        StatType: 3
+      StatAmountRequired: 3
+      SucceededDescription: 
+      FailedDescription: 
+      Character: {fileID: 0}
+    - Requirement:
+        Description: Bannish their souls to the Shadow Realm
+        StatType: 3
+      StatAmountRequired: 3
+      SucceededDescription: 
+      FailedDescription: 
+      Character: {fileID: 11400000, guid: fd388b3315bb9aa47bfb410cfe71d1cf, type: 2}

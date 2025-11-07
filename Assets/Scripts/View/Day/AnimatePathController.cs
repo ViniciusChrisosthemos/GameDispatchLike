@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class AnimatePathController : MonoBehaviour
@@ -12,6 +13,9 @@ public class AnimatePathController : MonoBehaviour
     [SerializeField] private Transform _objsParent;
 
     [SerializeField] private float _moveSpeed = 2f;
+
+    [Header("Events")]
+    public UnityEvent OnStartAnimate;
 
     public static IEnumerator AnimatePathCoroutine(Transform obj, List<Node> path, float velocity, Action callback)
     {
@@ -60,5 +64,7 @@ public class AnimatePathController : MonoBehaviour
             callback?.Invoke();
             Destroy(instante.gameObject);
         }));
+
+        OnStartAnimate?.Invoke();
     }
 }

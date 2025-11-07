@@ -27,8 +27,6 @@ public class UIChoiceSelectionViewController : MonoBehaviour
     {
         _view.SetActive(true);
 
-        Debug.Log($"{_txtMissionName == null} {missionUnit.Name}");
-
         if (_txtMissionName != null) _txtMissionName.text = missionUnit.Name;
         if (_txtEventDescription != null) _txtEventDescription.text = missionEvent.Description;
 
@@ -47,7 +45,16 @@ public class UIChoiceSelectionViewController : MonoBehaviour
             }
             else
             {
-                controller.SetUnavailableOverlay(!heros.Contains(choice.Character));
+                var hasCharacter = heros.Contains(choice.Character);
+
+                if (hasCharacter)
+                {
+                    controller.SetUnavailableOverlay(!hasCharacter);
+                }
+                else
+                {
+                    controller.SetOptionLocked(choice.Character.Name);
+                }
             }
 
             controller.ShowStats(showStats);

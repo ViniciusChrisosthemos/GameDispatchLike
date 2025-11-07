@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "ZF5254X5VW",
         "name": "com.MeusApps.Dispatch",
-        "processId": 28199,
+        "processId": 5138,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -42,6 +42,12 @@
             "deviceId": "ZF5254X5VW",
             "name": "com.MeusApps.Dispatch",
             "processId": 28199,
+            "exited": false
+        },
+        {
+            "deviceId": "ZF5254X5VW",
+            "name": "com.MeusApps.Dispatch",
+            "processId": 5138,
             "exited": false
         }
     ],

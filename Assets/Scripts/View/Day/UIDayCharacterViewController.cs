@@ -53,6 +53,7 @@ public class UIDayCharacterViewController : MonoBehaviour
 
         _uiCharacterViewController.UpdateCharacter(characterUnit);
 
+        _btnCharacter.onClick.RemoveAllListeners();
         _btnCharacter.onClick.AddListener(HandleCharacterSelected);
 
         _characterUnit.OnCharacterGoingToMission.AddListener(_ => SetStatusInMoving());

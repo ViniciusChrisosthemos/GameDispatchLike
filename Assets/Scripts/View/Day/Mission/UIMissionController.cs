@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class UIMissionController : MonoBehaviour, IPointerClickHandler
 {
@@ -29,6 +30,11 @@ public class UIMissionController : MonoBehaviour, IPointerClickHandler
 
     [Header("Completed")]
     [SerializeField] private GameObject _completedView;
+
+    [Header("Sound Effects")]
+    [SerializeField] private List<AudioClip> _sfxNewMission;
+    [SerializeField] private List<AudioClip> _sfxWarning;
+    [SerializeField] private float _sfxVolume = 1f;
 
     private MissionUnit _missionUnit;
 
@@ -62,6 +68,8 @@ public class UIMissionController : MonoBehaviour, IPointerClickHandler
         mission.OnChoiceMaded.AddListener(m => SetMissionInProgress());
 
         _spriteSliderTime.Color = _colorMissionAvailable;
+
+        PlaySFX(_sfxNewMission);
     }
 
 
@@ -78,6 +86,8 @@ public class UIMissionController : MonoBehaviour, IPointerClickHandler
     {
         _inProgressView.SetActive(false);
         _hasEventView.SetActive(true);
+
+        PlaySFX(_sfxWarning);
     }
 
     private void SetMissionAccepted()
@@ -116,17 +126,17 @@ public class UIMissionController : MonoBehaviour, IPointerClickHandler
         _completedView.SetActive(true);
     }
 
-    /*
-    private void OnMouseUp()
-    {
-        Debug.Log($"Mouse UP {name}");
-        OnClickCallback?.Invoke();
-    }
-    */
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("Point Click Handler");
         OnClickCallback?.Invoke();
+    }
+
+    public void PlaySFX(List<AudioClip> sfxs)
+    {
+        var index = Random.Range(0, sfxs.Count);
+
+        SoundManager.Instance.PlaySFX(sfxs[index], _sfxVolume);
     }
 
     public MissionUnit MissionUnit => _missionUnit;

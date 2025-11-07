@@ -7,7 +7,8 @@ using static StatManager;
 [CreateAssetMenu(fileName = "Mission", menuName = "ScriptableObjects/Mission")]
 public class MissionSO : ScriptableObject
 {
-    public enum MissionType { Rescure, Attack, Negociation, Assault, Investigation, Pursuit, Minor_Inconvenience }
+    public enum MissionType { Rescure, Attack, Negociation, Assault, Investigation, Pursuit, Minor_Inconvenience,
+    Social_Event, Security, Red_Ring}
 
     [Header("Mission")]
     public string Name;

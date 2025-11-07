@@ -10,15 +10,15 @@ public class DayManager : MonoBehaviour
     [SerializeField] private DayCharacterManager _dayCharacterManager;
     [SerializeField] private DayMissionManager _missionManager;
 
-    [Header("Parameters")]
-    [SerializeField] private int _dayDurationInSeconds = 5 * 60;
-    [SerializeField] private int _totalMissions = 12;
-
     [Header("Events")]
     public UnityEvent<List<CharacterUnit>> OnDayStart;
     public UnityEvent<DayReport> OnDayEnd;
     public UnityEvent<float> OnTimeUpdated;
     public UnityEvent<List<MissionUnit>> OnMissionAvailable;
+
+    [Header("Day Parameters")]
+    [SerializeField] private List<DaySO> _daySOs;
+    [SerializeField] private DaySO _defaultDaySO;
 
     [Header("Debug")]
     [SerializeField] private bool _runOnStart = false;
@@ -34,15 +34,21 @@ public class DayManager : MonoBehaviour
         _missionManager.OnMissionMiss.AddListener(HandleMissionMiss);
     }
 
-    public void StartDay(List<CharacterUnit> characters)
+    public void StartDay(int day, List<CharacterUnit> characters)
     {
+        characters.ForEach(c => c.SetStatusToAvailable());
         _gameState = GameManager.Instance.GameState;
 
         _isPaused = false;
         _dayReport = new DayReport();
 
+        DaySO daySO = day >= _daySOs.Count ? _defaultDaySO : _daySOs[day-1];
+        var missionAmount = daySO.UseAllMissions ? daySO.MissionSOs.Count : daySO.MissionAmount;
+
         _dayCharacterManager.Init(characters);
-        _missionManager.Init(_totalMissions, _dayDurationInSeconds, HandleNewMissions);
+
+        Debug.Log($"{daySO.name} {daySO.MissionSOs.Count} {daySO.MissionAmount} {daySO.DayDurationInSeconds} {missionAmount}");
+        _missionManager.Init(daySO.MissionSOs, missionAmount, daySO.DayDurationInSeconds, HandleNewMissions);
 
         StartCoroutine(DayLoopCoroutine());
     }
@@ -154,6 +160,5 @@ public class DayManager : MonoBehaviour
         team.Members.ForEach(m => m.SetCharacterResting(currentTime));
     }
 
-    public int TotalDayTime { get => _dayDurationInSeconds; }
     public float CurrentTime => _elapseTime;
 }

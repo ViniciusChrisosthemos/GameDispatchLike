@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
@@ -31,9 +32,11 @@ public class UIGuildViewManager : MonoBehaviour
     [SerializeField] private Transform _availableCharactersParent;
     [SerializeField] private UICharacterViewController _characterViewControllerPrefab;
 
-
     [Header("Settings")]
     [SerializeField] private GameSettingsSO _gameSettingsSO;
+
+    [Header("Events")]
+    public UnityEvent OnScreenOpened;
 
     private Guild _guild;
 
@@ -47,9 +50,10 @@ public class UIGuildViewManager : MonoBehaviour
 
     public void StartDay()
     {
+        var day = GameManager.Instance.GameState.Day;
         var guild = GameManager.Instance.GameState.Guild;
 
-        _dayManager.StartDay(guild.ScheduledCharacters);
+        _dayManager.StartDay(day, guild.ScheduledCharacters);
 
         CloseWindow();
     }
@@ -84,6 +88,8 @@ public class UIGuildViewManager : MonoBehaviour
                 InstantiateCharacter(_availableCharactersParent, character, HandleAvailableCharacterSelected);
             }
         }
+
+        OnScreenOpened?.Invoke();
     }
 
     private void InstantiateCharacter(Transform parent, CharacterUnit character, Action<UICharacterViewController> handler)

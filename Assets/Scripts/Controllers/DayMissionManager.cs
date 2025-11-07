@@ -1,17 +1,15 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using Random = UnityEngine.Random;
 
 public class DayMissionManager : MonoBehaviour
 {
-
-    [SerializeField] private List<MissionInfo> _missionsInfo;
-
+    [SerializeField] private List<Transform> _availableNodes;
     [SerializeField] private List<MissionUnit> _currentMissions;
     [SerializeField] private List<TimelineMission> _timelineMissions;
+    [SerializeField] private MissionTimelineGenerator _missionTimeLineGenerator;
 
     [Header("Events")]
     public UnityEvent<List<MissionUnit>> OnNewMissionAvailable;
@@ -19,12 +17,40 @@ public class DayMissionManager : MonoBehaviour
 
     private int _currentMissionID;
 
-    public void Init(int missionAmount, int totalTimeInSeconds, Action<List<MissionUnit>> OnMissionAvailable)
+    public void Init(List<MissionSO> missions, int missionAmount, int totalTimeInSeconds, Action<List<MissionUnit>> OnMissionAvailable)
     {
         _currentMissionID = 0;
         _currentMissions = new List<MissionUnit>();
         _timelineMissions = new List<TimelineMission>();
-        
+
+        var missioEntries = _missionTimeLineGenerator.GenerateTimeline();
+
+        var possibleLocations = new List<Transform>();
+        foreach(var missionEntry in missioEntries)
+        {
+            Debug.Log($"{_timelineMissions.Count} {missionAmount}");
+            if (_timelineMissions.Count >= missionAmount) break;
+
+            if (missionEntry.missionIndex >= missions.Count) break;
+
+            var missionSO = missions[missionEntry.missionIndex];
+            
+            if (possibleLocations.Count == 0)
+            {
+                possibleLocations = _availableNodes.ToList();
+                possibleLocations.Shuffle();
+            }
+
+            var location = possibleLocations[0];
+            possibleLocations.RemoveAt(0);
+
+            var time = missionEntry.time;
+            var timelineMission = new TimelineMission(missionSO, location, time);
+
+            _timelineMissions.Add(timelineMission);
+        }
+
+        /*
         var auxMissionInfoList = new List<TimelineMission>();
 
         foreach (var missionInfo in  _missionsInfo)
@@ -53,6 +79,7 @@ public class DayMissionManager : MonoBehaviour
         }
 
         _timelineMissions.Sort((a, b) => a.StartTime.CompareTo(b.StartTime));
+        */
 
         OnNewMissionAvailable.RemoveAllListeners();
         OnNewMissionAvailable.AddListener(newMissions => OnMissionAvailable?.Invoke(newMissions));
