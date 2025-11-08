@@ -3,29 +3,11 @@
     "m_SelectedProcess": {
         "deviceId": "ZF5254X5VW",
         "name": "com.MeusApps.Dispatch",
-        "processId": 5138,
+        "processId": 1936,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownProcessesForSerialization": [
-        {
-            "deviceId": "ZF5254X5VW",
-            "name": "com.MeusApps.Dispatch",
-            "processId": 14962,
-            "exited": true
-        },
-        {
-            "deviceId": "ZF5254X5VW",
-            "name": "com.MeusApps.Dispatch",
-            "processId": 12503,
-            "exited": true
-        },
-        {
-            "deviceId": "ZF5254X5VW",
-            "name": "com.MeusApps.Dispatch",
-            "processId": 15216,
-            "exited": true
-        },
         {
             "deviceId": "ZF5254X5VW",
             "name": "com.MeusApps.Dispatch",
@@ -36,18 +18,30 @@
             "deviceId": "ZF5254X5VW",
             "name": "com.MeusApps.Dispatch",
             "processId": 11103,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "ZF5254X5VW",
             "name": "com.MeusApps.Dispatch",
             "processId": 28199,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "ZF5254X5VW",
             "name": "com.MeusApps.Dispatch",
             "processId": 5138,
+            "exited": true
+        },
+        {
+            "deviceId": "ZF5254X5VW",
+            "name": "com.MeusApps.Dispatch",
+            "processId": 31154,
+            "exited": false
+        },
+        {
+            "deviceId": "ZF5254X5VW",
+            "name": "com.MeusApps.Dispatch",
+            "processId": 1936,
             "exited": false
         }
     ],

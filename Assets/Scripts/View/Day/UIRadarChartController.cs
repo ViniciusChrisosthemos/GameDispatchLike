@@ -66,7 +66,7 @@ public class UIRadarChartController : MonoBehaviour
 
         int valuesAmount = values.Count;
         float angleIncrement = 360f / valuesAmount;
-        float radarChartSize = Mathf.Abs(_middleReference.position.y - _topReference.position.y);
+        float radarChartSize = Mathf.Abs(_middleReference.localPosition.y - _topReference.localPosition.y);
 
         // --- MESH PRINCIPAL ---
         _mainMesh = new Mesh();
@@ -236,6 +236,7 @@ public class UIRadarChartController : MonoBehaviour
 
             var vertex = vertices[i];
             Vector3 center = vertex + centerOffset;
+            UIRadarCircleController controller;
 
             if (_trackRadar)
             {
@@ -243,27 +244,24 @@ public class UIRadarChartController : MonoBehaviour
                 reference.transform.SetParent(_circleReferencesParent);
                 reference.transform.localPosition = center;
 
-                var controller = Instantiate(_circlePrefab, _circleInstancesParent);
+                controller = Instantiate(_circlePrefab, _circleInstancesParent);
                 controller.SetReference(reference.transform);
                 controller.UpdateCircle(_circleRadius, _circleColor);
 
-                if (_addNumber && values.Count != 0)
-                {
-                    controller.SetNumber((int)(values[i - 1] * 10));
-                }
             }
             else
             {
-                var controller = Instantiate(_circlePrefab, _circleInstancesParent);
+                controller = Instantiate(_circlePrefab, _circleInstancesParent);
                 controller.transform.localPosition = center;
                 controller.UpdateCircle(_circleRadius, _circleColor);
 
-                if (_addNumber && values.Count != 0)
-                {
-                    controller.SetNumber((int)(values[i - 1] * 10));
-                }
             }
 
+            if (_addNumber && values.Count != 0)
+            {
+                //Debug.Log($"UIradar  {values[i - 1]}  {values[i - 1] * 10} {Mathf.RoundToInt(values[i - 1] * 10)}");
+                controller.SetNumber(Mathf.RoundToInt(values[i - 1] * 10));
+            }
         }
     }
 

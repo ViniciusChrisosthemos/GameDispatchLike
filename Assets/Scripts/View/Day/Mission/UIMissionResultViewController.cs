@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UIMissionResultViewController : MonoBehaviour
@@ -18,8 +19,13 @@ public class UIMissionResultViewController : MonoBehaviour
     [SerializeField] private GameObject _successIconPivot;
     [SerializeField] private GameObject _failIconPivot;
 
+    [Header("Events")]
+    public UnityEvent OnMissionSuccessEvent;
+    public UnityEvent OnMissionFailEvent;
+
     private MissionUnit _missionUnit;
     private Action<bool> _callback;
+    private bool _result;
 
     private void Start()
     {
@@ -63,6 +69,7 @@ public class UIMissionResultViewController : MonoBehaviour
         {
             _successIconPivot.SetActive(result);
             _failIconPivot.SetActive(!result);
+            _result = result;
 
             WaitForSeconds(1f, () =>
             {
@@ -76,11 +83,15 @@ public class UIMissionResultViewController : MonoBehaviour
                 {
                     _intersectionSuccessStatRadarController.gameObject.SetActive(true);
                     _intersectionSuccessStatRadarController.UpdateStats(formattedPolygon);
+
+                    OnMissionSuccessEvent?.Invoke();
                 }
                 else
                 {
                     _intersectionFailedStatRadarController.gameObject.SetActive(true);
                     _intersectionFailedStatRadarController.UpdateStats(formattedPolygon);
+
+                    OnMissionFailEvent?.Invoke();
                 }
             });
 

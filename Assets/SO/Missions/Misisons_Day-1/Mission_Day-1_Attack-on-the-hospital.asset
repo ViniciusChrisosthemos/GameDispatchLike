@@ -39,13 +39,13 @@ MonoBehaviour:
       Bonus: 
     _maxStatValue: 10
   MaxTeamSize: 2
-  RewardExperience: 1000
-  RewardGold: 400
+  RewardExperience: 500
+  RewardGold: 100
   RewardReputation: 15
   TimeToAccept: 15
   TimeToComplete: 15
   TimeToAnswerEvent: 15
-  ClientArt: {fileID: 21300000, guid: cb4b5543ec3fa8a4a847d34d4926b99a, type: 3}
+  ClientArt: {fileID: 21300000, guid: ce0a8a66c97b3d344b30b1c5ff405934, type: 3}
   EnvironmentArt: {fileID: 21300000, guid: bf523ce472715f54c9cc1a760677644c, type: 3}
   Type: 0
   RandomMissionEvents:
@@ -54,12 +54,19 @@ MonoBehaviour:
       hospital. What do we do?
     MissionChoices:
     - Requirement:
-        Description: Bust through walls, make an exit.
+        Description: <Bust through> walls, make an exit.
         StatType: 0
-      StatAmountRequired: 0
+      StatAmountRequired: 4
       SucceededDescription: All good!
       FailedDescription: 
-      Character: {fileID: 11400000, guid: d135369027352da49b2a84974e4c9aea, type: 2}
+      Character: {fileID: 0}
+    - Requirement:
+        Description: <Convince> them to leave the hospital.
+        StatType: 3
+      StatAmountRequired: 8
+      SucceededDescription: All good!
+      FailedDescription: 
+      Character: {fileID: 0}
     - Requirement:
         Description: Clear a path through the goons.
         StatType: 0
@@ -74,10 +81,3 @@ MonoBehaviour:
       SucceededDescription: All good!
       FailedDescription: 
       Character: {fileID: 11400000, guid: 7505866506f69414f9222b2eaee0c72d, type: 2}
-    - Requirement:
-        Description: Convince them to leave the hospital.
-        StatType: 0
-      StatAmountRequired: 0
-      SucceededDescription: All good!
-      FailedDescription: 
-      Character: {fileID: 11400000, guid: bff3f76aceeb61d4cae391f4ecaf761d, type: 2}

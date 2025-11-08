@@ -17,11 +17,13 @@ public class AnimatePathController : MonoBehaviour
     [Header("Events")]
     public UnityEvent OnStartAnimate;
 
+    private static bool _isPaused = false;
+
     public static IEnumerator AnimatePathCoroutine(Transform obj, List<Node> path, float velocity, Action callback)
     {
         float t = 0f;
         float dist = 0f;
-        float tOffset = velocity * Time.deltaTime;
+        float tOffset;
 
         for (int i = 1; i < path.Count; i++)
         {
@@ -30,9 +32,14 @@ public class AnimatePathController : MonoBehaviour
 
             do
             {
-                obj.position = Vector3.Lerp(node1.Transform.position, node2.Transform.position, t);
+                if (_isPaused)
+                    yield return new WaitWhile(() => _isPaused);
 
+                obj.position = Vector3.Lerp(node1.Transform.position, node2.Transform.position, t);
+                
+                tOffset = velocity * Time.deltaTime;
                 t += tOffset;
+
                 dist = Vector3.Distance(obj.position, node2.Transform.position);
 
                 if (t > 1f)
@@ -46,6 +53,8 @@ public class AnimatePathController : MonoBehaviour
 
             } while (dist > 0.01f);
 
+            obj.position = path[i].transform.position;
+
             t -= 1f;
         }
 
@@ -56,7 +65,7 @@ public class AnimatePathController : MonoBehaviour
     {
         var path = _pathFinderManager.GetPath(baseTransform.GetComponent<Node>(), location.GetComponent<Node>());
 
-        var instante = Instantiate(_heroPathPrefab, _objsParent);
+        var instante = Instantiate(_heroPathPrefab, path[0].transform.position, Quaternion.identity, _objsParent);
         instante.Init(currentTeam);
 
         StartCoroutine(AnimatePathCoroutine(instante.transform, path, _moveSpeed, () =>
@@ -66,5 +75,10 @@ public class AnimatePathController : MonoBehaviour
         }));
 
         OnStartAnimate?.Invoke();
+    }
+
+    public static void SetPause(bool isPaused)
+    {
+        _isPaused = isPaused;
     }
 }

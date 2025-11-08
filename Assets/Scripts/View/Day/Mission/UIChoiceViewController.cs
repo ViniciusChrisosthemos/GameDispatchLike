@@ -8,7 +8,7 @@ using static MissionSO;
 
 public class UIChoiceViewController : UIItemController
 {
-    private const string STRING_OPTION_UNAVAILABLE = "[OPTION UNAVAILABLE] {0} required.";
+    private const string STRING_OPTION_UNAVAILABLE = "[ LOCKED OPTION ] {0} required.";
 
     [Header("Normal Choice")]
     [SerializeField] private GameObject _normalChoiceView;
@@ -18,6 +18,10 @@ public class UIChoiceViewController : UIItemController
     [SerializeField] private GameObject _characterChoiceView;
     [SerializeField] private TextMeshProUGUI _txtCharacterChoiceDescription;
     [SerializeField] private Image _imgCharacterRequired;
+
+    [Header("Option Locked")]
+    [SerializeField] private GameObject _optionLockedView;
+    [SerializeField] private TextMeshProUGUI _txtCharacterLocked;
 
     [Header("All")]
     [SerializeField] private GameObject _unavailableOverlay;
@@ -39,6 +43,7 @@ public class UIChoiceViewController : UIItemController
         {
             _normalChoiceView.SetActive(true);
             _characterChoiceView.SetActive(false);
+            _optionLockedView.SetActive(false);
 
             _uiRequirementTextViewController.SetText(_missionChoice.Requirement, _gameSettingsSO.RequirementStringColor);
         }
@@ -46,6 +51,7 @@ public class UIChoiceViewController : UIItemController
         {
             _normalChoiceView.SetActive(false);
             _characterChoiceView.SetActive(true);
+            _optionLockedView.SetActive(false);
 
             _txtCharacterChoiceDescription.text = _missionChoice.Requirement.Description;
             _imgCharacterRequired.sprite = _missionChoice.Character.FaceArt;
@@ -62,12 +68,12 @@ public class UIChoiceViewController : UIItemController
 
     public void SetOptionLocked(string characterName)
     {
-        _normalChoiceView.SetActive(true);
+        _normalChoiceView.SetActive(false);
         _characterChoiceView.SetActive(false);
+        _optionLockedView.SetActive(true);
 
+        _txtCharacterLocked.SetText(string.Format(STRING_OPTION_UNAVAILABLE, characterName));
         _unavailableOverlay.SetActive(true);
-
-        _uiRequirementTextViewController.SetText(string.Format(STRING_OPTION_UNAVAILABLE, characterName));
     }
 
     public void ShowStats(bool showStats)

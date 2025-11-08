@@ -25,4 +25,9 @@ public class TriggerSFX : MonoBehaviour
         var clip = _clip[index];
         SoundManager.Instance.PlayMusic(clip, _volume, _playMusicInLoop);
     }
+
+    public void PlayAudioClipAsSFX(AudioClip audioClip)
+    {
+        SoundManager.Instance.PlaySFX(audioClip, _volume);
+    }
 }

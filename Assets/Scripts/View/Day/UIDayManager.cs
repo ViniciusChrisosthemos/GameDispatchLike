@@ -123,6 +123,9 @@ public class UIDayManager : MonoBehaviour
             {
                 HandleMissionCompleted(missionSelected, result);
                 ResumeDay();
+            }, () =>
+            {
+                ResumeDay();
             });
         }
         else if (missionSelected.IsMissionCompleted())
@@ -190,6 +193,7 @@ public class UIDayManager : MonoBehaviour
 
     public void OpenLevelUpScreen(CharacterUnit characterUnit)
     {
-        _uiLevelUpController.OpenScreen(characterUnit);
+        PauseDay();
+        _uiLevelUpController.OpenScreen(characterUnit, () => ResumeDay());
     }
 }

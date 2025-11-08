@@ -24,6 +24,7 @@ public class UILevelUpController : MonoBehaviour
     [SerializeField] private UIRadarChartController _uiRadarChartController;
 
     private CharacterUnit _characterUnit;
+    private Action _callback;
 
     private void Start()
     {
@@ -37,7 +38,7 @@ public class UILevelUpController : MonoBehaviour
         }
     }
 
-    public void OpenScreen(CharacterUnit characterUnit)
+    public void OpenScreen(CharacterUnit characterUnit, Action callback)
     {
         _view.SetActive(true);
 
@@ -46,6 +47,8 @@ public class UILevelUpController : MonoBehaviour
         _imgCharacter.sprite = characterUnit.FullArt;
         _txtCharacterName.text = characterUnit.Name;
         _txtCharacterLevel.text = $"{STRING_LEVEL}{characterUnit.Level}";
+
+        _callback = callback;
 
         UpdateScreen();
     }
@@ -65,6 +68,7 @@ public class UILevelUpController : MonoBehaviour
     public void CloseScreen()
     {
         _view.SetActive(false);
+        _callback?.Invoke();
     }
     private void UpdateScreen()
     {

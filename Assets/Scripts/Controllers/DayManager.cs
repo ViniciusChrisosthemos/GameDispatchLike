@@ -20,6 +20,9 @@ public class DayManager : MonoBehaviour
     [SerializeField] private List<DaySO> _daySOs;
     [SerializeField] private DaySO _defaultDaySO;
 
+    [Header("Events")]
+    public UnityEvent<bool> OnGamePausedChange;
+
     [Header("Debug")]
     [SerializeField] private bool _runOnStart = false;
 
@@ -141,11 +144,15 @@ public class DayManager : MonoBehaviour
     public void PauseDay()
     {
         _isPaused = true;
+
+        OnGamePausedChange?.Invoke(_isPaused);
     }
 
     public void ResumeDay()
     {
         _isPaused = false;
+
+        OnGamePausedChange?.Invoke(_isPaused);
     }
 
     private void HandleNewMissions(List<MissionUnit> newMissions)

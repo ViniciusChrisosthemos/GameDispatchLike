@@ -40,13 +40,13 @@ MonoBehaviour:
       Bonus: 
     _maxStatValue: 10
   MaxTeamSize: 3
-  RewardExperience: 150
-  RewardGold: 50
+  RewardExperience: 500
+  RewardGold: 100
   RewardReputation: 15
   TimeToAccept: 15
   TimeToComplete: 15
   TimeToAnswerEvent: 15
-  ClientArt: {fileID: 21300000, guid: cb4b5543ec3fa8a4a847d34d4926b99a, type: 3}
+  ClientArt: {fileID: 21300000, guid: d0acae6007140884bbc71e83306ed8b9, type: 3}
   EnvironmentArt: {fileID: 21300000, guid: bf523ce472715f54c9cc1a760677644c, type: 3}
   Type: 1
   RandomMissionEvents: []

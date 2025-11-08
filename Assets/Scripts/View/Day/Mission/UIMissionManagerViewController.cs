@@ -32,6 +32,8 @@ public class UIMissionManagerViewController: MonoBehaviour
     [SerializeField] private string _openMissionAnimationTrigger = "OpenMission";
     [SerializeField] private string _openMissionResultAnimationTrigger = "OpenMissionResult";
     [SerializeField] private string _normalChoiceResultAnimationTrigger = "OpenChoiceResult-NormalResult";
+    [SerializeField] private string _characterChoiceResultAnimationTrigger = "OpenChoiceResult-CharacterResult";
+    [SerializeField] private string _selectChoiceAnimationTrigger = "SelectChoice";
 
 
     public void OpenAcceptMissionScreen(MissionUnit mission, Action<MissionUnit, Team> callback)
@@ -56,7 +58,7 @@ public class UIMissionManagerViewController: MonoBehaviour
         _animator.SetTrigger(_openMissionAnimationTrigger);
     }
 
-    public void OpenMissionEvent(MissionUnit mission, RandomMissionEvent missionEvent, Action<bool> callback)
+    public void OpenMissionEvent(MissionUnit mission, RandomMissionEvent missionEvent, Action<bool> callback, Action closeCallback)
     {
         CloseWindows();
         _view.SetActive(true);
@@ -67,23 +69,33 @@ public class UIMissionManagerViewController: MonoBehaviour
         //Middle window
         _middleUIChoiceSelectionViewController.OpenScreen(mission, missionEvent, false, (choice) =>
         {
+            _animator.SetTrigger(_clearAnimationTrigger);
+
             OpenMissionEventResult(mission, missionEvent, choice, (result) => 
             { 
                 callback?.Invoke(result);
                 _animator.SetTrigger(_clearAnimationTrigger);
                 CloseScreen(); 
             });
+        }, () =>
+        {
+            ResetAnimator();
+            CloseScreen();
+            closeCallback?.Invoke();
         });
 
         // Right window
         _uiAssignedHeroStatViewController.OpenScreen(mission.Team);
+
+        _animator.SetTrigger(_selectChoiceAnimationTrigger);
     }
 
     private void OpenMissionEventResult(MissionUnit mission, RandomMissionEvent missionEvent, MissionChoice missionChoice, Action<bool> callback)
     {
-        CloseWindows();
+        //CloseWindows();
+        _view.SetActive(true);
 
-        _uiMissionInfoViewController.UpdateMissionInfo(mission);
+        //_uiMissionInfoViewController.UpdateMissionInfo(mission);
 
         _uiChoiceResultViewController.OpenScreen(mission, missionEvent, missionChoice, (result) =>
         {
@@ -91,9 +103,16 @@ public class UIMissionManagerViewController: MonoBehaviour
             CloseScreen();
         });
 
-        _rightUIChoiceSelectionViewController.OpenScreen(mission, missionEvent, true, null);
+        _rightUIChoiceSelectionViewController.OpenScreen(mission, missionEvent, true, null, null);
 
-        _animator.SetTrigger(_normalChoiceResultAnimationTrigger);
+        if (missionChoice.Character == null)
+        {
+            _animator.SetTrigger(_normalChoiceResultAnimationTrigger);
+        }
+        else
+        {
+            _animator.SetTrigger(_characterChoiceResultAnimationTrigger);
+        }
     }
 
     public void OpenMissionResult(MissionUnit mission, Action<bool> callback)
@@ -109,7 +128,7 @@ public class UIMissionManagerViewController: MonoBehaviour
         {
             callback?.Invoke(result);
             CloseScreen();
-            _animator.SetTrigger(_clearAnimationTrigger);
+            ResetAnimator();
         });
 
         // Right window
@@ -136,5 +155,10 @@ public class UIMissionManagerViewController: MonoBehaviour
         _uiRequirementViewController.Close();
         _rightUIChoiceSelectionViewController.Close();
         _uiAssignedHeroStatViewController.Close();
+    }
+
+    public void ResetAnimator()
+    {
+        _animator.SetTrigger(_clearAnimationTrigger);
     }
 }

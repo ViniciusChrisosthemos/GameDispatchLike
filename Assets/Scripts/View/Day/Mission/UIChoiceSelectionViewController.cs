@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using static MissionSO;
 
 public class UIChoiceSelectionViewController : MonoBehaviour
@@ -11,19 +12,24 @@ public class UIChoiceSelectionViewController : MonoBehaviour
     [SerializeField] private Transform _choiceParent;
     [SerializeField] private UIChoiceViewController _choiceViewControllerPrefab;
     [SerializeField] private UISendActionViewController _uiSendActionViewController;
+    [SerializeField] private Button _btnCloseScreen;
 
     [Header("(Optional)")]
     [SerializeField] private TextMeshProUGUI _txtMissionName;
     [SerializeField] private TextMeshProUGUI _txtEventDescription;
 
     private Action<MissionChoice> _choiceSelectionCallback;
+    private Action _closeScreenCallback;
 
     private void Start()
     {
+        if (_btnCloseScreen != null)
+            _btnCloseScreen.onClick.AddListener(Close);
+        
         Close();
     }
 
-    public void OpenScreen(MissionUnit missionUnit, RandomMissionEvent missionEvent, bool showStats, Action<MissionChoice> callback)
+    public void OpenScreen(MissionUnit missionUnit, RandomMissionEvent missionEvent, bool showStats, Action<MissionChoice> callback, Action closeCallback)
     {
         _view.SetActive(true);
 
@@ -61,6 +67,11 @@ public class UIChoiceSelectionViewController : MonoBehaviour
         }
 
         _choiceSelectionCallback = callback;
+
+        if (_btnCloseScreen != null)
+        {
+            _closeScreenCallback = closeCallback;
+        }
     }
 
     private void HandleSelectChoice(UIItemController controller)
@@ -69,13 +80,23 @@ public class UIChoiceSelectionViewController : MonoBehaviour
 
         _uiSendActionViewController.StartSendAction(() =>
         {
+            _closeScreenCallback = null;
             _choiceSelectionCallback?.Invoke(choice);
         });
 
     }
 
+    public void CloseWithoutNotify()
+    {
+        _view.SetActive(false);  
+    }
+
     public void Close()
     {
+        Debug.Log("Close Choice Screen");
         _view.SetActive(false);
+        
+        _closeScreenCallback?.Invoke();
+        _closeScreenCallback = null;
     }
 }
