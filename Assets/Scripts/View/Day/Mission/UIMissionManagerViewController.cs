@@ -36,7 +36,7 @@ public class UIMissionManagerViewController: MonoBehaviour
     [SerializeField] private string _selectChoiceAnimationTrigger = "SelectChoice";
 
 
-    public void OpenAcceptMissionScreen(MissionUnit mission, Action<MissionUnit, Team> callback)
+    public void OpenAcceptMissionScreen(MissionUnit mission, Action<MissionUnit, Team> callback, Action closeWindowCallback)
     {
         CloseWindows();
         _view.SetActive(true); 
@@ -49,7 +49,12 @@ public class UIMissionManagerViewController: MonoBehaviour
         {
             callback?.Invoke(selectedMission, team);
             CloseScreen();
-            _animator.SetTrigger(_clearAnimationTrigger);
+            ResetAnimator();
+        },() =>
+        {
+            CloseScreen();
+            ResetAnimator();
+            closeWindowCallback?.Invoke();
         });
 
         // Right window

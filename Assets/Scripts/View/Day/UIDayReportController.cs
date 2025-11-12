@@ -63,51 +63,41 @@ public class UIDayReportController : MonoBehaviour
         var timeBetweenElements = 0.3f;
         var timeToScale = 0.5f;
         var targetScale = Vector3.one * 1.3f;
-        var numberAnimationDuration = 0.7f;
-        var currentExpPerc = levelUpDescription.TotalExpPerc;
-
-
-
+        var numberAnimationDuration = 1f;
+        var fillDuration = numberAnimationDuration;
+        var resetDuration = 0.1f;
         var contentViewScaleTime = 0.8f;
         _contentView.transform.localScale = Vector3.zero;
 
+        // Animate Call number
         AnimateScaleElement(_contentView, Vector3.one, Vector3.one * 1.2f, contentViewScaleTime, Ease.Linear, 0.7f);
-
         yield return new WaitForSeconds(contentViewScaleTime + 0.8f);
-
-        Debug.Log($"{levelUpDescription.LevelGained} {currentExpPerc} {levelUpDescription.OldExpPerc} {levelUpDescription.ExpLostByFailures} {levelUpDescription.ExpLostByMissesPerc}");
-
         _totalCallsView.DOScale(targetScale, timeToScale).SetEase(Ease.Linear);
-
         yield return AnimateInt(_txtTotalCalls, report.TotalCalls, numberAnimationDuration, STRING_TOTAL_CALLS);
-
         yield return new WaitForSeconds(timeBetweenElements);
-
         _totalCallsView.DOScale(Vector3.one, timeToScale).SetEase(Ease.Linear);
-
         yield return new WaitForSeconds(timeBetweenElements);
 
-        AnimateLevelProgress(_slider, currentExpPerc, levelUpDescription.LevelGained, 0.3f, 0.1f);
 
+        // Animate EXP bar and Success View
+        AnimateLevelProgress(_slider, levelUpDescription.ExpWithSuccess, levelUpDescription.LevelGained, fillDuration, resetDuration);
+        StartCoroutine(AnimateInt(_txtMissionSuccess, report.MissionSucceded, numberAnimationDuration, STRING_MISSION_SUCCESS));
+        AnimateScaleElement(_imgSuccessIconView, Vector3.one, targetScale, numberAnimationDuration);
+
+        var auxTime = 0f;
         if (levelUpDescription.LevelGained != 0)
         {
+            auxTime = (fillDuration + resetDuration) * levelUpDescription.LevelGained;
             AnimateScaleOfTextComponent(_txtLevelDescription, Vector3.one, Vector3.one * 1.2f, timeToScale, levelUpDescription.LevelSO.LevelDescription);
         }
-
-        _imgSuccessIconView.DOScale(targetScale, timeToScale).SetEase(Ease.Linear);
-
-        yield return AnimateInt(_txtMissionSuccess, report.MissionSucceded, numberAnimationDuration, STRING_MISSION_SUCCESS);
+        yield return new WaitForSeconds(numberAnimationDuration + auxTime);
 
         yield return new WaitForSeconds(timeBetweenElements);
 
-        _imgSuccessIconView.DOScale(Vector3.one, timeToScale).SetEase(Ease.Linear);
-
-        yield return new WaitForSeconds(timeBetweenElements);
+        // Animate Fail View
         _imgFailIconView.DOScale(targetScale, timeToScale).SetEase(Ease.Linear);
-
-        currentExpPerc = Math.Max(currentExpPerc - levelUpDescription.ExpLostByFailures, 0f);
         _imgImageBackground.color = _colorFail;
-        AnimateDecreaseValueSlider(_slider, _sliderBackground, currentExpPerc, numberAnimationDuration);
+        AnimateDecreaseValueSlider(_slider, _sliderBackground, levelUpDescription.ExpWithSuccessWithoutFailures, numberAnimationDuration);
 
         yield return AnimateInt(_txtMissionFail, report.MissionFailed, numberAnimationDuration, STRING_MISSION_FAILURES);
 
@@ -118,9 +108,8 @@ public class UIDayReportController : MonoBehaviour
         yield return new WaitForSeconds(timeBetweenElements);
         _imgMissIconView.DOScale(targetScale, timeToScale).SetEase(Ease.Linear);
 
-        currentExpPerc = Math.Max(currentExpPerc - levelUpDescription.ExpLostByMissesPerc, 0f);
         _imgImageBackground.color = _colorMiss;
-        AnimateDecreaseValueSlider(_slider, _sliderBackground, currentExpPerc, numberAnimationDuration);
+        AnimateDecreaseValueSlider(_slider, _sliderBackground, levelUpDescription.ExpWithSuccessWithoutFailuresAndMisses, numberAnimationDuration);
 
         yield return AnimateInt(_txtMissionMiss, report.MissionMisses, numberAnimationDuration, STRING_MISSION_MISSES);
 
@@ -140,7 +129,6 @@ public class UIDayReportController : MonoBehaviour
     private IEnumerator AnimateInt(TextMeshProUGUI component, int value, float duration, string message)
     {
         var elapsed = 0f;
-
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;

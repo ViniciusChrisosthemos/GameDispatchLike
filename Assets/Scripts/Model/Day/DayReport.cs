@@ -20,13 +20,13 @@ public class DayReport
 
     public DayReport()
     {
-        TotalCalls = 0;
-        MissionsAccepted = 0;
-        MissionMisses = 0;
-        MissionSucceded = 0;
-        MissionFailed = 0;
+        MissionsAccepted = 5;
+        MissionMisses = 7;
+        MissionSucceded = 68;
+        MissionFailed = 12;
         TotalGoldGained = 0;
         TotalReputationGained = 0;
+        TotalCalls = MissionSucceded + MissionFailed + MissionMisses;
         MissionAcceptedPerCharacters = new Dictionary<CharacterUnit, int>();
     }
 

@@ -27,14 +27,19 @@ public class UISelectTeamViewController : MonoBehaviour
     private List<UITeamMemberController> _teamMemberControllers;
 
     private Action<MissionUnit, Team> _callback;
+    private Action _closeWindowCallback;
 
     private void Start()
     {
         _btnSendTeam.onClick.AddListener(() => SendTeam());
-        _btnCloseScreen.onClick.AddListener(() => SendTeam());
+        _btnCloseScreen.onClick.AddListener(() =>
+        {
+            Close();
+            _closeWindowCallback?.Invoke();
+        });
     }
 
-    public void OpenScreen(MissionUnit mission, Action<MissionUnit, Team> callback)
+    public void OpenScreen(MissionUnit mission, Action<MissionUnit, Team> callback, Action closeWindowCallback)
     {
         _view.SetActive(true);
 
@@ -42,6 +47,7 @@ public class UISelectTeamViewController : MonoBehaviour
         _manager.OnCharacterSelected.AddListener(HandleCharacterSelected);
 
         _callback = callback;
+        _closeWindowCallback = closeWindowCallback;
 
         UpdateScreen(mission);
     }

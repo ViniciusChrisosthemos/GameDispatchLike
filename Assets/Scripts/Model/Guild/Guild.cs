@@ -48,17 +48,16 @@ public class Guild
         var levelSO = levelDatabase.GetLevel(CurrentLevel);
         var oldExpPerc = _currentExperience / (float)levelSO.ExpToLevelUp;
 
-        var totalExp = dayReport.TotalCalls;
+        var totalExp = dayReport.MissionSucceded;
         var expLostByFailures = dayReport.MissionFailed;
         var expLostByMisses = dayReport.MissionMisses;
 
         var levelGained = 0;
-        var expToAdd = totalExp - expLostByFailures - expLostByMisses;
+        var expToAdd = Mathf.Max(0, totalExp - expLostByFailures - expLostByMisses);
 
         _currentExperience += expToAdd;
+        Debug.Log($"Call {dayReport.TotalCalls}   Success={dayReport.MissionSucceded} Fail={dayReport.MissionFailed} Misses={dayReport.MissionMisses}");
         Debug.Log($"ExpToAdd={expToAdd}  Experience{_currentExperience}  {levelSO.ExpToLevelUp}  {_currentLevel}");
-
-        Debug.Log($"Current Level = {levelSO.LevelDescription}");
 
         while (_currentExperience >= levelSO.ExpToLevelUp)
         {
@@ -67,23 +66,21 @@ public class Guild
 
             levelSO = levelDatabase.GetLevel(_currentLevel);
             levelGained++;
-
-            Debug.Log($"New Level {levelSO.LevelDescription}");
         }
 
-        Debug.Log($"New Level = {levelSO.LevelDescription}");
+        var currentPerc = _currentExperience / (float)levelSO.ExpToLevelUp;
+        var successPerc = dayReport.MissionSucceded / (float)levelSO.ExpToLevelUp;
+        var failPerc = dayReport.MissionFailed / (float)levelSO.ExpToLevelUp;
+        var missPerc = dayReport.MissionMisses / (float)levelSO.ExpToLevelUp;
 
-        var expLostByFailuresPerc = expLostByFailures / (float)levelSO.ExpToLevelUp;
-        var expLostByMissesPerc = expLostByMisses / (float)levelSO.ExpToLevelUp;
-        var totalExpPerc = Mathf.Min(_currentExperience / (float)levelSO.ExpToLevelUp + expLostByMissesPerc + expLostByFailuresPerc, 1f);
+        var expWithSuccesPerc = currentPerc + failPerc + missPerc;
+        var expWithoutFailuresPerc = Mathf.Max(0, expWithSuccesPerc - failPerc);
+        var expWithoutMissesPerc = Mathf.Max(0, expWithoutFailuresPerc - missPerc);
 
+        Debug.Log($"Old={oldExpPerc} CurrentPerc={currentPerc} SuccessPerc={successPerc} FailPerc={failPerc} MissPerc={missPerc}");
+        Debug.Log($"expS={expWithSuccesPerc}  expWithoutFail={expWithoutFailuresPerc}  ExpWithoutMiss={expWithoutMissesPerc}");
 
-        Debug.Log($"{levelSO.ExpToLevelUp}");
-        Debug.Log($"{expLostByFailures} {expLostByFailuresPerc}");
-        Debug.Log($"{expLostByMisses} {expLostByMissesPerc}");
-        Debug.Log($"{totalExpPerc}");
-
-        return new LevelUPDescription(oldExpPerc, totalExpPerc, expLostByFailuresPerc, expLostByMissesPerc, levelGained, levelSO);
+        return new LevelUPDescription(oldExpPerc, expWithSuccesPerc, expWithoutFailuresPerc, expWithoutMissesPerc, levelGained, levelSO);
     }
 
     public string Name => _name;
@@ -98,18 +95,18 @@ public class Guild
     public class LevelUPDescription
     {
         public float OldExpPerc { get; }
-        public float TotalExpPerc { get; }
-        public float ExpLostByFailures { get; }
-        public float ExpLostByMissesPerc { get; }
+        public float ExpWithSuccess { get; }
+        public float ExpWithSuccessWithoutFailures { get; }
+        public float ExpWithSuccessWithoutFailuresAndMisses { get; }
         public int LevelGained { get; }
         public PlayerLevelSO LevelSO { get; }
 
-        public LevelUPDescription(float oldExpPerc, float totalExpPerc, float expLostByFailuresPerc, float expLostByMissesPerc, int levelGained, PlayerLevelSO levelSO)
+        public LevelUPDescription(float oldExpPerc, float expWithSuccess, float expWithSuccessWithoutFailures, float expWithSuccessWithoutFailuresAndMisses, int levelGained, PlayerLevelSO levelSO)
         {
             OldExpPerc = oldExpPerc;
-            TotalExpPerc = totalExpPerc;
-            ExpLostByFailures = expLostByFailuresPerc;
-            ExpLostByMissesPerc = expLostByMissesPerc;
+            ExpWithSuccess = expWithSuccess;
+            ExpWithSuccessWithoutFailures = expWithSuccessWithoutFailures;
+            ExpWithSuccessWithoutFailuresAndMisses = expWithSuccessWithoutFailuresAndMisses;
             LevelGained = levelGained;
             LevelSO = levelSO;
         }

@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MissionSOs:
   - {fileID: 11400000, guid: 3e337fd6e8c68524cb7ee9a86eaee608, type: 2}
-  UseAllMissions: 1
-  MissionAmount: 1
-  DayDurationInSeconds: 180
+  - {fileID: 11400000, guid: 2cdf0b00f802e1142986f88ce369905b, type: 2}
+  - {fileID: 11400000, guid: 27179042713b4214e919cb4570535429, type: 2}
+  - {fileID: 11400000, guid: 8e18b07a65c302c4ea0d0b97dc20c590, type: 2}
+  - {fileID: 11400000, guid: 1d5b5636a0e51f84f9cc96c620625d0d, type: 2}
+  UseAllMissions: 0
+  MissionAmount: 0
+  DayDurationInSeconds: 10

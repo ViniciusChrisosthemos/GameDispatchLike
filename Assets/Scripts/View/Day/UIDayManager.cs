@@ -141,6 +141,9 @@ public class UIDayManager : MonoBehaviour
                 if (mission != null || team != null) SendTeam(mission, team);
 
                 ResumeDay();
+            }, () =>
+            {
+                ResumeDay();
             });
 
         }

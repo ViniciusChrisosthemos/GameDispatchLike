@@ -46176,8 +46176,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _daySOs:
-  - {fileID: 11400000, guid: 5abe2e31dbfd74a4599644d6ef038910, type: 2}
-  - {fileID: 11400000, guid: a8dde449e4bbb4948a6c3fab47f8c46e, type: 2}
+  - {fileID: 11400000, guid: 2bed4b2471acff04095bd5ff0cd6f283, type: 2}
   _defaultDaySO: {fileID: 11400000, guid: add298637323d074c8d10e3ace19f593, type: 2}
   OnGamePausedChange:
     m_PersistentCalls:

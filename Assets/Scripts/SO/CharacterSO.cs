@@ -12,4 +12,5 @@ public class CharacterSO: SavebleSO
     public Sprite FullArt;
     public LevelProgression LevelProgression;
     public int TimeToRest;
+    public List<KeywordSO> Keywords;
 }
