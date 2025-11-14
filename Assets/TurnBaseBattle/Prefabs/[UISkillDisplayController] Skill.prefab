@@ -463,8 +463,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -581,7 +581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -652,5 +652,6 @@ MonoBehaviour:
   _txtSkillDescription: {fileID: 900443799621823794}
   _diceValueParent: {fileID: 8462008198281105896}
   _diceValuePrefab: {fileID: 400514303787384460}
-  _itemParent: {fileID: 0}
+  _layoutGroup: {fileID: 0}
+  _horizontalSizeOffset: 0
   SkillSO: {fileID: 11400000, guid: 590b9f2069884c941a16f0afb64e990f, type: 2}
