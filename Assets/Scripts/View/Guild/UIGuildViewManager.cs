@@ -19,18 +19,20 @@ public class UIGuildViewManager : MonoBehaviour
     [SerializeField] private Button _btnQuit;
 
     [Header("Guild")]
-    [SerializeField] private TextMeshProUGUI _txtGuildName;
-    [SerializeField] private TextMeshProUGUI _txtBalance;
-    [SerializeField] private TextMeshProUGUI _txtPopularity;
+    [SerializeField] private TextMeshProUGUI _txtPlayerName;
+    [SerializeField] private TextMeshProUGUI _txtLevelLabel;
+    [SerializeField] private Slider _sliderExp;
 
     [Header("Day")]
     [SerializeField] private TextMeshProUGUI _txtDay;
     [SerializeField] private Button _btnStartDay;
 
     [Header("Characters")]
-    [SerializeField] private Transform _scheduledCharactersParent; 
-    [SerializeField] private Transform _availableCharactersParent;
-    [SerializeField] private UICharacterViewController _characterViewControllerPrefab;
+    [SerializeField] private UIListDisplay _scheduledCharactersListDisplay;
+    [SerializeField] private UIListDisplay _availableCharactersListDisplay;
+
+    [Header("Screens")]
+    [SerializeField] private UICalendarView _uiCalendarView;
 
     [Header("Settings")]
     [SerializeField] private GameSettingsSO _gameSettingsSO;
@@ -68,52 +70,49 @@ public class UIGuildViewManager : MonoBehaviour
         var gameState = GameManager.Instance.GameState;
         _guild = gameState.Guild;
 
-        _txtGuildName.text = _guild.Name;
-        _txtBalance.text = _guild.Balance.ToString();
-        _txtPopularity.text = _guild.Reputation.ToString();
+        _txtPlayerName.text = _guild.PlayerName;
+
+        var levelDatabase = CharacterLevelDatabase.Instance;
+        _sliderExp.value = _guild.GetCurrentExperienceNormalized(levelDatabase);
+        _txtLevelLabel.text = levelDatabase.GetLevel(_guild.CurrentLevel).LevelDescription;
 
         _txtDay.text = gameState.Day.ToString();
 
-        _scheduledCharactersParent.ClearChilds();
-        _availableCharactersParent.ClearChilds();
+        var scheduledCharacters = _guild.AllCharacters.Where(c => c.IsScheduled).Select(c => (object)c).ToList();
+        var availableCharacters = _guild.AllCharacters.Where(c => !c.IsScheduled).Select(c => (object)c).ToList();
 
-        foreach (var character in _guild.AllCharacters)
-        {
-            if (character.IsScheduled)
-            {
-                InstantiateCharacter(_scheduledCharactersParent, character, HandleScheduledCharacterSelected);
-            }
-            else
-            {
-                InstantiateCharacter(_availableCharactersParent, character, HandleAvailableCharacterSelected);
-            }
-        }
+        Debug.Log($"{scheduledCharacters.Count} {availableCharacters.Count}");
+
+        _scheduledCharactersListDisplay.SetItems(scheduledCharacters, HandleScheduledCharacterSelected);
+        _availableCharactersListDisplay.SetItems(availableCharacters, HandleAvailableCharacterSelected);
 
         OnScreenOpened?.Invoke();
+
+        _uiCalendarView.SetNormalDay(gameState.Day, null);
     }
 
-    private void InstantiateCharacter(Transform parent, CharacterUnit character, Action<UICharacterViewController> handler)
+    public void HandleScheduledCharacterSelected(UIItemController controller)
     {
-        var controller = Instantiate(_characterViewControllerPrefab, parent);
-        controller.UpdateCharacter(character, handler);
+        _scheduledCharactersListDisplay.RmvItem(controller);
+        _availableCharactersListDisplay.AddItem(controller);
+
+        controller.transform.SetParent(_availableCharactersListDisplay.Parent);
+        controller.SetCallback(HandleAvailableCharacterSelected);
+
+        _guild.SetScheduledCharacter(controller.GetItem<CharacterUnit>(), false);
     }
 
-    public void HandleScheduledCharacterSelected(UICharacterViewController controller)
+    public void HandleAvailableCharacterSelected(UIItemController controller)
     {
-        controller.UpdateCharacter(controller.CharacterUnit, HandleAvailableCharacterSelected);
-        controller.transform.SetParent(_availableCharactersParent, false);
+        if (_scheduledCharactersListDisplay.GetItems().Count >= _gameSettingsSO.MaxScheduledCharacters) return;
 
-        _guild.SetScheduledCharacter(controller.CharacterUnit, false);
-    }
+        _availableCharactersListDisplay.RmvItem(controller);
+        _scheduledCharactersListDisplay.AddItem(controller);
 
-    public void HandleAvailableCharacterSelected(UICharacterViewController controller)
-    {
-        if (_scheduledCharactersParent.childCount >= _gameSettingsSO.MaxScheduledCharacters) return;
+        controller.transform.SetParent(_scheduledCharactersListDisplay.Parent);
+        controller.SetCallback(HandleScheduledCharacterSelected);
 
-        controller.UpdateCharacter(controller.CharacterUnit, HandleScheduledCharacterSelected);
-        controller.transform.SetParent(_scheduledCharactersParent, false);
-
-        _guild.SetScheduledCharacter(controller.CharacterUnit, true);
+        _guild.SetScheduledCharacter(controller.GetItem<CharacterUnit>(), true);
     }
 
     public void CloseWindow()

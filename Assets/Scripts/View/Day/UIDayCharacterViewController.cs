@@ -51,7 +51,7 @@ public class UIDayCharacterViewController : MonoBehaviour
         _characterUnit = characterUnit;
         _onSelected = onSelected;
 
-        _uiCharacterViewController.UpdateCharacter(characterUnit);
+        _uiCharacterViewController.SetItem(characterUnit);
 
         _btnCharacter.onClick.RemoveAllListeners();
         _btnCharacter.onClick.AddListener(HandleCharacterSelected);

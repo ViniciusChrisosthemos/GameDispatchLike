@@ -63,6 +63,8 @@ public class UISendActionViewController : MonoBehaviour
             yield return null;
         }
 
+        _heroIcon.position = _endPosition.position;
+
         _labelSendingView.SetActive(false);
         _labelCompleteView.SetActive(true);
 
