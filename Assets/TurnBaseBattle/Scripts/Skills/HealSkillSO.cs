@@ -23,7 +23,7 @@ public class HealSkillSO : BaseSkillSO
     public int HealAmount;
     public List<HealSkillLevel> Levels;
 
-    public override void ApplySkill(int skillLevel, IBattleCharacter user, List<IBattleCharacter> targets)
+    public override void ApplySkill(IBattleCharacter user, List<IBattleCharacter> targets)
     {
         var currentBaseHeal = 0;
         var currentBonus = new List<SkillBonus>();

@@ -297,7 +297,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 150, y: 0}
+  m_SizeDelta: {x: 120, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &3397289013786652132
 MonoBehaviour:
@@ -424,7 +424,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 276.2, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4172721998232573388
 CanvasRenderer:
@@ -481,7 +481,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
+  m_fontSize: 21.85
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -652,6 +652,6 @@ MonoBehaviour:
   _txtSkillDescription: {fileID: 900443799621823794}
   _diceValueParent: {fileID: 8462008198281105896}
   _diceValuePrefab: {fileID: 400514303787384460}
-  _layoutGroup: {fileID: 0}
+  _layoutGroup: {fileID: 2899615903378639640}
   _horizontalSizeOffset: 0
   SkillSO: {fileID: 11400000, guid: 590b9f2069884c941a16f0afb64e990f, type: 2}

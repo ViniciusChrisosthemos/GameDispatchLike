@@ -51,6 +51,6 @@ public abstract class BaseSkillSO : ScriptableObject
     }
 
     protected abstract string GetInternalDescription();
-    public abstract void ApplySkill(int skillLevel, IBattleCharacter user, List<IBattleCharacter> targets);
+    public abstract void ApplySkill(IBattleCharacter user, List<IBattleCharacter> targets);
     public abstract List<SkillLevel> GetLevels();
 }

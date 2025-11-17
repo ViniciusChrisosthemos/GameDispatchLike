@@ -23,7 +23,7 @@ public class DamageSkillSO : BaseSkillSO
     public int DamageAmount;
     public List<DamageSkillLevel> Levels;
 
-    public override void ApplySkill(int skillLevel, IBattleCharacter user, List<IBattleCharacter> targets)
+    public override void ApplySkill(IBattleCharacter user, List<IBattleCharacter> targets)
     {
         var currentBaseDamage = 0;
         var currentBonus = new List<SkillBonus>();
