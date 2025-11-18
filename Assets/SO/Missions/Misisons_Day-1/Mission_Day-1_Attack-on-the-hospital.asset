@@ -66,18 +66,18 @@ MonoBehaviour:
       StatAmountRequired: 8
       SucceededDescription: All good!
       FailedDescription: 
-      Character: {fileID: 0}
+      Character: {fileID: 11400000, guid: a45c154a9b4c1f549b240ac69b238985, type: 2}
     - Requirement:
         Description: Clear a path through the goons.
         StatType: 0
       StatAmountRequired: 0
       SucceededDescription: All good!
       FailedDescription: 
-      Character: {fileID: 11400000, guid: d35ed948b6488cb43a03aadf096e69a8, type: 2}
+      Character: {fileID: 0}
     - Requirement:
         Description: "Beat all El Diable\xB4s crew"
         StatType: 0
       StatAmountRequired: 0
       SucceededDescription: All good!
       FailedDescription: 
-      Character: {fileID: 11400000, guid: 7505866506f69414f9222b2eaee0c72d, type: 2}
+      Character: {fileID: 0}

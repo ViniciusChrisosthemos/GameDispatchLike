@@ -5,6 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="GameSettings", menuName ="ScriptableObjects/GameSettings")]
 public class GameSettingsSO: ScriptableObject
 {
-    public int MaxScheduledCharacters = 5;
+    public int MaxScheduledCharacters = 8;
     public Color RequirementStringColor = Color.yellow;
 }

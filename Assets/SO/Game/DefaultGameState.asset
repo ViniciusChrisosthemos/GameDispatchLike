@@ -13,12 +13,16 @@ MonoBehaviour:
   m_Name: DefaultGameState
   m_EditorClassIdentifier: 
   AvailableCharacters:
-  - {fileID: 11400000, guid: d135369027352da49b2a84974e4c9aea, type: 2}
-  - {fileID: 11400000, guid: d35ed948b6488cb43a03aadf096e69a8, type: 2}
-  - {fileID: 11400000, guid: 7505866506f69414f9222b2eaee0c72d, type: 2}
-  - {fileID: 11400000, guid: bff3f76aceeb61d4cae391f4ecaf761d, type: 2}
-  - {fileID: 11400000, guid: 83b40c958ced4d54996cd68f0310a99d, type: 2}
-  - {fileID: 11400000, guid: fd388b3315bb9aa47bfb410cfe71d1cf, type: 2}
+  - {fileID: 11400000, guid: d16701c3f0512ae4cb785601a8778174, type: 2}
+  - {fileID: 11400000, guid: 7a729e992208c254db70031918791ac4, type: 2}
+  - {fileID: 11400000, guid: 667571677c84a8b4a8cf30138273c09f, type: 2}
+  - {fileID: 11400000, guid: cbeab4059bb21f942a90fffe5f331b49, type: 2}
+  - {fileID: 11400000, guid: a45c154a9b4c1f549b240ac69b238985, type: 2}
+  - {fileID: 11400000, guid: e55a0d8e81b09364aa8db56832819b80, type: 2}
+  - {fileID: 11400000, guid: 52eb644ffc2c44049ae68bae8923d212, type: 2}
+  - {fileID: 11400000, guid: c2cdc865ce4343c439e8e2aa1756703d, type: 2}
   Balance: 0
   Reputation: 0
   CurrentDay: 1
+  CurrentLevel: 0
+  CurrentExperience: 0

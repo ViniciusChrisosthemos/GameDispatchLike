@@ -10,29 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebe3c9202a8965a4e8c6451367f8518f, type: 3}
-  m_Name: Character_Viego
+  m_Name: Character_MHA_All-Might
   m_EditorClassIdentifier: 
-  ID: 3a26eadbea5066eb0517d1e2329284ff920f6c6e
-  Name: Viego
+  ID: All-Might
+  Name: All Might
   BaseStats:
     _strengh:
-      BaseValue: 5
+      BaseValue: 10
       Bonus: 
     _endurance:
-      BaseValue: 2
+      BaseValue: 10
       Bonus: 
     _agility:
-      BaseValue: 2
+      BaseValue: 10
       Bonus: 
     _charisma:
-      BaseValue: 2
+      BaseValue: 10
       Bonus: 
     _intelligence:
-      BaseValue: 0
+      BaseValue: 10
       Bonus: 
     _maxStatValue: 10
-  FaceArt: {fileID: 840439290, guid: 0cf0d0292e07ef54bb6adbf82d8ad034, type: 3}
-  BodyArt: {fileID: 906190911, guid: 0cf0d0292e07ef54bb6adbf82d8ad034, type: 3}
-  FullArt: {fileID: -924060390, guid: 0cf0d0292e07ef54bb6adbf82d8ad034, type: 3}
+  FaceArt: {fileID: -882736726, guid: 9601f2dff7758814498d710286d22a09, type: 3}
+  BodyArt: {fileID: 719434393, guid: 9601f2dff7758814498d710286d22a09, type: 3}
+  FullArt: {fileID: -954750311, guid: 9601f2dff7758814498d710286d22a09, type: 3}
+  MissionCompletedArt: {fileID: 21300000, guid: eeea0f63088b49b4d8787ce9c1ae4ad9, type: 3}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
-  TimeToRest: 5
+  TimeToRest: 12
+  Keywords: []

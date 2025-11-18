@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01fb5d5caeadab941b31d4e73b0adc5b, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  MaxScheduledCharacters: 6
+  MaxScheduledCharacters: 8
   RequirementStringColor: {r: 0.6132076, g: 0.45593354, b: 0.014462441, a: 1}

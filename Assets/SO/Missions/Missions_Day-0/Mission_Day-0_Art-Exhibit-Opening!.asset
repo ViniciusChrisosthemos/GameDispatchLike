@@ -58,14 +58,14 @@ MonoBehaviour:
       StatAmountRequired: 0
       SucceededDescription: 
       FailedDescription: 
-      Character: {fileID: 11400000, guid: d135369027352da49b2a84974e4c9aea, type: 2}
+      Character: {fileID: 11400000, guid: cbeab4059bb21f942a90fffe5f331b49, type: 2}
     - Requirement:
         Description: weqwe
         StatType: 0
       StatAmountRequired: 0
       SucceededDescription: 
       FailedDescription: 
-      Character: {fileID: 11400000, guid: bff3f76aceeb61d4cae391f4ecaf761d, type: 2}
+      Character: {fileID: 0}
     - Requirement:
         Description: qweqweq
         StatType: 0

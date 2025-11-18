@@ -512,7 +512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.4056604, g: 0.33409578, b: 0.17412782, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1337,8 +1337,8 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
+  m_characterSpacing: -15
+  m_wordSpacing: -5
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
@@ -2290,7 +2290,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1345997793, guid: d8514756f7ad8f04685ce2d1490dfb8f, type: 3}
+  m_Sprite: {fileID: 1091381466, guid: 1614c72fe7ec5854895876844e960088, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
