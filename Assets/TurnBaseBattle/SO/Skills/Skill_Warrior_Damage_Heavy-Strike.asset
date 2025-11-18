@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6ebcfbe7f1fb364b930b439cc21d038, type: 3}
+  m_Name: Skill_Warrior_Damage_Heavy-Strike
+  m_EditorClassIdentifier: 
+  Name: Heavy Strike
+  BaseDescription: Deal {0} damage
+  Art: {fileID: -1697695193, guid: bd2b504801f6a0d41ba0399bc2be31ad, type: 3}
+  RequiredDiceValues:
+  - {fileID: 11400000, guid: 3b06cab473803ba4584781bb8c7b18de, type: 2}
+  - {fileID: 11400000, guid: 3b06cab473803ba4584781bb8c7b18de, type: 2}
+  - {fileID: 11400000, guid: 3b06cab473803ba4584781bb8c7b18de, type: 2}
+  - {fileID: 11400000, guid: 3b06cab473803ba4584781bb8c7b18de, type: 2}
+  Bonus: []
+  TargetAmount: 1
+  SpriteAsset: {fileID: 11400000, guid: 45c5def210cf8c446ae604abfea4f0d2, type: 2}
+  DamageAmount: 5
+  Levels:
+  - BaseDescription: 2
+    BaseValue: 0
+    Bonus: []
+  - BaseDescription: 0
+    BaseValue: 0
+    Bonus:
+    - Name: 
+      Description: Deal {0} more damage
+      BaseValue: 1
+      Type: 0
+      DicesRequired:
+      - {fileID: 11400000, guid: 3b06cab473803ba4584781bb8c7b18de, type: 2}
+      - {fileID: 11400000, guid: 3b06cab473803ba4584781bb8c7b18de, type: 2}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IBattleCharacter
+public interface IBattleCharacter : ITimelineElement
 {
     void TakeDamage(int damage);
 

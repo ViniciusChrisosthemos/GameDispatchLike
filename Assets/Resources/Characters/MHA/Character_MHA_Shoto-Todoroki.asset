@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe3c9202a8965a4e8c6451367f8518f, type: 3}
+  m_Name: Character_MHA_Shoto-Todoroki
+  m_EditorClassIdentifier: 
+  ID: Shoto-Todoroki
+  Name: Shoto Todoroki
+  BaseStats:
+    _strengh:
+      BaseValue: 4
+      Bonus: 
+    _endurance:
+      BaseValue: 1
+      Bonus: 
+    _agility:
+      BaseValue: 3
+      Bonus: 
+    _charisma:
+      BaseValue: 1
+      Bonus: 
+    _intelligence:
+      BaseValue: 3
+      Bonus: 
+    _maxStatValue: 10
+  FaceArt: {fileID: -758851380, guid: f938d5ff50692ff499ade8c32be7930c, type: 3}
+  BodyArt: {fileID: -1168763085, guid: f938d5ff50692ff499ade8c32be7930c, type: 3}
+  FullArt: {fileID: -320555496, guid: f938d5ff50692ff499ade8c32be7930c, type: 3}
+  MissionCompletedArt: {fileID: 21300000, guid: 82bc1eb6e25528e448430b6fcdecdd13, type: 3}
+  LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
+  TimeToRest: 12
+  Keywords: []

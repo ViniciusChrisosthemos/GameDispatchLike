@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe3c9202a8965a4e8c6451367f8518f, type: 3}
+  m_Name: Character_MHA_Momo-Yaoyorozu
+  m_EditorClassIdentifier: 
+  ID: Momo-Yaoyorozu
+  Name: Momo Yaoyorozu
+  BaseStats:
+    _strengh:
+      BaseValue: 2
+      Bonus: 
+    _endurance:
+      BaseValue: 2
+      Bonus: 
+    _agility:
+      BaseValue: 1
+      Bonus: 
+    _charisma:
+      BaseValue: 2
+      Bonus: 
+    _intelligence:
+      BaseValue: 5
+      Bonus: 
+    _maxStatValue: 10
+  FaceArt: {fileID: -2104330512, guid: 070a2a924fa5af0489862b4edc4901e8, type: 3}
+  BodyArt: {fileID: 394734991, guid: 070a2a924fa5af0489862b4edc4901e8, type: 3}
+  FullArt: {fileID: 482013844, guid: 070a2a924fa5af0489862b4edc4901e8, type: 3}
+  MissionCompletedArt: {fileID: 21300000, guid: 91ff0e760aa1ece4e969a51e7b7fb5e8, type: 3}
+  LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
+  TimeToRest: 12
+  Keywords: []
