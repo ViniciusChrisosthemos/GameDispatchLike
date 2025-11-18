@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Team_Enemy_1
   m_EditorClassIdentifier: 
   Characters:
-  - {fileID: 11400000, guid: 7505866506f69414f9222b2eaee0c72d, type: 2}
-  - {fileID: 11400000, guid: bff3f76aceeb61d4cae391f4ecaf761d, type: 2}
+  - {fileID: 11400000, guid: 667571677c84a8b4a8cf30138273c09f, type: 2}
+  - {fileID: 11400000, guid: cbeab4059bb21f942a90fffe5f331b49, type: 2}
+  - {fileID: 11400000, guid: 52eb644ffc2c44049ae68bae8923d212, type: 2}

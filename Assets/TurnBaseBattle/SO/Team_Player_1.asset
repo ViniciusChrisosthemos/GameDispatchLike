@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Team_Player_1
   m_EditorClassIdentifier: 
   Characters:
-  - {fileID: 11400000, guid: 83b40c958ced4d54996cd68f0310a99d, type: 2}
-  - {fileID: 11400000, guid: d135369027352da49b2a84974e4c9aea, type: 2}
-  - {fileID: 11400000, guid: d35ed948b6488cb43a03aadf096e69a8, type: 2}
+  - {fileID: 11400000, guid: d16701c3f0512ae4cb785601a8778174, type: 2}
+  - {fileID: 11400000, guid: 7a729e992208c254db70031918791ac4, type: 2}
+  - {fileID: 11400000, guid: 52eb644ffc2c44049ae68bae8923d212, type: 2}
+  - {fileID: 11400000, guid: c2cdc865ce4343c439e8e2aa1756703d, type: 2}
