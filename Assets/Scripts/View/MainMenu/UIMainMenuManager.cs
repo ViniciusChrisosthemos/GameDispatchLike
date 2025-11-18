@@ -8,8 +8,6 @@ public class UIMainMenuManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject _view;
-    [SerializeField] private GameManager _gameManager;
-    [SerializeField] private UIGuildViewManager _guildViewManager;
 
     [Header("UI")]
     [SerializeField] private Button _btnNewGame;
@@ -92,16 +90,14 @@ public class UIMainMenuManager : MonoBehaviour
 
         GameManager.Instance.NewGame(guildName);
 
-        _guildViewManager.OpenScreen();
-        CloseScreen();
+        CustomSceneManager.Instance.LoadLobbyScene();
     }
 
     private void HandleLoadGame()
     {
-        _gameManager.LoadSave(_currentSave);
+        GameManager.Instance.LoadSave(_currentSave);
 
-        _guildViewManager.OpenScreen();
-        CloseScreen();
+        CustomSceneManager.Instance.LoadLobbyScene();
     }
 
     private void HandleInputGuildNameChanged(string newName)

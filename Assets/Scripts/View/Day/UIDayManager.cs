@@ -28,7 +28,6 @@ public class UIDayManager : MonoBehaviour
 
     [Header("Screens")]
     [SerializeField] private UIDayReportController _uiDayReportController;
-    [SerializeField] private UIGuildViewManager _uiGuildViewManager;
 
     [Header("Events")]
     public UnityEvent<CharacterUnit> OnCharacterSelected;
@@ -51,14 +50,8 @@ public class UIDayManager : MonoBehaviour
         
         _uiDayReportController.OpenScreen(report, levelUpDescription, () =>
         {
-            CloseScreen();
-            _uiGuildViewManager.OpenScreen();
+            CustomSceneManager.Instance.LoadLobbyScene();
         });
-    }
-
-    private void CloseScreen()
-    {
-        _view.SetActive(false);
     }
 
     private void HandleTimeUpdatedEvet(float currentTime)

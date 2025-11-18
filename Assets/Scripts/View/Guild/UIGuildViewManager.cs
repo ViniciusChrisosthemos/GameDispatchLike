@@ -11,9 +11,6 @@ using UnityEngine.UI;
 
 public class UIGuildViewManager : MonoBehaviour
 {
-    [Header("Day References")]
-    [SerializeField] private DayManager _dayManager;
-
     [Header("Screen References")]
     [SerializeField] private GameObject _view;
     [SerializeField] private Button _btnQuit;
@@ -47,17 +44,12 @@ public class UIGuildViewManager : MonoBehaviour
         _btnStartDay.onClick.AddListener(StartDay);
         _btnQuit.onClick.AddListener(QuitGame);
 
-        CloseWindow();
+        Init();
     }
 
     public void StartDay()
     {
-        var day = GameManager.Instance.GameState.Day;
-        var guild = GameManager.Instance.GameState.Guild;
-
-        _dayManager.StartDay(day, guild.ScheduledCharacters);
-
-        CloseWindow();
+        CustomSceneManager.Instance.LoadGameScene();
     }
 
     public void QuitGame()
@@ -113,17 +105,5 @@ public class UIGuildViewManager : MonoBehaviour
         controller.SetCallback(HandleScheduledCharacterSelected);
 
         _guild.SetScheduledCharacter(controller.GetItem<CharacterUnit>(), true);
-    }
-
-    public void CloseWindow()
-    {
-        _view.SetActive(false);
-    }
-
-    public void OpenScreen()
-    {
-        _view.SetActive(true);
-
-        Init();
     }
 }

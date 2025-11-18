@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -35,10 +36,15 @@ public class DayManager : MonoBehaviour
     private void Start()
     {
         _missionManager.OnMissionMiss.AddListener(HandleMissionMiss);
+
+        StartDay();
     }
 
-    public void StartDay(int day, List<CharacterUnit> characters)
+    public void StartDay()
     {
+        var day = GameManager.Instance.GameState.Day;
+        var characters = GameManager.Instance.GameState.Guild.ScheduledCharacters;
+
         characters.ForEach(c => c.SetStatusToAvailable());
         _gameState = GameManager.Instance.GameState;
 
