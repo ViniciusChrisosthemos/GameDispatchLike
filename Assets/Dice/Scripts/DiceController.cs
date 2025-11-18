@@ -11,12 +11,17 @@ public class DiceController : MonoBehaviour
     [SerializeField] private List<Transform> _diceFaces;
     [SerializeField] private float _collisionForce = 10f;
 
+    public List<AudioClip> _diceRollSFXs;
+    public float _diceRollSFXVolume;
+
     [Header("Events")]
     public UnityEvent<int,int> OnDiceResult;
 
     private int _diceFaceIndex = -1;
     private bool _hasStoppedRolling;
     private bool _delayFinished;
+
+    private bool _lastSFX = false;
 
     private void Update()
     {
@@ -26,6 +31,12 @@ public class DiceController : MonoBehaviour
         {
             _hasStoppedRolling = true;
             GetNumberOnTopFace();
+        }
+
+        if (_rigidbody.velocity.sqrMagnitude <= 0.1f && !_lastSFX)
+        {
+            SoundManager.Instance.PlaySFX(_diceRollSFXs[0], _diceRollSFXVolume);
+            _lastSFX = true;
         }
     }
 
@@ -41,6 +52,10 @@ public class DiceController : MonoBehaviour
             var vector = collision.transform.position - transform.position;
             controller.Rigidbody.AddForce(vector, ForceMode.Impulse);
         }
+
+        int randomIndex = Random.Range(0, _diceRollSFXs.Count);
+        SoundManager.Instance.PlaySFX(_diceRollSFXs[randomIndex], _diceRollSFXVolume);
+        _diceFaceIndex = Mathf.Min(_diceRollSFXs.Count - 1, _diceFaceIndex + 1);
     }
 
     [ContextMenu("Get Dice Result")]
@@ -80,6 +95,7 @@ public class DiceController : MonoBehaviour
 
         _rigidbody.AddTorque(torque * (rollForce + randomVariance), ForceMode.Impulse);
 
+        _lastSFX = false;
         DelayResult();
     }
 

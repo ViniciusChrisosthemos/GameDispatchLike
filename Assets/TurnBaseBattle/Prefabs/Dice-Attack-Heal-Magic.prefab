@@ -104,6 +104,13 @@ MonoBehaviour:
   - {fileID: 3899385065861110547}
   - {fileID: 6266740820729244074}
   _collisionForce: 30
+  _shakingDicesSFX: {fileID: 8300000, guid: e794ce486d235c744927e8bb1a5a3eb3, type: 3}
+  _diceRollSFXs:
+  - {fileID: 8300000, guid: 5eb95941f3b07a744b46c22006278775, type: 3}
+  - {fileID: 8300000, guid: e81bf12faabc61f4da35350319dc12f2, type: 3}
+  - {fileID: 8300000, guid: 7560443e249e72547937d1fc6d5d89d1, type: 3}
+  - {fileID: 8300000, guid: 6b4903bc47fd44b4fa428226574e3bdc, type: 3}
+  _diceRollSFXVolume: 0.3
   OnDiceResult:
     m_PersistentCalls:
       m_Calls: []
@@ -188,7 +195,7 @@ SpriteRenderer:
   m_Size: {x: 1.97, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1948523177675898917
@@ -336,7 +343,7 @@ SpriteRenderer:
   m_Size: {x: 1.97, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3627449144529110798
@@ -420,7 +427,7 @@ SpriteRenderer:
   m_Size: {x: 1.97, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3800667110318768932
@@ -689,7 +696,7 @@ SpriteRenderer:
   m_Size: {x: 1.97, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5940245236305562882
@@ -875,7 +882,7 @@ SpriteRenderer:
   m_Size: {x: 1.97, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &8851464682216399532
@@ -959,6 +966,6 @@ SpriteRenderer:
   m_Size: {x: 1.97, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

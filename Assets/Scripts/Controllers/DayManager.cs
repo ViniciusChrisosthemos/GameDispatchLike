@@ -42,14 +42,15 @@ public class DayManager : MonoBehaviour
 
     public void StartDay()
     {
-        var day = GameManager.Instance.GameState.Day;
-        var characters = GameManager.Instance.GameState.Guild.ScheduledCharacters;
-
-        characters.ForEach(c => c.SetStatusToAvailable());
-        _gameState = GameManager.Instance.GameState;
-
         _isPaused = false;
         _dayReport = new DayReport();
+        _gameState = GameManager.Instance.GameState;
+
+        var day = _gameState.Day;
+        var characters = _gameState.Guild.ScheduledCharacters;
+
+        characters.ForEach(c => c.SetStatusToAvailable());
+
 
         DaySO daySO = day >= _daySOs.Count ? _defaultDaySO : _daySOs[day-1];
         var missionAmount = daySO.UseAllMissions ? daySO.MissionSOs.Count : daySO.MissionAmount;

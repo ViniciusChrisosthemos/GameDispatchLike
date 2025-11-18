@@ -168,6 +168,8 @@ MonoBehaviour:
   - {fileID: 6813148876138661689}
   - {fileID: 4174691555210973906}
   _collisionForce: 30
+  _diceRollSFX: {fileID: 8300000, guid: 507ab751f3259a645baa5a1c2eb48679, type: 3}
+  _diceRollSFXVolume: 0.3
   OnDiceResult:
     m_PersistentCalls:
       m_Calls: []

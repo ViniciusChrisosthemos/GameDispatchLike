@@ -15,13 +15,15 @@ public class DiceThrower : MonoBehaviour
     [SerializeField] private float _throwerAngleRange = 5f;
     [SerializeField] private float _timeScale = 2f;
 
+    public AudioClip _shakingDicesSFX;
+    public float _volume = 0.6f;
+
     private List<GameObject> _diceInstances = new List<GameObject>();
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            Time.timeScale = _timeScale;
             RollDices();
         }
     }
@@ -33,6 +35,10 @@ public class DiceThrower : MonoBehaviour
 
         var angle = 0f;
         var oldRotation = transform.rotation;
+
+        Time.timeScale = _timeScale;
+
+        SoundManager.Instance.PlaySFX(_shakingDicesSFX, _volume);
 
         for (int i = 0; i < _diceAmount; i++)
         {
@@ -50,5 +56,8 @@ public class DiceThrower : MonoBehaviour
 
             await Task.Yield();
         }
+
+
+        Time.timeScale = 1f;
     }
 }
