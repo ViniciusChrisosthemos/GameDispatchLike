@@ -38,7 +38,7 @@ MonoBehaviour:
       Bonus: 
     _maxStatValue: 10
   MaxTeamSize: 3
-  RewardExperience: 35
+  RewardExperience: 500
   RewardGold: 100
   RewardReputation: 15
   TimeToAccept: 15

@@ -93,7 +93,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -956,7 +956,7 @@ MonoBehaviour:
     m_SaveData: []
     m_OverlaysVisible: 1
   m_SearchFilter:
-    m_NameFilter: 
+    m_NameFilter: DayRep
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -968,7 +968,7 @@ MonoBehaviour:
     m_Folders:
     - Assets/TurnBaseBattle/SO
     m_Globs: []
-    m_OriginalText: 
+    m_OriginalText: DayRep
     m_ImportLogFlags: 0
     m_FilterByTypeIntersection: 0
   m_ViewMode: 1
@@ -1042,18 +1042,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c623000092bb0000f8690100a4680000c6640000a8710000bc7200009e7300004c7100007a860600888c00006c850000000000002478000058780000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Misisons_Day-1
+      m_OriginalName: Misisons_Day-1
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 336836
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:

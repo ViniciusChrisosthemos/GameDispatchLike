@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UICharacterViewController : UIItemController
+public class UICharacterViewController : MonoBehaviour
 {
     public enum CharacterArtType { Face, Body, Full }
 
@@ -20,15 +20,20 @@ public class UICharacterViewController : UIItemController
 
     private CharacterUnit _characterUnit;
 
-    protected override void HandleInit(object obj)
+    public void UpdateCharacter(CharacterUnit characterUnit)
     {
-        _characterUnit = obj as CharacterUnit;
+        UpdateCharacter(characterUnit, null);
+    }
+
+    public void UpdateCharacter(CharacterUnit characterUnit, Action<UICharacterViewController> callback)
+    {
+        _characterUnit = characterUnit;
 
         switch (_characterArtType)
         {
-            case CharacterArtType.Face: _imgCharacterView.sprite = _characterUnit.FaceArt; break;
-            case CharacterArtType.Body: _imgCharacterView.sprite = _characterUnit.BodyArt; break;
-            case CharacterArtType.Full: _imgCharacterView.sprite = _characterUnit.FullArt; break;
+            case CharacterArtType.Face: _imgCharacterView.sprite = characterUnit.FaceArt; break;
+            case CharacterArtType.Body: _imgCharacterView.sprite = characterUnit.BodyArt; break;
+            case CharacterArtType.Full: _imgCharacterView.sprite = characterUnit.FullArt; break;
             default: _imgCharacterView.sprite = null; break;
         }
 
@@ -39,8 +44,14 @@ public class UICharacterViewController : UIItemController
 
         if (_radarChartStatController != null)
         {
-            var values = _characterUnit.StatManager.GetValues();
+            var values = characterUnit.StatManager.GetValues();
             _radarChartStatController.UpdateStats(values);
+        }
+
+        if (callback != null && _btnButton != null)
+        {
+            _btnButton.onClick.RemoveAllListeners();
+            _btnButton.onClick.AddListener(() => callback?.Invoke(this));
         }
     }
 

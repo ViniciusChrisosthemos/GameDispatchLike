@@ -16,7 +16,7 @@ public class GuildData
 
     public GuildData(Guild guild)
     {
-        Name = guild.PlayerName;
+        Name = guild.Name;
         Balance = guild.Balance;
         Reputation = guild.Reputation;
         CurrentLevel = guild.CurrentLevel;

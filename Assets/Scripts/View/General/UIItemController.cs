@@ -17,18 +17,6 @@ public abstract class UIItemController : MonoBehaviour
         HandleInit(obj);
     }
 
-    public void SetCallback(Action<UIItemController> callback)
-    {
-        _onClick = callback;
-    }
-
-    public void SetItem(object item)
-    {
-        _item = item;
-
-        HandleInit(item);
-    }
-
     protected abstract void HandleInit(object obj);
 
     public void SelectItem()
