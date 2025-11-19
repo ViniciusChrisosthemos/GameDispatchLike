@@ -8,27 +8,19 @@ using Random = UnityEngine.Random;
 public class DiceThrower : MonoBehaviour
 {
     [SerializeField] private DiceController _dicePrefab;
-    [SerializeField] private int _diceAmount = 2;
     [SerializeField] private float _throwForce = 5f;
-    [SerializeField] private float _roolForce = 10f;
+    [SerializeField] private float _rollForce = 2f;
     [SerializeField] private int _daleyInMilliseconds = 200;
     [SerializeField] private float _throwerAngleRange = 5f;
     [SerializeField] private float _timeScale = 2f;
 
-    public AudioClip _shakingDicesSFX;
-    public float _volume = 0.6f;
+    [Header("SFX")]
+    [SerializeField] private AudioClip _shakingDicesSFX;
+    [SerializeField] private float _volume = 0.6f;
 
     private List<GameObject> _diceInstances = new List<GameObject>();
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            RollDices();
-        }
-    }
-
-    private async void RollDices()
+    public async void RollDices(int diceAmount, Transform parent, Action<int, DiceValueSO> diceCallback)
     {
         _diceInstances.ForEach(d => Destroy(d));
         _diceInstances.Clear();
@@ -38,9 +30,12 @@ public class DiceThrower : MonoBehaviour
 
         Time.timeScale = _timeScale;
 
-        SoundManager.Instance.PlaySFX(_shakingDicesSFX, _volume);
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySFX(_shakingDicesSFX, _volume);
+        }
 
-        for (int i = 0; i < _diceAmount; i++)
+        for (int i = 0; i < diceAmount; i++)
         {
             angle = Random.Range(-_throwerAngleRange, _throwerAngleRange);
             
@@ -50,7 +45,7 @@ public class DiceThrower : MonoBehaviour
             var dice = Instantiate(_dicePrefab, transform.position, transform.rotation);
             _diceInstances.Add(dice.gameObject);
 
-            dice.RollDice(_throwForce, _roolForce, i);
+            dice.RollDice(_throwForce, _rollForce, i, diceCallback);
 
             await Task.Delay(_daleyInMilliseconds);
 

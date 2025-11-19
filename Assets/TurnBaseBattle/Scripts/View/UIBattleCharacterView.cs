@@ -14,9 +14,12 @@ public class UIBattleCharacterView : UIItemController
     [SerializeField] private GameObject _targetOverlay;
     [SerializeField] private GameObject _confirmedTargetOverlay;
 
-    private BattleCharacter _character;
-
+    [Header("Events")]
     public UnityEvent<UIBattleCharacterView> OnSelected;
+
+
+    private BattleCharacter _character;
+    private bool _isTarget = false;
 
     private void Start()
     {
@@ -29,11 +32,21 @@ public class UIBattleCharacterView : UIItemController
         });
     }
 
-    private void Clear()
+    public void Clear()
     {
-        _killedChracterOverlay.SetActive(false);
+        if (_character != null)
+        {
+            _killedChracterOverlay.SetActive(!_character.IsAlive());
+        }
+        else
+        {
+            _killedChracterOverlay.SetActive(false);
+        }
+            
         _targetOverlay.SetActive(false);
         _confirmedTargetOverlay.SetActive(false);
+
+        _isTarget = false;
     }
 
     public void UpdateHealth(BattleCharacter character)
@@ -80,5 +93,15 @@ public class UIBattleCharacterView : UIItemController
     {
         _targetOverlay.SetActive(false);
         _confirmedTargetOverlay.SetActive(true);
+
+        _isTarget = true;
     }
+
+    public void ClearSelection()
+    {
+        _targetOverlay.SetActive(false);
+        _confirmedTargetOverlay.SetActive(_isTarget);
+    }
+
+    public BattleCharacter BattleCharacter => _character;
 }

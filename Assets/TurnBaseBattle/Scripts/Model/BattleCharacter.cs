@@ -15,11 +15,11 @@ public class BattleCharacter : IBattleCharacter, ITimelineElement
 
     public BattleCharacter (CharacterUnit characterUnit)
     {
+        _isActive = true;
         _characterUnit = characterUnit;
-
         _currentStatManager = new StatManager(_characterUnit.StatManager);
 
-        _isActive = true;
+        _currentHealth = _maxHealth = characterUnit.StatManager.GetStat(StatManager.StatType.Endurance).GetValue() * 10;
     }
 
     public CharacterSO BaseCharacter => _characterUnit.BaseCharacterSO;

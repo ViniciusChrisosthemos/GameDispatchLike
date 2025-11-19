@@ -18,8 +18,8 @@ public class UIListDisplay : MonoBehaviour
     [SerializeField] private Button _btnNext;
     [SerializeField] private TextMeshProUGUI _txtCurrentPages;
 
-    private List<object> _items;
-    private List<UIItemController> _controllers;
+    private List<object> _items = new List<object>();
+    private List<UIItemController> _controllers = new List<UIItemController>();
 
     private int _maxPages;
     private int _currentPage;
@@ -141,8 +141,18 @@ public class UIListDisplay : MonoBehaviour
         Debug.Log($"New Controller SIze {_items.Count} ");
     }
 
+    public void Clear()
+    {
+        _items = new List<object>();
+        _controllers.ForEach(controller => Destroy(controller.gameObject));
+        _controllers.Clear();
+        _itemParent.ClearChilds();
+    }
+
     public List<UIItemController> GetControllers() => _controllers;
     public List<T> GetItems<T>() => _items.Select(h => (T)h).ToList();
+
+
     public int Count => _items.Count;
 
     public Transform Parent => _itemParent;

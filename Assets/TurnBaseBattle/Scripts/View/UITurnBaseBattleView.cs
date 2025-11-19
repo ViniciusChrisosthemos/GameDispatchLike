@@ -3,26 +3,56 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UITurnBaseBattleView : MonoBehaviour
 {
     [SerializeField] private TurnBaseBattleController _turnbaseBattleController;
+    [SerializeField] private RollDiceController _rollDiceController;
 
     [SerializeField] private UIListDisplay _playerUIListDisplay;
     [SerializeField] private UIListDisplay _enemyUIListDisplay;
 
     [SerializeField] private UITimelineView _uiTimelineView;
     [SerializeField] private UISkillSelectionView _uiSkillSelectionView;
+    [SerializeField] private Button _btnPass;
+    [SerializeField] private GameObject _diceView;
 
     public TeamSO PlayerTeam;
     public TeamSO EnemyTeam;
 
     private BattleCharacter _currentCharacter;
+    private List<SkillAction> _skillActionQueue;
+    private List<DiceValueSO> _currentDiceValues;
+    private List<DiceValueSO> _lockedDices;
 
     private void Awake()
     {
         _turnbaseBattleController.OnCharacterTurn.AddListener(HandleCharacterTurn);
         _uiSkillSelectionView.OnPassAction.AddListener(Pass);
+    }
+
+    private void Start()
+    {
+        var playerCharacters = new List<BattleCharacter>();
+        var enemyCharacters = new List<BattleCharacter>();
+
+        PlayerTeam.GetTeam().Members.ForEach(c => playerCharacters.Add(new BattleCharacter(c)));
+        EnemyTeam.GetTeam().Members.ForEach(c => enemyCharacters.Add(new BattleCharacter(c)));
+
+        _playerUIListDisplay.SetItems(playerCharacters.Select(c => (object)c).ToList(), HandlePlayerCharacterSelected);
+        _enemyUIListDisplay.SetItems(enemyCharacters.Select(c => (object)c).ToList(), null);
+
+
+        var playerBattleCharacterViews = _playerUIListDisplay.GetControllers().Select(i => i as UIBattleCharacterView).ToList();
+        var enemyBattleCharacterViews = _enemyUIListDisplay.GetControllers().Select(i => i as UIBattleCharacterView).ToList();
+        _uiSkillSelectionView.SetTeams(playerBattleCharacterViews, enemyBattleCharacterViews);
+
+
+        _turnbaseBattleController.Setup(PlayerTeam.GetTeam(), EnemyTeam.GetTeam());
+        _turnbaseBattleController.StartBattle();
+
+        _uiTimelineView.SetTimeline(_turnbaseBattleController.TimelineController);
     }
 
     private void Update()
@@ -40,6 +70,8 @@ public class UITurnBaseBattleView : MonoBehaviour
 
         if (isPlayerCharacter)
         {
+            _skillActionQueue = new List<SkillAction>();
+
             _uiSkillSelectionView.SetCharacter(character);
         }
         else
@@ -48,25 +80,23 @@ public class UITurnBaseBattleView : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void RollDices()
     {
-        var playerCharacters = new List<BattleCharacter>();
-        var enemyCharacters = new List<BattleCharacter>();
+        _diceView.SetActive(true);
+        _rollDiceController.RollDices(6, HandleDicesResult);
 
-        PlayerTeam.GetTeam().Members.ForEach(c => playerCharacters.Add(new BattleCharacter(c)));
-        EnemyTeam.GetTeam().Members.ForEach(c => enemyCharacters.Add(new BattleCharacter(c)));
+        _uiSkillSelectionView.HideButtons();
+    }
 
-        _turnbaseBattleController.Setup(PlayerTeam.GetTeam(), EnemyTeam.GetTeam());
-        _turnbaseBattleController.StartBattle();
+    private void HandleDicesResult(List<DiceValueSO> diceValues)
+    {
+        _currentDiceValues = diceValues;
+        _lockedDices = new List<DiceValueSO>();
 
-        _playerUIListDisplay.SetItems(playerCharacters.Select(c => (object)c).ToList(), HandlePlayerCharacterSelected);
-        _enemyUIListDisplay.SetItems(enemyCharacters.Select(c=>(object)c).ToList(), null);
-
-        _uiTimelineView.SetTimeline(_turnbaseBattleController.TimelineController);
-
-        var playerBattleCharacterViews = _playerUIListDisplay.GetControllers().Select(i => i as UIBattleCharacterView).ToList();
-        var enemyBattleCharacterViews = _enemyUIListDisplay.GetControllers().Select(i => i as UIBattleCharacterView).ToList();
-        _uiSkillSelectionView.SetTeams(playerBattleCharacterViews, enemyBattleCharacterViews);
+        _rollDiceController.SetActive(false);
+        _uiSkillSelectionView.UpdateDices(diceValues);
+        _uiSkillSelectionView.UpdateAvailableSkills(diceValues);
+        _diceView.SetActive(false);
     }
 
     public void Pass()
@@ -74,7 +104,21 @@ public class UITurnBaseBattleView : MonoBehaviour
         _turnbaseBattleController.PassAction(_currentCharacter);
     }
 
+    public void RegisterAction(SkillAction currenSkillAction)
+    {
+        _skillActionQueue.Add(currenSkillAction);
+
+        _lockedDices.AddRange(currenSkillAction.Skill.RequiredDiceValues);
+
+        _uiSkillSelectionView.UpdateActionQueue(_skillActionQueue, _currentDiceValues, _lockedDices);
+    }
+
     private void HandlePlayerCharacterSelected(UIItemController controller)
     {
+    }
+
+    public void PlayActions()
+    {
+        Pass();
     }
 }

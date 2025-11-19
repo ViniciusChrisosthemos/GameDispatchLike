@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,6 +14,7 @@ public class UISkillDisplayController : UIItemController
     [SerializeField] private int _horizontalSizeOffset;
     [SerializeField] private GridLayoutGroup _skillGridLayout;
     [SerializeField] private Button _btnButton;
+    [SerializeField] private GameObject _isAvailableOverlay;
 
     private BaseSkillSO _skillSO;
 
@@ -44,5 +46,10 @@ public class UISkillDisplayController : UIItemController
         _txtSkillDescription.rectTransform.sizeDelta = new Vector2(containerSize - _diceValueParent.sizeDelta.x, _txtSkillDescription.rectTransform.sizeDelta.y);
 
         Debug.Log($"{_layoutGroup.rect.size}  {_diceValueParent.sizeDelta.x}");
+    }
+
+    public void SetAvailable(bool isAvailable)
+    {
+        _isAvailableOverlay.SetActive(isAvailable);
     }
 }

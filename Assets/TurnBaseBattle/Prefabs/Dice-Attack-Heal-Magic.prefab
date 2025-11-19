@@ -97,16 +97,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 642756241939418689}
   _diceFaces:
-  - {fileID: 2053301254242897452}
-  - {fileID: 3961931797726438332}
-  - {fileID: 3920795320203581658}
-  - {fileID: 4319589126779141008}
-  - {fileID: 3899385065861110547}
-  - {fileID: 6266740820729244074}
+  - {fileID: 4531211941376911460}
+  - {fileID: 5125976748179757392}
+  - {fileID: 877283063649034725}
+  - {fileID: 4484709969423900026}
+  - {fileID: 2381584995346354274}
+  - {fileID: 4323311147289044829}
   _collisionForce: 30
-  OnDiceResult:
-    m_PersistentCalls:
-      m_Calls: []
+  _diceRollSFXs:
+  - {fileID: 8300000, guid: 5eb95941f3b07a744b46c22006278775, type: 3}
+  - {fileID: 8300000, guid: e81bf12faabc61f4da35350319dc12f2, type: 3}
+  - {fileID: 8300000, guid: 7560443e249e72547937d1fc6d5d89d1, type: 3}
+  - {fileID: 8300000, guid: 6b4903bc47fd44b4fa428226574e3bdc, type: 3}
+  _diceRollSFXVolume: 0.6
 --- !u!1 &661444515444960114
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,12 +183,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6634b75038e0b7a4bac025c8884216d5, type: 3}
+  m_Sprite: {fileID: -1885454256, guid: 50de8e2e3b1750e4ba8550a5bbbc5639, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.97, y: 1}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -200,6 +203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4319589126779141008}
+  - component: {fileID: 4484709969423900026}
   m_Layer: 7
   m_Name: Face (4)
   m_TagString: Untagged
@@ -223,6 +227,19 @@ Transform:
   - {fileID: 1453659162049320352}
   m_Father: {fileID: 8523018661144885933}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4484709969423900026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948523177675898917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e27f8120e975948b5babc3bd0f6422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DiceValue: {fileID: 11400000, guid: d98d9e00e123ad14ca3f270948d28f46, type: 2}
 --- !u!1 &2267520371859612329
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,6 +249,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3961931797726438332}
+  - component: {fileID: 5125976748179757392}
   m_Layer: 7
   m_Name: Face (2)
   m_TagString: Untagged
@@ -255,6 +273,19 @@ Transform:
   - {fileID: 5637851637742941321}
   m_Father: {fileID: 8523018661144885933}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5125976748179757392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2267520371859612329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e27f8120e975948b5babc3bd0f6422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DiceValue: {fileID: 11400000, guid: dae168228420630458063fb773a8224e, type: 2}
 --- !u!1 &3459561545810030217
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,12 +359,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6634b75038e0b7a4bac025c8884216d5, type: 3}
+  m_Sprite: {fileID: -1885454256, guid: 50de8e2e3b1750e4ba8550a5bbbc5639, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.97, y: 1}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -412,12 +443,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1bbbdd24a587b894493653f3180dc93c, type: 3}
+  m_Sprite: {fileID: 1204495812, guid: 50de8e2e3b1750e4ba8550a5bbbc5639, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.97, y: 1}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -521,6 +552,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6266740820729244074}
+  - component: {fileID: 4323311147289044829}
   m_Layer: 7
   m_Name: Face (6)
   m_TagString: Untagged
@@ -544,6 +576,19 @@ Transform:
   - {fileID: 1295160339505082907}
   m_Father: {fileID: 8523018661144885933}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4323311147289044829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3818037749500323265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e27f8120e975948b5babc3bd0f6422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DiceValue: {fileID: 11400000, guid: 3b06cab473803ba4584781bb8c7b18de, type: 2}
 --- !u!1 &3826471220685181083
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,6 +598,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3920795320203581658}
+  - component: {fileID: 877283063649034725}
   m_Layer: 7
   m_Name: Face (3)
   m_TagString: Untagged
@@ -569,13 +615,26 @@ Transform:
   m_GameObject: {fileID: 3826471220685181083}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.968, y: 0.0050004795, z: 0.021}
+  m_LocalPosition: {x: 0.9675, y: 0.0050004795, z: 0.021}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4585291379758734417}
   m_Father: {fileID: 8523018661144885933}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &877283063649034725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3826471220685181083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e27f8120e975948b5babc3bd0f6422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DiceValue: {fileID: 11400000, guid: d98d9e00e123ad14ca3f270948d28f46, type: 2}
 --- !u!1 &4191039871699607166
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,6 +644,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3899385065861110547}
+  - component: {fileID: 2381584995346354274}
   m_Layer: 7
   m_Name: Face (5)
   m_TagString: Untagged
@@ -608,6 +668,19 @@ Transform:
   - {fileID: 4913526521351783424}
   m_Father: {fileID: 8523018661144885933}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2381584995346354274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4191039871699607166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e27f8120e975948b5babc3bd0f6422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DiceValue: {fileID: 11400000, guid: dae168228420630458063fb773a8224e, type: 2}
 --- !u!1 &5460053651659711094
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,12 +754,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1bbbdd24a587b894493653f3180dc93c, type: 3}
+  m_Sprite: {fileID: 1204495812, guid: 50de8e2e3b1750e4ba8550a5bbbc5639, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.97, y: 1}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -701,6 +774,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2053301254242897452}
+  - component: {fileID: 4531211941376911460}
   m_Layer: 7
   m_Name: Face (1)
   m_TagString: Untagged
@@ -724,6 +798,19 @@ Transform:
   - {fileID: 3457114643258161870}
   m_Father: {fileID: 8523018661144885933}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4531211941376911460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5940245236305562882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e27f8120e975948b5babc3bd0f6422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DiceValue: {fileID: 11400000, guid: 3b06cab473803ba4584781bb8c7b18de, type: 2}
 --- !u!1 &6070476371682521624
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,7 +907,7 @@ Transform:
   m_GameObject: {fileID: 7933207926460782851}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.033, y: 0, z: 0}
+  m_LocalPosition: {x: 0.033, y: 0, z: -0.011}
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -867,12 +954,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6e6f858dc1c7c794f997b0dd50e05bd6, type: 3}
+  m_Sprite: {fileID: 1624012285, guid: 50de8e2e3b1750e4ba8550a5bbbc5639, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.97, y: 1}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -951,12 +1038,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6e6f858dc1c7c794f997b0dd50e05bd6, type: 3}
+  m_Sprite: {fileID: 1624012285, guid: 50de8e2e3b1750e4ba8550a5bbbc5639, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.97, y: 1}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

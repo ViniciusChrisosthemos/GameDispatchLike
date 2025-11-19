@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1276624434011329416}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6813148876138661689}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Face (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 7882521048648381082}
   - component: {fileID: 7085695280762718080}
   - component: {fileID: 4257198445244777396}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Dice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2373254641435625424}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1e5f63b647e27f444b110599bba74f94, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -168,7 +168,11 @@ MonoBehaviour:
   - {fileID: 6813148876138661689}
   - {fileID: 4174691555210973906}
   _collisionForce: 30
-  _diceRollSFX: {fileID: 8300000, guid: 507ab751f3259a645baa5a1c2eb48679, type: 3}
+  _diceRollSFXs:
+  - {fileID: 8300000, guid: 5eb95941f3b07a744b46c22006278775, type: 3}
+  - {fileID: 8300000, guid: e81bf12faabc61f4da35350319dc12f2, type: 3}
+  - {fileID: 8300000, guid: 7560443e249e72547937d1fc6d5d89d1, type: 3}
+  - {fileID: 8300000, guid: 6b4903bc47fd44b4fa428226574e3bdc, type: 3}
   _diceRollSFXVolume: 0.3
   OnDiceResult:
     m_PersistentCalls:
@@ -182,7 +186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7463106087547237029}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Face (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4089600303536675089}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Face (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +248,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2120456041304182106}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Face (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4174691555210973906}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Face (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +312,7 @@ GameObject:
   - component: {fileID: 4110012942607332040}
   - component: {fileID: 88310969714860126}
   - component: {fileID: 2302783691997747413}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +394,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3236292845571043631}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Face (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +425,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6509931878232299298}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Faces
   m_TagString: Untagged
   m_Icon: {fileID: 0}

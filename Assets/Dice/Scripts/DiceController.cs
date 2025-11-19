@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -8,20 +9,17 @@ using Random = UnityEngine.Random;
 public class DiceController : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
-    [SerializeField] private List<Transform> _diceFaces;
+    [SerializeField] private List<DiceValueHolder> _diceFaces;
     [SerializeField] private float _collisionForce = 10f;
 
     public List<AudioClip> _diceRollSFXs;
     public float _diceRollSFXVolume;
 
-    [Header("Events")]
-    public UnityEvent<int,int> OnDiceResult;
-
     private int _diceFaceIndex = -1;
     private bool _hasStoppedRolling;
     private bool _delayFinished;
 
-    private bool _lastSFX = false;
+    private Action<int, DiceValueSO> _onRollResultCallback;
 
     private void Update()
     {
@@ -31,12 +29,6 @@ public class DiceController : MonoBehaviour
         {
             _hasStoppedRolling = true;
             GetNumberOnTopFace();
-        }
-
-        if (_rigidbody.velocity.sqrMagnitude <= 0.1f && !_lastSFX)
-        {
-            SoundManager.Instance.PlaySFX(_diceRollSFXs[0], _diceRollSFXVolume);
-            _lastSFX = true;
         }
     }
 
@@ -54,35 +46,38 @@ public class DiceController : MonoBehaviour
         }
 
         int randomIndex = Random.Range(0, _diceRollSFXs.Count);
-        SoundManager.Instance.PlaySFX(_diceRollSFXs[randomIndex], _diceRollSFXVolume);
-        _diceFaceIndex = Mathf.Min(_diceRollSFXs.Count - 1, _diceFaceIndex + 1);
+
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySFX(_diceRollSFXs[randomIndex], _diceRollSFXVolume);
+            _diceFaceIndex = Mathf.Min(_diceRollSFXs.Count - 1, _diceFaceIndex + 1);
+        }
     }
 
     [ContextMenu("Get Dice Result")]
     private int GetNumberOnTopFace()
     {
         var topFace = 0;
-        var maxDist = 0f;
+        var maxDist = float.MinValue;
 
         for (int i = 0; i < _diceFaces.Count; i++)
         {
-            if (_diceFaces[i].position.y  > maxDist)
+            if (_diceFaces[i].transform.position.y  > maxDist)
             {
                 topFace = i;
-                maxDist = _diceFaces[i].position.y;
+                maxDist = _diceFaces[i].transform.position.y;
             }
         }
 
-        Debug.Log($"Dice result {topFace + 1}");
-
-        OnDiceResult?.Invoke(_diceFaceIndex, topFace + 1);
+        _onRollResultCallback?.Invoke(_diceFaceIndex, _diceFaces[topFace].DiceValue);
 
         return topFace + 1;
     }
 
-    public void RollDice(float throwForce, float rollForce, int diceIndex)
+    public void RollDice(float throwForce, float rollForce, int diceIndex, Action<int, DiceValueSO> onRollFinished)
     {
         _diceFaceIndex = diceIndex;
+        _onRollResultCallback = onRollFinished;
 
         var randomVariance = Random.Range(-1f, 1f);
         _rigidbody.AddForce(transform.forward * (throwForce + randomVariance), ForceMode.Impulse);
@@ -95,7 +90,6 @@ public class DiceController : MonoBehaviour
 
         _rigidbody.AddTorque(torque * (rollForce + randomVariance), ForceMode.Impulse);
 
-        _lastSFX = false;
         DelayResult();
     }
 

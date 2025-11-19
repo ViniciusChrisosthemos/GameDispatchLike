@@ -17,7 +17,7 @@ public enum SkillTargetAmount
     AllTargets
 }
 
-public abstract class BaseSkillSO : ScriptableObject
+public abstract class BaseSkillSO : ScriptableObject, IHasSprite
 {
     public string Name;
     public string BaseDescription;
@@ -60,4 +60,9 @@ public abstract class BaseSkillSO : ScriptableObject
 
     protected abstract string GetInternalDescription();
     public abstract void ApplySkill(IBattleCharacter user, List<IBattleCharacter> targets);
+
+    public Sprite GetSprite()
+    {
+        return Art;
+    }
 }
