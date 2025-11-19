@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UICharacterViewController : MonoBehaviour
+public class UICharacterViewController : UIItemController
 {
     public enum CharacterArtType { Face, Body, Full }
 
@@ -20,20 +20,23 @@ public class UICharacterViewController : MonoBehaviour
 
     private CharacterUnit _characterUnit;
 
-    public void UpdateCharacter(CharacterUnit characterUnit)
+    private void Awake()
     {
-        UpdateCharacter(characterUnit, null);
+        if (_btnButton != null)
+        {
+            _btnButton.onClick.AddListener(SelectItem);
+        }
     }
 
-    public void UpdateCharacter(CharacterUnit characterUnit, Action<UICharacterViewController> callback)
+    protected override void HandleInit(object obj)
     {
-        _characterUnit = characterUnit;
+        _characterUnit = obj as CharacterUnit;
 
         switch (_characterArtType)
         {
-            case CharacterArtType.Face: _imgCharacterView.sprite = characterUnit.FaceArt; break;
-            case CharacterArtType.Body: _imgCharacterView.sprite = characterUnit.BodyArt; break;
-            case CharacterArtType.Full: _imgCharacterView.sprite = characterUnit.FullArt; break;
+            case CharacterArtType.Face: _imgCharacterView.sprite = _characterUnit.FaceArt; break;
+            case CharacterArtType.Body: _imgCharacterView.sprite = _characterUnit.BodyArt; break;
+            case CharacterArtType.Full: _imgCharacterView.sprite = _characterUnit.FullArt; break;
             default: _imgCharacterView.sprite = null; break;
         }
 
@@ -44,14 +47,8 @@ public class UICharacterViewController : MonoBehaviour
 
         if (_radarChartStatController != null)
         {
-            var values = characterUnit.StatManager.GetValues();
+            var values = _characterUnit.StatManager.GetValues();
             _radarChartStatController.UpdateStats(values);
-        }
-
-        if (callback != null && _btnButton != null)
-        {
-            _btnButton.onClick.RemoveAllListeners();
-            _btnButton.onClick.AddListener(() => callback?.Invoke(this));
         }
     }
 

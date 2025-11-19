@@ -64,8 +64,8 @@ public class UITurnBaseBattleView : MonoBehaviour
 
         _uiTimelineView.SetTimeline(_turnbaseBattleController.TimelineController);
 
-        var playerBattleCharacterViews = _playerUIListDisplay.GetItems().Select(i => i as UIBattleCharacterView).ToList();
-        var enemyBattleCharacterViews = _enemyUIListDisplay.GetItems().Select(i => i as UIBattleCharacterView).ToList();
+        var playerBattleCharacterViews = _playerUIListDisplay.GetControllers().Select(i => i as UIBattleCharacterView).ToList();
+        var enemyBattleCharacterViews = _enemyUIListDisplay.GetControllers().Select(i => i as UIBattleCharacterView).ToList();
         _uiSkillSelectionView.SetTeams(playerBattleCharacterViews, enemyBattleCharacterViews);
     }
 

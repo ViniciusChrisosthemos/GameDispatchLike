@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe3c9202a8965a4e8c6451367f8518f, type: 3}
+  m_Name: Character_MHA_Fumikage-Tokoyami
+  m_EditorClassIdentifier: 
+  ID: Fumikage-Tokoyami
+  Name: Fumikage Tokoyami
+  BaseStats:
+    _strengh:
+      BaseValue: 1
+      Bonus: 
+    _endurance:
+      BaseValue: 1
+      Bonus: 
+    _agility:
+      BaseValue: 5
+      Bonus: 
+    _charisma:
+      BaseValue: 1
+      Bonus: 
+    _intelligence:
+      BaseValue: 4
+      Bonus: 
+    _maxStatValue: 10
+  FaceArt: {fileID: -1714532901, guid: c7162183a538268419f7bdfd7449a1bc, type: 3}
+  BodyArt: {fileID: 1336981501, guid: c7162183a538268419f7bdfd7449a1bc, type: 3}
+  FullArt: {fileID: 226677284, guid: c7162183a538268419f7bdfd7449a1bc, type: 3}
+  MissionCompletedArt: {fileID: 21300000, guid: b8847d6059cb51a46bbf3d90bad58c46, type: 3}
+  LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
+  TimeToRest: 12
+  Keywords: []
+  Skills:
+  - {fileID: 11400000, guid: ea81b6e267b294145981ed921859775d, type: 2}
+  - {fileID: 11400000, guid: f39c5290992140142a435dda59161408, type: 2}

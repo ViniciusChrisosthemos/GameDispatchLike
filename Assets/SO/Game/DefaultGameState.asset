@@ -14,13 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AvailableCharacters:
   - {fileID: 11400000, guid: d16701c3f0512ae4cb785601a8778174, type: 2}
+  - {fileID: 11400000, guid: 4c22cda0069f7844db427bb3546b5b6d, type: 2}
+  - {fileID: 11400000, guid: a6bf1765b51ceee4589f944f7ae2e37e, type: 2}
+  - {fileID: 11400000, guid: ff6aeb447ace3fa419bf95ff8ab1281e, type: 2}
+  - {fileID: 11400000, guid: 3bb36f40ffae02e48a0389130d8fdb86, type: 2}
   - {fileID: 11400000, guid: 7a729e992208c254db70031918791ac4, type: 2}
   - {fileID: 11400000, guid: 667571677c84a8b4a8cf30138273c09f, type: 2}
   - {fileID: 11400000, guid: cbeab4059bb21f942a90fffe5f331b49, type: 2}
+  - {fileID: 11400000, guid: 223e92f3dc086744a98322657a339a20, type: 2}
+  - {fileID: 11400000, guid: 66d69c28017b2bc4b8f74af7df23bf22, type: 2}
   - {fileID: 11400000, guid: a45c154a9b4c1f549b240ac69b238985, type: 2}
   - {fileID: 11400000, guid: e55a0d8e81b09364aa8db56832819b80, type: 2}
+  - {fileID: 11400000, guid: 4b3f879ebcb041c4aba186de8c98acf8, type: 2}
   - {fileID: 11400000, guid: 52eb644ffc2c44049ae68bae8923d212, type: 2}
+  - {fileID: 11400000, guid: 4b19d971789433447936c1b921fc45f6, type: 2}
   - {fileID: 11400000, guid: c2cdc865ce4343c439e8e2aa1756703d, type: 2}
+  - {fileID: 11400000, guid: e8c29bf3b5bff5541812b0754e0fd147, type: 2}
   Balance: 0
   Reputation: 0
   CurrentDay: 1

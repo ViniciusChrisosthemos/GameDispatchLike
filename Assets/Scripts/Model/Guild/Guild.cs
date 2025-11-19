@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Guild
 {
-    private string _name;
+    private string _playerName;
     private int _balance;
     private int _reputation;
     private int _currentLevel;
@@ -15,7 +15,7 @@ public class Guild
 
     public Guild(string name, int balance, int popularity, int currentLevel, int currentExperience, List<CharacterUnit> characters)
     {
-        _name = name;
+        _playerName = name;
         _balance = balance;
         _reputation = popularity;
         _currentLevel = currentLevel;
@@ -83,7 +83,12 @@ public class Guild
         return new LevelUPDescription(oldExpPerc, expWithSuccesPerc, expWithoutFailuresPerc, expWithoutMissesPerc, levelGained, levelSO);
     }
 
-    public string Name => _name;
+    public float GetCurrentExperienceNormalized(CharacterLevelDatabase characterLevelDatabse)
+    {
+        return _currentExperience / (float)characterLevelDatabse.GetLevel(_currentLevel).ExpToLevelUp;
+    }
+
+    public string PlayerName => _playerName;
     public int Balance => _balance;
     public int Reputation => _reputation;
     public int CurrentLevel => _currentLevel;

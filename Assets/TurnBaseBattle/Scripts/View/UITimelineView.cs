@@ -48,9 +48,9 @@ public class UITimelineView : MonoBehaviour
         _characterIcons.SetItems(elements, null);
 
         _timelineCharacterControllers = new List<UITimelineChracterView>();
-        foreach (var item in _characterIcons.GetItems())
+        foreach (var controller in _characterIcons.GetControllers())
         {
-            _timelineCharacterControllers.Add(item.GetComponent<UITimelineChracterView>());
+            _timelineCharacterControllers.Add(controller.GetComponent<UITimelineChracterView>());
         }
     }
 }

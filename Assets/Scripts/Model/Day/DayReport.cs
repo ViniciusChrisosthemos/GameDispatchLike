@@ -20,10 +20,10 @@ public class DayReport
 
     public DayReport()
     {
-        MissionsAccepted = 5;
-        MissionMisses = 7;
-        MissionSucceded = 68;
-        MissionFailed = 12;
+        MissionsAccepted = 0;
+        MissionMisses = 0;
+        MissionSucceded = 0;
+        MissionFailed = 0;
         TotalGoldGained = 0;
         TotalReputationGained = 0;
         TotalCalls = MissionSucceded + MissionFailed + MissionMisses;

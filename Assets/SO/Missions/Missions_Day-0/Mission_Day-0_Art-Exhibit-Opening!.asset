@@ -65,11 +65,11 @@ MonoBehaviour:
       StatAmountRequired: 0
       SucceededDescription: 
       FailedDescription: 
-      Character: {fileID: 0}
+      Character: {fileID: 11400000, guid: d16701c3f0512ae4cb785601a8778174, type: 2}
     - Requirement:
         Description: qweqweq
         StatType: 0
       StatAmountRequired: 0
       SucceededDescription: 
       FailedDescription: 
-      Character: {fileID: 11400000, guid: fd388b3315bb9aa47bfb410cfe71d1cf, type: 2}
+      Character: {fileID: 11400000, guid: 223e92f3dc086744a98322657a339a20, type: 2}

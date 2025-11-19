@@ -98,7 +98,7 @@ public class UIChoiceResultViewController : MonoBehaviour
             _statComparisonView.SetActive(false);
             _characterChoiceView.SetActive(true);
 
-            _imgCharacterChoiceArt.sprite = missionChoice.Character.FullArt;
+            _imgCharacterChoiceArt.sprite = missionChoice.Character.MissionCompletedArt;
             _imgCharacterFaceChoiceArt.sprite = missionChoice.Character.FaceArt;
 
             _btnOk.onClick.AddListener(() => TriggerCallback(true));
