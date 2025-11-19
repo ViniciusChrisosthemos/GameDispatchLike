@@ -20,12 +20,9 @@ public class UISkillTreeSkillDisplay : UIItemController
         _skillUnit = obj as SkillUnit;
 
         var currentLevel = _skillUnit.CurrentLevel;
-        var maxLevel = _skillUnit.MaxLevel;
 
         _imgSkillArt.sprite = _skillUnit.Art;
-        _txtLevel.text = $"{currentLevel}/{maxLevel}";
-
-        UpdateLevel(currentLevel == maxLevel);
+        _txtLevel.text = $"{currentLevel}";
     }
 
     public void UpdateLevel(bool isMaxLevel)

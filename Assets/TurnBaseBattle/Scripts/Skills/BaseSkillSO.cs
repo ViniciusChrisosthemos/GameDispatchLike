@@ -4,11 +4,17 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-[Serializable]
-public abstract class SkillLevel
+public enum SkillTargetType
 {
-    [SerializeField] protected string BaseDescription;
-    public abstract string GetDescription();
+    Enemy,
+    Ally
+}
+
+public enum SkillTargetAmount
+{
+    SingleTarget,
+    MultiTarget,
+    AllTargets
 }
 
 public abstract class BaseSkillSO : ScriptableObject
@@ -18,6 +24,8 @@ public abstract class BaseSkillSO : ScriptableObject
     public Sprite Art;
     public List<DiceValueSO> RequiredDiceValues;
     public List<SkillBonus> Bonus;
+    public SkillTargetType SkillTargetType;
+    public SkillTargetAmount SkillTargetAmount;
     public int TargetAmount;
     public TMP_SpriteAsset SpriteAsset;
 
@@ -52,5 +60,4 @@ public abstract class BaseSkillSO : ScriptableObject
 
     protected abstract string GetInternalDescription();
     public abstract void ApplySkill(IBattleCharacter user, List<IBattleCharacter> targets);
-    public abstract List<SkillLevel> GetLevels();
 }

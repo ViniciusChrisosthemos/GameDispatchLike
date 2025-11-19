@@ -14,4 +14,5 @@ public class CharacterSO: SavebleSO
     public LevelProgression LevelProgression;
     public int TimeToRest;
     public List<KeywordSO> Keywords;
+    public List<BaseSkillSO> Skills;
 }

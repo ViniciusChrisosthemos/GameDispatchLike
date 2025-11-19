@@ -6,7 +6,7 @@ public class UISkillTreeDisplay : MonoBehaviour
 {
     public SkillTreeSO _skillTreeSO;
 
-    public List<List<UISkillDisplay>> _skillsLines;
+    public List<List<UISkillDisplayController>> _skillsLines;
 
     public void Start()
     {

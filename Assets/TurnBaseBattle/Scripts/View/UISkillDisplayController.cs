@@ -4,22 +4,21 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UISkillDisplay : UIItemController
+public class UISkillDisplayController : UIItemController
 {
     [SerializeField] private TextMeshProUGUI _txtSkillDescription;
     [SerializeField] private RectTransform _diceValueParent;
     [SerializeField] private Image _diceValuePrefab;
     [SerializeField] private RectTransform _layoutGroup;
     [SerializeField] private int _horizontalSizeOffset;
+    [SerializeField] private GridLayoutGroup _skillGridLayout;
+    [SerializeField] private Button _btnButton;
 
     private BaseSkillSO _skillSO;
 
-
-    public BaseSkillSO SkillSO;
-
-    private void Start()
+    private void Awake()
     {
-        HandleInit(SkillSO as object);
+        _btnButton.onClick.AddListener(SelectItem);
     }
 
     protected override void HandleInit(object obj)
@@ -39,9 +38,11 @@ public class UISkillDisplay : UIItemController
             imgSize = img.rectTransform.sizeDelta.y;
         }
 
-        _diceValueParent.sizeDelta = new Vector2(imgSize * _skillSO.RequiredDiceValues.Count, _diceValueParent.sizeDelta.y);
+        _diceValueParent.sizeDelta = new Vector2(_skillSO.RequiredDiceValues.Count * _skillGridLayout.cellSize.x + (_skillSO.RequiredDiceValues.Count-1) * _skillGridLayout.spacing.x, _diceValueParent.sizeDelta.y);
 
-        var containerSize = _layoutGroup.GetComponent<RectTransform>().sizeDelta.x + _horizontalSizeOffset;
+        var containerSize = _layoutGroup.rect.size.x + _horizontalSizeOffset;
         _txtSkillDescription.rectTransform.sizeDelta = new Vector2(containerSize - _diceValueParent.sizeDelta.x, _txtSkillDescription.rectTransform.sizeDelta.y);
+
+        Debug.Log($"{_layoutGroup.rect.size}  {_diceValueParent.sizeDelta.x}");
     }
 }
