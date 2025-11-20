@@ -1,18 +1,25 @@
+using DG.Tweening;
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class UIBattleCharacterView : UIItemController
 {
     [SerializeField] private Image _imgCharacterArt;
-    [SerializeField] private Image _imgHealthBar;
     [SerializeField] private Button _btnButton;
 
     [SerializeField] private GameObject _killedChracterOverlay;
     [SerializeField] private GameObject _targetOverlay;
     [SerializeField] private GameObject _confirmedTargetOverlay;
+
+    [Header("Health Elements")]
+    [SerializeField] private TextMeshProUGUI _txtHealth;
+    [SerializeField] private Slider _sliderGreenBar;
+    [SerializeField] private Slider _sliderRedBar;
+    [SerializeField] private float _healthUpdateTime = 0.3f;
+    [SerializeField] private float _healthBackgroundDelay = 0.5f;
 
     [Header("Events")]
     public UnityEvent<UIBattleCharacterView> OnSelected;
@@ -49,22 +56,22 @@ public class UIBattleCharacterView : UIItemController
         _isTarget = false;
     }
 
-    public void UpdateHealth(BattleCharacter character)
+    public void UpdateHealth()
     {
-        _imgHealthBar.fillAmount = character.GetNormalizedHealth();
-        
-        if (_imgHealthBar.fillAmount >= 0.67f)
+        //Animation
+        Sequence seq = DOTween.Sequence();
+
+        var currentValue = _sliderGreenBar.value;
+        var nextValue = _character.GetNormalizedHealth();
+
+        _sliderGreenBar.value = _sliderRedBar.value = currentValue;
+
+        seq.Append(_sliderGreenBar.DOValue(nextValue, _healthUpdateTime).SetEase(Ease.InQuad));
+        seq.AppendCallback(() =>
         {
-            _imgHealthBar.color = Color.green;
-        }
-        else if (_imgHealthBar.fillAmount >= 0.34f)
-        {
-            _imgHealthBar.color = Color.yellow;
-        }
-        else
-        {
-            _imgHealthBar.color = Color.red;
-        }
+            _txtHealth.text = $"{_character.Health}/{_character.MaxHealth}";
+        });
+        seq.Append(_sliderRedBar.DOValue(nextValue, _healthBackgroundDelay).SetEase(Ease.InQuad));
     }
 
     public void KillCharacter()
@@ -77,9 +84,12 @@ public class UIBattleCharacterView : UIItemController
         _character = (BattleCharacter)obj;
 
         _imgCharacterArt.sprite = _character.BaseCharacter.FaceArt;
-        _imgHealthBar.fillAmount = 1f;
-
+        
         _killedChracterOverlay.SetActive(false);
+
+        _sliderRedBar.value = 1f;
+        _sliderGreenBar.value = 1f;
+        _txtHealth.text = $"{_character.Health}/{_character.MaxHealth}";
     }
 
     public void SetTarget()

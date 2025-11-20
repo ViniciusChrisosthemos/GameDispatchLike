@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bedcdd75e1baf9042a7656600a2a6f1e, type: 3}
-  m_Name: Magic_Skill_Magic
+  m_Script: {fileID: 11500000, guid: e6ebcfbe7f1fb364b930b439cc21d038, type: 3}
+  m_Name: Skill_Damage_AllTargets-2
   m_EditorClassIdentifier: 
-  Name: Magic
+  Name: Strike
   BaseDescription: Deal {0} of all enemies
-  Art: {fileID: -933589133, guid: bd2b504801f6a0d41ba0399bc2be31ad, type: 3}
+  Art: {fileID: 2109290990, guid: bd2b504801f6a0d41ba0399bc2be31ad, type: 3}
   RequiredDiceValues:
   - {fileID: 11400000, guid: d98d9e00e123ad14ca3f270948d28f46, type: 2}
   - {fileID: 11400000, guid: d98d9e00e123ad14ca3f270948d28f46, type: 2}
@@ -23,4 +23,4 @@ MonoBehaviour:
   SkillTargetAmount: 2
   TargetAmount: 1
   SpriteAsset: {fileID: 11400000, guid: 45c5def210cf8c446ae604abfea4f0d2, type: 2}
-  HealAmount: 5
+  DamageAmount: 5

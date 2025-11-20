@@ -58,4 +58,7 @@ public class BattleCharacter : IBattleCharacter, ITimelineElement
     {
         _isActive = false;
     }
+
+    public int Health => _currentHealth;
+    public int MaxHealth => _maxHealth;
 }

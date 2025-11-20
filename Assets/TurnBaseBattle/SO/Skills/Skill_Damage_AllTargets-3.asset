@@ -10,19 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6ebcfbe7f1fb364b930b439cc21d038, type: 3}
-  m_Name: Skill_Warrior_Damage_Heavy-Strike
+  m_Name: Skill_Damage_AllTargets-3
   m_EditorClassIdentifier: 
-  Name: Heavy Strike
-  BaseDescription: Deal {0} damage
-  Art: {fileID: -1697695193, guid: bd2b504801f6a0d41ba0399bc2be31ad, type: 3}
+  Name: Strike
+  BaseDescription: Deal {0} of all enemies
+  Art: {fileID: 2109290990, guid: bd2b504801f6a0d41ba0399bc2be31ad, type: 3}
   RequiredDiceValues:
-  - {fileID: 11400000, guid: 3b06cab473803ba4584781bb8c7b18de, type: 2}
-  - {fileID: 11400000, guid: 3b06cab473803ba4584781bb8c7b18de, type: 2}
-  - {fileID: 11400000, guid: 3b06cab473803ba4584781bb8c7b18de, type: 2}
-  - {fileID: 11400000, guid: 3b06cab473803ba4584781bb8c7b18de, type: 2}
+  - {fileID: 11400000, guid: d98d9e00e123ad14ca3f270948d28f46, type: 2}
+  - {fileID: 11400000, guid: d98d9e00e123ad14ca3f270948d28f46, type: 2}
   Bonus: []
   SkillTargetType: 0
   SkillTargetAmount: 2
   TargetAmount: 1
   SpriteAsset: {fileID: 11400000, guid: 45c5def210cf8c446ae604abfea4f0d2, type: 2}
-  DamageAmount: 15
+  DamageAmount: 10

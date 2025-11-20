@@ -44,8 +44,6 @@ public class UISkillDisplayController : UIItemController
 
         var containerSize = _layoutGroup.rect.size.x + _horizontalSizeOffset;
         _txtSkillDescription.rectTransform.sizeDelta = new Vector2(containerSize - _diceValueParent.sizeDelta.x, _txtSkillDescription.rectTransform.sizeDelta.y);
-
-        Debug.Log($"{_layoutGroup.rect.size}  {_diceValueParent.sizeDelta.x}");
     }
 
     public void SetAvailable(bool isAvailable)

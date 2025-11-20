@@ -162,6 +162,9 @@ public class UISkillSelectionView : MonoBehaviour
     public void PlayActions()
     {
         _uiTurnBaseBattleView.PlayActions();
+
+        _playerBattleCharactersControllers.ForEach(c => c.Clear());
+        _enemyBattleCharactersControllers.ForEach(c => c.Clear());
     }
 
     public void RollDices()

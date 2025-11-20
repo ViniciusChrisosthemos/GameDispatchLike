@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,8 +16,9 @@ public class UITurnBaseBattleView : MonoBehaviour
 
     [SerializeField] private UITimelineView _uiTimelineView;
     [SerializeField] private UISkillSelectionView _uiSkillSelectionView;
-    [SerializeField] private Button _btnPass;
     [SerializeField] private GameObject _diceView;
+
+    [SerializeField] private UIResultScreenView _uiResultScreenView;
 
     public TeamSO PlayerTeam;
     public TeamSO EnemyTeam;
@@ -48,8 +50,8 @@ public class UITurnBaseBattleView : MonoBehaviour
         var enemyBattleCharacterViews = _enemyUIListDisplay.GetControllers().Select(i => i as UIBattleCharacterView).ToList();
         _uiSkillSelectionView.SetTeams(playerBattleCharacterViews, enemyBattleCharacterViews);
 
-
-        _turnbaseBattleController.Setup(PlayerTeam.GetTeam(), EnemyTeam.GetTeam());
+        _turnbaseBattleController.OnBattleEnd.AddListener(HandleBattleEnd);
+        _turnbaseBattleController.Setup(playerCharacters, enemyCharacters);
         _turnbaseBattleController.StartBattle();
 
         _uiTimelineView.SetTimeline(_turnbaseBattleController.TimelineController);
@@ -117,8 +119,26 @@ public class UITurnBaseBattleView : MonoBehaviour
     {
     }
 
-    public void PlayActions()
+    public async void PlayActions()
     {
+        var playerBattleCharacterViews = _playerUIListDisplay.GetControllers().Select(i => i as UIBattleCharacterView).ToList();
+        var enemyBattleCharacterViews = _enemyUIListDisplay.GetControllers().Select(i => i as UIBattleCharacterView).ToList();
+
+        foreach (var action in _skillActionQueue)
+        {
+            _turnbaseBattleController.SkillAction(action.Source, action.Skill, action.Targets);
+
+            playerBattleCharacterViews.ForEach(c => c.UpdateHealth());
+            enemyBattleCharacterViews.ForEach (c => c.UpdateHealth());
+
+            await Task.Delay(1000);
+        }
+
         Pass();
+    }
+
+    private void HandleBattleEnd(bool playerWin)
+    {
+        _uiResultScreenView.ShowResult(playerWin);
     }
 }

@@ -14,15 +14,12 @@ public class TurnBaseBattleController : MonoBehaviour
     private BattleCharacter _currentCharacter;
 
     public UnityEvent<bool, BattleCharacter> OnCharacterTurn;
-    public UnityEvent<bool> OnPlayerWin;
+    public UnityEvent<bool> OnBattleEnd;
 
-    public void Setup(Team playerTeam, Team enemyTeam)
+    public void Setup(List<BattleCharacter> playerTeam, List<BattleCharacter> enemyTeam)
     {
-        _playerChracters = new List<BattleCharacter>();
-        _enemyCharacters = new List<BattleCharacter>();
-
-        playerTeam.Members.ForEach(c => _playerChracters.Add(new BattleCharacter(c)));
-        enemyTeam.Members.ForEach(c => _enemyCharacters.Add(new BattleCharacter(c)));
+        _playerChracters = playerTeam;
+        _enemyCharacters = enemyTeam;
 
         var allCharacters = new List<BattleCharacter>();
         allCharacters.AddRange(_playerChracters);
@@ -53,7 +50,7 @@ public class TurnBaseBattleController : MonoBehaviour
         UpdateTurn();
     }
 
-    public void SkillAction(BattleCharacter character, BaseSkillSO skill, List<BattleCharacter> targets)
+    public SkillActionResult SkillAction(BattleCharacter character, BaseSkillSO skill, List<BattleCharacter> targets)
     {
         skill.ApplySkill(character, targets.Select(c => c as IBattleCharacter).ToList());
 
@@ -69,22 +66,36 @@ public class TurnBaseBattleController : MonoBehaviour
 
         if (_playerChracters.Contains(character))
         {
+            Debug.Log($"Check if Player Characters are alives");
             if (!IsTeamAlive(_enemyCharacters))
             {
-                OnPlayerWin?.Invoke(true);
+                Debug.Log("     Player Lose");
+                OnBattleEnd?.Invoke(true);
             }
         }
         else
         {
+            Debug.Log($"Check if Enemies Characters are alives");
             if (!IsTeamAlive(_playerChracters))
             {
-                OnPlayerWin?.Invoke(false);
+                Debug.Log("     Player Win");
+                OnBattleEnd?.Invoke(false);
             }
         }
+
+        var skillResult = new SkillActionResult(character, skill, targets);
+
+        return skillResult;
     }
 
     private bool IsTeamAlive(List<BattleCharacter> team)
     {
+        Debug.Log("IsTeamAlive");
+        foreach (var c in team)
+        {
+            Debug.Log($"     => {c.BaseCharacter.Name} {c.IsAlive()} {c.Health}");
+        }
+
         foreach (var character in team)
         {
             if (character.IsActive() && character.IsAlive()) return true;
