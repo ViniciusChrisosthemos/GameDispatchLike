@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72154cb87e52ad345a73118aee8a7006, type: 3}
+  m_Name: Mission_Day-0_Izuku-Shoto-Bakugo
+  m_EditorClassIdentifier: 
+  Name: Assault!
+  Description: "\"There is an armored car in front of the bank and people inside
+    with weapons and colorful masks. I think it\u2019s a robbery!\""
+  RequirementDescriptionItems:
+  - Description: <Protect> the civilians from the bandits
+    StatType: 1
+  - Description: <Defeat> all the bandits
+    StatType: 0
+  DifficultyLevel: 1
+  RequiredStats:
+    _strengh:
+      BaseValue: 0
+      Bonus: 
+    _endurance:
+      BaseValue: 2
+      Bonus: 
+    _agility:
+      BaseValue: 2
+      Bonus: 
+    _charisma:
+      BaseValue: 4
+      Bonus: 
+    _intelligence:
+      BaseValue: 8
+      Bonus: 
+    _maxStatValue: 10
+  MaxTeamSize: 2
+  RewardExperience: 1000
+  RewardGold: 400
+  RewardReputation: 15
+  TimeToAccept: 15
+  TimeToComplete: 15
+  TimeToAnswerEvent: 15
+  ClientArt: {fileID: 21300000, guid: bf27f7f79c78a8141aa0a64fd3803613, type: 3}
+  EnvironmentArt: {fileID: 21300000, guid: bf523ce472715f54c9cc1a760677644c, type: 3}
+  Type: 0
+  RandomMissionEvents:
+  - Title: Assult!
+    Description: One of the bandits took one of the civilians as refere. What do
+      we do now?
+    MissionChoices:
+    - Requirement:
+        Description: Negotiate with the bandit
+        StatType: 3
+      StatAmountRequired: 6
+      SucceededDescription: The bandit agreed to exchange the hostage for a hero
+        and ended up being subdued.
+      FailedDescription: 
+      Character: {fileID: 0}
+    - Requirement:
+        Description: Move quickly and disarm the bandit
+        StatType: 0
+      StatAmountRequired: 0
+      SucceededDescription: 
+      FailedDescription: 
+      Character: {fileID: 11400000, guid: 7a729e992208c254db70031918791ac4, type: 2}
+    - Requirement:
+        Description: Throw an ice arrow at the weapon
+        StatType: 0
+      StatAmountRequired: 0
+      SucceededDescription: 
+      FailedDescription: 
+      Character: {fileID: 11400000, guid: c2cdc865ce4343c439e8e2aa1756703d, type: 2}
+    - Requirement:
+        Description: Threaten to do horrible things to the bandit.
+        StatType: 0
+      StatAmountRequired: 0
+      SucceededDescription: 
+      FailedDescription: 
+      Character: {fileID: 11400000, guid: 667571677c84a8b4a8cf30138273c09f, type: 2}
+  BattleEvents: []

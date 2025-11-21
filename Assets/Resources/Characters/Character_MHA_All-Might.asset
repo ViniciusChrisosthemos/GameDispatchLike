@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: All-Might
   Name: All Might
+  Rank: {fileID: 11400000, guid: ad5379ab431e7f64fbaa598a7facb35d, type: 2}
+  ColorBackground: {r: 1, g: 0.9094448, b: 0, a: 1}
   BaseStats:
     _strengh:
       BaseValue: 10
@@ -31,9 +33,10 @@ MonoBehaviour:
       BaseValue: 10
       Bonus: 
     _maxStatValue: 10
-  FaceArt: {fileID: -882736726, guid: 9601f2dff7758814498d710286d22a09, type: 3}
-  BodyArt: {fileID: 719434393, guid: 9601f2dff7758814498d710286d22a09, type: 3}
-  FullArt: {fileID: -954750311, guid: 9601f2dff7758814498d710286d22a09, type: 3}
+  FaceArt: {fileID: -985244785, guid: 345750340f05c1244b3ce096ca22ffc7, type: 3}
+  BodyArt: {fileID: 585824809, guid: 345750340f05c1244b3ce096ca22ffc7, type: 3}
+  FullArt: {fileID: 1183039880, guid: 345750340f05c1244b3ce096ca22ffc7, type: 3}
+  IconArt: {fileID: 21300000, guid: 422d4873720747645ad5a213b79fbb3c, type: 3}
   MissionCompletedArt: {fileID: 21300000, guid: eeea0f63088b49b4d8787ce9c1ae4ad9, type: 3}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12

@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Endeavor
   Name: Endeavor
+  Rank: {fileID: 11400000, guid: ad5379ab431e7f64fbaa598a7facb35d, type: 2}
+  ColorBackground: {r: 0.8773585, g: 0, b: 0, a: 1}
   BaseStats:
     _strengh:
       BaseValue: 10
@@ -31,9 +33,10 @@ MonoBehaviour:
       BaseValue: 8
       Bonus: 
     _maxStatValue: 10
-  FaceArt: {fileID: -82352515, guid: dc0899d0522245646a2276da4f6eda5c, type: 3}
-  BodyArt: {fileID: -830863805, guid: dc0899d0522245646a2276da4f6eda5c, type: 3}
-  FullArt: {fileID: -705431155, guid: dc0899d0522245646a2276da4f6eda5c, type: 3}
+  FaceArt: {fileID: 1530509021, guid: f6c15e238874c514fbb2b9cb148376bc, type: 3}
+  BodyArt: {fileID: 1241171821, guid: f6c15e238874c514fbb2b9cb148376bc, type: 3}
+  FullArt: {fileID: 336208030, guid: f6c15e238874c514fbb2b9cb148376bc, type: 3}
+  IconArt: {fileID: 21300000, guid: c59297ea513a64e40aa00a85fc39c0cb, type: 3}
   MissionCompletedArt: {fileID: 21300000, guid: d1e9d707db3e15d4d97066fa7762934c, type: 3}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12

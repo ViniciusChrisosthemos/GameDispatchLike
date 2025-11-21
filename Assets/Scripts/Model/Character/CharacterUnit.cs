@@ -172,6 +172,8 @@ public class CharacterUnit
             case CharacterArtType.Face: return FaceArt;
             case CharacterArtType.Body: return BodyArt;
             case CharacterArtType.FullBody: return FullArt;
+            case CharacterArtType.MissionCompleted: return _baseCharacter.MissionCompletedArt;
+            case CharacterArtType.Icon: return _baseCharacter.IconArt;
             default: return FaceArt;
         }
     }
@@ -182,7 +184,8 @@ public class CharacterUnit
     public int Level => _currentLevel;
     public int AvailablePoints => _availablePoints;
     public int CurrentXP => _currentXP;
-
+    public RankSO Rank => _baseCharacter.Rank;
+    public Color HeroBackgroundColor => _baseCharacter.ColorBackground;
     public string Name => _baseCharacter.Name;
     public Sprite FaceArt => _baseCharacter.FaceArt;
     public Sprite BodyArt => _baseCharacter.BodyArt;

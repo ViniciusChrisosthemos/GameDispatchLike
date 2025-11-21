@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Nejire-Hado
   Name: Nejire Hado
+  Rank: {fileID: 11400000, guid: eabce2eab48e9914580fc397ab06ba51, type: 2}
+  ColorBackground: {r: 0.6509804, g: 0.69803923, b: 0.83921576, a: 1}
   BaseStats:
     _strengh:
       BaseValue: 2
@@ -31,9 +33,10 @@ MonoBehaviour:
       BaseValue: 3
       Bonus: 
     _maxStatValue: 10
-  FaceArt: {fileID: 405055659, guid: f209e19ffb69b104aaa5a081369f100b, type: 3}
-  BodyArt: {fileID: 959470629, guid: f209e19ffb69b104aaa5a081369f100b, type: 3}
-  FullArt: {fileID: -1378408685, guid: f209e19ffb69b104aaa5a081369f100b, type: 3}
+  FaceArt: {fileID: -1339703538, guid: de31bc9dca772714689b3595d3c1575d, type: 3}
+  BodyArt: {fileID: 1820113638, guid: de31bc9dca772714689b3595d3c1575d, type: 3}
+  FullArt: {fileID: -1314685933, guid: de31bc9dca772714689b3595d3c1575d, type: 3}
+  IconArt: {fileID: 21300000, guid: a73274ebb5a68c54d81822e79da941aa, type: 3}
   MissionCompletedArt: {fileID: 21300000, guid: 1b178b2ce95fd0141b3c77c5b5d2a6a4, type: 3}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12

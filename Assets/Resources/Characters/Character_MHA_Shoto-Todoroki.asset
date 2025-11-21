@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Shoto-Todoroki
   Name: Shoto Todoroki
+  Rank: {fileID: 11400000, guid: a3b1c8168a258bc4493a361b1036eb6b, type: 2}
+  ColorBackground: {r: 0.2953008, g: 0.7924528, b: 0.7649623, a: 1}
   BaseStats:
     _strengh:
       BaseValue: 4
@@ -31,9 +33,10 @@ MonoBehaviour:
       BaseValue: 3
       Bonus: 
     _maxStatValue: 10
-  FaceArt: {fileID: -758851380, guid: f938d5ff50692ff499ade8c32be7930c, type: 3}
-  BodyArt: {fileID: -1168763085, guid: f938d5ff50692ff499ade8c32be7930c, type: 3}
-  FullArt: {fileID: -320555496, guid: f938d5ff50692ff499ade8c32be7930c, type: 3}
+  FaceArt: {fileID: -1459098534, guid: 92a667c274e69424f9af2849357dcce6, type: 3}
+  BodyArt: {fileID: 568086319, guid: 92a667c274e69424f9af2849357dcce6, type: 3}
+  FullArt: {fileID: 21300000, guid: 82bc1eb6e25528e448430b6fcdecdd13, type: 3}
+  IconArt: {fileID: 21300000, guid: 56fd069d408a64e48b8d4f6a54c15505, type: 3}
   MissionCompletedArt: {fileID: 21300000, guid: 82bc1eb6e25528e448430b6fcdecdd13, type: 3}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12

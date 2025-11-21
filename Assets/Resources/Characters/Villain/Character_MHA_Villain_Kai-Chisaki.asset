@@ -31,9 +31,10 @@ MonoBehaviour:
       BaseValue: 5
       Bonus: 
     _maxStatValue: 10
-  FaceArt: {fileID: -1603282632, guid: 4d889fc37e0a3f7449e563a4b38fe9c5, type: 3}
-  BodyArt: {fileID: 1008554241, guid: 4d889fc37e0a3f7449e563a4b38fe9c5, type: 3}
-  FullArt: {fileID: -750059897, guid: 4d889fc37e0a3f7449e563a4b38fe9c5, type: 3}
+  FaceArt: {fileID: -139452352, guid: 9393ae169b0b9704f9a70bd8eb182ac4, type: 3}
+  BodyArt: {fileID: 711697142, guid: 9393ae169b0b9704f9a70bd8eb182ac4, type: 3}
+  FullArt: {fileID: 444875677, guid: 9393ae169b0b9704f9a70bd8eb182ac4, type: 3}
+  IconArt: {fileID: 21300000, guid: b6683e86143c2cc4c9031d33f8470857, type: 3}
   MissionCompletedArt: {fileID: 21300000, guid: b8847d6059cb51a46bbf3d90bad58c46, type: 3}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12

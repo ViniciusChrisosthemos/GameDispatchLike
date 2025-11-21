@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Momo-Yaoyorozu
   Name: Momo Yaoyorozu
+  Rank: {fileID: 11400000, guid: a3b1c8168a258bc4493a361b1036eb6b, type: 2}
+  ColorBackground: {r: 0.745283, g: 0.60157603, b: 0.24959952, a: 1}
   BaseStats:
     _strengh:
       BaseValue: 2
@@ -31,9 +33,10 @@ MonoBehaviour:
       BaseValue: 5
       Bonus: 
     _maxStatValue: 10
-  FaceArt: {fileID: -2104330512, guid: 070a2a924fa5af0489862b4edc4901e8, type: 3}
-  BodyArt: {fileID: 394734991, guid: 070a2a924fa5af0489862b4edc4901e8, type: 3}
-  FullArt: {fileID: 482013844, guid: 070a2a924fa5af0489862b4edc4901e8, type: 3}
+  FaceArt: {fileID: -1448834148, guid: 273aa158906fa224a85896eb51304323, type: 3}
+  BodyArt: {fileID: 190967443, guid: 273aa158906fa224a85896eb51304323, type: 3}
+  FullArt: {fileID: 203439694, guid: 273aa158906fa224a85896eb51304323, type: 3}
+  IconArt: {fileID: 21300000, guid: f743a567bc3c6df49857b329c5ebe2d9, type: 3}
   MissionCompletedArt: {fileID: 21300000, guid: 91ff0e760aa1ece4e969a51e7b7fb5e8, type: 3}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12

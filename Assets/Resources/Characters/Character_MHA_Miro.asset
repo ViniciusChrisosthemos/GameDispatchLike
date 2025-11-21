@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Miro
   Name: Miro
+  Rank: {fileID: 11400000, guid: cda632a99dab79244b8651aa96e34caf, type: 2}
+  ColorBackground: {r: 0.8018868, g: 0, b: 0, a: 1}
   BaseStats:
     _strengh:
       BaseValue: 8
@@ -31,9 +33,10 @@ MonoBehaviour:
       BaseValue: 8
       Bonus: 
     _maxStatValue: 10
-  FaceArt: {fileID: -2080390019, guid: 43a95a81328330d4cab08e2ba51989b5, type: 3}
-  BodyArt: {fileID: -856725214, guid: 43a95a81328330d4cab08e2ba51989b5, type: 3}
-  FullArt: {fileID: -1259816553, guid: 43a95a81328330d4cab08e2ba51989b5, type: 3}
+  FaceArt: {fileID: 438125030, guid: 42f3c9d87fb4d3342a67992f26be6a77, type: 3}
+  BodyArt: {fileID: 1570083235, guid: 42f3c9d87fb4d3342a67992f26be6a77, type: 3}
+  FullArt: {fileID: 16472603, guid: 42f3c9d87fb4d3342a67992f26be6a77, type: 3}
+  IconArt: {fileID: 21300000, guid: 42f4d668e709f244baf6e884e64df339, type: 3}
   MissionCompletedArt: {fileID: 21300000, guid: cb23a8d7d7cc0fa449ace31f68884461, type: 3}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12

@@ -6,17 +6,22 @@ public enum CharacterArtType
 {
     Face,
     Body,
-    FullBody
+    FullBody,
+    MissionCompleted,
+    Icon
 }
 
 [CreateAssetMenu(fileName = "CharacterSO", menuName = "ScriptableObjects/Character/Character")]
 public class CharacterSO: SavebleSO
 {
     public string Name;
+    public RankSO Rank;
+    public Color ColorBackground;
     public StatManager BaseStats;
     public Sprite FaceArt;
     public Sprite BodyArt;
     public Sprite FullArt;
+    public Sprite IconArt;
     public Sprite MissionCompletedArt;
     public LevelProgression LevelProgression;
     public int TimeToRest;

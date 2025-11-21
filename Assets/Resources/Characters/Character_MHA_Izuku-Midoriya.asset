@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Izuku-Midoriya
   Name: Izuku Midoriya
+  Rank: {fileID: 11400000, guid: eabce2eab48e9914580fc397ab06ba51, type: 2}
+  ColorBackground: {r: 0.1587148, g: 0.9811321, b: 0, a: 1}
   BaseStats:
     _strengh:
       BaseValue: 3
@@ -31,9 +33,10 @@ MonoBehaviour:
       BaseValue: 2
       Bonus: 
     _maxStatValue: 10
-  FaceArt: {fileID: 1091381466, guid: 1614c72fe7ec5854895876844e960088, type: 3}
-  BodyArt: {fileID: -650824585, guid: 1614c72fe7ec5854895876844e960088, type: 3}
-  FullArt: {fileID: -159509549, guid: 1614c72fe7ec5854895876844e960088, type: 3}
+  FaceArt: {fileID: 913625752, guid: 1a283fda68bc70342a36e841f48d081f, type: 3}
+  BodyArt: {fileID: 483278327, guid: 1a283fda68bc70342a36e841f48d081f, type: 3}
+  FullArt: {fileID: -923831031, guid: 1a283fda68bc70342a36e841f48d081f, type: 3}
+  IconArt: {fileID: 21300000, guid: ff44b365d9f7d9f44a64a0cf508e8417, type: 3}
   MissionCompletedArt: {fileID: 21300000, guid: 9385c27268931ec4193967e79d65ee5a, type: 3}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12

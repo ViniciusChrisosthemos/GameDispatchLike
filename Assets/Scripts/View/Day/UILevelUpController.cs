@@ -14,11 +14,18 @@ public class UILevelUpController : MonoBehaviour
     [SerializeField] private Button _btnCloseScreen;
 
     [Header("Left Side")]
+    [SerializeField] private Image _imgCharacterBackground;
     [SerializeField] private Image _imgCharacter;
+    [SerializeField] private CharacterArtType _characterArtType;
     [SerializeField] private TextMeshProUGUI _txtCharacterName;
     [SerializeField] private TextMeshProUGUI _txtCharacterLevel;
     [SerializeField] private TextMeshProUGUI _txtAvailablePoints;
     [SerializeField] private List<UIStatLevelUpViewController> _uiStatLevelUpViewControllers;
+
+    [Header("Left Side/Hero Background")]
+    [SerializeField] private Image _imgRankBackground;
+    [SerializeField] private TextMeshProUGUI _txtRandType;
+    [SerializeField] private Image _imgHeroBackground;
 
     [Header("Right Side")]
     [SerializeField] private UIRadarChartController _uiRadarChartController;
@@ -44,9 +51,14 @@ public class UILevelUpController : MonoBehaviour
 
         _characterUnit = characterUnit;
 
-        _imgCharacter.sprite = characterUnit.FullArt;
+        _imgCharacter.sprite = characterUnit.GetArt(_characterArtType);
+        _imgCharacter.sprite = _imgCharacter.sprite;
         _txtCharacterName.text = characterUnit.Name;
         _txtCharacterLevel.text = $"{STRING_LEVEL}{characterUnit.Level}";
+
+        _imgRankBackground.color = characterUnit.Rank.BackgroundColor;
+        _txtRandType.text = characterUnit.Rank.Description;
+        _imgHeroBackground.color = characterUnit.HeroBackgroundColor;
 
         _callback = callback;
 

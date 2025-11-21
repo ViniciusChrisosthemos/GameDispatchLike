@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Katsuki-Bakugou
   Name: Katsuki Bakugou
+  Rank: {fileID: 11400000, guid: eabce2eab48e9914580fc397ab06ba51, type: 2}
+  ColorBackground: {r: 1, g: 0.3056113, b: 0, a: 1}
   BaseStats:
     _strengh:
       BaseValue: 4
@@ -31,9 +33,10 @@ MonoBehaviour:
       BaseValue: 1
       Bonus: 
     _maxStatValue: 10
-  FaceArt: {fileID: 1205589309, guid: 63c3a8b92db60cf42ade199a927d8dbb, type: 3}
-  BodyArt: {fileID: -468983479, guid: 63c3a8b92db60cf42ade199a927d8dbb, type: 3}
-  FullArt: {fileID: -182810156, guid: 63c3a8b92db60cf42ade199a927d8dbb, type: 3}
+  FaceArt: {fileID: 1869316005, guid: 02af30a44fe50a2448856ffe1c3cf944, type: 3}
+  BodyArt: {fileID: -1304891396, guid: 02af30a44fe50a2448856ffe1c3cf944, type: 3}
+  FullArt: {fileID: -57326935, guid: 02af30a44fe50a2448856ffe1c3cf944, type: 3}
+  IconArt: {fileID: 21300000, guid: c3accc9afd695d3429e804d5366d235b, type: 3}
   MissionCompletedArt: {fileID: 21300000, guid: e7e44b0de01ef004db81f8b88bb9dc02, type: 3}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12

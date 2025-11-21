@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Fumikage-Tokoyami
   Name: Fumikage Tokoyami
+  Rank: {fileID: 11400000, guid: eabce2eab48e9914580fc397ab06ba51, type: 2}
+  ColorBackground: {r: 0.2830189, g: 0.23896407, b: 0.23896407, a: 1}
   BaseStats:
     _strengh:
       BaseValue: 1
@@ -31,9 +33,10 @@ MonoBehaviour:
       BaseValue: 4
       Bonus: 
     _maxStatValue: 10
-  FaceArt: {fileID: -1714532901, guid: c7162183a538268419f7bdfd7449a1bc, type: 3}
-  BodyArt: {fileID: 1336981501, guid: c7162183a538268419f7bdfd7449a1bc, type: 3}
-  FullArt: {fileID: 226677284, guid: c7162183a538268419f7bdfd7449a1bc, type: 3}
+  FaceArt: {fileID: -122347803, guid: 63547cf99fc1b794ab709caeffd696f6, type: 3}
+  BodyArt: {fileID: -910786286, guid: 63547cf99fc1b794ab709caeffd696f6, type: 3}
+  FullArt: {fileID: 1027820099, guid: 63547cf99fc1b794ab709caeffd696f6, type: 3}
+  IconArt: {fileID: 21300000, guid: ebb250d18741a3d469aef20681f591a0, type: 3}
   MissionCompletedArt: {fileID: 21300000, guid: b8847d6059cb51a46bbf3d90bad58c46, type: 3}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12

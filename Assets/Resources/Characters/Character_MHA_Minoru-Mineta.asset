@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Minoru-Mineta
   Name: Minoru Mineta
+  Rank: {fileID: 11400000, guid: ad735b7a560ea0643aec2dfe59045cd5, type: 2}
+  ColorBackground: {r: 0.64359194, g: 0, b: 0.8396226, a: 1}
   BaseStats:
     _strengh:
       BaseValue: 1
@@ -31,9 +33,10 @@ MonoBehaviour:
       BaseValue: 1
       Bonus: 
     _maxStatValue: 10
-  FaceArt: {fileID: 58760089, guid: f3b975ad9bca5bd40a515298c429535f, type: 3}
-  BodyArt: {fileID: -497394001, guid: f3b975ad9bca5bd40a515298c429535f, type: 3}
-  FullArt: {fileID: 1523847998, guid: f3b975ad9bca5bd40a515298c429535f, type: 3}
+  FaceArt: {fileID: -354972113, guid: 8c713f2c62d5d3e449065cd5c8a6876d, type: 3}
+  BodyArt: {fileID: -870332368, guid: 8c713f2c62d5d3e449065cd5c8a6876d, type: 3}
+  FullArt: {fileID: -345944342, guid: 8c713f2c62d5d3e449065cd5c8a6876d, type: 3}
+  IconArt: {fileID: 21300000, guid: 68249a262f4ca4546b78ed1d39d55ba1, type: 3}
   MissionCompletedArt: {fileID: 21300000, guid: bcf8a047a71d71643a8660a6a2a36c6d, type: 3}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12

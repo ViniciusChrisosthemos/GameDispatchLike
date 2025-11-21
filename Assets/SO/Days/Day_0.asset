@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Day_0
   m_EditorClassIdentifier: 
   MissionSOs:
+  - {fileID: 11400000, guid: 42534a32cf3f4cf4e9332cd8da5e3359, type: 2}
+  - {fileID: 11400000, guid: 5b5c8a1d392a9bb47994933a29dea631, type: 2}
   - {fileID: 11400000, guid: 145fa57bfd2480241935fa92995c05f1, type: 2}
-  - {fileID: 11400000, guid: 145fa57bfd2480241935fa92995c05f1, type: 2}
+  - {fileID: 11400000, guid: c0b3410c7ae0d6f43bc6b9925355089c, type: 2}
+  - {fileID: 11400000, guid: 5b5c8a1d392a9bb47994933a29dea631, type: 2}
   UseAllMissions: 1
   MissionAmount: 0
   DayDurationInSeconds: 10

@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Kyoka-Jiro
   Name: Kyoka Jiro
+  Rank: {fileID: 11400000, guid: eabce2eab48e9914580fc397ab06ba51, type: 2}
+  ColorBackground: {r: 0.5813946, g: 0, b: 0.7372549, a: 1}
   BaseStats:
     _strengh:
       BaseValue: 2
@@ -31,10 +33,11 @@ MonoBehaviour:
       BaseValue: 3
       Bonus: 
     _maxStatValue: 10
-  FaceArt: {fileID: 1769121502, guid: e9bbc0231bd9d144a82de6204f66091a, type: 3}
-  BodyArt: {fileID: -2026308319, guid: e9bbc0231bd9d144a82de6204f66091a, type: 3}
-  FullArt: {fileID: -1996997575, guid: e9bbc0231bd9d144a82de6204f66091a, type: 3}
-  MissionCompletedArt: {fileID: 21300000, guid: fc1ba142d0b75dc44bdce813a3a95446, type: 3}
+  FaceArt: {fileID: 386823599, guid: c8c0d5b8635a0444ebc9bed2dd727045, type: 3}
+  BodyArt: {fileID: 355069421, guid: c8c0d5b8635a0444ebc9bed2dd727045, type: 3}
+  FullArt: {fileID: 1986750485, guid: c8c0d5b8635a0444ebc9bed2dd727045, type: 3}
+  IconArt: {fileID: 21300000, guid: 7c256d6b3c73c5a4ba607bcbe2396ed7, type: 3}
+  MissionCompletedArt: {fileID: 21300000, guid: d9bdc0485719fb4429ea34ad425dac52, type: 3}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12
   Keywords: []

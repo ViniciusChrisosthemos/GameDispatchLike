@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Denki-Kaminari
   Name: Denki Kaminari
+  Rank: {fileID: 11400000, guid: ad735b7a560ea0643aec2dfe59045cd5, type: 2}
+  ColorBackground: {r: 0.93450105, g: 1, b: 0, a: 1}
   BaseStats:
     _strengh:
       BaseValue: 2
@@ -31,9 +33,10 @@ MonoBehaviour:
       BaseValue: 2
       Bonus: 
     _maxStatValue: 10
-  FaceArt: {fileID: 1089311755, guid: 31cbbc771376d1647840dd748ecb99cd, type: 3}
-  BodyArt: {fileID: 1914717242, guid: 31cbbc771376d1647840dd748ecb99cd, type: 3}
-  FullArt: {fileID: -1900560663, guid: 31cbbc771376d1647840dd748ecb99cd, type: 3}
+  FaceArt: {fileID: 1534835573, guid: d7d7b94f05deb9e4eab6991718e8615d, type: 3}
+  BodyArt: {fileID: -1853407392, guid: d7d7b94f05deb9e4eab6991718e8615d, type: 3}
+  FullArt: {fileID: -1965632308, guid: d7d7b94f05deb9e4eab6991718e8615d, type: 3}
+  IconArt: {fileID: 21300000, guid: f03f92d8b9304af4a9be6faed9444c4d, type: 3}
   MissionCompletedArt: {fileID: 21300000, guid: c4e0a71b4f98e544a9f98f920a915b1b, type: 3}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12

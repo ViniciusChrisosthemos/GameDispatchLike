@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Tenya-Ida
   Name: Tenya Ida
+  Rank: {fileID: 11400000, guid: a3b1c8168a258bc4493a361b1036eb6b, type: 2}
+  ColorBackground: {r: 0.21693665, g: 0.2856988, b: 0.7075472, a: 1}
   BaseStats:
     _strengh:
       BaseValue: 3
@@ -31,9 +33,10 @@ MonoBehaviour:
       BaseValue: 3
       Bonus: 
     _maxStatValue: 10
-  FaceArt: {fileID: -934099031, guid: 712471b651c0a9043af782ec83639ba8, type: 3}
-  BodyArt: {fileID: -496917601, guid: 712471b651c0a9043af782ec83639ba8, type: 3}
-  FullArt: {fileID: 1617770417, guid: 712471b651c0a9043af782ec83639ba8, type: 3}
+  FaceArt: {fileID: -1226618599, guid: 2ebbad1eb9bac244d9f03a99d1ea71e6, type: 3}
+  BodyArt: {fileID: -810708624, guid: 2ebbad1eb9bac244d9f03a99d1ea71e6, type: 3}
+  FullArt: {fileID: -1597264179, guid: 2ebbad1eb9bac244d9f03a99d1ea71e6, type: 3}
+  IconArt: {fileID: 21300000, guid: 6410879d72c9e2a43b9c592b02f67651, type: 3}
   MissionCompletedArt: {fileID: 21300000, guid: 2c4686a3953d6b442887b77e16099503, type: 3}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12
