@@ -143,4 +143,12 @@ public class UITurnBaseBattleView : MonoBehaviour
     {
         return _skillActionQueue;
     }
+
+    public void RemoveAction(SkillAction action)
+    {
+        _skillActionQueue.Remove(action);
+
+        action.Skill.RequiredDiceValues.ForEach(d => _lockedDices.Remove(d));
+        _uiSkillSelectionView.UpdateActionQueue(_skillActionQueue, _currentDiceValues, _lockedDices);
+    }
 }

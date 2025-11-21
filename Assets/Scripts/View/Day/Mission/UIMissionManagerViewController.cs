@@ -31,6 +31,7 @@ public class UIMissionManagerViewController: MonoBehaviour
     [Header("Animator Events")]
     [SerializeField] private string _clearAnimationTrigger = "Clear";
     [SerializeField] private string _openMissionAnimationTrigger = "OpenMission";
+    [SerializeField] private string _openBattleMissionAnimationTrigger = "OpenBattleMission";
     [SerializeField] private string _openMissionResultAnimationTrigger = "OpenMissionResult";
     [SerializeField] private string _normalChoiceResultAnimationTrigger = "OpenChoiceResult-NormalResult";
     [SerializeField] private string _characterChoiceResultAnimationTrigger = "OpenChoiceResult-CharacterResult";
@@ -75,14 +76,18 @@ public class UIMissionManagerViewController: MonoBehaviour
         _uiSelecteTeamForBattleController.OpenScreen(mission.MaxTeamSize, enemyTeam, (playeTeam) =>
         {
             CloseScreen();
+            ResetAnimator();
             onTeamSelected?.Invoke(playeTeam);
         }, () =>
         {
             CloseScreen();
+            ResetAnimator();
             closeCallback?.Invoke();
         });
 
         _uiRequirementViewController.UpdateWindow(mission.MissionSO.RequirementDescriptionItems, false);
+
+        _animator.SetTrigger(_openBattleMissionAnimationTrigger);
     }
 
     public void OpenMissionEvent(MissionUnit mission, RandomMissionEvent missionEvent, Action<bool> callback, Action closeCallback)

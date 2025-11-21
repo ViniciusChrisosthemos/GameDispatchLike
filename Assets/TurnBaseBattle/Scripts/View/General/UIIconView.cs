@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIIconView : UIItemController
 {
+    [SerializeField] private RectTransform _parent;
     [SerializeField] private Image _imgIcon;
 
     public void SetIcon(Sprite sprite)
@@ -18,5 +19,10 @@ public class UIIconView : UIItemController
         var sprite = obj as IHasSprite;
 
         SetIcon(sprite.GetSprite());
+    }
+
+    public Vector2 GetIconSize()
+    {
+        return _parent.rect.size;
     }
 }

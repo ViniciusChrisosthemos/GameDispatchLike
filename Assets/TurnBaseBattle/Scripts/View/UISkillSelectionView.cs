@@ -132,12 +132,20 @@ public class UISkillSelectionView : MonoBehaviour
 
         lockedDicesCopy.ForEach(d => availableDicesCopy.Remove(d));
 
-        _skillActionListDisplay.SetItems(skillActionQueue.Select(sa => (object)sa).ToList(), null);
+        _skillActionListDisplay.SetItems(skillActionQueue.Select(sa => (object)sa).ToList(), HandleSkillActionSelected);
+
+        Debug.Log("AvailableDices:");
+        availableDicesCopy.ForEach(d => Debug.Log($" - {d.Type}"));
+
+        Debug.Log("LockedDices:");
+        lockedDicesCopy.ForEach(d => Debug.Log($" - {d.Type}"));
 
         foreach (var controller in _dicesValuesListDisplay.GetControllers())
         {
             var diceValue = controller.GetItem<DiceValueSO>();
             var diceController = controller.GetComponent<UIDiceView>();
+
+            diceController.SetDiceLocked(false);
 
             if (lockedDicesCopy.Contains(diceValue))
             {
@@ -149,6 +157,13 @@ public class UISkillSelectionView : MonoBehaviour
         UpdateAvailableSkills(availableDicesCopy);
 
         _btnPlayActions.gameObject.SetActive(skillActionQueue.Count > 0);
+    }
+
+    private void HandleSkillActionSelected(UIItemController controller)
+    {
+        var action = controller.GetItem<SkillAction>();
+
+        _uiTurnBaseBattleView.RemoveAction(action);
     }
 
     public void SetActive(bool v)
