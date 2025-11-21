@@ -48,7 +48,7 @@ public class UIDayManager : MonoBehaviour
         
         _uiDayReportController.OpenScreen(report, levelUpDescription, () =>
         {
-            CustomSceneManager.Instance.LoadLobbyScene();
+            _dayManager.EndDay();
         });
     }
 
@@ -127,16 +127,39 @@ public class UIDayManager : MonoBehaviour
         {
             PauseDay();
 
-            _uiMissionManagerViewController.OpenAcceptMissionScreen(missionSelected, (mission, team) =>
+            if (missionSelected.HasBattleEvent())
             {
-                if (mission != null || team != null) SendTeam(mission, team);
+                var enemies = missionSelected.GetEnemyBattleTeam();
+                var enemyTeam = new Team(enemies);
 
-                ResumeDay();
-            }, () =>
+                _uiMissionManagerViewController.OpenSelectionForBattle(missionSelected, enemyTeam, (playerTeam) =>
+                {
+                    missionSelected.AcceptMission(playerTeam);
+
+                    BattleManager.Instance.StartBattle(playerTeam, enemyTeam, result =>
+                    {
+                        HandleMissionCompleted(missionSelected, result);
+                        ResumeDay();
+                    });
+
+                }, () =>
+                {
+                    ResumeDay();
+                });
+            }
+            else
             {
-                ResumeDay();
-            });
+                _uiMissionManagerViewController.OpenAcceptMissionScreen(missionSelected, (mission, team) =>
+                {
+                    if (mission != null || team != null) SendTeam(mission, team);
 
+                    ResumeDay();
+                }, () =>
+                {
+                    ResumeDay();
+                });
+
+            }
         }
     }
 

@@ -19,10 +19,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d98d9e00e123ad14ca3f270948d28f46, type: 2}
   - {fileID: 11400000, guid: d98d9e00e123ad14ca3f270948d28f46, type: 2}
   - {fileID: 11400000, guid: d98d9e00e123ad14ca3f270948d28f46, type: 2}
-  - {fileID: 11400000, guid: d98d9e00e123ad14ca3f270948d28f46, type: 2}
   Bonus: []
   SkillTargetType: 0
   SkillTargetAmount: 2
   TargetAmount: 1
   SpriteAsset: {fileID: 11400000, guid: 45c5def210cf8c446ae604abfea4f0d2, type: 2}
-  DamageAmount: 20
+  DamageAmount: 10

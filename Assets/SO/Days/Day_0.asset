@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Day_0
   m_EditorClassIdentifier: 
   MissionSOs:
-  - {fileID: 11400000, guid: 3e337fd6e8c68524cb7ee9a86eaee608, type: 2}
+  - {fileID: 11400000, guid: 145fa57bfd2480241935fa92995c05f1, type: 2}
+  - {fileID: 11400000, guid: 145fa57bfd2480241935fa92995c05f1, type: 2}
   UseAllMissions: 1
   MissionAmount: 0
   DayDurationInSeconds: 10

@@ -13,8 +13,11 @@ public class TurnBaseBattleController : MonoBehaviour
 
     private BattleCharacter _currentCharacter;
 
-    public UnityEvent<bool, BattleCharacter> OnCharacterTurn;
     public UnityEvent<bool> OnBattleEnd;
+    public UnityEvent<bool, BattleCharacter> OnCharacterTurn;
+    public UnityEvent<List<BattleCharacter>, List<BattleCharacter>, TimelineController> OnSetupReady;
+
+    private bool _playerWin = false;
 
     public void Setup(List<BattleCharacter> playerTeam, List<BattleCharacter> enemyTeam)
     {
@@ -26,6 +29,8 @@ public class TurnBaseBattleController : MonoBehaviour
         allCharacters.AddRange(_enemyCharacters);
 
         _timelineController = new TimelineController(allCharacters.Select(c => (ITimelineElement)c).ToList());
+
+        OnSetupReady?.Invoke(_playerChracters, _enemyCharacters, _timelineController);
     }
 
     public void StartBattle()
@@ -35,12 +40,22 @@ public class TurnBaseBattleController : MonoBehaviour
 
     private void UpdateTurn()
     {
-        if (_timelineController.IsEmpty())
+        ITimelineElement timelineItem; 
+        for (int i = 0; i < _timelineController.TrueSize; i++)
         {
-            _timelineController.UpdateTimeLine();
-        }
+            if (_timelineController.IsEmpty())
+            {
+                _timelineController.UpdateTimeLine();
+            }
 
-        _currentCharacter = (BattleCharacter)_timelineController.Dequeue();
+            timelineItem = _timelineController.Dequeue();
+
+            if (timelineItem.IsActive())
+            {
+                _currentCharacter = (BattleCharacter)timelineItem;
+                break;
+            }
+        }
 
         OnCharacterTurn?.Invoke(_playerChracters.Contains(_currentCharacter), _currentCharacter);
     }
@@ -59,26 +74,23 @@ public class TurnBaseBattleController : MonoBehaviour
             if (target.IsActive() && !target.IsAlive())
             {
                 target.KillCharacter();
-
-                _timelineController.UpdateTimeLine();
+                _timelineController.TriggerItemDeactivated(target);
             }
         }
 
         if (_playerChracters.Contains(character))
         {
-            Debug.Log($"Check if Player Characters are alives");
             if (!IsTeamAlive(_enemyCharacters))
             {
-                Debug.Log("     Player Lose");
+                _playerWin = true;
                 OnBattleEnd?.Invoke(true);
             }
         }
         else
         {
-            Debug.Log($"Check if Enemies Characters are alives");
             if (!IsTeamAlive(_playerChracters))
             {
-                Debug.Log("     Player Win");
+                _playerWin = false;
                 OnBattleEnd?.Invoke(false);
             }
         }
@@ -90,12 +102,6 @@ public class TurnBaseBattleController : MonoBehaviour
 
     private bool IsTeamAlive(List<BattleCharacter> team)
     {
-        Debug.Log("IsTeamAlive");
-        foreach (var c in team)
-        {
-            Debug.Log($"     => {c.BaseCharacter.Name} {c.IsAlive()} {c.Health}");
-        }
-
         foreach (var character in team)
         {
             if (character.IsActive() && character.IsAlive()) return true;
@@ -105,4 +111,9 @@ public class TurnBaseBattleController : MonoBehaviour
     }
 
     public TimelineController TimelineController => _timelineController;
+
+    public void EndBattle()
+    {
+        BattleManager.Instance.BattleEnd(_playerWin);
+    }
 }

@@ -42,7 +42,7 @@ public class DiceThrower : MonoBehaviour
             transform.rotation = oldRotation;
             transform.Rotate(Vector3.up, angle);
 
-            var dice = Instantiate(_dicePrefab, transform.position, transform.rotation);
+            var dice = Instantiate(_dicePrefab, transform.position, transform.rotation, parent);
             _diceInstances.Add(dice.gameObject);
 
             dice.RollDice(_throwForce, _rollForce, i, diceCallback);

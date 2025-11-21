@@ -165,6 +165,17 @@ public class CharacterUnit
     public bool IsResting() => _status == CharacterStatus.Resting;
     public bool IsAvailable() => _status == CharacterStatus.Available;
 
+    public Sprite GetArt(CharacterArtType characterArtType)
+    {
+        switch(characterArtType)
+        {
+            case CharacterArtType.Face: return FaceArt;
+            case CharacterArtType.Body: return BodyArt;
+            case CharacterArtType.FullBody: return FullArt;
+            default: return FaceArt;
+        }
+    }
+
     public CharacterStatus Status { get { return _status; } }
     
     public float NormalizedExp => _currentXP / (float)_expToLevelUp;

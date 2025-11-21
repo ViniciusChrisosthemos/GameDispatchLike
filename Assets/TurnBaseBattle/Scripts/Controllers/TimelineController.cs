@@ -10,6 +10,7 @@ public class TimelineController
 
     public Action OnTimelineUpdated;
     public Action<ITimelineElement> OnDequeue;
+    public Action<ITimelineElement> OnItemDeactivated;
 
     public TimelineController(List<ITimelineElement> elements)
     {
@@ -21,7 +22,7 @@ public class TimelineController
     {
         _queue.Clear();
 
-        _elements = _elements.Where(e => e.IsActive()).OrderByDescending(e => e.GetPriority()).ToList();
+        _elements = _elements.OrderByDescending(e => e.GetPriority()).ToList();
         _elements.ForEach(e => _queue.Enqueue(e));
 
         OnTimelineUpdated?.Invoke();
@@ -35,6 +36,14 @@ public class TimelineController
 
         return element;
     }
+
+    public void TriggerItemDeactivated(ITimelineElement element)
+    {
+        OnItemDeactivated?.Invoke(element);
+    }
+
+    public int CurrentSize => _queue.Count;
+    public int TrueSize => _elements.Count;
 
     public bool IsEmpty() => _queue.Count == 0;
 

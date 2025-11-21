@@ -16,6 +16,12 @@ public class Team
         _members = new List<CharacterUnit>();
     }
 
+    public Team(List<CharacterUnit> members)
+    {
+        _members = members;
+        _maxSize = members.Count;
+    }
+
     public void AddMember(CharacterUnit newMember)
     {
         if (_members.Count < _maxSize)

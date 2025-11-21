@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CharacterArtType
+{
+    Face,
+    Body,
+    FullBody
+}
+
 [CreateAssetMenu(fileName = "CharacterSO", menuName = "ScriptableObjects/Character/Character")]
 public class CharacterSO: SavebleSO
 {

@@ -48,4 +48,9 @@ public class UIAssignedHeroStatViewController : MonoBehaviour
     {
         if (_team != null) OpenScreen(_team);
     }
+
+    public void CloseWithoutNotify()
+    {
+        _view.SetActive(false);
+    }
 }

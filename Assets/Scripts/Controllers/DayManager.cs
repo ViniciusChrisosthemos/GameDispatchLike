@@ -35,6 +35,8 @@ public class DayManager : MonoBehaviour
 
     private void Start()
     {
+        CameraManager.Instance.DisableGlobalCamera();
+
         _missionManager.OnMissionMiss.AddListener(HandleMissionMiss);
 
         StartDay();
@@ -172,6 +174,13 @@ public class DayManager : MonoBehaviour
     public void HandleCharacterArriveBase(Team team, float currentTime)
     {
         team.Members.ForEach(m => m.SetCharacterResting(currentTime));
+    }
+
+    public void EndDay()
+    {
+        CameraManager.Instance.EnableGlobalCamera();
+
+        CustomSceneManager.Instance.LoadLobbyScene();
     }
 
     public float CurrentTime => _elapseTime;

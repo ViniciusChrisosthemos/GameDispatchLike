@@ -23,4 +23,4 @@ MonoBehaviour:
   SkillTargetAmount: 0
   TargetAmount: 1
   SpriteAsset: {fileID: 11400000, guid: 45c5def210cf8c446ae604abfea4f0d2, type: 2}
-  HealAmount: 5
+  HealAmount: 10

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
@@ -184,6 +185,18 @@ public class MissionUnit
     public bool IsMissionCompletedTheEvent()
     {
         return _missionStatus == MissionStatus.CompletedTheEvent;
+    }
+
+    public bool HasBattleEvent()
+    {
+        return _missionSO.BattleEvents.Count > 0;
+    }
+
+    public List<CharacterUnit> GetEnemyBattleTeam()
+    {
+        var enemies = _missionSO.BattleEvents[0].EnemyTeam.Select(c => new CharacterUnit(c)).ToList();
+
+        return enemies;
     }
 
     public string Name => _missionSO.Name;

@@ -10,6 +10,7 @@ public class UITimelineChracterView : UIItemController
 
     [SerializeField] private GameObject _unavailableOverlay;
     [SerializeField] private GameObject _selectedOverlay;
+    [SerializeField] private GameObject _inativeOverlay;
 
     private void Awake()
     {
@@ -20,12 +21,21 @@ public class UITimelineChracterView : UIItemController
     {
         _unavailableOverlay.SetActive(true);
         _selectedOverlay.SetActive(false);
+        _inativeOverlay.SetActive(false);
+    }
+
+    public void SetInative()
+    {
+        _unavailableOverlay.SetActive(false);
+        _selectedOverlay.SetActive(false);
+        _inativeOverlay.SetActive(true);
     }
 
     public void SetSelected()
     {
         _unavailableOverlay.SetActive(false);
         _selectedOverlay.SetActive(true);
+        _inativeOverlay.SetActive(false);
     }
 
     protected override void HandleInit(object obj)
@@ -39,5 +49,6 @@ public class UITimelineChracterView : UIItemController
     {
         _unavailableOverlay.SetActive(false);
         _selectedOverlay.SetActive(false);
+        _inativeOverlay.SetActive(false);
     }
 }

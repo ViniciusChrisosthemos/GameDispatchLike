@@ -32,6 +32,15 @@ public class MissionSO : ScriptableObject
     [Header("Addicional Events")]
     public List<RandomMissionEvent> RandomMissionEvents = new List<RandomMissionEvent>();
 
+    [Header("Battle Events")]
+    public List<BattleEvent> BattleEvents = new List<BattleEvent>();
+
+    [Serializable]
+    public class BattleEvent
+    {
+        public List<CharacterSO> EnemyTeam;
+    }
+
     [Serializable]
     public class RandomMissionEvent
     {

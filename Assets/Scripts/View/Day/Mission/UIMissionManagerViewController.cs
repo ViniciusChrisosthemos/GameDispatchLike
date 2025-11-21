@@ -18,6 +18,7 @@ public class UIMissionManagerViewController: MonoBehaviour
 
     [Header("Middle")]
     [SerializeField] private UISelectTeamViewController _uiSelectTeamViewController;
+    [SerializeField] private UISelectTeamForBattleView _uiSelecteTeamForBattleController;
     [SerializeField] private UIChoiceSelectionViewController _middleUIChoiceSelectionViewController;
     [SerializeField] private UIChoiceResultViewController _uiChoiceResultViewController;
     [SerializeField] private UIMissionResultViewController _uiMissionResultViewController;
@@ -61,6 +62,27 @@ public class UIMissionManagerViewController: MonoBehaviour
         _uiRequirementViewController.UpdateWindow(mission.MissionSO.RequirementDescriptionItems, false);
 
         _animator.SetTrigger(_openMissionAnimationTrigger);
+    }
+
+    public void OpenSelectionForBattle(MissionUnit mission, Team enemyTeam, Action<Team> onTeamSelected, Action closeCallback)
+    {
+        Debug.Log($"[{GetType()}][OpenSelectionForBattle]");
+        CloseWindows();
+        _view.SetActive(true);
+
+        _uiMissionInfoViewController.UpdateMissionInfo(mission);
+
+        _uiSelecteTeamForBattleController.OpenScreen(mission.MaxTeamSize, enemyTeam, (playeTeam) =>
+        {
+            CloseScreen();
+            onTeamSelected?.Invoke(playeTeam);
+        }, () =>
+        {
+            CloseScreen();
+            closeCallback?.Invoke();
+        });
+
+        _uiRequirementViewController.UpdateWindow(mission.MissionSO.RequirementDescriptionItems, false);
     }
 
     public void OpenMissionEvent(MissionUnit mission, RandomMissionEvent missionEvent, Action<bool> callback, Action closeCallback)
@@ -150,16 +172,17 @@ public class UIMissionManagerViewController: MonoBehaviour
 
     private void CloseWindows()
     {
-        _uiMissionInfoViewController.Close();
+        _uiMissionInfoViewController.CloseWithoutNotify();
 
-        _uiSelectTeamViewController.Close();
-        _middleUIChoiceSelectionViewController.Close();
-        _uiChoiceResultViewController.Close();
-        _uiMissionResultViewController.Close();
+        _uiSelectTeamViewController.CloseWithoutNotify();
+        _uiSelecteTeamForBattleController.CloseWithoutNotify();
+        _middleUIChoiceSelectionViewController.CloseWithoutNotify();
+        _uiChoiceResultViewController.CloseWithoutNotify();
+        _uiMissionResultViewController.CloseWithoutNotify();
 
-        _uiRequirementViewController.Close();
-        _rightUIChoiceSelectionViewController.Close();
-        _uiAssignedHeroStatViewController.Close();
+        _uiRequirementViewController.CloseWithoutNotify();
+        _rightUIChoiceSelectionViewController.CloseWithoutNotify();
+        _uiAssignedHeroStatViewController.CloseWithoutNotify();
     }
 
     public void ResetAnimator()

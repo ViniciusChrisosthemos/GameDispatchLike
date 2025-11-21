@@ -116,6 +116,10 @@ public class UIChoiceResultViewController : MonoBehaviour
     {
         _view.SetActive(false);
     }
+    public void CloseWithoutNotify()
+    {
+        _view.SetActive(false);
+    }
 
     public void TriggerChoiceResultEvent()
     {

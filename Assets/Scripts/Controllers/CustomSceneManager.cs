@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SearchService;
@@ -24,5 +25,10 @@ public class CustomSceneManager : Singleton<CustomSceneManager>
     public void LoadBattleScene()
     {
         SceneManager.LoadScene(Scenes.BattleScene, LoadSceneMode.Additive);
+    }
+
+    public void UnloadBattleScene()
+    {
+        SceneManager.UnloadSceneAsync(Scenes.BattleScene);
     }
 }

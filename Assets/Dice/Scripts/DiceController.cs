@@ -15,6 +15,7 @@ public class DiceController : MonoBehaviour
     public List<AudioClip> _diceRollSFXs;
     public float _diceRollSFXVolume;
 
+    private int _diceID;
     private int _diceFaceIndex = -1;
     private bool _hasStoppedRolling;
     private bool _delayFinished;
@@ -69,14 +70,14 @@ public class DiceController : MonoBehaviour
             }
         }
 
-        _onRollResultCallback?.Invoke(_diceFaceIndex, _diceFaces[topFace].DiceValue);
+        _onRollResultCallback?.Invoke(_diceID, _diceFaces[topFace].DiceValue);
 
         return topFace + 1;
     }
 
     public void RollDice(float throwForce, float rollForce, int diceIndex, Action<int, DiceValueSO> onRollFinished)
     {
-        _diceFaceIndex = diceIndex;
+        _diceID = diceIndex;
         _onRollResultCallback = onRollFinished;
 
         var randomVariance = Random.Range(-1f, 1f);

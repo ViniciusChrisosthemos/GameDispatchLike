@@ -147,6 +147,8 @@ public class UISkillSelectionView : MonoBehaviour
         }
 
         UpdateAvailableSkills(availableDicesCopy);
+
+        _btnPlayActions.gameObject.SetActive(skillActionQueue.Count > 0);
     }
 
     public void SetActive(bool v)
@@ -198,7 +200,7 @@ public class UISkillSelectionView : MonoBehaviour
 
         _btnPass.gameObject.SetActive(true);
         _btnRollDices.gameObject.SetActive(false);
-        _btnPlayActions.gameObject.SetActive(true);
+        _btnPlayActions.gameObject.SetActive(false);
     }
 
     public void HideButtons()

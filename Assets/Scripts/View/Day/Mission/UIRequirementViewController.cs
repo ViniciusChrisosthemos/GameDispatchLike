@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +31,11 @@ public class UIRequirementViewController : MonoBehaviour
     }
 
     public void Close()
+    {
+        _view.SetActive(false);
+    }
+
+    public void CloseWithoutNotify()
     {
         _view.SetActive(false);
     }

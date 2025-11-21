@@ -31,4 +31,9 @@ public class UIMissionInfoViewController : MonoBehaviour
     {
         _view.SetActive(false);
     }
+
+    public void CloseWithoutNotify()
+    {
+        _view.SetActive(false);
+    }
 }

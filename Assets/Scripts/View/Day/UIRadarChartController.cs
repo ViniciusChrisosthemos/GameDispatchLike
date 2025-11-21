@@ -320,11 +320,12 @@ public class UIRadarChartController : MonoBehaviour
 
     private void OnDisable()
     {
+        /*
         _canvasRenderer.Clear();
         if (_borderRenderer != null)
             _borderRenderer.Clear();
         if (_circlesRenderer != null)
-            _circlesRenderer.Clear();
+            _circlesRenderer.Clear();*/
     }
 
     public List<Vector3> GetVertices()

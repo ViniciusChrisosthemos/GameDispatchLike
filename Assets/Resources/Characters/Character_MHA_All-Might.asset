@@ -39,8 +39,6 @@ MonoBehaviour:
   TimeToRest: 12
   Keywords: []
   Skills:
-  - {fileID: 11400000, guid: ea81b6e267b294145981ed921859775d, type: 2}
-  - {fileID: 11400000, guid: f39c5290992140142a435dda59161408, type: 2}
-  - {fileID: 11400000, guid: 09cf5395e389c56469dfa9911ba43b36, type: 2}
-  - {fileID: 11400000, guid: cefcd1a7d737f3142850086ea98f0df4, type: 2}
-  - {fileID: 11400000, guid: 3d315dc69cde34a41bd0a5a965be4ab2, type: 2}
+  - {fileID: 11400000, guid: 6a87f1eaebb66bb498e7c8ea7ffd26fe, type: 2}
+  - {fileID: 11400000, guid: 52dc1eeb53aa4484eb8ebf5e5f92ba87, type: 2}
+  - {fileID: 11400000, guid: 06c2fdfd1592be34db8233b8b051810a, type: 2}

@@ -6,6 +6,7 @@ using UnityEngine;
 public class RollDiceController : MonoBehaviour
 {
     [SerializeField] private GameObject _diceView;
+    [SerializeField] private GameObject _uiDiceView;
     [SerializeField] private DiceThrower _diceThrower;
     [SerializeField] private Transform _diceParent;
 
@@ -16,7 +17,10 @@ public class RollDiceController : MonoBehaviour
 
     public void RollDices(int diceAmount, Action<List<DiceValueSO>> values)
     {
+        Debug.Log("Roll Dices");
         _diceView.SetActive(true);
+        _uiDiceView.SetActive(true);
+
         _diceValues = new Dictionary<int, DiceValueSO>();
 
         _diceParent.ClearChilds();
@@ -42,6 +46,9 @@ public class RollDiceController : MonoBehaviour
             var values = _diceValues.Values.ToList();
 
             _allDiceRolledCallback?.Invoke(values);
+
+            _diceView.SetActive(false);
+            _uiDiceView.SetActive(false);
         }
     }
 }

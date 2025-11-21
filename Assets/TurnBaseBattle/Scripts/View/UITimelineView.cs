@@ -11,46 +11,70 @@ public class UITimelineView : MonoBehaviour
     private List<UITimelineChracterView> _timelineCharacterControllers;
 
     private TimelineController _timelineController;
+    private ITimelineElement _currentElement;
 
     public void SetTimeline(TimelineController timelineController)
     {
         _timelineController = timelineController;
 
-        _timelineController.OnTimelineUpdated += HandleTimelineUpdated;
         _timelineController.OnDequeue += HandleTimelineDequeue;
+        _timelineController.OnTimelineUpdated += HandleTimelineUpdated;
+        _timelineController.OnItemDeactivated += HandleItemElementDeactivated;
 
         HandleTimelineUpdated();
     }
 
     private void HandleTimelineDequeue(ITimelineElement element)
     {
-        var controller = _timelineCharacterControllers.Find(c => c.GetItem<ITimelineElement>() == element);
+        UITimelineChracterView controller;
+
+        if (_currentElement != null)
+        {
+            controller = _timelineCharacterControllers.Find(c => c.GetItem<ITimelineElement>() == _currentElement);
+
+            controller.SetUnavailable();
+        }
+
+        if (!element.IsActive()) return;
+
+        controller = _timelineCharacterControllers.Find(c => c.GetItem<ITimelineElement>() == element);
 
         controller.SetSelected();
 
-        var queue = _timelineController.GetTimeline();
-
-        foreach (var c in _timelineCharacterControllers)
-        {
-            var e = c.GetItem<ITimelineElement>();
-
-            if (e != element && !queue.Contains(e))
-            {
-                c.SetUnavailable();
-            }
-        }
+        _currentElement = element;
     }
 
     private void HandleTimelineUpdated()
     {
-        var elements = _timelineController.GetElements().Select(e => e as object).ToList();
+        var elements = _timelineController.GetElements().Where(e => e.IsActive()).ToList();
 
         _characterIcons.SetItems(elements, null);
 
+        var controllers = _characterIcons.GetControllers();
         _timelineCharacterControllers = new List<UITimelineChracterView>();
-        foreach (var controller in _characterIcons.GetControllers())
+
+        for (int i = 0; i < elements.Count; i++)
         {
-            _timelineCharacterControllers.Add(controller.GetComponent<UITimelineChracterView>());
+            var controller = controllers[i];
+            var tmElement = controller.GetItem<ITimelineElement>();
+            var tmController = controller.GetComponent<UITimelineChracterView>();
+
+            _timelineCharacterControllers.Add(tmController);
+
+            if (!tmElement.IsActive())
+            {
+                tmController.SetInative();
+            }
         }
+
+        _currentElement = null;
+    }
+
+    private void HandleItemElementDeactivated(ITimelineElement element)
+    {
+        Debug.Log($"HandleItemElementDeactivated   {element}");
+
+        var controller = _timelineCharacterControllers.Find(c => c.GetItem<ITimelineElement>() == element);
+        controller.SetInative();
     }
 }

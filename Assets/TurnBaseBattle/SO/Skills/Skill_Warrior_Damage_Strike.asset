@@ -19,20 +19,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3b06cab473803ba4584781bb8c7b18de, type: 2}
   - {fileID: 11400000, guid: 3b06cab473803ba4584781bb8c7b18de, type: 2}
   Bonus: []
+  SkillTargetType: 0
+  SkillTargetAmount: 0
   TargetAmount: 1
   SpriteAsset: {fileID: 11400000, guid: 45c5def210cf8c446ae604abfea4f0d2, type: 2}
-  DamageAmount: 2
-  Levels:
-  - BaseDescription: 1
-    BaseValue: 0
-    Bonus: []
-  - BaseDescription: 0
-    BaseValue: 0
-    Bonus:
-    - Name: 
-      Description: 
-      BaseValue: 1
-      Type: 1
-      DicesRequired:
-      - {fileID: 11400000, guid: 3b06cab473803ba4584781bb8c7b18de, type: 2}
-      - {fileID: 11400000, guid: 3b06cab473803ba4584781bb8c7b18de, type: 2}
+  DamageAmount: 5

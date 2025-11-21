@@ -8,6 +8,8 @@ public class UITeamMemberController : UIItemController
 {
     [SerializeField] private Image _imgCharacter;
     [SerializeField] private Button _btnCLick;
+    [SerializeField] private bool _startAsEmpty = true;
+    [SerializeField] private CharacterArtType _characterArtType = CharacterArtType.Face;
 
     private void Awake()
     {
@@ -31,7 +33,15 @@ public class UITeamMemberController : UIItemController
     {
         _item = obj as CharacterUnit;
 
-        RmvCharacter();
+        if (_startAsEmpty)
+        {
+            RmvCharacter();
+        }
+        else
+        {
+            var character = obj as CharacterUnit;
+            _imgCharacter.sprite = character.GetArt(_characterArtType);
+        }
     }
 
 }

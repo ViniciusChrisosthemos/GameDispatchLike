@@ -37,6 +37,8 @@ public class UISelectTeamViewController : MonoBehaviour
             Close();
             _closeWindowCallback?.Invoke();
         });
+
+        CloseWithoutNotify();
     }
 
     public void OpenScreen(MissionUnit mission, Action<MissionUnit, Team> callback, Action closeWindowCallback)
@@ -124,6 +126,10 @@ public class UISelectTeamViewController : MonoBehaviour
         _radarChartTeam.UpdateStats(_currentTeam.GetTeamStats().GetValues());
     }
 
+    public void CloseWithoutNotify()
+    {
+        _view.SetActive(false);
+    }
     public void Close()
     {
         _view.SetActive(false);

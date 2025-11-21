@@ -25,8 +25,8 @@ public class UIChoiceSelectionViewController : MonoBehaviour
     {
         if (_btnCloseScreen != null)
             _btnCloseScreen.onClick.AddListener(Close);
-        
-        Close();
+
+        CloseWithoutNotify();
     }
 
     public void OpenScreen(MissionUnit missionUnit, RandomMissionEvent missionEvent, bool showStats, Action<MissionChoice> callback, Action closeCallback)

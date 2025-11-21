@@ -26,6 +26,30 @@ public class UIListDisplay : MonoBehaviour
 
     public UIListDisplay() { }
 
+    public void SetItems<T>(List<T> newItems, Action<UIItemController> onSelectItem)
+    {
+        var objectItems = newItems.Select(i => i as object).ToList();
+        SetItems(objectItems, onSelectItem);
+    }
+
+    public void SetItems(Action<UIItemController> handleTeamCharacterSelected)
+    {
+        var emptyList = new List<object>();
+        SetItems(emptyList, handleTeamCharacterSelected);
+    }
+
+    public void SetItems(int itemAmount)
+    {
+        var placeHolderValues = new List<int>();
+
+        for (int i = 0; i < itemAmount; i++)
+        {
+            placeHolderValues.Add(i);
+        }
+
+        SetItems(placeHolderValues, null);
+    }
+
     public void SetItems(List<object> newItems, Action<UIItemController> onSelectItem)
     {
         _items = newItems;
