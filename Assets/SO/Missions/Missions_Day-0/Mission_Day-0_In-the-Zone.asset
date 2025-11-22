@@ -10,47 +10,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72154cb87e52ad345a73118aee8a7006, type: 3}
-  m_Name: Mission_Day-0_Battle
+  m_Name: Mission_Day-0_In-the-Zone
   m_EditorClassIdentifier: 
-  Name: Demo Battle
-  Description: '"The museum is doing an exhibit on local superheroes and needs a
-    guest speaker!"'
+  Name: In the Zone
+  Description: '"Danny ''The Bone Zone'' Diaz here. Today''s topic is all babout
+    SDN .... hiring crimanals! To protect us!"'
   RequirementDescriptionItems:
-  - Description: <Unveil> the new superhero exhibit to the excited audience
-    StatType: 3
-  - Description: <Incorporate> your unique <perspective> as a superhero
+  - Description: <Educate> the Bone Zone on SDN's Phoenix Program
     StatType: 4
+  - Description: Prove him wrong about the Z-Team
+    StatType: 3
   DifficultyLevel: 1
   RequiredStats:
     _strengh:
-      BaseValue: 0
+      BaseValue: 1
       Bonus: 
     _endurance:
-      BaseValue: 2
+      BaseValue: 1
       Bonus: 
     _agility:
-      BaseValue: 2
+      BaseValue: 1
       Bonus: 
     _charisma:
       BaseValue: 4
       Bonus: 
     _intelligence:
-      BaseValue: 8
+      BaseValue: 4
       Bonus: 
     _maxStatValue: 10
-  MaxTeamSize: 3
-  RewardExperience: 1000
-  RewardGold: 400
+  MaxTeamSize: 1
+  RewardExperience: 150
+  RewardGold: 50
   RewardReputation: 15
   TimeToAccept: 15
   TimeToComplete: 3
   TimeToAnswerEvent: 15
-  ClientArt: {fileID: 21300000, guid: bf27f7f79c78a8141aa0a64fd3803613, type: 3}
+  ClientArt: {fileID: 21300000, guid: cb7ae2834807ba546b75360e396a173a, type: 3}
   EnvironmentArt: {fileID: 21300000, guid: bf523ce472715f54c9cc1a760677644c, type: 3}
-  Type: 4
+  Type: 6
   RandomMissionEvents: []
-  BattleEvents:
-  - EnemyTeam:
-    - {fileID: 11400000, guid: 70501899de400fa429d0f6588c72053b, type: 2}
-    - {fileID: 11400000, guid: f4abd3ed6bc3ac945a007a6a87805415, type: 2}
-    - {fileID: 11400000, guid: 03fc3978fc1112c4794160b3659a4ec8, type: 2}
+  BattleEvents: []

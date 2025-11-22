@@ -42,7 +42,7 @@ public class CharacterUnit
         _isScheduled = false;
     }
 
-    public CharacterUnit(CharacterSO baseCharacter, int currentLevel, int currentXP, StatManager statManager, bool isScheduled)
+    public CharacterUnit(CharacterSO baseCharacter, int currentLevel, int currentXP, int availablePoints, StatManager statManager, bool isScheduled)
     {
         _baseCharacter = baseCharacter;
 
@@ -51,6 +51,7 @@ public class CharacterUnit
 
         _currentLevel = currentLevel;
         _currentXP = currentXP;
+        _availablePoints = availablePoints;
 
         _expToLevelUp = _baseCharacter.LevelProgression.GetXPForLevel(currentLevel);
         _isScheduled = isScheduled;

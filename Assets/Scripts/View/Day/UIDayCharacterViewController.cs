@@ -40,8 +40,6 @@ public class UIDayCharacterViewController : MonoBehaviour
 
     private void Start()
     {
-        _levelUpOverlay.SetActive(false);
-
         SetStatusAvailable();
     }
 
@@ -66,6 +64,7 @@ public class UIDayCharacterViewController : MonoBehaviour
         _characterUnit.OnCharacterStatChanged.AddListener(HandleStatChangedEvent);
 
         HandleExpChangedEvent(characterUnit);
+        HandleStatChangedEvent(characterUnit);
 
         _btnLevelUp.onClick.AddListener(HandleBTNLevelUPEvent);
     }

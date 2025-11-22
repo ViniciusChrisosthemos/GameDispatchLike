@@ -8,17 +8,14 @@ using static StatManager;
 
 public class UILevelUpController : MonoBehaviour
 {
-    private readonly string STRING_LEVEL = "Lvl. ";
-
     [SerializeField] private GameObject _view;
     [SerializeField] private Button _btnCloseScreen;
 
     [Header("Left Side")]
-    [SerializeField] private Image _imgCharacterBackground;
     [SerializeField] private Image _imgCharacter;
+    [SerializeField] private Image _imgCharacterBackground;
     [SerializeField] private CharacterArtType _characterArtType;
     [SerializeField] private TextMeshProUGUI _txtCharacterName;
-    [SerializeField] private TextMeshProUGUI _txtCharacterLevel;
     [SerializeField] private TextMeshProUGUI _txtAvailablePoints;
     [SerializeField] private List<UIStatLevelUpViewController> _uiStatLevelUpViewControllers;
 
@@ -51,10 +48,9 @@ public class UILevelUpController : MonoBehaviour
 
         _characterUnit = characterUnit;
 
-        _imgCharacter.sprite = characterUnit.GetArt(_characterArtType);
-        _imgCharacter.sprite = _imgCharacter.sprite;
-        _txtCharacterName.text = characterUnit.Name;
-        _txtCharacterLevel.text = $"{STRING_LEVEL}{characterUnit.Level}";
+        _imgCharacterBackground.sprite = characterUnit.GetArt(_characterArtType);
+        _imgCharacter.sprite = _imgCharacterBackground.sprite;
+        _txtCharacterName.text = $"{characterUnit.Name} <color=yellow>Lvl.{characterUnit.Level}</color>";
 
         _imgRankBackground.color = characterUnit.Rank.BackgroundColor;
         _txtRandType.text = characterUnit.Rank.Description;

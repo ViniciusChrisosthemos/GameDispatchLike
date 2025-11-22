@@ -19,6 +19,7 @@ public class FactoryCharacterUnit
         var currentXP = data.CurrentXP;
         var currentLevel = data.CurrentLevel;
         var isScheduled = data.IsScheduled;
+        var AvailablePoints = data.AvailablePoints;
 
         var statManager = new StatManager();
 
@@ -28,7 +29,7 @@ public class FactoryCharacterUnit
         statManager.SetStat(StatType.Charisma, new Stat(data.StatManagerData.Charisma.BaseValue, data.StatManagerData.Charisma.Bonus));
         statManager.SetStat(StatType.Intelligence, new Stat(data.StatManagerData.Intelligence.BaseValue, data.StatManagerData.Intelligence.Bonus));
 
-        return new CharacterUnit(baseCharacterSO, currentXP, currentLevel, statManager, isScheduled);
+        return new CharacterUnit(baseCharacterSO, currentLevel, currentXP, AvailablePoints, statManager, isScheduled);
     }
 
     public CharacterUnit CreateCharacterUnit(CharacterSO character)
