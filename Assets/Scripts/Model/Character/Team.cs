@@ -53,6 +53,7 @@ public class Team
 
     public bool HasMember(CharacterUnit characterUnit) => _members.Contains(characterUnit);
 
+    public float GetMoveSpeed() => Members[0].BaseCharacterSO.BaseMoveSpeed;
     public Stat GetStat(StatType statType) => GetTeamStats().GetStat(statType);
     public int Size => _members.Count;
     public int MaxSize { get { return _maxSize; } }

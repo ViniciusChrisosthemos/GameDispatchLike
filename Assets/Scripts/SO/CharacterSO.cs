@@ -25,6 +25,7 @@ public class CharacterSO: SavebleSO
     public Sprite MissionCompletedArt;
     public LevelProgression LevelProgression;
     public int TimeToRest;
-    public List<KeywordSO> Keywords;
+    public List<AbstractKeywordSO> Keywords;
     public List<BaseSkillSO> Skills;
+    public float BaseMoveSpeed;
 }

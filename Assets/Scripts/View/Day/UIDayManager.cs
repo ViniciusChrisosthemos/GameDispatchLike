@@ -182,7 +182,7 @@ public class UIDayManager : MonoBehaviour
         var controller = _uiMissionControllers.Find(m => m.MissionUnit.ID == missionUnit.ID);
         HandleCallForDeleteMission(controller);
 
-        _animatePathController.AnimatePath(missionUnit.Team, missionUnit.Location, _baseTransform, () =>
+        _animatePathController.AnimatePath(missionUnit.Team, missionUnit.Team.GetMoveSpeed(), missionUnit.Location, _baseTransform, () =>
         {
             _dayManager.HandleCharacterArriveBase(missionUnit.Team, _dayManager.CurrentTime);
         });
@@ -202,7 +202,7 @@ public class UIDayManager : MonoBehaviour
     {
         _dayManager.AcceptMission(mission, currentTeam);
 
-        _animatePathController.AnimatePath(currentTeam, _baseTransform, mission.Location, () =>
+        _animatePathController.AnimatePath(currentTeam, currentTeam.GetMoveSpeed(), _baseTransform, mission.Location, () =>
         {
             _dayManager.StartMission(mission);
         });

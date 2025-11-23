@@ -35,7 +35,7 @@ public class UISelectTeamForBattleView : MonoBehaviour
         _btnSendTeam.onClick.AddListener(SendTeam);
 
         _btnCloseScreen.onClick.RemoveAllListeners();
-        _btnCloseScreen.onClick.AddListener(Close);
+        _btnCloseScreen.onClick.AddListener(CloseScreen);
 
         _btnSendTeam.interactable = false;
 

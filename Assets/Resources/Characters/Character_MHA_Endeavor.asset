@@ -43,5 +43,6 @@ MonoBehaviour:
   Keywords: []
   Skills:
   - {fileID: 11400000, guid: f08fa9bea60352243bb127f75053ea88, type: 2}
-  - {fileID: 11400000, guid: 48152d03ca411fa40a6114175d81f9f3, type: 2}
+  - {fileID: 11400000, guid: 98d60af88642f654ea8fe863abfbdf97, type: 2}
   - {fileID: 11400000, guid: 64f92f86045add745abcd5a8cee12b04, type: 2}
+  BaseMoveSpeed: 0.85

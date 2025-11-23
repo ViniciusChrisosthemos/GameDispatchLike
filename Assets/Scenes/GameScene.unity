@@ -7682,7 +7682,6 @@ MonoBehaviour:
   _pathFinderManager: {fileID: 67421945}
   _heroPathPrefab: {fileID: 4086124736951986453, guid: fc4f5b7e3592c2a4882ee3c2960e79b6, type: 3}
   _objsParent: {fileID: 1013082630}
-  _moveSpeed: 0.7
   OnStartAnimate:
     m_PersistentCalls:
       m_Calls:
@@ -10215,7 +10214,22 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9218698968957699143, guid: cc28d3b88d95e3142a71047abf04fa3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 598901536651775469, guid: cc28d3b88d95e3142a71047abf04fa3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 4656948512419288288, guid: cc28d3b88d95e3142a71047abf04fa3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 6191341067887068777, guid: cc28d3b88d95e3142a71047abf04fa3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 2205457631846287834, guid: cc28d3b88d95e3142a71047abf04fa3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: cc28d3b88d95e3142a71047abf04fa3b, type: 3}
 --- !u!224 &1230558895 stripped
 RectTransform:
@@ -14546,7 +14560,22 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9218698968957699143, guid: cc28d3b88d95e3142a71047abf04fa3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 598901536651775469, guid: cc28d3b88d95e3142a71047abf04fa3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 4656948512419288288, guid: cc28d3b88d95e3142a71047abf04fa3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 6191341067887068777, guid: cc28d3b88d95e3142a71047abf04fa3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 2205457631846287834, guid: cc28d3b88d95e3142a71047abf04fa3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: cc28d3b88d95e3142a71047abf04fa3b, type: 3}
 --- !u!224 &1999030097 stripped
 RectTransform:
@@ -19738,7 +19767,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1158313977
   m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &964918884240558564
@@ -22461,11 +22490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621066a753ddd2148beb502843e18980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectsToActive:
-  - {fileID: 7406470983749064259}
-  _objectsToDeactive:
-  - {fileID: 1220010789}
-  - {fileID: 3654733907350169139}
+  _battleView: {fileID: 7406470983749064259}
   _turnBaseBattleController: {fileID: 5761015321422064763}
 --- !u!1 &1719275599708375761
 GameObject:
@@ -29827,7 +29852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8653829429685772115, guid: e9f8023c9e07ea742aeaaac6af9118f8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 58.333332
+      value: 58.333344
       objectReference: {fileID: 0}
     - target: {fileID: 8653829429685772115, guid: e9f8023c9e07ea742aeaaac6af9118f8, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -47330,7 +47355,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2800152256150186094}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

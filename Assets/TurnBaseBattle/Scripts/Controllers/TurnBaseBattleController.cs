@@ -8,9 +8,7 @@ public class TurnBaseBattleController : MonoBehaviour
 {
     private List<BattleCharacter> _playerChracters;
     private List<BattleCharacter> _enemyCharacters;
-
     private TimelineController _timelineController;
-
     private BattleCharacter _currentCharacter;
 
     public UnityEvent<bool> OnBattleEnd;

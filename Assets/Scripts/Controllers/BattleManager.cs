@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class BattleManager : Singleton<BattleManager>
 {
-    [SerializeField] private List<GameObject> _objectsToActive;
-    [SerializeField] private List<GameObject> _objectsToDeactive;
-
     [SerializeField] private TurnBaseBattleController _turnBaseBattleController;
 
     private Team _playerTeam;
@@ -19,9 +16,6 @@ public class BattleManager : Singleton<BattleManager>
         _playerTeam = playerTeam;
         _enemyTeam = enemyTeam;
         _onBattleEndCallback = onBattleEndCallback;
-
-        _objectsToActive.ForEach(obj => obj.SetActive(true));
-        _objectsToDeactive.ForEach(obj => obj.SetActive(false));
 
         var playerBattleCharacters = _playerTeam.Members.Select(c => new BattleCharacter(c)).ToList();
         var enemyBattleCharacters = _enemyTeam.Members.Select(c => new BattleCharacter(c)).ToList();
@@ -36,9 +30,6 @@ public class BattleManager : Singleton<BattleManager>
 
     public void BattleEnd(bool isPlayerWinner)
     {
-        _objectsToActive.ForEach(obj => obj.SetActive(false));
-        _objectsToDeactive.ForEach(obj => obj.SetActive(true));
-
         _onBattleEndCallback?.Invoke(isPlayerWinner);
     }
 }
