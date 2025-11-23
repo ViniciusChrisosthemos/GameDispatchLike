@@ -27,7 +27,8 @@ public class UIChoiceResultViewController : MonoBehaviour
 
     [Header("Character Choice References")]
     [SerializeField] private Image _imgCharacterChoiceArt;
-    [SerializeField] private Image _imgCharacterFaceChoiceArt;
+    [SerializeField] private Image _imgCharacterFaceBackground;
+    [SerializeField] private Image _imgCharacterBackground;
 
     [Header("Events")]
     public UnityEvent OnChoiceResultFailEvent;
@@ -99,7 +100,8 @@ public class UIChoiceResultViewController : MonoBehaviour
             _characterChoiceView.SetActive(true);
 
             _imgCharacterChoiceArt.sprite = missionChoice.Character.MissionCompletedArt;
-            _imgCharacterFaceChoiceArt.sprite = missionChoice.Character.FaceArt;
+            _imgCharacterFaceBackground.sprite = _imgCharacterChoiceArt.sprite;
+            _imgCharacterBackground.color = missionChoice.Character.ColorBackground;
 
             _btnOk.onClick.AddListener(() => TriggerCallback(true));
         }
