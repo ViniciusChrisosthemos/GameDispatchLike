@@ -17,7 +17,7 @@ public enum CharacterPowerKeywordType
     Beastborn
 }
 
-[CreateAssetMenu(fileName = "Keyword_", menuName = "ScriptableObjects/Character/Keyword/Power Keyword")]
+[CreateAssetMenu(fileName = "Keyword_Power_", menuName = "ScriptableObjects/Character/Keyword/Power Keyword")]
 public class CharacterPowerKeywordSO : AbstractKeywordSO
 {
     public CharacterPowerKeywordType KeywordValue;

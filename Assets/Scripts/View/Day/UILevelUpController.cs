@@ -23,9 +23,14 @@ public class UILevelUpController : MonoBehaviour
     [SerializeField] private Image _imgRankBackground;
     [SerializeField] private TextMeshProUGUI _txtRandType;
     [SerializeField] private Image _imgHeroBackground;
+    [SerializeField] private UIListDisplay _keywordListDisplay;
 
     [Header("Right Side")]
     [SerializeField] private UIRadarChartController _uiRadarChartController;
+
+    [Header("Animations")]
+    [SerializeField] private Animator _animator;
+    [SerializeField] private string _openScreenAnimationTrigger;
 
     private CharacterUnit _characterUnit;
     private Action _callback;
@@ -51,6 +56,7 @@ public class UILevelUpController : MonoBehaviour
         _imgCharacterBackground.sprite = characterUnit.GetArt(_characterArtType);
         _imgCharacter.sprite = _imgCharacterBackground.sprite;
         _txtCharacterName.text = $"{characterUnit.Name} <color=yellow>Lvl.{characterUnit.Level}</color>";
+        _keywordListDisplay.SetItems(characterUnit.GetKeywords(), null);
 
         _imgRankBackground.color = characterUnit.Rank.BackgroundColor;
         _txtRandType.text = characterUnit.Rank.Description;
@@ -59,6 +65,8 @@ public class UILevelUpController : MonoBehaviour
         _callback = callback;
 
         UpdateScreen();
+
+        _animator.SetTrigger(_openScreenAnimationTrigger);
     }
 
     private void HandleIncreaseStat(StatType statType)

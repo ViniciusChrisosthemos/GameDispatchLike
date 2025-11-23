@@ -7,4 +7,5 @@ public abstract class AbstractKeywordSO: ScriptableObject
 {
     public string Name;
     public Sprite Art;
+    public Color Color;
 }

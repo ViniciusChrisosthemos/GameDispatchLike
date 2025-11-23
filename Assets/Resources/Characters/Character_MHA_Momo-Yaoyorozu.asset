@@ -37,10 +37,11 @@ MonoBehaviour:
   BodyArt: {fileID: 190967443, guid: 273aa158906fa224a85896eb51304323, type: 3}
   FullArt: {fileID: 203439694, guid: 273aa158906fa224a85896eb51304323, type: 3}
   IconArt: {fileID: 21300000, guid: f743a567bc3c6df49857b329c5ebe2d9, type: 3}
-  MissionCompletedArt: {fileID: 21300000, guid: 91ff0e760aa1ece4e969a51e7b7fb5e8, type: 3}
+  MissionCompletedArt: {fileID: -1729558186, guid: 91ff0e760aa1ece4e969a51e7b7fb5e8, type: 3}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12
-  Keywords: []
+  Keywords:
+  - {fileID: 11400000, guid: 22f69319a32045e4ba4f888f7f5801b6, type: 2}
   Skills:
   - {fileID: 11400000, guid: ea81b6e267b294145981ed921859775d, type: 2}
   - {fileID: 11400000, guid: ec9f518b57f31c5498a68efc6505cd9d, type: 2}

@@ -9,12 +9,12 @@ public enum CharacterRoleKeywordType
     Runner,
     Defender,
     Supporter,
-    Controller,
+    Commander,
     Rescuer,
     Infiltrator,
 }
 
-[CreateAssetMenu(fileName = "Keyword_", menuName = "ScriptableObjects/Character/Keyword/Role Keyword")]
+[CreateAssetMenu(fileName = "Keyword_Role_", menuName = "ScriptableObjects/Character/Keyword/Role Keyword")]
 public class CharacterRoleKeywordSO : AbstractKeywordSO
 {
     public CharacterRoleKeywordType KeywordValue;

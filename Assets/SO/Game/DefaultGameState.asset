@@ -28,6 +28,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 52eb644ffc2c44049ae68bae8923d212, type: 2}
   - {fileID: 11400000, guid: c2cdc865ce4343c439e8e2aa1756703d, type: 2}
   - {fileID: 11400000, guid: e8c29bf3b5bff5541812b0754e0fd147, type: 2}
+  - {fileID: 11400000, guid: 56537a200eaa06049b883bf694fdcdc3, type: 2}
   Balance: 0
   Reputation: 0
   CurrentDay: 1

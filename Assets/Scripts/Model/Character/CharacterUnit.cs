@@ -162,10 +162,6 @@ public class CharacterUnit
         _isScheduled = isScheduled;
     }
 
-    public bool IsInMission() => _status == CharacterStatus.InMission;
-    public bool IsResting() => _status == CharacterStatus.Resting;
-    public bool IsAvailable() => _status == CharacterStatus.Available;
-
     public Sprite GetArt(CharacterArtType characterArtType)
     {
         switch(characterArtType)
@@ -179,8 +175,17 @@ public class CharacterUnit
         }
     }
 
+    public List<AbstractKeywordSO> GetKeywords()
+    {
+        return _baseCharacter.Keywords;
+    }
+
     public CharacterStatus Status { get { return _status; } }
-    
+
+    public bool IsInMission() => _status == CharacterStatus.InMission;
+    public bool IsResting() => _status == CharacterStatus.Resting;
+    public bool IsAvailable() => _status == CharacterStatus.Available;
+
     public float NormalizedExp => _currentXP / (float)_expToLevelUp;
     public int Level => _currentLevel;
     public int AvailablePoints => _availablePoints;

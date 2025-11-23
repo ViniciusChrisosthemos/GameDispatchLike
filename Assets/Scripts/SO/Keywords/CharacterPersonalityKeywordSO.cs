@@ -16,7 +16,7 @@ public enum CharacterPersonalityKeywordType
     ChaoticMind
 }
 
-[CreateAssetMenu(fileName = "Keyword_", menuName = "ScriptableObjects/Character/Keyword/Personality Keyword")]
+[CreateAssetMenu(fileName = "Keyword_Personality_", menuName = "ScriptableObjects/Character/Keyword/Personality Keyword")]
 public class CharacterPersonalityKeywordSO : AbstractKeywordSO
 {
     public CharacterPersonalityKeywordType KeywordValue;
