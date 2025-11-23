@@ -12,7 +12,7 @@ public class UIRequirementTextViewController : MonoBehaviour
     private const string PATTERN = @"<([^>]+)>";
 
     [SerializeField] private TextMeshProUGUI _txtDescription;
-    [SerializeField] private TextMeshProUGUI _txtItemPointer;
+    [SerializeField] private GameObject _txtItemPointer;
     [SerializeField] private Image _imgStat;
     [SerializeField] private List<StatInfoSO> _statInfoSOs;
 
@@ -46,12 +46,12 @@ public class UIRequirementTextViewController : MonoBehaviour
 
             _imgStat.sprite = statInfo.Sprite;
             _imgStat.gameObject.SetActive(true);
-            _txtItemPointer.gameObject.SetActive(false);
+            _txtItemPointer.SetActive(false);
         }
         else
         {
             _imgStat.gameObject.SetActive(false);
-            _txtItemPointer.gameObject.SetActive(true);
+            _txtItemPointer.SetActive(true);
         }
     }
 }

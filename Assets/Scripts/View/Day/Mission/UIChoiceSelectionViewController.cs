@@ -76,12 +76,14 @@ public class UIChoiceSelectionViewController : MonoBehaviour
 
     private void HandleSelectChoice(UIItemController controller)
     {
+        if (_choiceSelectionCallback == null) return;
+
         var choice = controller.GetItem<MissionChoice>();
 
         _uiSendActionViewController.StartSendAction(() =>
         {
             _closeScreenCallback = null;
-            _choiceSelectionCallback?.Invoke(choice);
+            _choiceSelectionCallback.Invoke(choice);
         });
 
     }

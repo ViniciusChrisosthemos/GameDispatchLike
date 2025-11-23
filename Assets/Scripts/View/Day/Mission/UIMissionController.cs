@@ -24,6 +24,7 @@ public class UIMissionController : MonoBehaviour, IPointerClickHandler
     [Header("In Progress View")]
     [SerializeField] private GameObject _inProgressView;
     [SerializeField] private SpriteRenderer _spriteInProgress;
+    [SerializeField] private SpriteRenderer _spriteCharacterBackground;
 
     [Header("Has Event View")]
     [SerializeField] private GameObject _hasEventView;
@@ -99,6 +100,7 @@ public class UIMissionController : MonoBehaviour, IPointerClickHandler
         _spriteSliderTime.fillAmount = 1;
         _spriteSliderTime.Color = _colorMissionInProgress;
         _spriteInProgress.sprite = _missionUnit.Team.Members[0].FaceArt;
+        _spriteCharacterBackground.color = _missionUnit.Team.Members[0].HeroBackgroundColor;
 
         var color = _spriteInProgress.color;
         color.a = 0.5f;

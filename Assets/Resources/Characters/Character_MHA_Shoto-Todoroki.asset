@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: Shoto-Todoroki
   Name: Shoto Todoroki
   Rank: {fileID: 11400000, guid: a3b1c8168a258bc4493a361b1036eb6b, type: 2}
-  ColorBackground: {r: 0.2953008, g: 0.7924528, b: 0.7649623, a: 1}
+  ColorBackground: {r: 0.54509807, g: 0.17254902, b: 0.21176472, a: 1}
   BaseStats:
     _strengh:
       BaseValue: 4

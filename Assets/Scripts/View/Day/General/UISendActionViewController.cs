@@ -8,15 +8,9 @@ using UnityEngine.UI;
 public class UISendActionViewController : MonoBehaviour
 {
     [SerializeField] private GameObject _view;
-    [SerializeField] private Image _slider;
-    [SerializeField] private Transform _startPosition;
-    [SerializeField] private Transform _endPosition;
-    [SerializeField] private Transform _heroIcon;
-    [SerializeField] private GameObject _labelSendingView;
-    [SerializeField] private GameObject _labelCompleteView;
-    [SerializeField] private float _timeToSend = 2f;
-    [SerializeField] private float _timeToWait = 1f;
-    [SerializeField] private float _moveAmount = 5f;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private string _animatorShowTrigger = "Show";
+    [SerializeField] private string _stateName = "Animation_SendActionView_SendAction";
 
     private void Start()
     {
@@ -30,45 +24,22 @@ public class UISendActionViewController : MonoBehaviour
 
     public void StartSendAction(Action callback)
     {
-        StartCoroutine(AnimateSendActionCoroutine(_timeToSend, callback));
+        StartCoroutine(AnimateSendActionCoroutine(callback));
     }
 
-    private IEnumerator AnimateSendActionCoroutine(float time, Action callback)
+    private IEnumerator AnimateSendActionCoroutine(Action callback)
     {
         SetActive(true);
-        _heroIcon.position = _startPosition.position;
 
-        _labelSendingView.SetActive(true);
-        _labelCompleteView.SetActive(false);
+        _animator.SetTrigger(_animatorShowTrigger);
 
-        var accumTime = 0f;
-        var accumTimeToMove = 0f;
-        var timeToMove = time / _moveAmount;
-        var posOffeset = (_endPosition.position - _startPosition.position) * (1 / _moveAmount);
+        Debug.Log("Start Send Action Animation");
+        yield return new WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).IsName(_stateName));
 
-        while (accumTime < time)
-        {
-            accumTime += Time.deltaTime;
-            _slider.fillAmount = 1 - (accumTime / time);
+        Debug.Log("Wait Send Action Animation end");
+        yield return new WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
 
-            accumTimeToMove += Time.deltaTime;
-
-            if (accumTimeToMove > timeToMove)
-            {
-                _heroIcon.position += posOffeset;
-
-                accumTimeToMove = 0f;
-            }
-
-            yield return null;
-        }
-
-        _labelSendingView.SetActive(false);
-        _labelCompleteView.SetActive(true);
-
-        yield return new WaitForSeconds(_timeToWait);
-
-
+        Debug.Log("Animation Finished");
         callback?.Invoke();
 
         SetActive(false);

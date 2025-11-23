@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: Izuku-Midoriya
   Name: Izuku Midoriya
   Rank: {fileID: 11400000, guid: eabce2eab48e9914580fc397ab06ba51, type: 2}
-  ColorBackground: {r: 0.1587148, g: 0.9811321, b: 0, a: 1}
+  ColorBackground: {r: 0.17254902, g: 0.454902, b: 0.35686275, a: 1}
   BaseStats:
     _strengh:
       BaseValue: 3

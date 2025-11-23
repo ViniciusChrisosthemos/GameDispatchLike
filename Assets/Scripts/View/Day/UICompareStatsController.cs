@@ -30,6 +30,7 @@ public class UICompareStatsController : MonoBehaviour
 
         _uiAnimatePolygonBounceController.Animate(polygon, _pivot, _duration, _speed, () =>
         {
+            Debug.Log($"Animate  {_uiAnimatePolygonBounceController.Point.position}   {_uiAnimatePolygonBounceController.Point.localPosition}");
             var teamPolygon = _teamStatRadarController.GetVertices();
             teamPolygon.RemoveAt(0);
             teamPolygon.Add(teamPolygon[0]);

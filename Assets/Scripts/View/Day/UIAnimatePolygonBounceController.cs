@@ -65,7 +65,7 @@ public class UIAnimatePolygonBounceController : MonoBehaviour
         _polygon.ForEach(p => center += p);
         center *= 1 / (float)_polygon.Count;
 
-        _target.position = center;
+        _target.localPosition = center;
 
         direction = Random.insideUnitCircle.normalized;
 
@@ -75,7 +75,7 @@ public class UIAnimatePolygonBounceController : MonoBehaviour
             float speedFactor = speedCurve.Evaluate(t); // curva define desaceleração
             float currentSpeed = speed * speedFactor;
 
-            Vector2 pos = _target.position;
+            Vector2 pos = _target.localPosition;
             Vector2 newPos = pos + direction * currentSpeed * Time.deltaTime;
 
             // Verifica colisões com as bordas
@@ -99,7 +99,7 @@ public class UIAnimatePolygonBounceController : MonoBehaviour
                 }
             }
 
-            _target.position = newPos;
+            _target.localPosition = newPos;
 
             elapsed += Time.deltaTime;
             yield return null;
