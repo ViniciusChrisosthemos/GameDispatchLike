@@ -5,12 +5,12 @@ using System.Linq;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "Heal_Skill_", menuName = "ScriptableObjects/TurnBasedBattle/Heal Skill")]
+[CreateAssetMenu(fileName = "Heal_Skill_", menuName = "ScriptableObjects/TurnBasedBattle/Skill/Skill/Heal")]
 public class HealSkillSO : BaseSkillSO
 {
     public int HealAmount;
 
-    public override void ApplySkill(IBattleCharacter user, List<IBattleCharacter> targets)
+    protected override void ApplySkillInternal(IBattleCharacter user, List<IBattleCharacter> targets)
     {
         var finalHeal = HealAmount;
 

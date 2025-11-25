@@ -28,4 +28,13 @@ public class CharacterSO: SavebleSO
     public List<AbstractKeywordSO> Keywords;
     public List<BaseSkillSO> Skills;
     public float BaseMoveSpeed;
+
+    [Header("Dices")]
+    public int BaseSkillDicesAmount;
+    public int BaseDamageDicesAmount;
+    public int BaseCriticalDicesAmount;
+
+    [Header("Individuality")]
+    public AbstractIndividuality Individuality;
+    public AbstractIndividualityView IndividualityView;
 }

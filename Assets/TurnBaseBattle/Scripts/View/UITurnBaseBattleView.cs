@@ -99,6 +99,8 @@ public class UITurnBaseBattleView : MonoBehaviour
     public void Pass()
     {
         _turnbaseBattleController.PassAction(_currentCharacter);
+
+        _uiSkillSelectionView.OnTurnEnd();
     }
 
     public void RegisterAction(SkillAction currenSkillAction)
@@ -117,8 +119,9 @@ public class UITurnBaseBattleView : MonoBehaviour
             _turnbaseBattleController.SkillAction(action.Source, action.Skill, action.Targets);
 
             UpdateCharacters();
+            _uiSkillSelectionView.UpdateIndividualityView();
 
-            await Task.Delay(1000);
+            await Task.Delay(1500);
         }
 
         Pass();

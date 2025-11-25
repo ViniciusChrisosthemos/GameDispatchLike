@@ -114,4 +114,7 @@ public class UIBattleCharacterView : UIItemController
     }
 
     public BattleCharacter BattleCharacter => _character;
+
+    // TEMP
+    public bool HasIndividuality => BattleCharacter.BaseCharacter.Individuality != null;
 }

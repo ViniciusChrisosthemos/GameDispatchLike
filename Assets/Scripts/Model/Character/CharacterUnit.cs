@@ -16,6 +16,7 @@ public class CharacterUnit
     private int _currentLevel;
     private int _availablePoints;
     private bool _isScheduled;
+    private DiceManager _diceManager;
 
     public UnityEvent<CharacterUnit> OnCharacterInAvailable = new UnityEvent<CharacterUnit>();
     public UnityEvent<CharacterUnit> OnCharacterInMission = new UnityEvent<CharacterUnit>();
@@ -40,6 +41,8 @@ public class CharacterUnit
 
         _expToLevelUp = _baseCharacter.LevelProgression.GetXPForLevel(_currentLevel);
         _isScheduled = false;
+
+        _diceManager = new DiceManager(baseCharacter.BaseSkillDicesAmount, baseCharacter.BaseDamageDicesAmount, baseCharacter.BaseCriticalDicesAmount);
     }
 
     public CharacterUnit(CharacterSO baseCharacter, int currentLevel, int currentXP, int availablePoints, StatManager statManager, bool isScheduled)
@@ -199,5 +202,5 @@ public class CharacterUnit
     public bool IsScheduled => _isScheduled;
     public CharacterSO BaseCharacterSO => _baseCharacter;
     public StatManager StatManager { get { return _statManager; } }
-
+    public DiceManager DiceManager { get { return _diceManager; } }
 }

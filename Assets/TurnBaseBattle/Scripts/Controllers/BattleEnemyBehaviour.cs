@@ -78,7 +78,7 @@ public class BattleEnemyBehaviour : MonoBehaviour
                 {
                     case SkillTargetType.Enemy:
 
-                        if (selectedSkill.SkillTargetAmount == SkillTargetAmount.SingleTarget)
+                        if (selectedSkill.SkillTargetAmount == SkillTargetAmountType.SingleTarget)
                         {
                             targets.Add(availableEnemyTargets.OrderBy(c => c.Health).First());
                         }
@@ -91,7 +91,7 @@ public class BattleEnemyBehaviour : MonoBehaviour
 
                     case SkillTargetType.Ally:
 
-                        if (selectedSkill.SkillTargetAmount == SkillTargetAmount.SingleTarget)
+                        if (selectedSkill.SkillTargetAmount == SkillTargetAmountType.SingleTarget)
                         {
                             targets.Add(availableAllyTargets.OrderBy(c => c.GetNormalizedHealth()).First());
                         }

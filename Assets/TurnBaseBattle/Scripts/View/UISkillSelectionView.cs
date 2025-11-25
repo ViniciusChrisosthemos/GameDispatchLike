@@ -19,16 +19,21 @@ public class UISkillSelectionView : MonoBehaviour
     [SerializeField] private UITurnBaseBattleView _uiTurnBaseBattleView;
     [SerializeField] private UIListDisplay _dicesValuesListDisplay;
 
+    [Header("Individuality")]
+    [SerializeField] private Transform _individualitiesParent;
+    private Dictionary<IBattleCharacter, AbstractIndividualityView> _individualitiesViews;
+
     [Header("Events")]
     public UnityEvent OnPassAction;
 
     private List<UIBattleCharacterView> _playerBattleCharactersControllers;
     private List<UIBattleCharacterView> _enemyBattleCharactersControllers;
 
+    private AbstractIndividualityView _currentIndividualityView;
+
     private SelectionState _selectionState;
-
     private SkillAction _currenSkillAction;
-
+    
     private enum SelectionState
     {
         SelectingSkill,
@@ -51,6 +56,20 @@ public class UISkillSelectionView : MonoBehaviour
         _enemyBattleCharactersControllers.ForEach(c => c.OnSelected.AddListener(HandleCharacterViewSelected));
 
         _selectionState = SelectionState.SelectingSkill;
+
+        _individualitiesParent.ClearChilds();
+        _individualitiesViews = new Dictionary<IBattleCharacter, AbstractIndividualityView>();
+
+        foreach (var character in playerCahractersControllers)
+        {
+            if (!character.HasIndividuality) continue;
+            
+            var individualityView = IndividualityFactory.CreateIndividualityView(character.BattleCharacter, _individualitiesParent);
+
+            _individualitiesViews.Add(character.BattleCharacter, individualityView);
+
+            individualityView.CloseView();
+        }
     }
 
     public void SetCharacter(BattleCharacter character)
@@ -72,6 +91,14 @@ public class UISkillSelectionView : MonoBehaviour
         _btnPass.gameObject.SetActive(true);
         _btnRollDices.gameObject.SetActive(true);
         _btnPlayActions.gameObject.SetActive(false);
+
+
+        if (_individualitiesViews.ContainsKey(character))
+        {
+            _currentIndividualityView = _individualitiesViews[character];
+            _currentIndividualityView.OpenView();
+            _currentIndividualityView.OnTurnStart();
+        }
     }
 
     private void HandleSkillSelected(UIItemController controller)
@@ -105,8 +132,8 @@ public class UISkillSelectionView : MonoBehaviour
 
         switch (_currenSkillAction.Skill.SkillTargetAmount)
         {
-            case SkillTargetAmount.AllTargets: targets = controllerList; break;
-            case SkillTargetAmount.SingleTarget: targets.Add(characterView); break;
+            case SkillTargetAmountType.AllTargets: targets = controllerList; break;
+            case SkillTargetAmountType.SingleTarget: targets.Add(characterView); break;
             default: break;
         }
 
@@ -232,5 +259,22 @@ public class UISkillSelectionView : MonoBehaviour
         var c2 = l2.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
 
         return c1.All(kv => c2.TryGetValue(kv.Key, out int c) && c >= kv.Value);
+    }
+
+    public void UpdateIndividualityView()
+    {
+        if (_currentIndividualityView != null)
+        {
+            _currentIndividualityView.UpdateView();
+        }
+    }
+
+    public void OnTurnEnd()
+    {
+        if (_currentIndividualityView != null)
+        {
+            _currentIndividualityView.OnTurnEnd();
+            _currentIndividualityView.CloseView();
+        }
     }
 }

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5ba231d81565f4d894973a30716335, type: 3}
+  m_Name: Individuality_IzukuMidoriya
+  m_EditorClassIdentifier: 
+  ResourceType: {fileID: 11400000, guid: 2c74a3a5d89c79545a3298e4be68dec5, type: 2}
+  ResourceBonuses:
+  - ResourceAmountRequired: 3
+    Bonus: {fileID: 11400000, guid: fca27a3f7d5144a4b80f4b1893ff41b2, type: 2}
+    IsApplied: 0
+  - ResourceAmountRequired: 5
+    Bonus: {fileID: 11400000, guid: 2614bb01e132c7a4383dbef766b75df1, type: 2}
+    IsApplied: 0
+  - ResourceAmountRequired: 7
+    Bonus: {fileID: 11400000, guid: 8bd71193ad0741f4c85ccd53bc61e9ab, type: 2}
+    IsApplied: 0
+  - ResourceAmountRequired: 10
+    Bonus: {fileID: 11400000, guid: eaf0763c89ffa6448b17c734da5d97e6, type: 2}
+    IsApplied: 0
+  _percDamageTakenIfHasNoStacks: 0.2
+  _statusToAddIfHasNoStacks:
+  - {fileID: 11400000, guid: 932d28f78e7a82a4fb72fe0a433e1c2b, type: 2}

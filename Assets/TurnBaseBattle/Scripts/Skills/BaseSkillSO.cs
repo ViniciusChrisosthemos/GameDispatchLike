@@ -7,10 +7,11 @@ using UnityEngine;
 public enum SkillTargetType
 {
     Enemy,
-    Ally
+    Ally,
+    Self
 }
 
-public enum SkillTargetAmount
+public enum SkillTargetAmountType
 {
     SingleTarget,
     MultiTarget,
@@ -25,7 +26,7 @@ public abstract class BaseSkillSO : ScriptableObject, IHasSprite
     public List<DiceValueSO> RequiredDiceValues;
     public List<SkillBonus> Bonus;
     public SkillTargetType SkillTargetType;
-    public SkillTargetAmount SkillTargetAmount;
+    public SkillTargetAmountType SkillTargetAmount;
     public int TargetAmount;
     public TMP_SpriteAsset SpriteAsset;
 
@@ -57,12 +58,17 @@ public abstract class BaseSkillSO : ScriptableObject, IHasSprite
 
         return finalString;
     }
-
-    protected abstract string GetInternalDescription();
-    public abstract void ApplySkill(IBattleCharacter user, List<IBattleCharacter> targets);
-
     public Sprite GetSprite()
     {
         return Art;
     }
+
+    public void ApplySkill(IBattleCharacter user, List<IBattleCharacter> targets)
+    {
+        ApplySkillInternal(user, targets);
+    }
+
+    protected abstract string GetInternalDescription();
+    
+    protected abstract void ApplySkillInternal(IBattleCharacter user, List<IBattleCharacter> targets);
 }

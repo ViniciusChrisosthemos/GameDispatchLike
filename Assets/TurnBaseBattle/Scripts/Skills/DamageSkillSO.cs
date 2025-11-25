@@ -5,12 +5,12 @@ using System.Linq;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "Damage_Skill_", menuName = "ScriptableObjects/TurnBasedBattle/Damage Skill")]
+[CreateAssetMenu(fileName = "Damage_Skill_", menuName = "ScriptableObjects/TurnBasedBattle/Skill/Skill/Damage")]
 public class DamageSkillSO : BaseSkillSO
 {
     public int DamageAmount;
 
-    public override void ApplySkill(IBattleCharacter user, List<IBattleCharacter> targets)
+    protected override void ApplySkillInternal(IBattleCharacter user, List<IBattleCharacter> targets)
     {
         var finalDamage = DamageAmount;
 
