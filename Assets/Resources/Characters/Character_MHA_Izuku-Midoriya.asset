@@ -43,9 +43,10 @@ MonoBehaviour:
   Keywords:
   - {fileID: 11400000, guid: 4ab9f87d1c6bcc6478d0a5e74b0c7a6b, type: 2}
   Skills:
-  - {fileID: 11400000, guid: d534c46adb39b98488e5965917eb6191, type: 2}
-  - {fileID: 11400000, guid: 98d60af88642f654ea8fe863abfbdf97, type: 2}
-  - {fileID: 11400000, guid: f39c5290992140142a435dda59161408, type: 2}
+  - {fileID: 11400000, guid: 97ab502662339094c896ddba98093762, type: 2}
+  - {fileID: 11400000, guid: 755065388e8cb744aa81c7d9942ef036, type: 2}
+  - {fileID: 11400000, guid: 853b33ba94185d542be0c9b4ec063da5, type: 2}
+  - {fileID: 11400000, guid: a2ab9eb662715c2438eb1b702076853d, type: 2}
   BaseMoveSpeed: 0.85
   BaseSkillDicesAmount: 3
   BaseDamageDicesAmount: 0

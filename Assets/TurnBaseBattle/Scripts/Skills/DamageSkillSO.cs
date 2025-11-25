@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "Damage_Skill_", menuName = "ScriptableObjects/TurnBasedBattle/Skill/Skill/Damage")]
+[CreateAssetMenu(fileName = "Damage_Skill_", menuName = "TurnBaseBattle/Skills/Skill/Damage")]
 public class DamageSkillSO : BaseSkillSO
 {
     public int DamageAmount;

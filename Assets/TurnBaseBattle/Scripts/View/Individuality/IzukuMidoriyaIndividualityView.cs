@@ -26,6 +26,7 @@ public class IzukuMidoriyaIndividualityView : AbstractIndividualityView
     public override void OnTurnStart()
     {
         _individualityData.OnTurnStart();
+        UpdateView();
     }
 
     public override void UpdateView()

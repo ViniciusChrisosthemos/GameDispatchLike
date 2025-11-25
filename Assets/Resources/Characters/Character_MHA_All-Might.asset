@@ -51,3 +51,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 42d97ce0f52db3942bd9281ac996ac0c, type: 2}
   - {fileID: 11400000, guid: d534c46adb39b98488e5965917eb6191, type: 2}
   BaseMoveSpeed: 0.85
+  BaseSkillDicesAmount: 3
+  BaseDamageDicesAmount: 0
+  BaseCriticalDicesAmount: 0
+  Individuality: {fileID: 0}
+  IndividualityView: {fileID: 0}

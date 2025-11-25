@@ -54,19 +54,6 @@ public class BattleEnemyBehaviour : MonoBehaviour
             availableSkills = SkillUtils.GetAvailableSkills(allSkills, diceValueCopy);
             availableSkills = availableSkills.OrderByDescending(s => s.RequiredDiceValues.Count).ToList();
 
-            foreach (var skill in availableSkills)
-            {
-                string msg = string.Empty;
-
-                skill.RequiredDiceValues.ForEach(v => msg += $"{v.Type};");
-
-                msg += " => ";
-
-                msg += skill.GetDescription();
-
-                Debug.Log($"    {msg}");
-            }
-
             if (availableSkills.Count > 0)
             {
                 var selectedSkill = availableSkills[0];

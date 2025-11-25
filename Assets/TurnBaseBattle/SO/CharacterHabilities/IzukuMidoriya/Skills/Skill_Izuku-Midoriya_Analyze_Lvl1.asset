@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6ebcfbe7f1fb364b930b439cc21d038, type: 3}
+  m_Name: Skill_Izuku-Midoriya_Analyze_Lvl1
+  m_EditorClassIdentifier: 
+  Name: Analyze
+  BaseDescription: Deal {0} damage to an enemy
+  Art: {fileID: 21300000, guid: b5fe39e619dce154088575e3f4d1a6f8, type: 3}
+  RequiredDiceValues:
+  - {fileID: 11400000, guid: fd0f49f1624b80244bc8eb5c1cb42109, type: 2}
+  - {fileID: 11400000, guid: fd0f49f1624b80244bc8eb5c1cb42109, type: 2}
+  Bonus: []
+  SkillTargetType: 0
+  SkillTargetAmount: 0
+  TargetAmount: 1
+  SpriteAsset: {fileID: 11400000, guid: b375b8d12e44210438efb36195d1bbc6, type: 2}
+  DamageAmount: 10

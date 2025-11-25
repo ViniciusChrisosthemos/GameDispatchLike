@@ -161,12 +161,6 @@ public class UISkillSelectionView : MonoBehaviour
 
         _skillActionListDisplay.SetItems(skillActionQueue.Select(sa => (object)sa).ToList(), HandleSkillActionSelected);
 
-        Debug.Log("AvailableDices:");
-        availableDicesCopy.ForEach(d => Debug.Log($" - {d.Type}"));
-
-        Debug.Log("LockedDices:");
-        lockedDicesCopy.ForEach(d => Debug.Log($" - {d.Type}"));
-
         foreach (var controller in _dicesValuesListDisplay.GetControllers())
         {
             var diceValue = controller.GetItem<DiceValueSO>();
@@ -224,10 +218,9 @@ public class UISkillSelectionView : MonoBehaviour
         {
             var skillController = controller as UISkillDisplayController;
             var skill = skillController.GetItem<BaseSkillSO>();
-            var requiredDiceValues = skill.RequiredDiceValues.Select(v => v.Type).ToList();
-            var diceValuesTypes = diceValues.Select(v => v.Type).ToList();
+            var requiredDices = skill.RequiredDiceValues;
 
-            var isAvailable = IsSkillAvailable(requiredDiceValues, diceValuesTypes);
+            var isAvailable = IsSkillAvailable(requiredDices, diceValues);
             skillController.SetAvailable(!isAvailable);
 
             Debug.Log($"    Skill {skill.Name} {isAvailable}");
@@ -236,7 +229,7 @@ public class UISkillSelectionView : MonoBehaviour
 
     public void UpdateDices(List<DiceValueSO> diceValues)
     {
-        var orderedValues = diceValues.OrderBy(d => (int)d.Type).Select(v => v as object).ToList();
+        var orderedValues = diceValues.OrderBy(d => (int)d.Priority).Select(v => v as object).ToList();
 
         _dicesValuesListDisplay.SetItems(orderedValues, null);
 
@@ -252,8 +245,7 @@ public class UISkillSelectionView : MonoBehaviour
         _btnPlayActions.gameObject.SetActive(false);
     }
 
-    private bool IsSkillAvailable<TEnum>(List<TEnum> l1, List<TEnum> l2)
-    where TEnum : struct, Enum
+    private bool IsSkillAvailable<T>(List<T> l1, List<T> l2)
     {
         var c1 = l1.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
         var c2 = l2.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
