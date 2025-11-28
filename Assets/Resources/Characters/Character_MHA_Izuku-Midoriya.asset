@@ -45,11 +45,11 @@ MonoBehaviour:
   Skills:
   - {fileID: 11400000, guid: 97ab502662339094c896ddba98093762, type: 2}
   - {fileID: 11400000, guid: 755065388e8cb744aa81c7d9942ef036, type: 2}
-  - {fileID: 11400000, guid: 853b33ba94185d542be0c9b4ec063da5, type: 2}
-  - {fileID: 11400000, guid: a2ab9eb662715c2438eb1b702076853d, type: 2}
+  - {fileID: 11400000, guid: 52b2d97769668f5498cbfd61df1445a1, type: 2}
   BaseMoveSpeed: 0.85
+  SkillDicePrefab: {fileID: 4393117120549140134, guid: 1141d0f9f7d88a44080ea08236a0dd87, type: 3}
   BaseSkillDicesAmount: 3
   BaseDamageDicesAmount: 0
   BaseCriticalDicesAmount: 0
-  Individuality: {fileID: 11400000, guid: 730ecbee954544343824766332e8155b, type: 2}
-  IndividualityView: {fileID: 6704808984341700159, guid: 14e866edcadb36c44a5c8ad7a95c50de, type: 3}
+  Individuality: {fileID: 11400000, guid: 9c516b23b756f0a44a48d3b5abfa58d0, type: 2}
+  IndividualityView: {fileID: 929034123188553140, guid: 3f3e2c2dcd25e0749aaf54d422f99606, type: 3}

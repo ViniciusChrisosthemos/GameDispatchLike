@@ -17,6 +17,7 @@ public class UISkillSelectionView : MonoBehaviour
     [SerializeField] private UIListDisplay _skillListDisplay;
     [SerializeField] private UIListDisplay _skillActionListDisplay;
     [SerializeField] private UITurnBaseBattleView _uiTurnBaseBattleView;
+    [SerializeField] private UIListDisplay _dicesValuesBackgroundListDisplay;
     [SerializeField] private UIListDisplay _dicesValuesListDisplay;
 
     [Header("Individuality")]
@@ -99,6 +100,8 @@ public class UISkillSelectionView : MonoBehaviour
             _currentIndividualityView.OpenView();
             _currentIndividualityView.OnTurnStart();
         }
+
+        _dicesValuesBackgroundListDisplay.SetItems(character.GetDiceManager().GetSkillDices());
     }
 
     private void HandleSkillSelected(UIItemController controller)
@@ -229,7 +232,7 @@ public class UISkillSelectionView : MonoBehaviour
 
     public void UpdateDices(List<DiceValueSO> diceValues)
     {
-        var orderedValues = diceValues.OrderBy(d => (int)d.Priority).Select(v => v as object).ToList();
+        var orderedValues = diceValues.OrderBy(d => d.Priority).Select(v => v as object).ToList();
 
         _dicesValuesListDisplay.SetItems(orderedValues, null);
 

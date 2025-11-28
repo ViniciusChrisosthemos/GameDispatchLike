@@ -10,6 +10,8 @@ public class DamageSkillSO : BaseSkillSO
 {
     public int DamageAmount;
 
+    public List<ItemHolder<SkillResourceSO>> ResourcesToAdd;
+
     protected override void ApplySkillInternal(IBattleCharacter user, List<IBattleCharacter> targets)
     {
         var finalDamage = DamageAmount;
@@ -20,6 +22,10 @@ public class DamageSkillSO : BaseSkillSO
         }
 
         targets.ForEach(target => target.TakeDamage(finalDamage));
+
+        Debug.Log($"DamgeSkillSO {name}  Add Resource {ResourcesToAdd.Count}");
+
+        ResourcesToAdd.ForEach(item => user.AddResource(item.Item, item.Amount));
     }
 
     protected override string GetInternalDescription()

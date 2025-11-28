@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 8885334033730305204}
   - component: {fileID: 4393117120549140134}
   m_Layer: 7
-  m_Name: Dice-IzukuMidoriya
+  m_Name: '[DiceController] Dice-IzukuMidoriya'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

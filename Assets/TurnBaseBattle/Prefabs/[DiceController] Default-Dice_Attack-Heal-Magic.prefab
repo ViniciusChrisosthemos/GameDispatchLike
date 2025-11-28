@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 642756241939418689}
   - component: {fileID: 2562814042158323157}
   m_Layer: 7
-  m_Name: Dice-Attack-Heal-Magic
+  m_Name: '[DiceController] Default-Dice_Attack-Heal-Magic'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

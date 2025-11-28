@@ -9,21 +9,22 @@ public class StunSkillStatus : AbstractSkillStatus
 
     public override void OnApply(SkillStatusRuntime statusRuntime)
     {
-        Duration = StunDuration;
+        statusRuntime.RemainingDuration = StunDuration;
+        statusRuntime.Owner.AddActionBlocker();
     }
 
     public override void OnRemove(SkillStatusRuntime statusRuntime)
     {
-        statusRuntime.Owner.AddActionBlocker();
+        statusRuntime.Owner.RmvActionBlocker();
     }
 
     public override void OnTurnEnd(SkillStatusRuntime statusRuntime)
     {
-        Duration--;
+        statusRuntime.RemainingDuration--;
 
-        if (Duration <= 0)
+        if (statusRuntime.RemainingDuration <= 0)
         {
-            statusRuntime.Owner.RmvActionBlocker();
+            statusRuntime.Owner.RmvStatus(this);
         }
     }
 

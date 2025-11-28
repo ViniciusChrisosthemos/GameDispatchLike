@@ -7,7 +7,6 @@ using Random = UnityEngine.Random;
 
 public class DiceThrower : MonoBehaviour
 {
-    [SerializeField] private DiceController _dicePrefab;
     [SerializeField] private float _throwForce = 5f;
     [SerializeField] private float _rollForce = 2f;
     [SerializeField] private int _daleyInMilliseconds = 200;
@@ -20,7 +19,7 @@ public class DiceThrower : MonoBehaviour
 
     private List<GameObject> _diceInstances = new List<GameObject>();
 
-    public async void RollDices(int diceAmount, Transform parent, Action<int, DiceValueSO> diceCallback)
+    public async void RollDices(DiceController dicePrefab, int diceAmount, Transform parent, Action<int, DiceValueSO> diceCallback)
     {
         _diceInstances.ForEach(d => Destroy(d));
         _diceInstances.Clear();
@@ -42,7 +41,7 @@ public class DiceThrower : MonoBehaviour
             transform.rotation = oldRotation;
             transform.Rotate(Vector3.up, angle);
 
-            var dice = Instantiate(_dicePrefab, transform.position, transform.rotation, parent);
+            var dice = Instantiate(dicePrefab, transform.position, transform.rotation, parent);
             _diceInstances.Add(dice.gameObject);
 
             dice.RollDice(_throwForce, _rollForce, i, diceCallback);

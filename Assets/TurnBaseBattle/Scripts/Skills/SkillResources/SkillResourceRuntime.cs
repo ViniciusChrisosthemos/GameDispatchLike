@@ -15,13 +15,11 @@ public class SkillResourceRuntime
 
     public void AddAmount(int amount)
     {
-        Amount += amount;
-        Amount = Mathf.Clamp(Amount, 0, SkillResourceSO.MaxAmount);
+        Amount = Mathf.Clamp(Amount + amount, 0, SkillResourceSO.MaxAmount);
     }
 
     public void RemoveAmount(int amount)
     {
-        Amount -= amount;
-        Amount = Mathf.Clamp(Amount, 0, SkillResourceSO.MaxAmount);
+        Amount = Mathf.Clamp(Amount - amount, 0, SkillResourceSO.MaxAmount);
     }
 }

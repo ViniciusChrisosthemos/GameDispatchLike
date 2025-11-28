@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a06ce64d98b68e41a2fb76361f72c18, type: 3}
+  m_Name: ApplyStatus_Skill_ApplyStun
+  m_EditorClassIdentifier: 
+  Name: Apply Stun
+  BaseDescription: Apply Stun to an enemy
+  Art: {fileID: -102295410, guid: bd2b504801f6a0d41ba0399bc2be31ad, type: 3}
+  RequiredDiceValues:
+  - {fileID: 11400000, guid: 5abc5d040aadcad459ec6f58858b7f53, type: 2}
+  Bonus: []
+  SkillTargetType: 0
+  SkillTargetAmount: 0
+  TargetAmount: 1
+  SpriteAsset: {fileID: 11400000, guid: b375b8d12e44210438efb36195d1bbc6, type: 2}
+  _statusToAdd:
+  - {fileID: 11400000, guid: d7a6efa6877c2b74cb8daef206a226c2, type: 2}

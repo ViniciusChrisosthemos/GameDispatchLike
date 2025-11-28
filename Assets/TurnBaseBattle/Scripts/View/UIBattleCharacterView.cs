@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using System.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,6 +21,9 @@ public class UIBattleCharacterView : UIItemController
     [SerializeField] private Slider _sliderRedBar;
     [SerializeField] private float _healthUpdateTime = 0.3f;
     [SerializeField] private float _healthBackgroundDelay = 0.5f;
+
+    [Header("Status")]
+    [SerializeField] private UIListDisplay _uiStatusListDisplay;
 
     [Header("Events")]
     public UnityEvent<UIBattleCharacterView> OnSelected;
@@ -56,6 +60,17 @@ public class UIBattleCharacterView : UIItemController
         _isTarget = false;
     }
 
+    public void UpdateCharacterView()
+    {
+        UpdateHealth();
+        UpdateStatus();
+    }
+
+    private void UpdateStatus()
+    {
+        _uiStatusListDisplay.SetItems(_character.GetStatus(), null);
+    }
+
     public void UpdateHealth()
     {
         //Animation
@@ -90,6 +105,10 @@ public class UIBattleCharacterView : UIItemController
         _sliderRedBar.value = 1f;
         _sliderGreenBar.value = 1f;
         _txtHealth.text = $"{_character.Health}/{_character.MaxHealth}";
+
+        _character.OnStatusUpdated += UpdateCharacterView;
+
+        UpdateStatus();
     }
 
     public void SetTarget()
@@ -116,5 +135,5 @@ public class UIBattleCharacterView : UIItemController
     public BattleCharacter BattleCharacter => _character;
 
     // TEMP
-    public bool HasIndividuality => BattleCharacter.BaseCharacter.Individuality != null;
+    public bool HasIndividuality => BattleCharacter.Individuality != null;
 }

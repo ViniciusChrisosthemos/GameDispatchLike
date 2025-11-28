@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,8 +44,8 @@ public class UITurnBaseBattleView : MonoBehaviour
     {
         _view.SetActive(true);
 
-        _playerUIListDisplay.SetItems(playerCharacters.Select(c => (object)c).ToList(), null);
-        _enemyUIListDisplay.SetItems(enemyCharacters.Select(c => (object)c).ToList(), null);
+        _playerUIListDisplay.SetItems(playerCharacters, null);
+        _enemyUIListDisplay.SetItems(enemyCharacters, null);
 
         _playerBattleCharacterViews = _playerUIListDisplay.GetControllers().Select(i => i as UIBattleCharacterView).ToList();
         _enemyBattleCharacterViews = _enemyUIListDisplay.GetControllers().Select(i => i as UIBattleCharacterView).ToList();
@@ -82,7 +83,9 @@ public class UITurnBaseBattleView : MonoBehaviour
 
     public void RollDices()
     {
-        _rollDiceController.RollDices(6, HandleDicesResult);
+        var diceManager = _currentCharacter.GetDiceManager();
+
+        _rollDiceController.RollDices(diceManager.GetSkillDicePrefab(), diceManager.GetSkillDices(), HandleDicesResult);
 
         _uiSkillSelectionView.HideButtons();
     }
@@ -129,8 +132,9 @@ public class UITurnBaseBattleView : MonoBehaviour
 
     public void UpdateCharacters()
     {
-        _playerBattleCharacterViews.ForEach(c => c.UpdateHealth());
-        _enemyBattleCharacterViews.ForEach(c => c.UpdateHealth());
+
+        _playerBattleCharacterViews.ForEach(c => c.UpdateCharacterView());
+        _enemyBattleCharacterViews.ForEach(c => c.UpdateCharacterView());
     }
 
     private void HandleBattleEnd(bool playerWin)

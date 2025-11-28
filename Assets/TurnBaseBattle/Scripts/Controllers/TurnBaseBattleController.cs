@@ -53,6 +53,10 @@ public class TurnBaseBattleController : MonoBehaviour
                 _currentCharacter = (BattleCharacter)timelineItem;
                 break;
             }
+            else
+            {
+                ((BattleCharacter)timelineItem).OnTurnEnd();
+            }
         }
 
         OnCharacterTurn?.Invoke(_playerChracters.Contains(_currentCharacter), _currentCharacter);
@@ -66,6 +70,9 @@ public class TurnBaseBattleController : MonoBehaviour
     public SkillActionResult SkillAction(BattleCharacter character, BaseSkillSO skill, List<BattleCharacter> targets)
     {
         skill.ApplySkill(character, targets.Select(c => c as IBattleCharacter).ToList());
+
+        _playerChracters.ForEach(c => c.UpdateAfterUseSkill());
+        _enemyCharacters.ForEach(c => c.UpdateAfterUseSkill());
 
         foreach (var target in targets)
         {
@@ -102,7 +109,7 @@ public class TurnBaseBattleController : MonoBehaviour
     {
         foreach (var character in team)
         {
-            if (character.IsActive() && character.IsAlive()) return true;
+            if (character.IsAlive()) return true;
         }
 
         return false;

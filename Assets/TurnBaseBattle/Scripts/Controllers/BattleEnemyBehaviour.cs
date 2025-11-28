@@ -30,13 +30,14 @@ public class BattleEnemyBehaviour : MonoBehaviour
 
         await Task.Delay(1000);
 
-        await HandleDicesResult(character, await RollDicesAsync());
+        await HandleDicesResult(character, await RollDicesAsync(character.GetDiceManager()));
     }
 
-    private Task<List<DiceValueSO>> RollDicesAsync()
+    private Task<List<DiceValueSO>> RollDicesAsync(DiceManager diceManager)
     {
         var tcs = new TaskCompletionSource<List<DiceValueSO>>();
-        _rollDiceController.RollDices(6, values => tcs.SetResult(values));
+
+        _rollDiceController.RollDices(diceManager.GetSkillDicePrefab(), diceManager.GetSkillDices(), values => tcs.SetResult(values));
 
         return tcs.Task;
     }

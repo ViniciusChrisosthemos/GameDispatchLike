@@ -42,7 +42,7 @@ public class CharacterUnit
         _expToLevelUp = _baseCharacter.LevelProgression.GetXPForLevel(_currentLevel);
         _isScheduled = false;
 
-        _diceManager = new DiceManager(baseCharacter.BaseSkillDicesAmount, baseCharacter.BaseDamageDicesAmount, baseCharacter.BaseCriticalDicesAmount);
+        _diceManager = new DiceManager(baseCharacter.SkillDicePrefab, baseCharacter.BaseSkillDicesAmount, baseCharacter.BaseDamageDicesAmount, baseCharacter.BaseCriticalDicesAmount);
     }
 
     public CharacterUnit(CharacterSO baseCharacter, int currentLevel, int currentXP, int availablePoints, StatManager statManager, bool isScheduled)
@@ -58,6 +58,8 @@ public class CharacterUnit
 
         _expToLevelUp = _baseCharacter.LevelProgression.GetXPForLevel(currentLevel);
         _isScheduled = isScheduled;
+
+        _diceManager = new DiceManager(baseCharacter.SkillDicePrefab, baseCharacter.BaseSkillDicesAmount, baseCharacter.BaseDamageDicesAmount, baseCharacter.BaseCriticalDicesAmount);
     }
 
     public void SetStatusToAvailable()

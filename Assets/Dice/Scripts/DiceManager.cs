@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,10 +12,13 @@ public enum DiceType
 
 public class DiceManager
 {
+    private DiceController _skillDicePrefab;
     private Dictionary<DiceType, DiceInfo> _dices;
 
-    public DiceManager(int skillDices, int damageDices, int criticalDices)
+    public DiceManager(DiceController skillDicePrefab, int skillDices, int damageDices, int criticalDices)
     {
+        _skillDicePrefab = skillDicePrefab;
+
         _dices = new Dictionary<DiceType, DiceInfo>
         {
             { DiceType.Skill, new DiceInfo(DiceType.Skill, new Stat(skillDices, new List<int>())) },
@@ -43,7 +47,12 @@ public class DiceManager
         {
             _dices[type].RmvAmount(amount);
         }
-    }   
+    }
+
+    public DiceController GetSkillDicePrefab()
+    {
+        return _skillDicePrefab;
+    }
 
     private class DiceInfo
     {

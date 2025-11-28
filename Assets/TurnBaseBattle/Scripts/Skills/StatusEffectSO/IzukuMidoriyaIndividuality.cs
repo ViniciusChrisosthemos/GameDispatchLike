@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ResourceStatusEffect", menuName = "TurnBaseBattle/Skills/Individuality/Izuku Midoriya")]
+[CreateAssetMenu(fileName = "Individuality", menuName = "TurnBaseBattle/Skills/Individuality/Izuku Midoriya")]
 public class IzukuMidoriyaIndividuality : AbstractIndividuality
 {
     [SerializeField] private SkillResourceSO ResourceType;

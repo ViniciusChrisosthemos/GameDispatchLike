@@ -4,8 +4,7 @@ using UnityEngine;
 
 public abstract class AbstractSkillStatus : ScriptableObject
 {
-    public int Duration { get; protected set; }
-
+    public Sprite Icon;
     public abstract void OnApply(SkillStatusRuntime statusRuntime);
     public abstract void OnTurnStart(SkillStatusRuntime statusRuntime);
     public abstract void OnTurnEnd(SkillStatusRuntime statusRuntime);

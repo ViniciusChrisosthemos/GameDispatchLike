@@ -15,7 +15,7 @@ public class RollDiceController : MonoBehaviour
 
     private Action<List<DiceValueSO>> _allDiceRolledCallback;
 
-    public void RollDices(int diceAmount, Action<List<DiceValueSO>> values)
+    public void RollDices(DiceController dicePrefab, int diceAmount, Action<List<DiceValueSO>> values)
     {
         Debug.Log("Roll Dices");
         _diceView.SetActive(true);
@@ -24,7 +24,7 @@ public class RollDiceController : MonoBehaviour
         _diceValues = new Dictionary<int, DiceValueSO>();
 
         _diceParent.ClearChilds();
-        _diceThrower.RollDices(diceAmount, _diceParent, HandleDiceResult);
+        _diceThrower.RollDices(dicePrefab, diceAmount, _diceParent, HandleDiceResult);
 
         _diceAmount = diceAmount;
         _allDiceRolledCallback = values;

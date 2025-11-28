@@ -30,6 +30,7 @@ public class CharacterSO: SavebleSO
     public float BaseMoveSpeed;
 
     [Header("Dices")]
+    public DiceController SkillDicePrefab;
     public int BaseSkillDicesAmount;
     public int BaseDamageDicesAmount;
     public int BaseCriticalDicesAmount;

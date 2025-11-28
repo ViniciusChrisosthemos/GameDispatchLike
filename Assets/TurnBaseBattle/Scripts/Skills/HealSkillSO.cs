@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "Heal_Skill_", menuName = "ScriptableObjects/TurnBasedBattle/Skill/Skill/Heal")]
+[CreateAssetMenu(fileName = "Heal_Skill_", menuName = "TurnBaseBattle/Skills/Skill/Heal")]
 public class HealSkillSO : BaseSkillSO
 {
     public int HealAmount;

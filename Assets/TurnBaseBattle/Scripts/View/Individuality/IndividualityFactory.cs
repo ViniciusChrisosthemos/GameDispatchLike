@@ -6,8 +6,8 @@ public static class IndividualityFactory
 {
     public static AbstractIndividualityView CreateIndividualityView(BattleCharacter character, Transform parent)
     {
-        var individuality = character.BaseCharacter.Individuality;
-        var individualityViewPrefab = character.BaseCharacter.IndividualityView;
+        var individuality = character.Individuality;
+        var individualityViewPrefab = character.IndividualityView;
         
         var viewInstance = GameObject.Instantiate(individualityViewPrefab, parent);
         viewInstance.InitView(character, individuality);

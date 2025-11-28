@@ -26,4 +26,5 @@ public interface IBattleCharacter : ITimelineElement
     void RmvResource(SkillResourceSO resource, int amount);
 
     int GetSkillResourceAmount(SkillResourceSO resourceSO);
+    void RmvStatus(StunSkillStatus stunSkillStatus);
 }

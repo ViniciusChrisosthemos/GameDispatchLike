@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class AbstractIndividuality : ScriptableObject
 {
+    public AbstractIndividualityView IndividualityView;
+
     public abstract void Init(IBattleCharacter character);
     public abstract void OnTurnStart();
     public abstract void OnTurnEnd();

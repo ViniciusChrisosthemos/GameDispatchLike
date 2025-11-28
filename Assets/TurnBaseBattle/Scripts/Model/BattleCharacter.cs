@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BattleCharacter : IBattleCharacter, ITimelineElement
@@ -14,8 +15,12 @@ public class BattleCharacter : IBattleCharacter, ITimelineElement
     private bool _isActive;
     private int _actionBlockerAmount;
 
+    private AbstractIndividuality _individuality;
+
     private List<SkillStatusRuntime> _currentStatus;
     private List<SkillResourceRuntime> _currentResources;
+
+    public Action OnStatusUpdated;
 
     public BattleCharacter (CharacterUnit characterUnit)
     {
@@ -29,6 +34,8 @@ public class BattleCharacter : IBattleCharacter, ITimelineElement
 
         _currentStatus = new List<SkillStatusRuntime>();
         _currentResources = new List<SkillResourceRuntime>();
+
+        _individuality = GameObject.Instantiate(characterUnit.BaseCharacterSO.Individuality);
     }
 
     public CharacterSO BaseCharacter => _characterUnit.BaseCharacterSO;
@@ -94,21 +101,39 @@ public class BattleCharacter : IBattleCharacter, ITimelineElement
 
     public void AddStatus(AbstractSkillStatus status)
     {
-        var statusRuntime = new SkillStatusRuntime(status, status.Duration, this);
+        var statusRuntime = new SkillStatusRuntime(status, this);
 
         _currentStatus.Add(statusRuntime);
 
-        statusRuntime.StatusSO.OnApply(statusRuntime);
+        statusRuntime.ApplyStatus(statusRuntime);
     }
+
+    public void RmvStatus(StunSkillStatus stunSkillStatus)
+    {
+        var statusRuntime = _currentStatus.Find(s => s.StatusSO == stunSkillStatus);
+        
+        if (statusRuntime != null)
+        {
+            statusRuntime.RemoveStatus(statusRuntime);
+        }
+    }
+
 
     public void OnTurnStart()
     {
         _currentStatus.ForEach(statusRuntime => statusRuntime.StatusSO.OnTurnStart(statusRuntime));
+        _individuality.OnTurnStart();
     }
 
     public void OnTurnEnd()
     {
         _currentStatus.ForEach(statusRuntime => statusRuntime.StatusSO.OnTurnEnd(statusRuntime));
+        var expiredStatuses = _currentStatus.FindAll(s => s.IsExpired);
+        expiredStatuses.ForEach(s => _currentStatus.Remove(s));
+
+        _individuality.OnTurnEnd();
+
+        OnStatusUpdated?.Invoke();
     }
 
     public void AddResource(SkillResourceSO resource, int amount)
@@ -119,10 +144,14 @@ public class BattleCharacter : IBattleCharacter, ITimelineElement
         {
             currentResource = new SkillResourceRuntime(resource, amount);
             _currentResources.Add(currentResource);
+
+            Debug.Log($"[{GetType()}][AddResource] New {resource.Name} {amount}");
         }
         else
         {
+            Debug.Log($"[{GetType()}][AddResource] Add to {resource.Name} {amount}");
             currentResource.AddAmount(amount);
+            Debug.Log($"[{GetType()}][AddResource]          new {currentResource.SkillResourceSO.Name} {currentResource.Amount}");
         }
     }
 
@@ -143,13 +172,32 @@ public class BattleCharacter : IBattleCharacter, ITimelineElement
 
     public int GetSkillResourceAmount(SkillResourceSO resourceSO)
     {
-        var currentResource = _currentResources.Find(r => r.SkillResourceSO == resourceSO);
+        var currentResource = _currentResources.Find(r => r.SkillResourceSO.Name.Equals(resourceSO.Name));
 
-        return currentResource != null ? currentResource.Amount : 0;
+        Debug.Log($"[{GetType()}][GetSkillResourceAmount]  {resourceSO.Name} {currentResource}");
+
+        if (currentResource != null)
+        {
+            Debug.Log($"    {currentResource.SkillResourceSO.Name}  {currentResource.Amount}");
+        }
+
+            return currentResource != null ? currentResource.Amount : 0;
     }
+
+    public void UpdateAfterUseSkill()
+    {
+        _individuality.UpdateIndividuality();
+    }
+
+    public List<SkillStatusRuntime> GetStatus()
+    {
+        return _currentStatus;
+    }
+
 
     public int Health => _currentHealth;
     public int MaxHealth => _maxHealth;
     public List<BaseSkillSO> GetSkills() => BaseCharacter.Skills;
-
+    public AbstractIndividuality Individuality => _individuality;
+    public AbstractIndividualityView IndividualityView => BaseCharacter.IndividualityView;
 }
