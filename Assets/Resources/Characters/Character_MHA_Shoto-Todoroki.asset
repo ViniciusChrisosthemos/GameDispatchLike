@@ -35,16 +35,19 @@ MonoBehaviour:
     _maxStatValue: 10
   FaceArt: {fileID: -1459098534, guid: 92a667c274e69424f9af2849357dcce6, type: 3}
   BodyArt: {fileID: 568086319, guid: 92a667c274e69424f9af2849357dcce6, type: 3}
-  FullArt: {fileID: 21300000, guid: 82bc1eb6e25528e448430b6fcdecdd13, type: 3}
+  FullArt: {fileID: -2028527870, guid: 92a667c274e69424f9af2849357dcce6, type: 3}
   IconArt: {fileID: 21300000, guid: 56fd069d408a64e48b8d4f6a54c15505, type: 3}
   MissionCompletedArt: {fileID: -21128370, guid: 82bc1eb6e25528e448430b6fcdecdd13, type: 3}
+  BattleScreen1Art: {fileID: 0}
+  BattleScreen2Art: {fileID: 0}
+  BattleScreen3Art: {fileID: -388284826, guid: 92a667c274e69424f9af2849357dcce6, type: 3}
+  BattleScreen4Art: {fileID: 0}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12
   Keywords:
   - {fileID: 11400000, guid: 4ab9f87d1c6bcc6478d0a5e74b0c7a6b, type: 2}
   Skills:
-  - {fileID: 11400000, guid: ea81b6e267b294145981ed921859775d, type: 2}
-  - {fileID: 11400000, guid: f39c5290992140142a435dda59161408, type: 2}
+  - {fileID: 11400000, guid: a94b62c71e233d644872f9344fe72826, type: 2}
   BaseMoveSpeed: 0.85
   SkillDicePrefab: {fileID: 2562814042158323157, guid: ed0aedd4555f6204889a789af52bb190, type: 3}
   BaseSkillDicesAmount: 3
@@ -52,3 +55,5 @@ MonoBehaviour:
   BaseCriticalDicesAmount: 0
   Individuality: {fileID: 11400000, guid: 9c516b23b756f0a44a48d3b5abfa58d0, type: 2}
   IndividualityView: {fileID: 929034123188553140, guid: 3f3e2c2dcd25e0749aaf54d422f99606, type: 3}
+  CharacterTurnVoiceLines:
+  - {fileID: 8300000, guid: 1695d19b8ca5dfc4b91411d9df1c4e48, type: 3}

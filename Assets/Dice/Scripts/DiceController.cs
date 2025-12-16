@@ -26,7 +26,7 @@ public class DiceController : MonoBehaviour
     {
         if (!_delayFinished) return;
 
-        if (!_hasStoppedRolling && _rigidbody.velocity.sqrMagnitude == 0)
+        if (!_hasStoppedRolling && _rigidbody.linearVelocity.sqrMagnitude == 0)
         {
             _hasStoppedRolling = true;
             GetNumberOnTopFace();

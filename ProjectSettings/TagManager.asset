@@ -2,9 +2,10 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags:
   - Wall
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -51,3 +52,9 @@ TagManager:
   - name: UI
     uniqueID: 1158313977
     locked: 0
+  - name: UI Particle Effects
+    uniqueID: 1779618815
+    locked: 0
+  m_RenderingLayers:
+  - Default
+  - Layer 1

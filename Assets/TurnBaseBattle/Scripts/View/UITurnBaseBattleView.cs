@@ -2,10 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UITurnBaseBattleView : MonoBehaviour
 {
@@ -20,6 +17,19 @@ public class UITurnBaseBattleView : MonoBehaviour
     [SerializeField] private UISkillSelectionView _uiSkillSelectionView;
 
     [SerializeField] private UIResultScreenView _uiResultScreenView;
+
+    [SerializeField] private UIOpenBattleScreenView _playerOpenBattleTeamView;
+    [SerializeField] private UIOpenBattleScreenView _enemyOpenBattleTeamView;
+
+    [SerializeField] private UIBattleAnimationHelperView _battleSkillAnimationHelperView;
+
+    [Header("Animation")]
+    [SerializeField] private Animator _animator;
+    [SerializeField] private string _openScreenTrigger = "OpenBattleScreen";
+    [SerializeField] private string _openScreenState = "OpenBattleScreen";
+
+    [Header("Screen Configuration")]
+    [SerializeField] private ScreenConfigurationSO _screenConfigurationSO;
 
     private BattleCharacter _currentCharacter;
     private List<SkillAction> _skillActionQueue;
@@ -38,12 +48,12 @@ public class UITurnBaseBattleView : MonoBehaviour
         _uiSkillSelectionView.OnPassAction.AddListener(Pass);
 
         _turnbaseBattleController.OnSetupReady.AddListener(HandleBattleSetupReady);
+        
+        _view.SetActive(false);
     }
 
     private void HandleBattleSetupReady(List<BattleCharacter> playerCharacters, List<BattleCharacter> enemyCharacters, TimelineController timelineController)
     {
-        _view.SetActive(true);
-
         _playerUIListDisplay.SetItems(playerCharacters, null);
         _enemyUIListDisplay.SetItems(enemyCharacters, null);
 
@@ -53,16 +63,40 @@ public class UITurnBaseBattleView : MonoBehaviour
         _uiSkillSelectionView.SetTeams(_playerBattleCharacterViews, _enemyBattleCharacterViews);
         _uiTimelineView.SetTimeline(timelineController);
 
-        _turnbaseBattleController.StartBattle();
+        _playerOpenBattleTeamView.SetTeam(playerCharacters);
+        _enemyOpenBattleTeamView.SetTeam(enemyCharacters);
+
+        Debug.Log("OK");
+
+        StartCoroutine(PlayAnimation(_openScreenTrigger, _openScreenState, null));
     }
 
-    private void Update()
+    private IEnumerator PlayAnimation(string trigger, string state, Action callback)
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        _animator.SetTrigger(trigger);
+
+        StartCoroutine(WaitForSecondsCoroutine(5f, () => 
         {
-            Pass();
-        }
+            _view.SetActive(true);
+            _turnbaseBattleController.StartBattle();
+        }));
+
+        yield return new WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).IsName(state));
+
+        yield return new WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
+
+        yield return null;
+
+        callback?.Invoke();
     }
+
+    private IEnumerator WaitForSecondsCoroutine(float seconds, Action callback)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        callback?.Invoke();
+    }
+
 
     private void HandleCharacterTurn(bool isPlayerCharacter, BattleCharacter character)
     {
@@ -74,6 +108,11 @@ public class UITurnBaseBattleView : MonoBehaviour
             _skillActionQueue = new List<SkillAction>();
 
             _uiSkillSelectionView.SetCharacter(character);
+
+            if (_currentCharacter.BaseCharacter.HasTurnVoiceLines())
+            {
+                SoundManager.Instance.PlaySFX(_currentCharacter.BaseCharacter.GetTurnVoiceLine(), 0.6f);
+            }
         }
         else
         {
@@ -115,19 +154,43 @@ public class UITurnBaseBattleView : MonoBehaviour
         _uiSkillSelectionView.UpdateActionQueue(_skillActionQueue, _currentDiceValues, _lockedDices);
     }
 
-    public async void PlayActions()
+    public void PlayActions()
+    {
+        StartCoroutine(PlayActionsCoroutine(Pass));
+    }
+
+    private IEnumerator PlayActionsCoroutine(Action callback)
     {
         foreach (var action in _skillActionQueue)
         {
-            _turnbaseBattleController.SkillAction(action.Source, action.Skill, action.Targets);
+            var skillResult = _turnbaseBattleController.SkillAction(action.Source, action.Skill, action.Targets);
 
-            UpdateCharacters();
-            _uiSkillSelectionView.UpdateIndividualityView();
-
-            await Task.Delay(1500);
+            yield return AnimateAction(true, skillResult);
         }
 
-        Pass();
+        callback?.Invoke();
+    }
+
+    public IEnumerator AnimateAction(bool isPlayer, SkillActionResult actionResult)
+    {
+        if (actionResult.Skill.DataSO != null)
+        {
+            var ownerList = isPlayer ? _playerBattleCharacterViews : _enemyBattleCharacterViews;
+            var opponentList = isPlayer ? _enemyBattleCharacterViews : _playerBattleCharacterViews;
+
+            var source = ownerList.Find(view => view.BattleCharacter == actionResult.Source);
+            var targets = opponentList.Where(view => actionResult.Targets.Contains(view.BattleCharacter)).ToList();
+
+            if (!targets.Any())
+            {
+                targets = ownerList.Where(view => actionResult.Targets.Contains(view.BattleCharacter)).ToList();
+            }
+
+            yield return _battleSkillAnimationHelperView.AnimateSkillCoroutine(actionResult.Skill, source, targets, null);
+        }
+
+        UpdateCharacters();
+        _uiSkillSelectionView.UpdateIndividualityView();
     }
 
     public void UpdateCharacters()
@@ -157,5 +220,10 @@ public class UITurnBaseBattleView : MonoBehaviour
 
         action.Skill.RequiredDiceValues.ForEach(d => _lockedDices.Remove(d));
         _uiSkillSelectionView.UpdateActionQueue(_skillActionQueue, _currentDiceValues, _lockedDices);
+    }
+
+    public void PlayBattleMusic()
+    {
+        SoundManager.Instance.PlayMusic(_screenConfigurationSO.MusicBackground, _screenConfigurationSO.MusicVolume, _screenConfigurationSO.InLoop);
     }
 }

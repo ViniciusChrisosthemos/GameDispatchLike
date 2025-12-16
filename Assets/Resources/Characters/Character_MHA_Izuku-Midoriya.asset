@@ -38,6 +38,10 @@ MonoBehaviour:
   FullArt: {fileID: -923831031, guid: 1a283fda68bc70342a36e841f48d081f, type: 3}
   IconArt: {fileID: 21300000, guid: ff44b365d9f7d9f44a64a0cf508e8417, type: 3}
   MissionCompletedArt: {fileID: 21300000, guid: 9385c27268931ec4193967e79d65ee5a, type: 3}
+  BattleScreen1Art: {fileID: 0}
+  BattleScreen2Art: {fileID: 0}
+  BattleScreen3Art: {fileID: -49934168, guid: 1a283fda68bc70342a36e841f48d081f, type: 3}
+  BattleScreen4Art: {fileID: 0}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12
   Keywords:
@@ -53,3 +57,5 @@ MonoBehaviour:
   BaseCriticalDicesAmount: 0
   Individuality: {fileID: 11400000, guid: 9c516b23b756f0a44a48d3b5abfa58d0, type: 2}
   IndividualityView: {fileID: 929034123188553140, guid: 3f3e2c2dcd25e0749aaf54d422f99606, type: 3}
+  CharacterTurnVoiceLines:
+  - {fileID: 8300000, guid: 12db7e5ea4497a0408632218ec6e0882, type: 3}

@@ -42,6 +42,7 @@ public class UISelectTeamForBattleView : MonoBehaviour
         _onSendTeamCallback = onSendTeamCallback;
         _onCloseScreenCallback = onCloseScreenCallback;
 
+        _uiDayManager.OnCharacterSelected.RemoveListener(HandleCharacterSelected);
         _uiDayManager.OnCharacterSelected.AddListener(HandleCharacterSelected);
     }
 

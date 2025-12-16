@@ -169,15 +169,7 @@ public class CharacterUnit
 
     public Sprite GetArt(CharacterArtType characterArtType)
     {
-        switch(characterArtType)
-        {
-            case CharacterArtType.Face: return FaceArt;
-            case CharacterArtType.Body: return BodyArt;
-            case CharacterArtType.FullBody: return FullArt;
-            case CharacterArtType.MissionCompleted: return _baseCharacter.MissionCompletedArt;
-            case CharacterArtType.Icon: return _baseCharacter.IconArt;
-            default: return FaceArt;
-        }
+        return BaseCharacterSO.GetArt(characterArtType);
     }
 
     public List<AbstractKeywordSO> GetKeywords()

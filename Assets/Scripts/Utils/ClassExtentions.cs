@@ -67,4 +67,6 @@ public static class ClassExtentions
             list[n] = value;
         }
     }
+
+    public static T GetRandomValue<T>(this IList<T> list) => list[Random.Range(0, list.Count)];
 }

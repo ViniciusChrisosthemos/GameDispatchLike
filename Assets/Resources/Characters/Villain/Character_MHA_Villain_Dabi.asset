@@ -15,13 +15,13 @@ MonoBehaviour:
   ID: Dabi
   Name: Dabi
   Rank: {fileID: 0}
-  ColorBackground: {r: 0, g: 0, b: 0, a: 0}
+  ColorBackground: {r: 0, g: 0.06607723, b: 1, a: 1}
   BaseStats:
     _strengh:
       BaseValue: 5
       Bonus: 
     _endurance:
-      BaseValue: 2
+      BaseValue: 10
       Bonus: 
     _agility:
       BaseValue: 6
@@ -38,14 +38,15 @@ MonoBehaviour:
   FullArt: {fileID: 1240490031, guid: 0b7b5e87448c01c48a64970d77ede506, type: 3}
   IconArt: {fileID: 21300000, guid: 14ae4b51d0788ce4887d20ae92c4f000, type: 3}
   MissionCompletedArt: {fileID: 21300000, guid: 82bc1eb6e25528e448430b6fcdecdd13, type: 3}
+  BattleScreen1Art: {fileID: 1377443856, guid: 0b7b5e87448c01c48a64970d77ede506, type: 3}
+  BattleScreen2Art: {fileID: 0}
+  BattleScreen3Art: {fileID: 0}
+  BattleScreen4Art: {fileID: 0}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12
   Keywords: []
   Skills:
-  - {fileID: 11400000, guid: ea81b6e267b294145981ed921859775d, type: 2}
-  - {fileID: 11400000, guid: f39c5290992140142a435dda59161408, type: 2}
-  - {fileID: 11400000, guid: ec9f518b57f31c5498a68efc6505cd9d, type: 2}
-  - {fileID: 11400000, guid: 09cf5395e389c56469dfa9911ba43b36, type: 2}
+  - {fileID: 11400000, guid: c1df354cb4688d84490151fa16fee0de, type: 2}
   BaseMoveSpeed: 0
   SkillDicePrefab: {fileID: 2562814042158323157, guid: ed0aedd4555f6204889a789af52bb190, type: 3}
   BaseSkillDicesAmount: 3
@@ -53,3 +54,5 @@ MonoBehaviour:
   BaseCriticalDicesAmount: 0
   Individuality: {fileID: 11400000, guid: 9c516b23b756f0a44a48d3b5abfa58d0, type: 2}
   IndividualityView: {fileID: 929034123188553140, guid: 3f3e2c2dcd25e0749aaf54d422f99606, type: 3}
+  CharacterTurnVoiceLines:
+  - {fileID: 8300000, guid: 4d7dfa143506da741888df3bc5dfc427, type: 3}

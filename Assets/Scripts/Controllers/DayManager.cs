@@ -25,7 +25,7 @@ public class DayManager : MonoBehaviour
     public UnityEvent<bool> OnGamePausedChange;
 
     [Header("Debug")]
-    [SerializeField] private bool _runOnStart = false;
+    [SerializeField] private bool _debug = false;
 
     private float _elapseTime;
     private bool _isPaused = false;
@@ -58,7 +58,7 @@ public class DayManager : MonoBehaviour
         var missionAmount = daySO.UseAllMissions ? daySO.MissionSOs.Count : daySO.MissionAmount;
 
         _dayCharacterManager.Init(characters);
-
+        
         Debug.Log($"{daySO.name} {daySO.MissionSOs.Count} {daySO.MissionAmount} {daySO.DayDurationInSeconds} {missionAmount}");
         _missionManager.Init(daySO.MissionSOs, missionAmount, daySO.DayDurationInSeconds, HandleNewMissions);
 
@@ -75,7 +75,7 @@ public class DayManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForEndOfFrame();
-
+            
             if (!_isPaused)
             {
                 _elapseTime += Time.deltaTime;

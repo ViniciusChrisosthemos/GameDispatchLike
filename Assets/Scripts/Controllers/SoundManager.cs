@@ -19,11 +19,21 @@ public class SoundManager : Singleton<SoundManager>
         _currentSFXAudioSource = (_currentSFXAudioSource + 1) % _sfxAudioSources.Count;
     }
 
-    internal void PlayMusic(AudioClip battleTheme, float volume, bool loop)
+    public void PlayMusic(AudioClip battleTheme, float volume, bool loop)
     {
-        _musicAudioSource.clip = battleTheme;
-        _musicAudioSource.loop = loop;
-        _musicAudioSource.volume = volume;
-        _musicAudioSource.Play();
+        PlayMusic(battleTheme, volume, loop, _musicAudioSource);
+    }
+
+    public void PlayMusic(AudioClip battleTheme, float volume, bool loop, AudioSource audioSource)
+    {
+        audioSource.clip = battleTheme;
+        audioSource.loop = loop;
+        audioSource.volume = volume;
+        audioSource.Play();
+    }
+
+    internal void PlaySFX(AudioClip sFXAudio, object sFXVolume)
+    {
+        throw new NotImplementedException();
     }
 }

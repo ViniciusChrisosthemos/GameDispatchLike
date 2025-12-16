@@ -31,6 +31,9 @@ public class UIDayManager : MonoBehaviour
     public UnityEvent<CharacterUnit> OnCharacterSelected;
     public UnityEvent OnScreenOpened;
 
+    [Header("Settings")]
+    [SerializeField] private ScreenConfigurationSO _screenConfigurationSO;
+ 
     private List<UIMissionController> _uiMissionControllers;
     private List<UIDayCharacterViewController> _uiDayCharacterControllers;
 
@@ -98,6 +101,8 @@ public class UIDayManager : MonoBehaviour
 
         _uiMissionManagerViewController.CloseScreen();
         OnScreenOpened?.Invoke();
+
+        SoundManager.Instance.PlayMusic(_screenConfigurationSO.MusicBackground, _screenConfigurationSO.MusicVolume, _screenConfigurationSO.InLoop);
     }
 
     private void HandleMissionSelected(MissionUnit missionSelected)
@@ -140,6 +145,8 @@ public class UIDayManager : MonoBehaviour
                     {
                         HandleMissionCompleted(missionSelected, result);
                         ResumeDay();
+
+                        SoundManager.Instance.PlayMusic(_screenConfigurationSO.MusicBackground, _screenConfigurationSO.MusicVolume, _screenConfigurationSO.InLoop);
                     });
 
                 }, () =>

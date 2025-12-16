@@ -1,7 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class BattleEnemyBehaviour : MonoBehaviour
 {
@@ -24,25 +25,28 @@ public class BattleEnemyBehaviour : MonoBehaviour
         _enemiesCharacters = playerCharacters;
     }
 
-    public async void HandleCharacterTurn(bool isPlayerCharacter, BattleCharacter character)
+    public void HandleCharacterTurn(bool isPlayerCharacter, BattleCharacter character)
     {
         if (isPlayerCharacter) return;
 
-        await Task.Delay(1000);
-
-        await HandleDicesResult(character, await RollDicesAsync(character.GetDiceManager()));
+        StartCoroutine(HandleCharacterTurnCoroutine(character));
     }
 
-    private Task<List<DiceValueSO>> RollDicesAsync(DiceManager diceManager)
+    private IEnumerator HandleCharacterTurnCoroutine(BattleCharacter character)
     {
-        var tcs = new TaskCompletionSource<List<DiceValueSO>>();
+        yield return new WaitForSeconds(1f);
 
-        _rollDiceController.RollDices(diceManager.GetSkillDicePrefab(), diceManager.GetSkillDices(), values => tcs.SetResult(values));
+        var diceManager = character.GetDiceManager();
+        var dicesValues = new List<DiceValueSO>();
 
-        return tcs.Task;
+        _rollDiceController.RollDices(diceManager.GetSkillDicePrefab(), diceManager.GetSkillDices(), result => dicesValues = result);
+
+        yield return new WaitUntil(() => dicesValues.Count != 0);
+
+        yield return HandleDicesResult(character, dicesValues);
     }
 
-    private async Task HandleDicesResult(BattleCharacter character, List<DiceValueSO> diceValues)
+    private IEnumerator HandleDicesResult(BattleCharacter character, List<DiceValueSO> diceValues)
     {
         var allSkills = character.GetSkills();
         var availableSkills = new List<BaseSkillSO>();
@@ -101,9 +105,9 @@ public class BattleEnemyBehaviour : MonoBehaviour
                 {
                     selectedSkill.RequiredDiceValues.ForEach(dv => diceValueCopy.Remove(dv));
 
-                    _turnBaseBattleController.SkillAction(character, selectedSkill, targets);
-                    _uiTurnBaseBattleView.UpdateCharacters();
-                    await Task.Delay(1000);
+                    var actionResult = _turnBaseBattleController.SkillAction(character, selectedSkill, targets);
+
+                    yield return _uiTurnBaseBattleView.AnimateAction(false, actionResult);
                 }
             }
 

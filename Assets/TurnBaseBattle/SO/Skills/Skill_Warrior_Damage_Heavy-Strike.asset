@@ -25,4 +25,6 @@ MonoBehaviour:
   SkillTargetAmount: 2
   TargetAmount: 1
   SpriteAsset: {fileID: 11400000, guid: 45c5def210cf8c446ae604abfea4f0d2, type: 2}
+  DataSO: {fileID: 11400000, guid: 229978d7edc8b6f44beee161b69abd9f, type: 2}
   DamageAmount: 15
+  ResourcesToAdd: []

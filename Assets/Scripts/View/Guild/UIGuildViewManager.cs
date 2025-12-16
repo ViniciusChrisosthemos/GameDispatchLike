@@ -33,6 +33,7 @@ public class UIGuildViewManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private GameSettingsSO _gameSettingsSO;
+    [SerializeField] private ScreenConfigurationSO _screenConfigurationSO;
 
     [Header("Events")]
     public UnityEvent OnScreenOpened;
@@ -81,6 +82,8 @@ public class UIGuildViewManager : MonoBehaviour
         OnScreenOpened?.Invoke();
 
         _uiCalendarView.SetNormalDay(gameState.Day, null);
+
+        SoundManager.Instance.PlayMusic(_screenConfigurationSO.MusicBackground, _screenConfigurationSO.MusicVolume, _screenConfigurationSO.InLoop);
     }
 
     public void HandleScheduledCharacterSelected(UIItemController controller)

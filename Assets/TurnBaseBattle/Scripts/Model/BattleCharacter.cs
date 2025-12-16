@@ -194,10 +194,11 @@ public class BattleCharacter : IBattleCharacter, ITimelineElement
         return _currentStatus;
     }
 
-
+    public CharacterUnit CharacterUnit => _characterUnit;
     public int Health => _currentHealth;
     public int MaxHealth => _maxHealth;
     public List<BaseSkillSO> GetSkills() => BaseCharacter.Skills;
+
     public AbstractIndividuality Individuality => _individuality;
     public AbstractIndividualityView IndividualityView => BaseCharacter.IndividualityView;
 }

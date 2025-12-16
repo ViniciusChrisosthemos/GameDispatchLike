@@ -22,6 +22,11 @@ MonoBehaviour:
   SkillTargetAmount: 0
   TargetAmount: 1
   SpriteAsset: {fileID: 11400000, guid: b375b8d12e44210438efb36195d1bbc6, type: 2}
+  _sfxVoiceLines:
+  - {fileID: 8300000, guid: 12db7e5ea4497a0408632218ec6e0882, type: 3}
+  - {fileID: 8300000, guid: 235169e459fe4e346bfeb10d8bb02cd8, type: 3}
+  - {fileID: 8300000, guid: e01612a1c2b995045b2174fba6ed7231, type: 3}
+  DataSO: {fileID: 11400000, guid: 229978d7edc8b6f44beee161b69abd9f, type: 2}
   DamageAmount: 10
   ResourcesToAdd:
   - Item: {fileID: 11400000, guid: 2c74a3a5d89c79545a3298e4be68dec5, type: 2}

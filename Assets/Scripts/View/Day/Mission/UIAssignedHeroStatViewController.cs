@@ -30,15 +30,6 @@ public class UIAssignedHeroStatViewController : MonoBehaviour
 
     }
 
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            OpenScreen(_team);
-        }
-    }
-
     public void Close()
     {
         _view.SetActive(false);

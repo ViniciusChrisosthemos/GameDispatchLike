@@ -15,6 +15,7 @@ public class UIMissionController : MonoBehaviour, IPointerClickHandler
     [SerializeField] private SpriteFill _spriteSliderTime;
     [SerializeField] private Color _colorMissionAvailable = Color.red;
     [SerializeField] private Color _colorMissionInProgress = Color.yellow;
+    [SerializeField] private CharacterArtType _characterArtType = CharacterArtType.Icon;
 
     [Header("(Optional)")]
     [SerializeField] private TextMeshProUGUI _txtMissionName;
@@ -99,7 +100,7 @@ public class UIMissionController : MonoBehaviour, IPointerClickHandler
 
         _spriteSliderTime.fillAmount = 1;
         _spriteSliderTime.Color = _colorMissionInProgress;
-        _spriteInProgress.sprite = _missionUnit.Team.Members[0].FaceArt;
+        _spriteInProgress.sprite = _missionUnit.Team.Members[0].GetArt(_characterArtType);
         _spriteCharacterBackground.color = _missionUnit.Team.Members[0].HeroBackgroundColor;
 
         var color = _spriteInProgress.color;

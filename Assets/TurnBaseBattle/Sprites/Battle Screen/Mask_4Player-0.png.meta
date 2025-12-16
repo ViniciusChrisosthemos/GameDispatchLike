@@ -1,0 +1,2002 @@
+fileFormatVersion: 2
+guid: 0feaefc653da4854c8b43639bc770c61
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8309898414666191378
+    second: Mask_4Player-0_0
+  - first:
+      213: -2555173811062474298
+    second: Mask_4Player-0_1
+  - first:
+      213: 8263138768461662846
+    second: Mask_4Player-0_2
+  - first:
+      213: 899247915292084896
+    second: Mask_4Player-0_3
+  - first:
+      213: -913371914910027872
+    second: Mask_4Player-0_4
+  - first:
+      213: -5064953694777481691
+    second: Mask_4Player-0_5
+  - first:
+      213: 3272812344255096332
+    second: Mask_4Player-0_6
+  - first:
+      213: 9126655000138033886
+    second: Mask_4Player-0_7
+  - first:
+      213: -8073756167172954669
+    second: Mask_4Player-0_8
+  - first:
+      213: -6010258272021178580
+    second: Mask_4Player-0_9
+  - first:
+      213: -52995468059366087
+    second: Mask_4Player-0_10
+  - first:
+      213: 3357435001193215148
+    second: Mask_4Player-0_11
+  - first:
+      213: -3267689166473748037
+    second: Mask_4Player-0_12
+  - first:
+      213: 6160866944668721897
+    second: Mask_4Player-0_13
+  - first:
+      213: 3998490659167333183
+    second: Mask_4Player-0_14
+  - first:
+      213: 4099739225187496546
+    second: Mask_4Player-0_15
+  - first:
+      213: 2169110287173126836
+    second: Mask_4Player-0_16
+  - first:
+      213: -1488813811957485758
+    second: Mask_4Player-0_17
+  - first:
+      213: -288916048933284115
+    second: Mask_4Player-0_18
+  - first:
+      213: -6742012009496822733
+    second: Mask_4Player-0_19
+  - first:
+      213: -5267103599541725706
+    second: Mask_4Player-0_20
+  - first:
+      213: 270011338875885832
+    second: Mask_4Player-0_21
+  - first:
+      213: 5596610744571610139
+    second: Mask_4Player-0_22
+  - first:
+      213: 4565340185013410421
+    second: Mask_4Player-0_23
+  - first:
+      213: -1825630123149716475
+    second: Mask_4Player-0_24
+  - first:
+      213: -2402120006676263751
+    second: Mask_4Player-0_25
+  - first:
+      213: -2206837477107239696
+    second: Mask_4Player-0_26
+  - first:
+      213: 4342109828400358561
+    second: Mask_4Player-0_27
+  - first:
+      213: -1643697671203263983
+    second: Mask_4Player-0_28
+  - first:
+      213: 323063988558294264
+    second: Mask_4Player-0_29
+  - first:
+      213: -6810358639991694073
+    second: Mask_4Player-0_30
+  - first:
+      213: 7412871965762254143
+    second: Mask_4Player-0_31
+  - first:
+      213: -5864491212531156435
+    second: Mask_4Player-0_32
+  - first:
+      213: 6243780224083154326
+    second: Mask_4Player-0_33
+  - first:
+      213: -6180489860214282215
+    second: Mask_4Player-0_34
+  - first:
+      213: -7090817595369237723
+    second: Mask_4Player-0_35
+  - first:
+      213: 5354452415207803076
+    second: Mask_4Player-0_36
+  - first:
+      213: -3466095122047726438
+    second: Mask_4Player-0_37
+  - first:
+      213: 4453770269909165265
+    second: Mask_4Player-0_38
+  - first:
+      213: -5213311112002142145
+    second: Mask_4Player-0_39
+  - first:
+      213: 6667137683063924323
+    second: Mask_4Player-0_40
+  - first:
+      213: -7602341296892707218
+    second: Mask_4Player-0_41
+  - first:
+      213: 4665921920367762769
+    second: Mask_4Player-0_42
+  - first:
+      213: 9121723959481726387
+    second: Mask_4Player-0_43
+  - first:
+      213: -1167701784771439256
+    second: Mask_4Player-0_44
+  - first:
+      213: -7244634944979565901
+    second: Mask_4Player-0_45
+  - first:
+      213: 7073625706163823997
+    second: Mask_4Player-0_46
+  - first:
+      213: -382040550452689236
+    second: Mask_4Player-0_47
+  - first:
+      213: 8137963037808811180
+    second: Mask_4Player-0_48
+  - first:
+      213: 3555133006505897883
+    second: Mask_4Player-0_49
+  - first:
+      213: 1672916639503651772
+    second: Mask_4Player-0_50
+  - first:
+      213: -6784905405780517990
+    second: Mask_4Player-0_51
+  - first:
+      213: 2343566937531184978
+    second: Mask_4Player-0_52
+  - first:
+      213: 5434912642489755255
+    second: Mask_4Player-0_53
+  - first:
+      213: 1498634471002592971
+    second: Mask_4Player-0_54
+  - first:
+      213: -1733481369122805664
+    second: Mask_4Player-0_55
+  - first:
+      213: -2652977089320885272
+    second: Mask_4Player-0_56
+  - first:
+      213: 6897513449877083896
+    second: Mask_4Player-0_57
+  - first:
+      213: 7371187640843059070
+    second: Mask_4Player-0_58
+  - first:
+      213: 4270712166926795298
+    second: Mask_4Player-0_59
+  - first:
+      213: 8254712555526932215
+    second: Mask_4Player-0_60
+  - first:
+      213: -426830918086670496
+    second: Mask_4Player-0_61
+  - first:
+      213: 3195388238906940315
+    second: Mask_4Player-0_62
+  - first:
+      213: -8640496217629045876
+    second: Mask_4Player-0_63
+  - first:
+      213: 628547853725865694
+    second: Mask_4Player-0_64
+  - first:
+      213: 2390859007935373250
+    second: Mask_4Player-0_65
+  - first:
+      213: 298751815068114811
+    second: Mask_4Player-0_66
+  - first:
+      213: -7102506711709248373
+    second: Mask_4Player-0_67
+  - first:
+      213: 5434268841663016806
+    second: Mask_4Player-0_68
+  - first:
+      213: -7990518076152457390
+    second: Mask_4Player-0_69
+  - first:
+      213: -97480688521348590
+    second: Mask_4Player-0_70
+  - first:
+      213: 2593871184736040157
+    second: Mask_4Player-0_71
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Mask_4Player-0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3
+        width: 586
+        height: 1077
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eed6d3a6b6f4dac80800000000000000
+      internalID: -8309898414666191378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_1
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 1039
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c97d3ce4f23a8cd0800000000000000
+      internalID: -2555173811062474298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_2
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1033
+        width: 49
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7a8aef0ee09ca270800000000000000
+      internalID: 8263138768461662846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_3
+      rect:
+        serializedVersion: 2
+        x: 1063
+        y: 1000
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0aacefbe635ca7c00800000000000000
+      internalID: 899247915292084896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_4
+      rect:
+        serializedVersion: 2
+        x: 1106
+        y: 1006
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0af28f7251d0353f0800000000000000
+      internalID: -913371914910027872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_5
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1019
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5266cfa237ba5b9b0800000000000000
+      internalID: -5064953694777481691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_6
+      rect:
+        serializedVersion: 2
+        x: 1034
+        y: 967
+        width: 35
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c06a6dbac7d5b6d20800000000000000
+      internalID: 3272812344255096332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_7
+      rect:
+        serializedVersion: 2
+        x: 1078
+        y: 980
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eda25c61e5468ae70800000000000000
+      internalID: 9126655000138033886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_8
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 934
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d56984ea8144ff80800000000000000
+      internalID: -8073756167172954669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_9
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 940
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2713dff1f5479ca0800000000000000
+      internalID: -6010258272021178580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_10
+      rect:
+        serializedVersion: 2
+        x: 1049
+        y: 953
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93dad9f07e8b34ff0800000000000000
+      internalID: -52995468059366087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_11
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 901
+        width: 35
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca4b59a5851089e20800000000000000
+      internalID: 3357435001193215148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_12
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 914
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb1a0fb1406d6a2d0800000000000000
+      internalID: -3267689166473748037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_13
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 868
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e2ec6138dbcf7550800000000000000
+      internalID: 6160866944668721897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_14
+      rect:
+        serializedVersion: 2
+        x: 964
+        y: 874
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3be261d11e7d7730800000000000000
+      internalID: 3998490659167333183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_15
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 887
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 262390d9a1335e830800000000000000
+      internalID: 4099739225187496546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_16
+      rect:
+        serializedVersion: 2
+        x: 892
+        y: 835
+        width: 35
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ba8991505a3a1e10800000000000000
+      internalID: 2169110287173126836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_17
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 848
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24f2491e9bba65be0800000000000000
+      internalID: -1488813811957485758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_18
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 815
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de61c6d52609dfbf0800000000000000
+      internalID: -288916048933284115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_19
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 821
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33c368e4ccf8f62a0800000000000000
+      internalID: -6742012009496822733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_20
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 769
+        width: 35
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f5522abe2d77e6b0800000000000000
+      internalID: -5267103599541725706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_21
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 795
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8095603d1e54fb300800000000000000
+      internalID: 270011338875885832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_22
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 775
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b144350f1d72bad40800000000000000
+      internalID: 5596610744571610139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_23
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 749
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57a5a86c5b85b5f30800000000000000
+      internalID: 4565340185013410421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_24
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 755
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 504986a531f0aa6e0800000000000000
+      internalID: -1825630123149716475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_25
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 703
+        width: 35
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bcc336b494f9aed0800000000000000
+      internalID: -2402120006676263751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_26
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 729
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f4f004c10dbf51e0800000000000000
+      internalID: -2206837477107239696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_27
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 709
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a4298922e5424c30800000000000000
+      internalID: 4342109828400358561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_28
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 683
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11aeacd3da96039e0800000000000000
+      internalID: -1643697671203263983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_29
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 689
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fcecb56cf0cb7400800000000000000
+      internalID: 323063988558294264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_30
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 637
+        width: 35
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70d584656eebc71a0800000000000000
+      internalID: -6810358639991694073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_31
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 663
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f35f5bc17cfcfd660800000000000000
+      internalID: 7412871965762254143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_32
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 643
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2a3ea840542d9ea0800000000000000
+      internalID: -5864491212531156435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_33
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 617
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 695d518680d56a650800000000000000
+      internalID: 6243780224083154326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_34
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 623
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9182600c73d7a3aa0800000000000000
+      internalID: -6180489860214282215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_35
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 584
+        width: 35
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5235dec37fa589d90800000000000000
+      internalID: -7090817595369237723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_36
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 597
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c8813f3a16de4a40800000000000000
+      internalID: 5354452415207803076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_37
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 577
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9c81a4c9d4f5efc0800000000000000
+      internalID: -3466095122047726438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_38
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 564
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d4a121a678fecd30800000000000000
+      internalID: 4453770269909165265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_39
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 570
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3004893a2996a7b0800000000000000
+      internalID: -5213311112002142145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_40
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 557
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36665a3166e668c50800000000000000
+      internalID: 6667137683063924323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_41
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 530
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6e7d619ede0f7690800000000000000
+      internalID: -7602341296892707218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_42
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 504
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15d9a35f34fa0c040800000000000000
+      internalID: 4665921920367762769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_43
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 510
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b5f318bc9fd69e70800000000000000
+      internalID: 9121723959481726387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_44
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 486
+        width: 47
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 865db1bd96d7bcfe0800000000000000
+      internalID: -1167701784771439256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_45
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 480
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b28c19b6e2e57b90800000000000000
+      internalID: -7244634944979565901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_46
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 473
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7567f12a119a2260800000000000000
+      internalID: 7073625706163823997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_47
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 399
+        width: 74
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca6097cb428b2baf0800000000000000
+      internalID: -382040550452689236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_48
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 448
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cac5adf144adfe070800000000000000
+      internalID: 8137963037808811180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_49
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 393
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9fec0e22ae565130800000000000000
+      internalID: 3555133006505897883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_50
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 386
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb39474f1d4673710800000000000000
+      internalID: 1672916639503651772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_51
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 337
+        width: 47
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9b13dd3b7c27d1a0800000000000000
+      internalID: -6784905405780517990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_52
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 361
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25775e286b5068020800000000000000
+      internalID: 2343566937531184978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_53
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 331
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 776a1e0c040bc6b40800000000000000
+      internalID: 5434912642489755255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_54
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 324
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc6d34c7c183cc410800000000000000
+      internalID: 1498634471002592971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_55
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 250
+        width: 74
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0686da011ef61f7e0800000000000000
+      internalID: -1733481369122805664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_56
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 299
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e367c1b46bbe2bd0800000000000000
+      internalID: -2652977089320885272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_57
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 244
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f6176520f3e8bf50800000000000000
+      internalID: 6897513449877083896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_58
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 237
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7f3339ea18bb4660800000000000000
+      internalID: 7371187640843059070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_59
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 188
+        width: 47
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2224c9fa61e944b30800000000000000
+      internalID: 4270712166926795298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_60
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 212
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f6c32b7551ae8270800000000000000
+      internalID: 8254712555526932215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_61
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 182
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0674a4c9a87931af0800000000000000
+      internalID: -426830918086670496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_62
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 175
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9b52836cac485c20800000000000000
+      internalID: 3195388238906940315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_63
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 101
+        width: 74
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8b4d19287ac61880800000000000000
+      internalID: -8640496217629045876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_64
+      rect:
+        serializedVersion: 2
+        x: 965
+        y: 150
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed61aa951fc09b800800000000000000
+      internalID: 628547853725865694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_65
+      rect:
+        serializedVersion: 2
+        x: 1074
+        y: 95
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cfd704b9990e2120800000000000000
+      internalID: 2390859007935373250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_66
+      rect:
+        serializedVersion: 2
+        x: 1045
+        y: 88
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7f53256131652400800000000000000
+      internalID: 298751815068114811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_67
+      rect:
+        serializedVersion: 2
+        x: 1086
+        y: 39
+        width: 47
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b841eb1c6c3de6d90800000000000000
+      internalID: -7102506711709248373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_68
+      rect:
+        serializedVersion: 2
+        x: 1059
+        y: 63
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66f2c4138b66a6b40800000000000000
+      internalID: 5434268841663016806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_69
+      rect:
+        serializedVersion: 2
+        x: 1112
+        y: 26
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2575893352afb1190800000000000000
+      internalID: -7990518076152457390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_70
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 11
+        width: 44
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21a793c84dda5aef0800000000000000
+      internalID: -97480688521348590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mask_4Player-0_71
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 0
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd4305f79184ff320800000000000000
+      internalID: 2593871184736040157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Mask_4Player-0_0: -8309898414666191378
+      Mask_4Player-0_1: -2555173811062474298
+      Mask_4Player-0_10: -52995468059366087
+      Mask_4Player-0_11: 3357435001193215148
+      Mask_4Player-0_12: -3267689166473748037
+      Mask_4Player-0_13: 6160866944668721897
+      Mask_4Player-0_14: 3998490659167333183
+      Mask_4Player-0_15: 4099739225187496546
+      Mask_4Player-0_16: 2169110287173126836
+      Mask_4Player-0_17: -1488813811957485758
+      Mask_4Player-0_18: -288916048933284115
+      Mask_4Player-0_19: -6742012009496822733
+      Mask_4Player-0_2: 8263138768461662846
+      Mask_4Player-0_20: -5267103599541725706
+      Mask_4Player-0_21: 270011338875885832
+      Mask_4Player-0_22: 5596610744571610139
+      Mask_4Player-0_23: 4565340185013410421
+      Mask_4Player-0_24: -1825630123149716475
+      Mask_4Player-0_25: -2402120006676263751
+      Mask_4Player-0_26: -2206837477107239696
+      Mask_4Player-0_27: 4342109828400358561
+      Mask_4Player-0_28: -1643697671203263983
+      Mask_4Player-0_29: 323063988558294264
+      Mask_4Player-0_3: 899247915292084896
+      Mask_4Player-0_30: -6810358639991694073
+      Mask_4Player-0_31: 7412871965762254143
+      Mask_4Player-0_32: -5864491212531156435
+      Mask_4Player-0_33: 6243780224083154326
+      Mask_4Player-0_34: -6180489860214282215
+      Mask_4Player-0_35: -7090817595369237723
+      Mask_4Player-0_36: 5354452415207803076
+      Mask_4Player-0_37: -3466095122047726438
+      Mask_4Player-0_38: 4453770269909165265
+      Mask_4Player-0_39: -5213311112002142145
+      Mask_4Player-0_4: -913371914910027872
+      Mask_4Player-0_40: 6667137683063924323
+      Mask_4Player-0_41: -7602341296892707218
+      Mask_4Player-0_42: 4665921920367762769
+      Mask_4Player-0_43: 9121723959481726387
+      Mask_4Player-0_44: -1167701784771439256
+      Mask_4Player-0_45: -7244634944979565901
+      Mask_4Player-0_46: 7073625706163823997
+      Mask_4Player-0_47: -382040550452689236
+      Mask_4Player-0_48: 8137963037808811180
+      Mask_4Player-0_49: 3555133006505897883
+      Mask_4Player-0_5: -5064953694777481691
+      Mask_4Player-0_50: 1672916639503651772
+      Mask_4Player-0_51: -6784905405780517990
+      Mask_4Player-0_52: 2343566937531184978
+      Mask_4Player-0_53: 5434912642489755255
+      Mask_4Player-0_54: 1498634471002592971
+      Mask_4Player-0_55: -1733481369122805664
+      Mask_4Player-0_56: -2652977089320885272
+      Mask_4Player-0_57: 6897513449877083896
+      Mask_4Player-0_58: 7371187640843059070
+      Mask_4Player-0_59: 4270712166926795298
+      Mask_4Player-0_6: 3272812344255096332
+      Mask_4Player-0_60: 8254712555526932215
+      Mask_4Player-0_61: -426830918086670496
+      Mask_4Player-0_62: 3195388238906940315
+      Mask_4Player-0_63: -8640496217629045876
+      Mask_4Player-0_64: 628547853725865694
+      Mask_4Player-0_65: 2390859007935373250
+      Mask_4Player-0_66: 298751815068114811
+      Mask_4Player-0_67: -7102506711709248373
+      Mask_4Player-0_68: 5434268841663016806
+      Mask_4Player-0_69: -7990518076152457390
+      Mask_4Player-0_7: 9126655000138033886
+      Mask_4Player-0_70: -97480688521348590
+      Mask_4Player-0_71: 2593871184736040157
+      Mask_4Player-0_8: -8073756167172954669
+      Mask_4Player-0_9: -6010258272021178580
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

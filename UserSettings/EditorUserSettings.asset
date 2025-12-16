@@ -5,35 +5,47 @@ EditorUserSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 4
   m_ConfigSettings:
+    GraphicsSettingsInspector_UserSettings:
+      value: 18134705175a055722080a3115371d4a0d55006876786860616b0471b8b07a68ffab74f9ee2a3a30300cea1a11320d0beb1a0c25f7060f494b4cc80018eb09361fc211cb1f862d19c51d19dcc413d6ade0d8ddfcddf9f4d9d29195fcfde6ebeae6f0a9c9afa6f8c5b89ff7a1aacececac4eba4d7c9d28bda
+      flags: 0
     RecentlyUsedSceneGuid-0:
-      value: 535303565102085f080c587641735b444e164a7e787874337e7b1836e1b3606c
+      value: 025207005456080a545a0f764020084412164e2f7f7d7160287f4e66b4e43239
       flags: 0
     RecentlyUsedSceneGuid-1:
       value: 545707525307085f0f5a0f27427609444e164b2828707165282d1c31b0b6306a
       flags: 0
     RecentlyUsedSceneGuid-2:
-      value: 025207005456080a545a0f764020084412164e2f7f7d7160287f4e66b4e43239
-      flags: 0
-    RecentlyUsedSceneGuid-3:
-      value: 550656035d030d58540b587745200e44144f4c2e787f7566742c4c36e1b5353b
-      flags: 0
-    RecentlyUsedSceneGuid-4:
-      value: 0705025054545f0b5d0d557b132706444f4f4e7a747b7f667f284936e1b16d6e
-      flags: 0
-    RecentlyUsedSceneGuid-5:
       value: 56570454550559020e5d5b2742220a44414f4f2b2e2a75652e7c1e64e3e36639
       flags: 0
+    RecentlyUsedSceneGuid-3:
+      value: 00075005030c585d55585576452259444e164a7c7b712263292b4e67e0b4606d
+      flags: 0
+    RecentlyUsedSceneGuid-4:
+      value: 5305555052020c5a0f5758701670074444151b7c7e7b7164747e4a66bbb6603c
+      flags: 0
+    RecentlyUsedSceneGuid-5:
+      value: 00030251070250590c58092116770944444e4079787b75312b2a4f35e1b76268
+      flags: 0
     RecentlyUsedSceneGuid-6:
+      value: 5a02525300060c595a570a734575094412154c737c2971342f7d4c62bbb16261
+      flags: 0
+    RecentlyUsedSceneGuid-7:
+      value: 57080d55520d0c095b5d082446210e44414f1e7e7e7f7261742a4d6be1e3326a
+      flags: 0
+    RecentlyUsedSceneGuid-8:
+      value: 550656035d030d58540b587745200e44144f4c2e787f7566742c4c36e1b5353b
+      flags: 0
+    RecentlyUsedSceneGuid-9:
       value: 515250075c0c595e5f5a5e71122159444e4e4a2f7a7d7f602f284d66b4b76661
       flags: 0
     UnityEditor.ShaderGraph.Blackboard:
-      value: 18135939215a0a5004000b0e15254b524c1119263f2d6a722016393ce1eb3d36e5d339f9a560393d3511ea7046333e09f7181d02f50a06241708ee0b05bd4a415f95548717f73713d91006c1c309d0effad0d2f9ddffa5828e91f0beb6fdd1cbfceba0b9f0b3bed8e8f5ade0f88c978883d3f59e98969989eacfcc
+      value: 18135939215a0a5004000b0e15254b524c1119263f2d6a722016393ce1eb3d36e5d339f9a560393d3511ea7046333e09f7181d02f50a06241708ee0b05bd4a435f95548717f73713d91006c1c309d0effad0d2f9ddffa5828e91f0beb6fdd1cbfceba0b9f0b3bed8e8f5ade0f88c978883d3f59e9f9f9f89eacfcc
       flags: 0
     UnityEditor.ShaderGraph.FloatingWindowsLayout2:
       value: 181344140043005e1a220d3b1f364b524c0c5a27130c293326201334cee5322ca0bd30e8eb293a707b0fd0180b3d0a36fc0d3d04e649500d1002ee0b5dbd1d2c27c00ad113cb1e10e41f1addc80993b98d9884a69ae6d8f0d1cda9e8fbfefaf9f9dea3fdb9ade882f0ffb0e1e380cafbf2c3adc18e9cd285a2908b82ec869c8395949c9483d68a8e97ddbd90bf
       flags: 0
     UnityEditor.ShaderGraph.InspectorWindow:
-      value: 18135939215a0a5004000b0e15254b524c030a3f2964643d120d1230e9e93a3fd6e826abbd2e2d293c4ead313b08042de6030a0afa240c0d020be94c4bae405d41895ac825e0100ec20313c0d91cddccd3d0c7efcca9bd8c908fecb0f9cfddf1eff4e7a1b1eae482f0fcade2e1928b86d888ed909a918797a7cf
+      value: 18135939215a0a5004000b0e15254b524c030a3f2964643d120d1230e9e93a3fd6e826abbd3c3e302a07a37e0901373ae01e0008f707250d171df81a53a5445d41895ac825e0100ec20313c0d91cddccd3d0c7efcca9bd88908fecb0f9cfddf1eff4e7a1b1eae482f0fcade2e1928b86d888ed909a918797a7cf
       flags: 0
     UnityEditor.ShaderGraph.ToggleSettings:
       value: 18135d1527590858060c032302276919051e1a26296a7c243f3c187fa0e92708f0e220e0e22d09352a0bed30017c5b2be01f0c47b40219221f1ded0b12eb1f0127cc0bcc18c41a5e910d0edbc85193e0dadadbf8e8f9e8ced7dba5e0b6aaaca4dbfeabfef4eae1
@@ -55,4 +67,6 @@ EditorUserSettings:
   m_VCHierarchyOverlayIcons: 1
   m_VCOtherOverlayIcons: 1
   m_VCAllowAsyncUpdate: 1
+  m_VCScanLocalPackagesOnConnect: 1
   m_ArtifactGarbageCollection: 1
+  m_CompressAssetsOnImport: 1

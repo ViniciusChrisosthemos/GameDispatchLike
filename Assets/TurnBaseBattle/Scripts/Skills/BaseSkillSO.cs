@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
 
@@ -30,6 +31,12 @@ public abstract class BaseSkillSO : ScriptableObject, IHasSprite
     public int TargetAmount;
     public TMP_SpriteAsset SpriteAsset;
 
+    [Header("SFX Voice Line")]
+    [SerializeField] private List<AudioClip> _sfxVoiceLines;
+
+    [Header("Data")]
+    public SkillDataSO DataSO;
+
     public string GetDescription()
     {
         var finalString = string.Empty;
@@ -58,6 +65,14 @@ public abstract class BaseSkillSO : ScriptableObject, IHasSprite
 
         return finalString;
     }
+
+    public AudioClip GetVoiceLine()
+    {
+        return _sfxVoiceLines.GetRandomValue();
+    }
+
+    public bool HasVoiceLine() => _sfxVoiceLines.Count != 0;
+
     public Sprite GetSprite()
     {
         return Art;

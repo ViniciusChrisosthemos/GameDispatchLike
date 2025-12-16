@@ -51,4 +51,4 @@ MonoBehaviour:
   RandomMissionEvents: []
   BattleEvents:
   - EnemyTeam:
-    - {fileID: 11400000, guid: 70501899de400fa429d0f6588c72053b, type: 2}
+    - {fileID: 11400000, guid: 03fc3978fc1112c4794160b3659a4ec8, type: 2}

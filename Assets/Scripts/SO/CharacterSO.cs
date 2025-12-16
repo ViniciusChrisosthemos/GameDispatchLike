@@ -8,7 +8,11 @@ public enum CharacterArtType
     Body,
     FullBody,
     MissionCompleted,
-    Icon
+    Icon,
+    BattleScreen1,
+    BattleScreen2,
+    BattleScreen3,
+    BattleScreen4
 }
 
 [CreateAssetMenu(fileName = "CharacterSO", menuName = "ScriptableObjects/Character/Character")]
@@ -23,6 +27,10 @@ public class CharacterSO: SavebleSO
     public Sprite FullArt;
     public Sprite IconArt;
     public Sprite MissionCompletedArt;
+    public Sprite BattleScreen1Art;
+    public Sprite BattleScreen2Art;
+    public Sprite BattleScreen3Art;
+    public Sprite BattleScreen4Art;
     public LevelProgression LevelProgression;
     public int TimeToRest;
     public List<AbstractKeywordSO> Keywords;
@@ -38,4 +46,28 @@ public class CharacterSO: SavebleSO
     [Header("Individuality")]
     public AbstractIndividuality Individuality;
     public AbstractIndividualityView IndividualityView;
+
+    [Header("SFX Voice Lines")]
+    public List<AudioClip> CharacterTurnVoiceLines;
+
+    public Sprite GetArt(CharacterArtType type)
+    {
+        switch (type)
+        {
+            case CharacterArtType.Face: return FaceArt;
+            case CharacterArtType.Body: return BodyArt;
+            case CharacterArtType.FullBody: return FullArt;
+            case CharacterArtType.MissionCompleted: return MissionCompletedArt;
+            case CharacterArtType.Icon: return IconArt;
+            case CharacterArtType.BattleScreen1: return BattleScreen1Art;
+            case CharacterArtType.BattleScreen2: return BattleScreen2Art;
+            case CharacterArtType.BattleScreen3: return BattleScreen3Art;
+            case CharacterArtType.BattleScreen4: return BattleScreen4Art;
+            default: return FaceArt;
+        }
+    }
+
+    public bool HasTurnVoiceLines() => CharacterTurnVoiceLines.Count != 0;
+
+    public AudioClip GetTurnVoiceLine() => CharacterTurnVoiceLines.GetRandomValue();
 }

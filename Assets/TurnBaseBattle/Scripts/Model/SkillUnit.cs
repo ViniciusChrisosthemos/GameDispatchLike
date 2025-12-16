@@ -14,7 +14,6 @@ public class SkillUnit
         _skillSO = skillSO;
     }
 
-
     public int CurrentLevel => _currentLevel;
     public Sprite Art => _skillSO.Art;
     public string Description => _skillSO.GetDescription();
