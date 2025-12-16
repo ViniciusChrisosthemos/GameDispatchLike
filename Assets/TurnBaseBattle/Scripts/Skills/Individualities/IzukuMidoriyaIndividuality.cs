@@ -90,12 +90,4 @@ public class IzukuMidoriyaIndividuality : AbstractIndividuality
     {
         return _character.GetSkillResourceAmount(ResourceType);
     }
-
-    [Serializable]
-    private class ResourceBonus
-    {
-        public int ResourceAmountRequired;
-        public AbstractSkillBonus Bonus;
-        public bool IsApplied;
-    }
 }
