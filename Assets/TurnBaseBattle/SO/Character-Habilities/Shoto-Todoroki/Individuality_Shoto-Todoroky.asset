@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14ad8f32941113b48b2654d55dedbf3a, type: 3}
+  m_Name: Individuality_Shoto-Todoroky
+  m_EditorClassIdentifier: 
+  IndividualityView: {fileID: 6439520243462791653, guid: 23269b630cdd5864b95ff74f4f4a7ab1, type: 3}
+  _fireResourceSO: {fileID: 11400000, guid: f6debb3abd335be4392c304f4b8b1097, type: 2}
+  _iceResourceSO: {fileID: 11400000, guid: 48b276a40c6233241afa175c46a4c666, type: 2}
+  _fireBonus:
+  - ResourceAmountRequired: 3
+    Bonus: {fileID: 11400000, guid: c2f309a69f8d9e743ae93a1ae3811554, type: 2}
+    IsApplied: 0
+  - ResourceAmountRequired: 5
+    Bonus: {fileID: 11400000, guid: 828008e2633b85f45b14d10aa56a56fe, type: 2}
+    IsApplied: 0
+  - ResourceAmountRequired: 7
+    Bonus: {fileID: 11400000, guid: 24e11ef403751ae42b6e905ff2b561ad, type: 2}
+    IsApplied: 0
+  - ResourceAmountRequired: 10
+    Bonus: {fileID: 11400000, guid: 24e11ef403751ae42b6e905ff2b561ad, type: 2}
+    IsApplied: 0
+  _iceBonus: []

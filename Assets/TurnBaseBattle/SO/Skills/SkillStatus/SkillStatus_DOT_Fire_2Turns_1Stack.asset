@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f69379bb806aed4cb59b5efc7608445, type: 3}
+  m_Name: SkillStatus_DOT_Fire_2Turns_1Stack
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 3982845474960254927, guid: 4207f34fb5a093c45be4fd8e0271ead2, type: 3}
+  Duration: 2
+  InitialStacks: 1
+  Description: Burn
+  _damagePerTurn:
+    DiceAmount: 1
+    MinDiceValue: 1
+    MaxDiceValue: 6

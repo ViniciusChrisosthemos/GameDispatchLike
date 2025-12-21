@@ -7,7 +7,7 @@ public class ApplyStatusSkillSO : BaseSkillSO
 {
     [SerializeField] private List<AbstractSkillStatus> _statusToAdd;
 
-    protected override void ApplySkillInternal(IBattleCharacter user, List<IBattleCharacter> targets)
+    protected override void ApplySkillInternal(IBattleCharacter user, List<IBattleCharacter> targets, BattleLogger battleLogger)
     {
         foreach (var target in targets)
         {
@@ -18,7 +18,7 @@ public class ApplyStatusSkillSO : BaseSkillSO
         }
     }
 
-    protected override string GetInternalDescription()
+    protected override string GetInternalDescription(IBattleCharacter user)
     {
         return BaseDescription;
     }

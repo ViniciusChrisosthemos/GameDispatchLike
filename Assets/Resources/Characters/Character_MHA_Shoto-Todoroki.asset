@@ -21,7 +21,7 @@ MonoBehaviour:
       BaseValue: 4
       Bonus: 
     _endurance:
-      BaseValue: 1
+      BaseValue: 10
       Bonus: 
     _agility:
       BaseValue: 3
@@ -48,12 +48,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4ab9f87d1c6bcc6478d0a5e74b0c7a6b, type: 2}
   Skills:
   - {fileID: 11400000, guid: a94b62c71e233d644872f9344fe72826, type: 2}
+  - {fileID: 11400000, guid: 92191d3c4d43d7041a0e12a5a9e77aff, type: 2}
+  - {fileID: 11400000, guid: c0f9924ab4e26a740a4aad70aa29e843, type: 2}
+  - {fileID: 11400000, guid: ad5230debb4fe464c8b2221637812d06, type: 2}
   BaseMoveSpeed: 0.85
-  SkillDicePrefab: {fileID: 2562814042158323157, guid: ed0aedd4555f6204889a789af52bb190, type: 3}
-  BaseSkillDicesAmount: 3
+  SkillDicePrefab: {fileID: 4393117120549140134, guid: e52dcaa6f5519c647850887605f5c6a2, type: 3}
+  BaseSkillDicesAmount: 5
   BaseDamageDicesAmount: 0
   BaseCriticalDicesAmount: 0
-  Individuality: {fileID: 11400000, guid: 9c516b23b756f0a44a48d3b5abfa58d0, type: 2}
-  IndividualityView: {fileID: 929034123188553140, guid: 3f3e2c2dcd25e0749aaf54d422f99606, type: 3}
+  Individuality: {fileID: 11400000, guid: b40cbf20621f4b64292db81ab8e90769, type: 2}
   CharacterTurnVoiceLines:
   - {fileID: 8300000, guid: 1695d19b8ca5dfc4b91411d9df1c4e48, type: 3}

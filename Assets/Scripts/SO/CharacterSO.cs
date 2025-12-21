@@ -45,7 +45,6 @@ public class CharacterSO: SavebleSO
 
     [Header("Individuality")]
     public AbstractIndividuality Individuality;
-    public AbstractIndividualityView IndividualityView;
 
     [Header("SFX Voice Lines")]
     public List<AudioClip> CharacterTurnVoiceLines;

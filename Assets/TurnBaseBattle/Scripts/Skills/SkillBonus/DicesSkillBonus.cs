@@ -22,4 +22,6 @@ public class DicesSkillBonus : AbstractSkillBonus
 
         diceManager.RmvDices(_diceType, _amountToAdd);
     }
+
+    public override string Description => string.Format(_description, _amountToAdd);
 }

@@ -28,7 +28,6 @@ public class DayMissionManager : MonoBehaviour
         var possibleLocations = new List<Transform>();
         foreach(var missionEntry in missioEntries)
         {
-            Debug.Log($"{_timelineMissions.Count} {missionAmount}");
             if (_timelineMissions.Count >= missionAmount) break;
 
             if (missionEntry.missionIndex >= missions.Count) break;

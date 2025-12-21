@@ -22,6 +22,7 @@ public class BattleManager : Singleton<BattleManager>
         var playerBattleCharacters = _playerTeam.Members.Select(c => new BattleCharacter(c)).ToList();
         var enemyBattleCharacters = _enemyTeam.Members.Select(c => new BattleCharacter(c)).ToList();
 
+
         _turnBaseBattleController.Setup(playerBattleCharacters, enemyBattleCharacters);
     }
 

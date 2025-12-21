@@ -1,8 +1,11 @@
+using Mono.Cecil;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using static BattleCharacter;
 
 public class BattleCharacter : IBattleCharacter, ITimelineElement
 {
@@ -17,6 +20,7 @@ public class BattleCharacter : IBattleCharacter, ITimelineElement
 
     private AbstractIndividuality _individuality;
 
+    private List<SkillHolder> _skillHolders;
     private List<SkillStatusRuntime> _currentStatus;
     private List<SkillResourceRuntime> _currentResources;
 
@@ -32,6 +36,7 @@ public class BattleCharacter : IBattleCharacter, ITimelineElement
 
         _actionBlockerAmount = 0;
 
+        _skillHolders = characterUnit.BaseCharacterSO.Skills.Select(skill => new SkillHolder(this, skill)).ToList();
         _currentStatus = new List<SkillStatusRuntime>();
         _currentResources = new List<SkillResourceRuntime>();
 
@@ -101,35 +106,49 @@ public class BattleCharacter : IBattleCharacter, ITimelineElement
 
     public void AddStatus(AbstractSkillStatus status)
     {
-        var statusRuntime = new SkillStatusRuntime(status, this);
+        var currentStatus = _currentStatus.Find(s => s.GetType() == status.GetType());
 
-        _currentStatus.Add(statusRuntime);
-
-        statusRuntime.ApplyStatus(statusRuntime);
-    }
-
-    public void RmvStatus(StunSkillStatus stunSkillStatus)
-    {
-        var statusRuntime = _currentStatus.Find(s => s.StatusSO == stunSkillStatus);
-        
-        if (statusRuntime != null)
+        if (currentStatus != null)
         {
-            statusRuntime.RemoveStatus(statusRuntime);
+            currentStatus.AddStack(status.InitialStacks);
+            currentStatus.ResetDuration();
+        }
+        else
+        {
+            var statusRuntime = new SkillStatusRuntime(status, this);
+
+            _currentStatus.Add(statusRuntime);
+
+            statusRuntime.ApplyStatus(statusRuntime);
         }
     }
 
 
     public void OnTurnStart()
     {
-        _currentStatus.ForEach(statusRuntime => statusRuntime.StatusSO.OnTurnStart(statusRuntime));
+        _currentStatus.ForEach(statusRuntime => statusRuntime.StatusSO.OnTurnStart(statusRuntime, BattleLogger.Instance));
         _individuality.OnTurnStart();
     }
 
     public void OnTurnEnd()
     {
-        _currentStatus.ForEach(statusRuntime => statusRuntime.StatusSO.OnTurnEnd(statusRuntime));
+        Debug.Log($"[OnTurnEnd]   {BaseCharacter.Name}   {_currentStatus.Count}");
+
+        foreach(var s in _currentStatus)
+        {
+            Debug.Log($"    {s.StatusSO.name} {s.RemainingDuration} {s.Stacks}");
+        }
+
+        _currentStatus.ForEach(statusRuntime => statusRuntime.StatusSO.OnTurnEnd(statusRuntime, BattleLogger.Instance));
         var expiredStatuses = _currentStatus.FindAll(s => s.IsExpired);
         expiredStatuses.ForEach(s => _currentStatus.Remove(s));
+
+        Debug.Log($"    {_currentStatus.Count}");
+
+        foreach (var s in _currentStatus)
+        {
+            Debug.Log($"    {s.StatusSO.name} {s.RemainingDuration} {s.Stacks}");
+        }
 
         _individuality.OnTurnEnd();
 
@@ -144,14 +163,10 @@ public class BattleCharacter : IBattleCharacter, ITimelineElement
         {
             currentResource = new SkillResourceRuntime(resource, amount);
             _currentResources.Add(currentResource);
-
-            Debug.Log($"[{GetType()}][AddResource] New {resource.Name} {amount}");
         }
         else
         {
-            Debug.Log($"[{GetType()}][AddResource] Add to {resource.Name} {amount}");
             currentResource.AddAmount(amount);
-            Debug.Log($"[{GetType()}][AddResource]          new {currentResource.SkillResourceSO.Name} {currentResource.Amount}");
         }
     }
 
@@ -170,18 +185,25 @@ public class BattleCharacter : IBattleCharacter, ITimelineElement
         }
     }
 
-    public int GetSkillResourceAmount(SkillResourceSO resourceSO)
+    public void SetResourceAmount(SkillResourceSO resourceSO, int amount)
     {
-        var currentResource = _currentResources.Find(r => r.SkillResourceSO.Name.Equals(resourceSO.Name));
-
-        Debug.Log($"[{GetType()}][GetSkillResourceAmount]  {resourceSO.Name} {currentResource}");
+        var currentResource = _currentResources.Find(r => r.SkillResourceSO == resourceSO);
 
         if (currentResource != null)
         {
-            Debug.Log($"    {currentResource.SkillResourceSO.Name}  {currentResource.Amount}");
-        }
+            currentResource.SetAmount(amount);
 
-            return currentResource != null ? currentResource.Amount : 0;
+            if (currentResource.Amount == 0)
+            {
+                _currentResources.Remove(currentResource);
+            }
+        }
+    }
+
+    public int GetSkillResourceAmount(SkillResourceSO resourceSO)
+    {
+        var currentResource = _currentResources.Find(r => r.SkillResourceSO.Name.Equals(resourceSO.Name));
+        return currentResource != null ? currentResource.Amount : 0;
     }
 
     public void UpdateAfterUseSkill()
@@ -197,8 +219,25 @@ public class BattleCharacter : IBattleCharacter, ITimelineElement
     public CharacterUnit CharacterUnit => _characterUnit;
     public int Health => _currentHealth;
     public int MaxHealth => _maxHealth;
-    public List<BaseSkillSO> GetSkills() => BaseCharacter.Skills;
+    public List<SkillHolder> GetSkills() => _skillHolders;
+
 
     public AbstractIndividuality Individuality => _individuality;
-    public AbstractIndividualityView IndividualityView => BaseCharacter.IndividualityView;
+    public AbstractIndividualityView IndividualityView => BaseCharacter.Individuality.IndividualityView;
+
+    public class SkillHolder
+    {
+        public BattleCharacter Owner;
+        public BaseSkillSO Skill;
+
+        public SkillHolder(BattleCharacter owner, BaseSkillSO skill)
+        {
+            Owner = owner; 
+            Skill = skill;
+        }
+
+        public string GetDescription() => Skill.GetDescription(Owner);
+    }
+
+    public string GetName() => _characterUnit.Name;
 }

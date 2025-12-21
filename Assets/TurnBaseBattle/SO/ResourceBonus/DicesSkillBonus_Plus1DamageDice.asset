@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4fc805eb63b7064ba6fdcafb225345d, type: 3}
-  m_Name: SkillResource_Fire
+  m_Script: {fileID: 11500000, guid: 7bcb6a13e00642f41bd887c7b3e1153f, type: 3}
+  m_Name: DicesSkillBonus_Plus1DamageDice
   m_EditorClassIdentifier: 
-  Name: Fire
-  Icon: {fileID: 0}
-  MaxAmount: 10
+  _description: +{0} damage dices
+  _diceType: 1
+  _amountToAdd: 1

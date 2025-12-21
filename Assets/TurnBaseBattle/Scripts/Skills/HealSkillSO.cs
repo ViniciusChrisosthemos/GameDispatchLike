@@ -10,7 +10,7 @@ public class HealSkillSO : BaseSkillSO
 {
     public int HealAmount;
 
-    protected override void ApplySkillInternal(IBattleCharacter user, List<IBattleCharacter> targets)
+    protected override void ApplySkillInternal(IBattleCharacter user, List<IBattleCharacter> targets, BattleLogger battleLogger)
     {
         var finalHeal = HealAmount;
 
@@ -22,7 +22,7 @@ public class HealSkillSO : BaseSkillSO
         targets.ForEach(target => target.TakeHeal(finalHeal));
     }
 
-    protected override string GetInternalDescription()
+    protected override string GetInternalDescription(IBattleCharacter user)
     {
         return string.Format(BaseDescription, HealAmount);
     }

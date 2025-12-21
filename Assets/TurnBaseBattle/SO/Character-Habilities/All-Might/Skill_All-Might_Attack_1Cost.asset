@@ -28,5 +28,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f7db2ee5130e2f7459422f5f149a65a2, type: 3}
   - {fileID: 8300000, guid: ababc27c3cfbd894696c42bb0c5c2287, type: 3}
   DataSO: {fileID: 11400000, guid: 229978d7edc8b6f44beee161b69abd9f, type: 2}
-  DamageAmount: 10
+  DamageSource:
+    DiceAmount: 2
+    MinDiceValue: 1
+    MaxDiceValue: 10
   ResourcesToAdd: []
+  StatusToAddToEnemies: []

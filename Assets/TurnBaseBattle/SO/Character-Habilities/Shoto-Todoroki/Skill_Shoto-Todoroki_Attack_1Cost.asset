@@ -16,7 +16,7 @@ MonoBehaviour:
   BaseDescription: Deal {0} damage to an enemy
   Art: {fileID: -1633287484, guid: bd2b504801f6a0d41ba0399bc2be31ad, type: 3}
   RequiredDiceValues:
-  - {fileID: 11400000, guid: 3b06cab473803ba4584781bb8c7b18de, type: 2}
+  - {fileID: 11400000, guid: 5abc5d040aadcad459ec6f58858b7f53, type: 2}
   Bonus: []
   SkillTargetType: 0
   SkillTargetAmount: 0
@@ -27,5 +27,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 82636334e820ca441a37c4054c62136e, type: 3}
   - {fileID: 8300000, guid: bc72887b60872e148a0e16e5e4452f60, type: 3}
   DataSO: {fileID: 11400000, guid: 229978d7edc8b6f44beee161b69abd9f, type: 2}
-  DamageAmount: 10
+  DamageSource:
+    DiceAmount: 1
+    MinDiceValue: 1
+    MaxDiceValue: 6
+    DiceValues: 
   ResourcesToAdd: []
+  StatusToAddToEnemies: []

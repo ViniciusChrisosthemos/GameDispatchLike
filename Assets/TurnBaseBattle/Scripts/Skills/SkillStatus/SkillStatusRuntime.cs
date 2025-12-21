@@ -8,12 +8,12 @@ public class SkillStatusRuntime
     public AbstractSkillStatus StatusSO;
     public int RemainingDuration;
     public IBattleCharacter Owner;
-    public bool IsExpired { get; private set; }
 
     public SkillStatusRuntime(AbstractSkillStatus statusSO, IBattleCharacter owner)
     {
         StatusSO = statusSO;
         Owner = owner;
+        Stacks = statusSO.InitialStacks;
     }
 
     public void RemoveStatus(SkillStatusRuntime statusRuntime)
@@ -26,4 +26,17 @@ public class SkillStatusRuntime
     {
         StatusSO.OnApply(statusRuntime);
     }
+
+    public void AddStack(int stack)
+    {
+        Stacks += stack;
+    }
+
+    public void ResetDuration()
+    {
+        RemainingDuration = StatusSO.Duration;
+    }
+
+    public int Stacks { get; private set; }
+    public bool IsExpired { get; private set; } = false;
 }

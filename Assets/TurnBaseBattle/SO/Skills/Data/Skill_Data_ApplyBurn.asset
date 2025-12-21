@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84522d1c321b78408f4417a32e7a626, type: 3}
+  m_Name: Skill_Data_ApplyBurn
+  m_EditorClassIdentifier: 
+  VFXEffect: {fileID: 4694841119336300779, guid: e7a19e7d03e70394a9e03a1e962ca418, type: 3}
+  SFXAudio: {fileID: 8300000, guid: 4ec10069c5eaa8b479b2dc0b50df48f1, type: 3}
+  AnimationDuration: 1
+  SFXVolume: 1

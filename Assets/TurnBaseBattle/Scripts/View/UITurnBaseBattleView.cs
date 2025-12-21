@@ -113,10 +113,14 @@ public class UITurnBaseBattleView : MonoBehaviour
             {
                 SoundManager.Instance.PlaySFX(_currentCharacter.BaseCharacter.GetTurnVoiceLine(), 0.6f);
             }
+
+            _playerBattleCharacterViews.Find(view => view.BattleCharacter == character).UpdateCharacterView();
         }
         else
         {
             _uiSkillSelectionView.SetActive(false);
+
+            _enemyBattleCharacterViews.Find(view => view.BattleCharacter == character).UpdateCharacterView();
         }
     }
 

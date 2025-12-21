@@ -48,7 +48,7 @@ public class BattleEnemyBehaviour : MonoBehaviour
 
     private IEnumerator HandleDicesResult(BattleCharacter character, List<DiceValueSO> diceValues)
     {
-        var allSkills = character.GetSkills();
+        var allSkills = character.GetSkills().Select(sh => sh.Skill).ToList();
         var availableSkills = new List<BaseSkillSO>();
         var diceValueCopy = new List<DiceValueSO>(diceValues);
 

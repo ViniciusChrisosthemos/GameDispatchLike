@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,5 +22,10 @@ public class SkillResourceRuntime
     public void RemoveAmount(int amount)
     {
         Amount = Mathf.Clamp(Amount - amount, 0, SkillResourceSO.MaxAmount);
+    }
+
+    public void SetAmount(int amount)
+    {
+        Amount = amount;
     }
 }

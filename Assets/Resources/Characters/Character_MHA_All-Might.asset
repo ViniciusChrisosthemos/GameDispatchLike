@@ -49,11 +49,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4ab9f87d1c6bcc6478d0a5e74b0c7a6b, type: 2}
   Skills:
   - {fileID: 11400000, guid: fe13fb74da273ba48964862004acb16e, type: 2}
-  - {fileID: 11400000, guid: 6a87f1eaebb66bb498e7c8ea7ffd26fe, type: 2}
-  - {fileID: 11400000, guid: 52dc1eeb53aa4484eb8ebf5e5f92ba87, type: 2}
-  - {fileID: 11400000, guid: 06c2fdfd1592be34db8233b8b051810a, type: 2}
-  - {fileID: 11400000, guid: 42d97ce0f52db3942bd9281ac996ac0c, type: 2}
-  - {fileID: 11400000, guid: d534c46adb39b98488e5965917eb6191, type: 2}
   BaseMoveSpeed: 0.85
   SkillDicePrefab: {fileID: 2562814042158323157, guid: ed0aedd4555f6204889a789af52bb190, type: 3}
   BaseSkillDicesAmount: 6

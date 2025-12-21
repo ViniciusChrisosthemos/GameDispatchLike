@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6ebcfbe7f1fb364b930b439cc21d038, type: 3}
+  m_Name: Skill_Dabi_ProminanceBust_1Cost
+  m_EditorClassIdentifier: 
+  Name: Prominence Burn
+  BaseDescription: Deal {0} damage to an enemy
+  Art: {fileID: -1633287484, guid: bd2b504801f6a0d41ba0399bc2be31ad, type: 3}
+  RequiredDiceValues:
+  - {fileID: 11400000, guid: f283cd1a09d5bb443881d91b92e91b98, type: 2}
+  - {fileID: 11400000, guid: f283cd1a09d5bb443881d91b92e91b98, type: 2}
+  - {fileID: 11400000, guid: f283cd1a09d5bb443881d91b92e91b98, type: 2}
+  - {fileID: 11400000, guid: f283cd1a09d5bb443881d91b92e91b98, type: 2}
+  Bonus: []
+  SkillTargetType: 0
+  SkillTargetAmount: 2
+  TargetAmount: 1
+  SpriteAsset: {fileID: 11400000, guid: 45c5def210cf8c446ae604abfea4f0d2, type: 2}
+  _sfxVoiceLines:
+  - {fileID: 8300000, guid: 23d1ddb542e211540a713503b51fdc03, type: 3}
+  - {fileID: 8300000, guid: 1870526559768754a82f6b26551ed19b, type: 3}
+  - {fileID: 8300000, guid: 561e804097df45546b300ba82bf4b78d, type: 3}
+  DataSO: {fileID: 11400000, guid: d1aae78d12cc4314caaea2945854e634, type: 2}
+  DamageSource:
+    DiceAmount: 5
+    MinDiceValue: 6
+    MaxDiceValue: 12
+    DiceValues: 0200000001000000010000000200000002000000
+  ResourcesToAdd: []
+  StatusToAddToEnemies:
+  - Item: {fileID: 11400000, guid: 1a4de7f98c5627f4b984393cd55e17dc, type: 2}
+    Amount: 3

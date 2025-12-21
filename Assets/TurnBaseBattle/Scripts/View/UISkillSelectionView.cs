@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using static BattleCharacter;
 
 public class UISkillSelectionView : MonoBehaviour
 {
@@ -79,8 +80,7 @@ public class UISkillSelectionView : MonoBehaviour
 
         _imgCharacter.sprite = character.BaseCharacter.BodyArt;
 
-        var items = character.BaseCharacter.Skills.Select(s => (object)s).ToList();
-        _skillListDisplay.SetItems(items, HandleSkillSelected);
+        _skillListDisplay.SetItems(character.GetSkills(), HandleSkillSelected);
 
         _currenSkillAction = new SkillAction(character, null, null);
         _skillActionListDisplay.Clear();
@@ -93,6 +93,8 @@ public class UISkillSelectionView : MonoBehaviour
         _btnRollDices.gameObject.SetActive(true);
         _btnPlayActions.gameObject.SetActive(false);
 
+        if (_currentIndividualityView != null)
+            _currentIndividualityView.CloseView();
 
         if (_individualitiesViews.ContainsKey(character))
         {
@@ -106,18 +108,18 @@ public class UISkillSelectionView : MonoBehaviour
 
     private void HandleSkillSelected(UIItemController controller)
     {
-        var skill = controller.GetItem<BaseSkillSO>();
+        var skillHolder = controller.GetItem<SkillHolder>();
 
         _selectionState = SelectionState.SelectingTarget;
 
-        switch (skill.SkillTargetType)
+        switch (skillHolder.Skill.SkillTargetType)
         {
-            case SkillTargetType.Ally: HandleTargetSkill(skill, _playerBattleCharactersControllers); break;
-            case SkillTargetType.Enemy: HandleTargetSkill(skill, _enemyBattleCharactersControllers); break;
+            case SkillTargetType.Ally: HandleTargetSkill(skillHolder.Skill, _playerBattleCharactersControllers); break;
+            case SkillTargetType.Enemy: HandleTargetSkill(skillHolder.Skill, _enemyBattleCharactersControllers); break;
             default: break;
         }
 
-        _currenSkillAction.Skill = skill;
+        _currenSkillAction.Skill = skillHolder.Skill;
     }
 
     private void HandleTargetSkill(BaseSkillSO skill, List<UIBattleCharacterView> targetControllers)
@@ -220,13 +222,13 @@ public class UISkillSelectionView : MonoBehaviour
         foreach (var controller in _skillListDisplay.GetControllers())
         {
             var skillController = controller as UISkillDisplayController;
-            var skill = skillController.GetItem<BaseSkillSO>();
-            var requiredDices = skill.RequiredDiceValues;
+            var skillHolder = skillController.GetItem<SkillHolder>();
+            var requiredDices = skillHolder.Skill.RequiredDiceValues;
 
             var isAvailable = IsSkillAvailable(requiredDices, diceValues);
             skillController.SetAvailable(!isAvailable);
 
-            Debug.Log($"    Skill {skill.Name} {isAvailable}");
+            Debug.Log($"    Skill {skillHolder.Skill.Name} {isAvailable}");
         }
     }
 

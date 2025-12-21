@@ -1,8 +1,10 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
-public class ShotTodorokyIndividuality : AbstractIndividuality
+[CreateAssetMenu(fileName = "Individuality", menuName = "TurnBaseBattle/Skills/Individuality/Shoto Todoroky")]
+public class ShotoTodorokyIndividuality : AbstractIndividuality
 {
     [SerializeField] private SkillResourceSO _fireResourceSO;
     [SerializeField] private SkillResourceSO _iceResourceSO;
@@ -34,20 +36,30 @@ public class ShotTodorokyIndividuality : AbstractIndividuality
     {
         var fireStacks = _character.GetSkillResourceAmount(_fireResourceSO);
         var iceStacks = _character.GetSkillResourceAmount(_iceResourceSO);
-        
+
         if (fireStacks > iceStacks)
         {
             _currentFireStacks = fireStacks - iceStacks;
-            _character.RmvResource(_iceResourceSO, iceStacks);
+            _currentIceStacks = 0;
+
+            _character.SetResourceAmount(_fireResourceSO, _currentFireStacks);
+            _character.SetResourceAmount(_iceResourceSO, _currentIceStacks);
 
             IndividualityUtils.ApplyResourceBonus(_character, _fireBonus, _currentFireStacks);
         }
         else
         {
             _currentIceStacks = iceStacks - fireStacks;
-            _character.RmvResource(_fireResourceSO, fireStacks);
+            _currentFireStacks = 0;
+
+            _character.SetResourceAmount(_fireResourceSO, _currentFireStacks);
+            _character.SetResourceAmount(_iceResourceSO, _currentIceStacks);
 
             IndividualityUtils.ApplyResourceBonus(_character, _iceBonus, _currentIceStacks);
         }
     }
+
+    public List<ResourceBonus> IceBonus => _iceBonus;
+
+    public List<ResourceBonus> FireBonus => _fireBonus;
 }

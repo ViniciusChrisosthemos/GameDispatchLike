@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static BattleCharacter;
 
 public class UISkillDisplayController : UIItemController
 {
@@ -16,7 +17,7 @@ public class UISkillDisplayController : UIItemController
     [SerializeField] private Button _btnButton;
     [SerializeField] private GameObject _isAvailableOverlay;
 
-    private BaseSkillSO _skillSO;
+    private SkillHolder _skillHolder;
 
     private void Awake()
     {
@@ -25,14 +26,14 @@ public class UISkillDisplayController : UIItemController
 
     protected override void HandleInit(object obj)
     {
-        _skillSO = obj as BaseSkillSO;
+        _skillHolder = obj as SkillHolder;
 
-        _txtSkillDescription.text = _skillSO.GetDescription();
+        _txtSkillDescription.text = _skillHolder.GetDescription();
 
         _diceValueParent.ClearChilds();
         var imgSize = 0f;
 
-        foreach (var diceSO in _skillSO.RequiredDiceValues)
+        foreach (var diceSO in _skillHolder.Skill.RequiredDiceValues)
         {
             var img = Instantiate(_diceValuePrefab, _diceValueParent);
             img.sprite = diceSO.Art;
@@ -40,7 +41,7 @@ public class UISkillDisplayController : UIItemController
             imgSize = img.rectTransform.sizeDelta.y;
         }
 
-        _diceValueParent.sizeDelta = new Vector2(_skillSO.RequiredDiceValues.Count * _skillGridLayout.cellSize.x + (_skillSO.RequiredDiceValues.Count-1) * _skillGridLayout.spacing.x, _diceValueParent.sizeDelta.y);
+        _diceValueParent.sizeDelta = new Vector2(_skillHolder.Skill.RequiredDiceValues.Count * _skillGridLayout.cellSize.x + (_skillHolder.Skill.RequiredDiceValues.Count-1) * _skillGridLayout.spacing.x, _diceValueParent.sizeDelta.y);
 
         var containerSize = _layoutGroup.rect.size.x + _horizontalSizeOffset;
         _txtSkillDescription.rectTransform.sizeDelta = new Vector2(containerSize - _diceValueParent.sizeDelta.x, _txtSkillDescription.rectTransform.sizeDelta.y);

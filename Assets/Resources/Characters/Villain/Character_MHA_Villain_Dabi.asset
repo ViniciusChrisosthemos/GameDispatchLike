@@ -47,12 +47,13 @@ MonoBehaviour:
   Keywords: []
   Skills:
   - {fileID: 11400000, guid: c1df354cb4688d84490151fa16fee0de, type: 2}
+  - {fileID: 11400000, guid: b52633a5faa58ac478d6b9cfff2e831c, type: 2}
+  - {fileID: 11400000, guid: 584951789d4139147b6769dc41d051b9, type: 2}
   BaseMoveSpeed: 0
-  SkillDicePrefab: {fileID: 2562814042158323157, guid: ed0aedd4555f6204889a789af52bb190, type: 3}
-  BaseSkillDicesAmount: 3
+  SkillDicePrefab: {fileID: 6440667639564579848, guid: afe7f6b9bfca60644a44ad2ed6b1abd0, type: 3}
+  BaseSkillDicesAmount: 5
   BaseDamageDicesAmount: 0
   BaseCriticalDicesAmount: 0
   Individuality: {fileID: 11400000, guid: 9c516b23b756f0a44a48d3b5abfa58d0, type: 2}
-  IndividualityView: {fileID: 929034123188553140, guid: 3f3e2c2dcd25e0749aaf54d422f99606, type: 3}
   CharacterTurnVoiceLines:
   - {fileID: 8300000, guid: 4d7dfa143506da741888df3bc5dfc427, type: 3}

@@ -37,11 +37,11 @@ public abstract class BaseSkillSO : ScriptableObject, IHasSprite
     [Header("Data")]
     public SkillDataSO DataSO;
 
-    public string GetDescription()
+    public string GetDescription(IBattleCharacter user)
     {
         var finalString = string.Empty;
 
-        finalString += GetInternalDescription();
+        finalString += GetInternalDescription(user);
 
         foreach (var bonus in Bonus)
         {
@@ -78,12 +78,12 @@ public abstract class BaseSkillSO : ScriptableObject, IHasSprite
         return Art;
     }
 
-    public void ApplySkill(IBattleCharacter user, List<IBattleCharacter> targets)
+    public void ApplySkill(IBattleCharacter user, List<IBattleCharacter> targets, BattleLogger battleLogger)
     {
-        ApplySkillInternal(user, targets);
+        ApplySkillInternal(user, targets, battleLogger);
     }
 
-    protected abstract string GetInternalDescription();
+    protected abstract string GetInternalDescription(IBattleCharacter user);
     
-    protected abstract void ApplySkillInternal(IBattleCharacter user, List<IBattleCharacter> targets);
+    protected abstract void ApplySkillInternal(IBattleCharacter user, List<IBattleCharacter> targets, BattleLogger battleLogger);
 }

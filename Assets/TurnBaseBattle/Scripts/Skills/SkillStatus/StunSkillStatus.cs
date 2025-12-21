@@ -2,34 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "StunSkillStatus_", menuName = "TurnBaseBattle/Skills/SkillStatus/Stun")]
+[CreateAssetMenu(fileName = "SkillStatus_Stun_", menuName = "TurnBaseBattle/Skills/SkillStatus/Stun")]
 public class StunSkillStatus : AbstractSkillStatus
 {
-    [SerializeField] private int StunDuration;
-
-    public override void OnApply(SkillStatusRuntime statusRuntime)
+    public override void InternalApply(SkillStatusRuntime statusRuntime)
     {
-        statusRuntime.RemainingDuration = StunDuration;
         statusRuntime.Owner.AddActionBlocker();
     }
 
-    public override void OnRemove(SkillStatusRuntime statusRuntime)
+    public override void InternalRemove(SkillStatusRuntime statusRuntime)
     {
         statusRuntime.Owner.RmvActionBlocker();
     }
 
-    public override void OnTurnEnd(SkillStatusRuntime statusRuntime)
+    public override void InternalTurnEnd(SkillStatusRuntime statusRuntime, BattleLogger battleLogger)
     {
-        statusRuntime.RemainingDuration--;
 
-        if (statusRuntime.RemainingDuration <= 0)
-        {
-            statusRuntime.Owner.RmvStatus(this);
-        }
     }
 
-    public override void OnTurnStart(SkillStatusRuntime statusRuntime)
+    public override void InternalTurnStart(SkillStatusRuntime statusRuntime, BattleLogger battleLogger)
     {
-
+        battleLogger.Log($"{statusRuntime.Owner.GetName()} is stunned. Pass turn");
     }
 }
