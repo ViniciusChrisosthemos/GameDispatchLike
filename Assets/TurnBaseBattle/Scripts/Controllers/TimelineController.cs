@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class TimelineController
+public class TimelineController<T> where T : ITimelineElement
 {
-    private List<ITimelineElement> _elements;
+    private List<T> _elements;
     private Queue<ITimelineElement> _queue;
 
     public Action OnTimelineUpdated;
-    public Action<ITimelineElement> OnDequeue;
-    public Action<ITimelineElement> OnItemDeactivated;
+    public Action<T> OnDequeue;
+    public Action<T> OnItemDeactivated;
 
-    public TimelineController(List<ITimelineElement> elements)
+    public TimelineController(List<T> elements)
     {
         _elements = elements;
         _queue = new Queue<ITimelineElement>();
@@ -28,16 +28,17 @@ public class TimelineController
         OnTimelineUpdated?.Invoke();
     }
 
-    public ITimelineElement Dequeue()
+    public T Dequeue()
     {
-        var element = _queue.Dequeue();
+        var timelineElement = _queue.Dequeue();
+        var element = (T)timelineElement;
 
         OnDequeue?.Invoke(element);
 
         return element;
     }
 
-    public void TriggerItemDeactivated(ITimelineElement element)
+    public void TriggerItemDeactivated(T element)
     {
         OnItemDeactivated?.Invoke(element);
     }
@@ -47,8 +48,8 @@ public class TimelineController
 
     public bool IsEmpty() => _queue.Count == 0;
 
-    public Queue<ITimelineElement> GetTimeline() => _queue;
+    public List<T> GetTimeline() => _queue.Select(item => (T)item).ToList();
 
-    public List<ITimelineElement> GetElements() => _elements;
+    public List<T> GetElements() => _elements;
 }
 

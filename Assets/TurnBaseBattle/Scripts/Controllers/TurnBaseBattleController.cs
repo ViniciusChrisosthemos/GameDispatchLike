@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEngine.GraphicsBuffer;
 
 public class TurnBaseBattleController : MonoBehaviour
 {
@@ -12,12 +10,11 @@ public class TurnBaseBattleController : MonoBehaviour
 
     private List<BattleCharacter> _playerChracters;
     private List<BattleCharacter> _enemyCharacters;
-    private TimelineController _timelineController;
+    private TimelineController<BattleCharacter> _timelineController;
     private BattleCharacter _currentCharacter;
 
     public UnityEvent<bool> OnBattleEnd;
     public UnityEvent<bool, BattleCharacter> OnCharacterTurn;
-    public UnityEvent<List<BattleCharacter>, List<BattleCharacter>, TimelineController> OnSetupReady;
 
     private bool _playerWin = false;
 
@@ -35,9 +32,7 @@ public class TurnBaseBattleController : MonoBehaviour
         allCharacters.AddRange(_playerChracters);
         allCharacters.AddRange(_enemyCharacters);
 
-        _timelineController = new TimelineController(allCharacters.Select(c => (ITimelineElement)c).ToList());
-
-        OnSetupReady?.Invoke(_playerChracters, _enemyCharacters, _timelineController);
+        _timelineController = new TimelineController<BattleCharacter>(allCharacters);
     }
 
     public void StartBattle()
@@ -87,7 +82,7 @@ public class TurnBaseBattleController : MonoBehaviour
         OnCharacterTurn?.Invoke(_playerChracters.Contains(_currentCharacter), _currentCharacter);
     }
 
-    public void PassAction(BattleCharacter character)
+    public void PassAction()
     {
         UpdateTurn();
     }
@@ -147,10 +142,14 @@ public class TurnBaseBattleController : MonoBehaviour
         return false;
     }
 
-    public TimelineController TimelineController => _timelineController;
+    public TimelineController<BattleCharacter> TimelineController => _timelineController;
 
     public void EndBattle()
     {
         BattleManager.Instance.BattleEnd(_playerWin);
     }
+
+    public List<BattleCharacter> GetCharacterOrderInTurn() => _timelineController.GetTimeline();
+    public List<BattleCharacter> PlayerCharacters => _playerChracters;
+    public List<BattleCharacter> EnemyCharacters => _enemyCharacters;
 }

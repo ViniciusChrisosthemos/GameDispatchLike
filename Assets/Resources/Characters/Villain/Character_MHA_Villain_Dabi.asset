@@ -50,6 +50,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b52633a5faa58ac478d6b9cfff2e831c, type: 2}
   - {fileID: 11400000, guid: 584951789d4139147b6769dc41d051b9, type: 2}
   BaseMoveSpeed: 0
+  Model: {fileID: 5829235545199588536, guid: f7f8aea523bf4ee40b2c36238d655e14, type: 3}
   SkillDicePrefab: {fileID: 6440667639564579848, guid: afe7f6b9bfca60644a44ad2ed6b1abd0, type: 3}
   BaseSkillDicesAmount: 5
   BaseDamageDicesAmount: 0

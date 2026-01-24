@@ -10,10 +10,10 @@ public class UITimelineView : MonoBehaviour
 
     private List<UITimelineChracterView> _timelineCharacterControllers;
 
-    private TimelineController _timelineController;
+    private TimelineController<BattleCharacter> _timelineController;
     private ITimelineElement _currentElement;
 
-    public void SetTimeline(TimelineController timelineController)
+    public void SetTimeline(TimelineController<BattleCharacter> timelineController)
     {
         _timelineController = timelineController;
 

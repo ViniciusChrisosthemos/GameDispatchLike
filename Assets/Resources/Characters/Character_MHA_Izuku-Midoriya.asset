@@ -51,11 +51,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 755065388e8cb744aa81c7d9942ef036, type: 2}
   - {fileID: 11400000, guid: 52b2d97769668f5498cbfd61df1445a1, type: 2}
   BaseMoveSpeed: 0.85
+  Model: {fileID: 35593632725988322, guid: a5e3665b007b1e84abd31423571983e2, type: 3}
   SkillDicePrefab: {fileID: 4393117120549140134, guid: 1141d0f9f7d88a44080ea08236a0dd87, type: 3}
   BaseSkillDicesAmount: 3
   BaseDamageDicesAmount: 0
   BaseCriticalDicesAmount: 0
   Individuality: {fileID: 11400000, guid: 9c516b23b756f0a44a48d3b5abfa58d0, type: 2}
-  IndividualityView: {fileID: 929034123188553140, guid: 3f3e2c2dcd25e0749aaf54d422f99606, type: 3}
   CharacterTurnVoiceLines:
   - {fileID: 8300000, guid: 12db7e5ea4497a0408632218ec6e0882, type: 3}

@@ -8,6 +8,7 @@ using static BattleCharacter;
 
 public class UISkillDisplayController : UIItemController
 {
+    [SerializeField] private TextMeshProUGUI _txtSkillName;
     [SerializeField] private TextMeshProUGUI _txtSkillDescription;
     [SerializeField] private RectTransform _diceValueParent;
     [SerializeField] private Image _diceValuePrefab;
@@ -28,8 +29,9 @@ public class UISkillDisplayController : UIItemController
     {
         _skillHolder = obj as SkillHolder;
 
+        _txtSkillName.text = _skillHolder.Skill.Name;
         _txtSkillDescription.text = _skillHolder.GetDescription();
-
+        /*
         _diceValueParent.ClearChilds();
         var imgSize = 0f;
 
@@ -45,6 +47,7 @@ public class UISkillDisplayController : UIItemController
 
         var containerSize = _layoutGroup.rect.size.x + _horizontalSizeOffset;
         _txtSkillDescription.rectTransform.sizeDelta = new Vector2(containerSize - _diceValueParent.sizeDelta.x, _txtSkillDescription.rectTransform.sizeDelta.y);
+        */
     }
 
     public void SetAvailable(bool isAvailable)

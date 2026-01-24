@@ -36,6 +36,7 @@ public class CharacterSO: SavebleSO
     public List<AbstractKeywordSO> Keywords;
     public List<BaseSkillSO> Skills;
     public float BaseMoveSpeed;
+    public GameObject Model;
 
     [Header("Dices")]
     public DiceController SkillDicePrefab;

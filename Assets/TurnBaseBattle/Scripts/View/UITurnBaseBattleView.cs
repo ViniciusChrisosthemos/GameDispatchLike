@@ -2,232 +2,207 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class UITurnBaseBattleView : MonoBehaviour
 {
-    [SerializeField] private GameObject _view;
-    [SerializeField] private TurnBaseBattleController _turnbaseBattleController;
-    [SerializeField] private RollDiceController _rollDiceController;
+    [Header("References")]
+    [SerializeField] private TurnBaseBattleController _battleController;
+    [SerializeField] private BattleCameraController _battleCameraController;
+    [SerializeField] private CharacterSpotManager _characterSpotManager;
 
-    [SerializeField] private UIListDisplay _playerUIListDisplay;
-    [SerializeField] private UIListDisplay _enemyUIListDisplay;
+    [Header("UI References")]
+    [SerializeField] private GameObject _actionSelectionView;
+    [SerializeField] private GameObject _skillSelectionView;
+    [SerializeField] private Transform _defaultTargetCameraPosition;
 
-    [SerializeField] private UITimelineView _uiTimelineView;
-    [SerializeField] private UISkillSelectionView _uiSkillSelectionView;
+    [Header("UI References / Actions Selection View")]
+    [SerializeField] private Button _btnPassTurn;
+    [SerializeField] private Button _btnRollDices;
 
-    [SerializeField] private UIResultScreenView _uiResultScreenView;
+    [Header("UI References / Skill Selection View")]
+    [SerializeField] private UIListDisplay _skillsListDisplay;
 
-    [SerializeField] private UIOpenBattleScreenView _playerOpenBattleTeamView;
-    [SerializeField] private UIOpenBattleScreenView _enemyOpenBattleTeamView;
+    [Header("UI References / target Selection")]
+    [SerializeField] private TargetSelectionController _targetSelectionController;
 
-    [SerializeField] private UIBattleAnimationHelperView _battleSkillAnimationHelperView;
+    private SelectionState _currentState;
+    private CharacterSpot _currentCharacter;
+    private BaseSkillSO _currentSkill;
 
-    [Header("Animation")]
-    [SerializeField] private Animator _animator;
-    [SerializeField] private string _openScreenTrigger = "OpenBattleScreen";
-    [SerializeField] private string _openScreenState = "OpenBattleScreen";
+    private List<CharacterSpot> _enemiesSpots;
 
-    [Header("Screen Configuration")]
-    [SerializeField] private ScreenConfigurationSO _screenConfigurationSO;
-
-    private BattleCharacter _currentCharacter;
-    private List<SkillAction> _skillActionQueue;
-    private List<DiceValueSO> _currentDiceValues;
-    private List<DiceValueSO> _lockedDices;
-
-
-    private List<UIBattleCharacterView> _playerBattleCharacterViews;
-    private List<UIBattleCharacterView> _enemyBattleCharacterViews;
-
+    private enum SelectionState
+    {
+        ActionSelection,
+        SkillSelection,
+        TargetSelection,
+    }
 
     private void Awake()
     {
-        _turnbaseBattleController.OnBattleEnd.AddListener(HandleBattleEnd);
-        _turnbaseBattleController.OnCharacterTurn.AddListener(HandleCharacterTurn);
-        _uiSkillSelectionView.OnPassAction.AddListener(Pass);
+        _btnPassTurn.onClick.AddListener(PassTurn);
+        _btnRollDices.onClick.AddListener(HandleSkillSelection);
 
-        _turnbaseBattleController.OnSetupReady.AddListener(HandleBattleSetupReady);
-        
-        _view.SetActive(false);
+        _battleController.OnCharacterTurn.AddListener(HandleCharacterTurnChanged);
     }
 
-    private void HandleBattleSetupReady(List<BattleCharacter> playerCharacters, List<BattleCharacter> enemyCharacters, TimelineController timelineController)
+    private void Start()
     {
-        _playerUIListDisplay.SetItems(playerCharacters, null);
-        _enemyUIListDisplay.SetItems(enemyCharacters, null);
+        var characterSpots = _characterSpotManager.GetCharacterSpots();
 
-        _playerBattleCharacterViews = _playerUIListDisplay.GetControllers().Select(i => i as UIBattleCharacterView).ToList();
-        _enemyBattleCharacterViews = _enemyUIListDisplay.GetControllers().Select(i => i as UIBattleCharacterView).ToList();
-
-        _uiSkillSelectionView.SetTeams(_playerBattleCharacterViews, _enemyBattleCharacterViews);
-        _uiTimelineView.SetTimeline(timelineController);
-
-        _playerOpenBattleTeamView.SetTeam(playerCharacters);
-        _enemyOpenBattleTeamView.SetTeam(enemyCharacters);
-
-        Debug.Log("OK");
-
-        StartCoroutine(PlayAnimation(_openScreenTrigger, _openScreenState, null));
+        _targetSelectionController.Init(characterSpots);
+        _enemiesSpots = characterSpots.FindAll(c => !c.IsPlayerCharacter);
     }
 
-    private IEnumerator PlayAnimation(string trigger, string state, Action callback)
+    private void Update()
     {
-        _animator.SetTrigger(trigger);
-
-        StartCoroutine(WaitForSecondsCoroutine(5f, () => 
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            _view.SetActive(true);
-            _turnbaseBattleController.StartBattle();
-        }));
-
-        yield return new WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).IsName(state));
-
-        yield return new WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
-
-        yield return null;
-
-        callback?.Invoke();
+            HandleEscPressed();
+        }
     }
 
-    private IEnumerator WaitForSecondsCoroutine(float seconds, Action callback)
+    private void HandleEscPressed()
     {
-        yield return new WaitForSeconds(seconds);
-
-        callback?.Invoke();
-    }
-
-
-    private void HandleCharacterTurn(bool isPlayerCharacter, BattleCharacter character)
-    {
-        Debug.Log($"Character Turn: {character.BaseCharacter.Name}");
-        _currentCharacter = character;
-
-        if (isPlayerCharacter)
+        switch (_currentState)
         {
-            _skillActionQueue = new List<SkillAction>();
+            case SelectionState.ActionSelection: break;
+            case SelectionState.SkillSelection: SetActionSelection(_currentCharacter); break;
+            case SelectionState.TargetSelection: HandleSkillSelection(); break;
+        }
+    }
 
-            _uiSkillSelectionView.SetCharacter(character);
+    private void HandleCharacterTurnChanged(bool isPlayer, BattleCharacter battleCharacter)
+    {
+        _currentCharacter = _characterSpotManager.GetCharacter(battleCharacter);
 
-            if (_currentCharacter.BaseCharacter.HasTurnVoiceLines())
-            {
-                SoundManager.Instance.PlaySFX(_currentCharacter.BaseCharacter.GetTurnVoiceLine(), 0.6f);
-            }
+        SetActionSelection(_currentCharacter);
+    }
 
-            _playerBattleCharacterViews.Find(view => view.BattleCharacter == character).UpdateCharacterView();
+    private void SetActionSelection(CharacterSpot characterSpot)
+    {
+        ShowActionSelectionView();
+
+        _battleCameraController.MoveCameraTo(_currentCharacter.ActionSelectionCameraSpot);
+
+        if (characterSpot.IsPlayerCharacter)
+        {
+            _actionSelectionView.SetActive(true);
+
+            transform.position = _currentCharacter.ActionSelectionCanvasSpot.position;
+            transform.rotation = _currentCharacter.ActionSelectionCanvasSpot.rotation;
+
+            _currentState = SelectionState.ActionSelection;
         }
         else
         {
-            _uiSkillSelectionView.SetActive(false);
+            DisableUI();
 
-            _enemyBattleCharacterViews.Find(view => view.BattleCharacter == character).UpdateCharacterView();
+            HandleEnemyTurn();
         }
     }
 
-    public void RollDices()
+    private async void HandleEnemyTurn()
     {
-        var diceManager = _currentCharacter.GetDiceManager();
-
-        _rollDiceController.RollDices(diceManager.GetSkillDicePrefab(), diceManager.GetSkillDices(), HandleDicesResult);
-
-        _uiSkillSelectionView.HideButtons();
+        //await Task.Delay(1000);
     }
 
-    private void HandleDicesResult(List<DiceValueSO> diceValues)
+    private void HandleSkillSelection()
     {
-        _currentDiceValues = diceValues;
-        _lockedDices = new List<DiceValueSO>();
+        ShowSkillSelectionView();
 
-        _uiSkillSelectionView.UpdateDices(diceValues);
-        _uiSkillSelectionView.UpdateAvailableSkills(diceValues);
+        _battleCameraController.MoveCameraTo(_currentCharacter.SkillSelectionCameraSpot);
+
+        transform.position = _currentCharacter.SkillSelectionCanvasSpot.position;
+        transform.rotation = _currentCharacter.SkillSelectionCanvasSpot.rotation;
+
+        _skillsListDisplay.SetItems(_currentCharacter.Character.BaseCharacter.Skills, HandleTargetSelection);
+
+        _currentState = SelectionState.SkillSelection;
+        _targetSelectionController.DisableSelection();
     }
 
-    public void Pass()
+    private void HandleTargetSelection(UIItemController itemController)
     {
-        _turnbaseBattleController.PassAction(_currentCharacter);
+        _currentSkill = itemController.GetItem<BaseSkillSO>();
 
-        _uiSkillSelectionView.OnTurnEnd();
-    }
+        ShowTargetSelectionView();
 
-    public void RegisterAction(SkillAction currenSkillAction)
-    {
-        _skillActionQueue.Add(currenSkillAction);
+        _battleCameraController.MoveCameraTo(_defaultTargetCameraPosition);
 
-        _lockedDices.AddRange(currenSkillAction.Skill.RequiredDiceValues);
-
-        _uiSkillSelectionView.UpdateActionQueue(_skillActionQueue, _currentDiceValues, _lockedDices);
-    }
-
-    public void PlayActions()
-    {
-        StartCoroutine(PlayActionsCoroutine(Pass));
-    }
-
-    private IEnumerator PlayActionsCoroutine(Action callback)
-    {
-        foreach (var action in _skillActionQueue)
+        if (_currentSkill.SkillTargetType == SkillTargetType.Enemy && _currentSkill.SkillTargetAmount == SkillTargetAmountType.SingleTarget)
         {
-            var skillResult = _turnbaseBattleController.SkillAction(action.Source, action.Skill, action.Targets);
-
-            yield return AnimateAction(true, skillResult);
+            _targetSelectionController.SetSingleTargetSelection(HandleTargetSelected);
+        }
+        else
+        {
+            _targetSelectionController.SetAlltargetSelection(HandleTargetSelected);
         }
 
-        callback?.Invoke();
+        _currentState = SelectionState.TargetSelection;
+    }
+
+    private async void HandleTargetSelected(List<CharacterSpot> characterSeleced)
+    {
+        /*
+        _battleController.PlayAction(_currentSkill, characterSeleced);
+        
+        _currentState = SelectionState.ActionSelection;
+        
+        await HandleSkillApplied();*/
+    }
+
+    private async Task HandleSkillApplied()
+    {
+        /*
+        _enemiesSpots.ForEach(character => character.UpdateHP());
+
+        await Task.Delay(1000);
+
+        _battleController.PassTurn();
+        */
+    }
+
+    public void ShowActionSelectionView()
+    {
+        _actionSelectionView.SetActive(true);
+        _skillSelectionView.SetActive(false);
+    }
+
+    public void ShowSkillSelectionView()
+    {
+        _actionSelectionView.SetActive(false);
+        _skillSelectionView.SetActive(true);
+    }
+
+    public void ShowTargetSelectionView()
+    {
+        _actionSelectionView.SetActive(false);
+        _skillSelectionView.SetActive(false);
+    }
+
+    private void DisableUI()
+    {
+        _actionSelectionView.SetActive(false);
+        _skillSelectionView.SetActive(false);
+    }
+
+    public void PassTurn()
+    {
+        //_battleController.PassTurn();
     }
 
     public IEnumerator AnimateAction(bool isPlayer, SkillActionResult actionResult)
     {
-        if (actionResult.Skill.DataSO != null)
-        {
-            var ownerList = isPlayer ? _playerBattleCharacterViews : _enemyBattleCharacterViews;
-            var opponentList = isPlayer ? _enemyBattleCharacterViews : _playerBattleCharacterViews;
-
-            var source = ownerList.Find(view => view.BattleCharacter == actionResult.Source);
-            var targets = opponentList.Where(view => actionResult.Targets.Contains(view.BattleCharacter)).ToList();
-
-            if (!targets.Any())
-            {
-                targets = ownerList.Where(view => actionResult.Targets.Contains(view.BattleCharacter)).ToList();
-            }
-
-            yield return _battleSkillAnimationHelperView.AnimateSkillCoroutine(actionResult.Skill, source, targets, null);
-        }
-
-        UpdateCharacters();
-        _uiSkillSelectionView.UpdateIndividualityView();
+        yield return null;
     }
 
-    public void UpdateCharacters()
+    public void RollDices()
     {
-
-        _playerBattleCharacterViews.ForEach(c => c.UpdateCharacterView());
-        _enemyBattleCharacterViews.ForEach(c => c.UpdateCharacterView());
-    }
-
-    private void HandleBattleEnd(bool playerWin)
-    {
-        _uiResultScreenView.ShowResult(playerWin, () =>
-        {
-            _view.SetActive(false);
-            _turnbaseBattleController.EndBattle();
-        });
-    }
-
-    public List<SkillAction> GetActionQueue()
-    {
-        return _skillActionQueue;
-    }
-
-    public void RemoveAction(SkillAction action)
-    {
-        _skillActionQueue.Remove(action);
-
-        action.Skill.RequiredDiceValues.ForEach(d => _lockedDices.Remove(d));
-        _uiSkillSelectionView.UpdateActionQueue(_skillActionQueue, _currentDiceValues, _lockedDices);
-    }
-
-    public void PlayBattleMusic()
-    {
-        SoundManager.Instance.PlayMusic(_screenConfigurationSO.MusicBackground, _screenConfigurationSO.MusicVolume, _screenConfigurationSO.InLoop);
+        return;
     }
 }

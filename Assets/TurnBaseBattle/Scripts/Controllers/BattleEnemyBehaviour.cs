@@ -4,22 +4,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
-public class BattleEnemyBehaviour : MonoBehaviour
+public class BattleEnemyBehaviour : AbstractSubComponent<BattleManager>
 {
-    [SerializeField] private TurnBaseBattleController _turnBaseBattleController;
-    [SerializeField] private UITurnBaseBattleView _uiTurnBaseBattleView;
-    [SerializeField] private RollDiceController _rollDiceController;
-
     private List<BattleCharacter> _battleCharacters;
     private List<BattleCharacter> _enemiesCharacters;
 
-    private void Awake()
-    {
-        _turnBaseBattleController.OnSetupReady.AddListener(HandleSetupReady);
-        _turnBaseBattleController.OnCharacterTurn.AddListener(HandleCharacterTurn);
-    }
-
-    public void HandleSetupReady(List<BattleCharacter> playerCharacters, List<BattleCharacter> battleCharacters, TimelineController __)
+    public void HandleSetupReady(List<BattleCharacter> playerCharacters, List<BattleCharacter> battleCharacters, TimelineController<BattleCharacter> __)
     {
         _battleCharacters = battleCharacters;  
         _enemiesCharacters = playerCharacters;
@@ -36,6 +26,7 @@ public class BattleEnemyBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
+        /**
         var diceManager = character.GetDiceManager();
         var dicesValues = new List<DiceValueSO>();
 
@@ -44,6 +35,9 @@ public class BattleEnemyBehaviour : MonoBehaviour
         yield return new WaitUntil(() => dicesValues.Count != 0);
 
         yield return HandleDicesResult(character, dicesValues);
+        */
+
+        _manager.GetBattleController().PassAction();
     }
 
     private IEnumerator HandleDicesResult(BattleCharacter character, List<DiceValueSO> diceValues)
@@ -51,6 +45,8 @@ public class BattleEnemyBehaviour : MonoBehaviour
         var allSkills = character.GetSkills().Select(sh => sh.Skill).ToList();
         var availableSkills = new List<BaseSkillSO>();
         var diceValueCopy = new List<DiceValueSO>(diceValues);
+
+        var battleController = _manager.GetBattleController();
 
         Debug.Log($"[{GetType()}][HandleDicesResult]");
 
@@ -105,14 +101,26 @@ public class BattleEnemyBehaviour : MonoBehaviour
                 {
                     selectedSkill.RequiredDiceValues.ForEach(dv => diceValueCopy.Remove(dv));
 
-                    var actionResult = _turnBaseBattleController.SkillAction(character, selectedSkill, targets);
+                    var actionResult = battleController.SkillAction(character, selectedSkill, targets);
 
-                    yield return _uiTurnBaseBattleView.AnimateAction(false, actionResult);
+                    //yield return battleController.AnimateAction(false, actionResult);
+
+                    yield return new WaitForSeconds(1f);
                 }
             }
 
         } while (availableSkills.Count > 0);
-        
-        _turnBaseBattleController.PassAction(character);
+
+        battleController.PassAction();
+    }
+
+    protected override void BindHandles(BattleManager mainComponent)
+    {
+        mainComponent.GetBattleController().OnCharacterTurn.AddListener(HandleCharacterTurn);
+    }
+
+    protected override void HandleInternalSetup(BattleManager mainComponent)
+    {
+
     }
 }

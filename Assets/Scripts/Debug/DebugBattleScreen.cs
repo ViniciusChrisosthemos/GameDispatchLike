@@ -17,6 +17,6 @@ public class DebugBattleScreen : MonoBehaviour
 
         var gameState = new GameState("temp", 1, guild);
 
-        GameManager.Instance.SetGamState(gameState);
+        GameManager.Instance.SetGameState(gameState);
     }
 }

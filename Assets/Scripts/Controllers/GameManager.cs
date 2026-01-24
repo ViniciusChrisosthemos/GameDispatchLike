@@ -88,7 +88,7 @@ public class GameManager : Singleton<GameManager>
         SaveSystem.DeleteSave(saveFile);
     }
 
-    public void SetGamState(GameState gameState)
+    public void SetGameState(GameState gameState)
     {
         _gameState = gameState;
     }

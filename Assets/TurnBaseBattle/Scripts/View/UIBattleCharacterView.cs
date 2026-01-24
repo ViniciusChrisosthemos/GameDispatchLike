@@ -9,11 +9,9 @@ using UnityEngine.UI;
 public class UIBattleCharacterView : UIItemController
 {
     [SerializeField] private Image _imgCharacterArt;
-    [SerializeField] private Button _btnButton;
+    [SerializeField] private CharacterArtType _characterArtType;
 
     [SerializeField] private GameObject _killedChracterOverlay;
-    [SerializeField] private GameObject _targetOverlay;
-    [SerializeField] private GameObject _confirmedTargetOverlay;
 
     [Header("Health Elements")]
     [SerializeField] private TextMeshProUGUI _txtHealth;
@@ -35,12 +33,6 @@ public class UIBattleCharacterView : UIItemController
     private void Start()
     {
         Clear();
-
-        _btnButton.onClick.AddListener(() =>
-        {
-            SelectItem();
-            OnSelected?.Invoke(this);
-        });
     }
 
     public void Clear()
@@ -53,9 +45,6 @@ public class UIBattleCharacterView : UIItemController
         {
             _killedChracterOverlay.SetActive(false);
         }
-            
-        _targetOverlay.SetActive(false);
-        _confirmedTargetOverlay.SetActive(false);
 
         _isTarget = false;
     }
@@ -68,7 +57,7 @@ public class UIBattleCharacterView : UIItemController
 
     private void UpdateStatus()
     {
-        _uiStatusListDisplay.SetItems(_character.GetStatus(), null);
+        //_uiStatusListDisplay.SetItems(_character.GetStatus(), null);
     }
 
     public void UpdateHealth()
@@ -98,7 +87,7 @@ public class UIBattleCharacterView : UIItemController
     {
         _character = (BattleCharacter)obj;
 
-        _imgCharacterArt.sprite = _character.BaseCharacter.FaceArt;
+        _imgCharacterArt.sprite = _character.BaseCharacter.GetArt(_characterArtType);
         
         _killedChracterOverlay.SetActive(false);
 
@@ -111,25 +100,14 @@ public class UIBattleCharacterView : UIItemController
         UpdateStatus();
     }
 
-    public void SetTarget()
-    {
-        _targetOverlay.SetActive(true);
-
-        _confirmedTargetOverlay.SetActive(false);
-    }
 
     public void SetConfirmedTarget()
     {
-        _targetOverlay.SetActive(false);
-        _confirmedTargetOverlay.SetActive(true);
-
         _isTarget = true;
     }
 
     public void ClearSelection()
     {
-        _targetOverlay.SetActive(false);
-        _confirmedTargetOverlay.SetActive(_isTarget);
     }
 
     public BattleCharacter BattleCharacter => _character;

@@ -9,11 +9,15 @@ public class BattleLogger : Singleton<BattleLogger>
 
     public void Reset()
     {
+        if (_txtLog == null) return;
+
         _txtLog.text = string.Empty;
     }
 
     public void Log(string message)
     {
+        if (_txtLog == null) return;
+
         _txtLog.text += $"{message}\n";
         _scrollRect.verticalNormalizedPosition = 0;
     }
