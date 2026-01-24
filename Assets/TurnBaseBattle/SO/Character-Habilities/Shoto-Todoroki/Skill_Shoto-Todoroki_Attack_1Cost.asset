@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ebcfbe7f1fb364b930b439cc21d038, type: 3}
   m_Name: Skill_Shoto-Todoroki_Attack_1Cost
   m_EditorClassIdentifier: 
-  Name: Detroit Smash
+  Name: Attack
   BaseDescription: Deal {0} damage to an enemy
   Art: {fileID: -1633287484, guid: bd2b504801f6a0d41ba0399bc2be31ad, type: 3}
   RequiredDiceValues:
@@ -28,9 +28,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bc72887b60872e148a0e16e5e4452f60, type: 3}
   DataSO: {fileID: 11400000, guid: 229978d7edc8b6f44beee161b69abd9f, type: 2}
   DamageSource:
-    DiceAmount: 1
+    DiceAmount: 8
     MinDiceValue: 1
     MaxDiceValue: 6
-    DiceValues: 
+    DiceValues: 04000000
   ResourcesToAdd: []
   StatusToAddToEnemies: []

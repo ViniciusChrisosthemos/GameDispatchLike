@@ -3007,8 +3007,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 340492358}
   - {fileID: 118747263}
+  - {fileID: 340492358}
   m_Father: {fileID: 957049890}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &327119249
@@ -3051,8 +3051,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340492357}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08611387, y: -0.040227126, z: 0.047682624, w: 0.9943302}
-  m_LocalPosition: {x: 2.709999, y: 1.7899933, z: -4.74}
+  m_LocalRotation: {x: 0.08041695, y: 0.06815717, z: 0.0567657, w: 0.9928069}
+  m_LocalPosition: {x: 2.2409973, y: 1.7689972, z: -4.2750006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6686,8 +6686,8 @@ Transform:
   m_Children:
   - {fileID: 1531263221507696974}
   - {fileID: 8518714754190986806}
-  - {fileID: 5397250435850749573}
   - {fileID: 910005831785546317}
+  - {fileID: 5397250435850749573}
   - {fileID: 6357461455040077398}
   - {fileID: 560549144}
   - {fileID: 1636764238}
@@ -6706,9 +6706,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621066a753ddd2148beb502843e18980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectsToDisable:
-  - {fileID: 5597163699298304980}
-  - {fileID: 144795009}
   _turnBaseBattleController: {fileID: 5761015321422064763}
   _uiBattleHUDView: {fileID: 8518714754190986807}
   _uiCharacterHUDView: {fileID: 6383078924873483378}
@@ -6716,6 +6713,9 @@ MonoBehaviour:
   _characterSpotManager: {fileID: 1636764239}
   _battleCameraController: {fileID: 4854015129556395978}
   _battleEnemyBehaviour: {fileID: 83467348}
+  _objectsToDisableOnBattleEnd:
+  - {fileID: 8286487549553806060}
+  - {fileID: 1562852798}
   OnBattleEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -7859,10 +7859,10 @@ RectTransform:
   - {fileID: 322999831}
   m_Father: {fileID: 3347833289130323679}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -400, y: -205}
-  m_SizeDelta: {x: 800, y: 350}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &799765594
 MonoBehaviour:
@@ -8281,10 +8281,10 @@ RectTransform:
   - {fileID: 1570124151}
   m_Father: {fileID: 3347833289130323679}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -400, y: -585}
-  m_SizeDelta: {x: 800, y: 350}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &834750496
 MonoBehaviour:
@@ -13975,7 +13975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1562852799
 Transform:
   m_ObjectHideFlags: 0
@@ -23991,7 +23991,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -25943,7 +25943,6 @@ GameObject:
   - component: {fileID: 1016732976051811264}
   - component: {fileID: 5241722667829017892}
   - component: {fileID: 3050975507854580786}
-  - component: {fileID: 8679373487754307455}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -26181,7 +26180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1139445810437622980, guid: 51bbffc3805a53d479ff35566e0bde31, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1139445810437622980, guid: 51bbffc3805a53d479ff35566e0bde31, type: 3}
       propertyPath: m_AnchorMin.x
@@ -26189,15 +26188,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1139445810437622980, guid: 51bbffc3805a53d479ff35566e0bde31, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1139445810437622980, guid: 51bbffc3805a53d479ff35566e0bde31, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 800
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1139445810437622980, guid: 51bbffc3805a53d479ff35566e0bde31, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 350
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1139445810437622980, guid: 51bbffc3805a53d479ff35566e0bde31, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26229,11 +26228,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1139445810437622980, guid: 51bbffc3805a53d479ff35566e0bde31, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -400
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1139445810437622980, guid: 51bbffc3805a53d479ff35566e0bde31, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 175
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1139445810437622980, guid: 51bbffc3805a53d479ff35566e0bde31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -31402,7 +31401,7 @@ RectTransform:
   m_Father: {fileID: 270807081756083102}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -34141,7 +34140,6 @@ MonoBehaviour:
   TargetPosition: {fileID: 6523329769415452073}
   SliderHPBar: {fileID: 2575516715304414481}
   _modelParent: {fileID: 0}
-  _characterAnimator: {fileID: 532432900449804355}
   _takeDamageTriggerName: TakeDamage
   _dieTriggerName: Die
   OnCharacterHoverEnter:
@@ -36821,8 +36819,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4603765615823670651}
-  m_LocalRotation: {x: 0.0033930708, y: -0.11525437, z: -0.0014337276, w: 0.9933292}
-  m_LocalPosition: {x: 0, y: 0, z: -890}
+  m_LocalRotation: {x: 0.03186833, y: 0.04025507, z: 0.002243435, w: 0.9986786}
+  m_LocalPosition: {x: 0, y: 0, z: 481}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -36830,10 +36828,10 @@ RectTransform:
   - {fileID: 799765593}
   - {fileID: 834750495}
   m_Father: {fileID: 5397250435850749573}
-  m_LocalEulerAnglesHint: {x: 0.367, y: -13.237, z: -0.208}
+  m_LocalEulerAnglesHint: {x: 3.639, y: 4.629, z: 0.405}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 684, y: 136}
+  m_AnchoredPosition: {x: 477, y: 152}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3356396289178391831
@@ -42072,7 +42070,6 @@ MonoBehaviour:
   TargetPosition: {fileID: 5296777375030368993}
   SliderHPBar: {fileID: 3510689946597003865}
   _modelParent: {fileID: 0}
-  _characterAnimator: {fileID: 1469862120441339659}
   _takeDamageTriggerName: TakeDamage
   _dieTriggerName: Die
   OnCharacterHoverEnter:
@@ -44587,7 +44584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &4604044128014356940
 GameObject:
   m_ObjectHideFlags: 0
@@ -46577,7 +46574,7 @@ RectTransform:
   m_Father: {fileID: 7068414714888253253}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -47003,7 +47000,6 @@ MonoBehaviour:
   TargetPosition: {fileID: 0}
   SliderHPBar: {fileID: 0}
   _modelParent: {fileID: 0}
-  _characterAnimator: {fileID: 0}
   _takeDamageTriggerName: TakeDamage
   _dieTriggerName: Die
   OnCharacterHoverEnter:
@@ -49133,7 +49129,6 @@ MonoBehaviour:
   TargetPosition: {fileID: 4277735734502787442}
   SliderHPBar: {fileID: 4783956323856892362}
   _modelParent: {fileID: 0}
-  _characterAnimator: {fileID: 7402089052108688536}
   _takeDamageTriggerName: TakeDamage
   _dieTriggerName: Die
   OnCharacterHoverEnter:
@@ -49788,9 +49783,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6160617371623190134}
-  m_LocalRotation: {x: 0.0311717, y: 0.09630731, z: 0.06455236, w: 0.992767}
-  m_LocalPosition: {x: 0, y: 0, z: -1.945543}
-  m_LocalScale: {x: 0.001, y: 0.0010000003, z: 0.0010000006}
+  m_LocalRotation: {x: 0.031171702, y: 0.0963073, z: 0.06455236, w: 0.9927669}
+  m_LocalPosition: {x: 0, y: 0, z: -3.235543}
+  m_LocalScale: {x: 0.001, y: 0.0010000002, z: 0.0010000006}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2249743063710140635}
@@ -49799,7 +49794,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 2.283142, y: 1.5817261}
+  m_AnchoredPosition: {x: 2.3531036, y: 1.5817566}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5405780915846271592
@@ -51386,7 +51381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5689198685663815543
 RectTransform:
   m_ObjectHideFlags: 0
@@ -51948,7 +51943,7 @@ RectTransform:
   m_Father: {fileID: 8151065156356476941}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -63523,8 +63518,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2800152256150186094}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -30.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -63532,7 +63527,7 @@ Transform:
   - {fileID: 1562852799}
   - {fileID: 36287373}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!224 &7879330675133437617
 RectTransform:
   m_ObjectHideFlags: 0
@@ -63634,7 +63629,6 @@ MonoBehaviour:
   TargetPosition: {fileID: 0}
   SliderHPBar: {fileID: 0}
   _modelParent: {fileID: 0}
-  _characterAnimator: {fileID: 0}
   _takeDamageTriggerName: TakeDamage
   _dieTriggerName: Die
   OnCharacterHoverEnter:
@@ -65163,7 +65157,6 @@ MonoBehaviour:
   TargetPosition: {fileID: 0}
   SliderHPBar: {fileID: 0}
   _modelParent: {fileID: 0}
-  _characterAnimator: {fileID: 0}
   _takeDamageTriggerName: TakeDamage
   _dieTriggerName: Die
   OnCharacterHoverEnter:
@@ -68152,14 +68145,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6357461455040077398}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &8679373487754307455
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1349058254286641220}
-  m_Enabled: 1
 --- !u!1 &8682305648412815211
 GameObject:
   m_ObjectHideFlags: 0

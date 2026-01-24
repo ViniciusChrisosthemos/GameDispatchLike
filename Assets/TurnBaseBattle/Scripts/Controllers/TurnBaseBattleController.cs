@@ -105,15 +105,24 @@ public class TurnBaseBattleController : MonoBehaviour
             }
         }
 
+        foreach (var c in _playerChracters)
+        {
+            Debug.Log($"SkillAction Player {c.CharacterUnit.Name} {c.Health} {c.IsAlive()}");
+        }
+        foreach (var c in _enemyCharacters)
+        {
+            Debug.Log($"SkillAction Enemy {c.CharacterUnit.Name} {c.Health} {c.IsAlive()}");
+        }
+
+        bool isBattleEnded = false;
+        Debug.Log($"{_playerChracters.Contains(character)} {!IsTeamAlive(_enemyCharacters)}  ||  {!IsTeamAlive(_playerChracters)}");
+
         if (_playerChracters.Contains(character))
         {
             if (!IsTeamAlive(_enemyCharacters))
             {
                 _playerWin = true;
-                OnBattleEnd?.Invoke(true);
-
-
-                _battleLogger.Log($"Player wins!");
+                isBattleEnded = true;
             }
         }
         else
@@ -121,13 +130,16 @@ public class TurnBaseBattleController : MonoBehaviour
             if (!IsTeamAlive(_playerChracters))
             {
                 _playerWin = false;
-                OnBattleEnd?.Invoke(false);
-
-                _battleLogger.Log($"Player losses!");
+                isBattleEnded = true;
             }
         }
 
-        var skillResult = new SkillActionResult(character, skill, targets);
+        var skillResult = new SkillActionResult(character, skill, targets, isBattleEnded);
+
+        if (isBattleEnded)
+        {
+            EndBattle();
+        }
 
         return skillResult;
     }

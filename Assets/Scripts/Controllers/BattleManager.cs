@@ -8,8 +8,6 @@ using UnityEngine.EventSystems;
 
 public class BattleManager : Singleton<BattleManager>
 {
-    [SerializeField] private List<GameObject> _objectsToDisable;
-
     [SerializeField] private TurnBaseBattleController _turnBaseBattleController;
     [SerializeField] private UIBattleHUDView _uiBattleHUDView;
     [SerializeField] private UICharacterHUDView _uiCharacterHUDView;
@@ -17,6 +15,9 @@ public class BattleManager : Singleton<BattleManager>
     [SerializeField] private CharacterSpotManager _characterSpotManager;
     [SerializeField] private BattleCameraController _battleCameraController;
     [SerializeField] private BattleEnemyBehaviour _battleEnemyBehaviour;
+
+    [Header("Objects To Disable")]
+    [SerializeField] private List<GameObject> _objectsToDisableOnBattleEnd;
 
     private Team _playerTeam;
     private Team _enemyTeam;
@@ -26,8 +27,6 @@ public class BattleManager : Singleton<BattleManager>
 
     public void StartBattle(Team playerTeam, Team enemyTeam, Action<bool> onBattleEndCallback)
     {
-        _objectsToDisable.ForEach(obj => obj.SetActive(false));
-
         _playerTeam = playerTeam;
         _enemyTeam = enemyTeam;
         _onBattleEndCallback = onBattleEndCallback;
@@ -53,10 +52,10 @@ public class BattleManager : Singleton<BattleManager>
 
     public void BattleEnd(bool isPlayerWinner)
     {
+        OnBattleEnd?.Invoke();
         _onBattleEndCallback?.Invoke(isPlayerWinner);
 
-        _objectsToDisable.ForEach(obj => obj.SetActive(true));
-        OnBattleEnd?.Invoke();
+        _objectsToDisableOnBattleEnd.ForEach(obj => obj.SetActive(false));
     }
 
     public TurnBaseBattleController GetBattleController() => _turnBaseBattleController;

@@ -1,10 +1,12 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static BattleCharacter;
 
 public class UICharacterHUDView : AbstractSubComponent<BattleManager>
 {
@@ -25,7 +27,7 @@ public class UICharacterHUDView : AbstractSubComponent<BattleManager>
 
     private SelectionState _currentState;
     private CharacterSpot _currentCharacter;
-    private BaseSkillSO _currentSkill;
+    private SkillHolder _currentSkill;
 
     private List<CharacterSpot> _enemiesSpots;
 
@@ -98,7 +100,7 @@ public class UICharacterHUDView : AbstractSubComponent<BattleManager>
         transform.position = _currentCharacter.SkillSelectionCanvasSpot.position;
         transform.rotation = _currentCharacter.SkillSelectionCanvasSpot.rotation;
 
-        _skillsListDisplay.SetItems(_currentCharacter.Character.BaseCharacter.Skills, HandleTargetSelection);
+        _skillsListDisplay.SetItems(_currentCharacter.Character.GetSkills(), HandleTargetSelection);
 
         _currentState = SelectionState.SkillSelection;
         _targetSelectionController.DisableSelection();
@@ -106,13 +108,13 @@ public class UICharacterHUDView : AbstractSubComponent<BattleManager>
 
     private void HandleTargetSelection(UIItemController itemController)
     {
-        _currentSkill = itemController.GetItem<BaseSkillSO>();
+        _currentSkill = itemController.GetItem<SkillHolder>();
 
         ShowTargetSelectionView();
 
         _manager.GetBattleCameraController().MoveCameraTo(_defaultTargetCameraPosition);
 
-        if (_currentSkill.SkillTargetType == SkillTargetType.Enemy && _currentSkill.SkillTargetAmount == SkillTargetAmountType.SingleTarget)
+        if (_currentSkill.Skill.SkillTargetType == SkillTargetType.Enemy && _currentSkill.Skill.SkillTargetAmount == SkillTargetAmountType.SingleTarget)
         {
             _targetSelectionController.SetSingleTargetSelection(HandleTargetSelected);
         }
@@ -126,12 +128,22 @@ public class UICharacterHUDView : AbstractSubComponent<BattleManager>
 
     private async void HandleTargetSelected(List<CharacterSpot> characterSeleced)
     {
-        /*
-        _battleController.PlayAction(_currentSkill, characterSeleced);
-        
-        _currentState = SelectionState.ActionSelection;
-        
-        await HandleSkillApplied();*/
+        var battleController = _manager.GetBattleController();
+        var targets = characterSeleced.Select(c => c.Character).ToList();
+
+        var actionResult = battleController.SkillAction(_currentSkill.Owner, _currentSkill.Skill, targets);
+
+        _enemiesSpots.ForEach(character => character.UpdateHP());
+
+        await Task.Delay(500);
+
+
+        Debug.Log($"Action Result {actionResult.IsBattleEnded}");
+
+        if (!actionResult.IsBattleEnded)
+        {
+            battleController.PassAction();
+        }
     }
 
     private async Task HandleSkillApplied()
@@ -179,6 +191,7 @@ public class UICharacterHUDView : AbstractSubComponent<BattleManager>
         _btnPassTurn.onClick.AddListener(PassTurn);
         _btnRollDices.onClick.AddListener(HandleSkillSelection);
 
+        mianComponent.OnBattleEnd.AddListener(DisableUI);
         mianComponent.GetBattleController().OnCharacterTurn.AddListener(HandleCharacterTurnChanged);
     }
 

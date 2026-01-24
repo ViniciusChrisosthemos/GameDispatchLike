@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ebcfbe7f1fb364b930b439cc21d038, type: 3}
   m_Name: Skill_Shoto-Todoroki_Fire_1Cost
   m_EditorClassIdentifier: 
-  Name: Detroit Smash
+  Name: Fire ball
   BaseDescription: Deal {0} damage to an enemy
   Art: {fileID: -1633287484, guid: bd2b504801f6a0d41ba0399bc2be31ad, type: 3}
   RequiredDiceValues:

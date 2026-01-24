@@ -364,7 +364,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6859472791312458390
 RectTransform:
   m_ObjectHideFlags: 0
@@ -644,19 +644,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4764262422283985792}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4693955271851566271}
-        m_TargetAssemblyTypeName: UISkillDisplayController, Assembly-CSharp
-        m_MethodName: SelectItem
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &4693955271851566271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -676,7 +664,7 @@ MonoBehaviour:
   _layoutGroup: {fileID: 0}
   _horizontalSizeOffset: 0
   _skillGridLayout: {fileID: 0}
-  _btnButton: {fileID: 0}
+  _btnButton: {fileID: 8071772030577677881}
   _isAvailableOverlay: {fileID: 0}
 --- !u!1 &7904236021498181391
 GameObject:

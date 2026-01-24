@@ -16,7 +16,6 @@ public class CharacterSpot : MonoBehaviour, ITimelineElement, IPointerEnterHandl
     [SerializeField] private Transform _modelParent;
 
     [Header("Animation")]
-    [SerializeField] private Animator _characterAnimator;
     [SerializeField] private string _takeDamageTriggerName = "TakeDamage";
     [SerializeField] private string _dieTriggerName = "Die";
 
@@ -28,6 +27,7 @@ public class CharacterSpot : MonoBehaviour, ITimelineElement, IPointerEnterHandl
 
     private bool _isPlayerCharacter;
     private BattleCharacter _battleCharacter;
+    private Animator _characterAnimator;
 
     public void SetBattleCharacter(bool isPlayerCharacter, BattleCharacter character)
     {
@@ -45,6 +45,13 @@ public class CharacterSpot : MonoBehaviour, ITimelineElement, IPointerEnterHandl
         var instance = Instantiate(_battleCharacter.CharacterUnit.BaseCharacterSO.Model, _modelParent);
         instance.transform.localPosition = Vector3.zero;
         instance.transform.localRotation = Quaternion.identity;
+
+        _characterAnimator = instance.GetComponentInChildren<Animator>();
+
+        if (isPlayerCharacter)
+        {
+            SliderHPBar.transform.parent.gameObject.SetActive(false);
+        }
     }
 
     public int GetPriority()

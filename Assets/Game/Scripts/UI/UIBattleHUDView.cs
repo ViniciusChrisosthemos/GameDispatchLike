@@ -11,6 +11,12 @@ public class UIBattleHUDView : AbstractSubComponent<BattleManager>
     [SerializeField] private UIListDisplay _characterListDisplay;
     [SerializeField] private UIListDisplay _timelineListDisplay;
 
+    private void Start()
+    {
+        _view.SetActive(false);
+        _environmentView.SetActive(false);
+    }
+
     private void HandleCharacterTurnChanged(bool isPlayerCharacter, BattleCharacter currentCharacter)
     {
         var battleController = _manager.GetBattleController();
@@ -34,15 +40,22 @@ public class UIBattleHUDView : AbstractSubComponent<BattleManager>
         var battleController = mainComponent.GetBattleController();
 
         battleController.OnCharacterTurn.AddListener(HandleCharacterTurnChanged);
-        battleController.OnBattleEnd.AddListener((isPlayerWinner) =>
-        {
-            _view.SetActive(false);
-            _environmentView.SetActive(false);
-        });
+        battleController.OnBattleEnd.AddListener((isPlayerWinner) => HandleBattleEnd());
+
+        Debug.Log("UIBattleHUDView");
     }
 
     protected override void HandleInternalSetup(BattleManager mainComponent)
     {
         Init(mainComponent.GetBattleController().PlayerCharacters);
+    }
+
+    private void HandleBattleEnd()
+    {
+        Debug.Log("UIBattleHUDView Battle Ended");
+
+        _view.SetActive(false);
+        _environmentView.SetActive(false);
+
     }
 }
