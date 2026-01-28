@@ -153,7 +153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.6, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -6.100006, y: -6.100006}
+  m_AnchoredPosition: {x: -6.100006, y: -6.0999756}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &4285579
@@ -2130,78 +2130,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4744116533693262052, guid: 120b60afac3a71849bcd967e4f067bec, type: 3}
   m_PrefabInstance: {fileID: 7048620600764430492}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &234456868
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 234456869}
-  - component: {fileID: 234456870}
-  m_Layer: 0
-  m_Name: Day Mission Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &234456869
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234456868}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2027605509}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &234456870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234456868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb6dfa72161095c4b8f495b994451e8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _availableNodes:
-  - {fileID: 361434612}
-  - {fileID: 317851058}
-  - {fileID: 529788207}
-  - {fileID: 4285580}
-  - {fileID: 785602272}
-  - {fileID: 1126982351}
-  - {fileID: 2104297031}
-  - {fileID: 507775223}
-  - {fileID: 1793130076}
-  - {fileID: 1788513442}
-  - {fileID: 1749539741}
-  - {fileID: 990855619}
-  - {fileID: 560877242}
-  - {fileID: 476049213}
-  _currentMissions: []
-  _missionTimeLineGenerator:
-    totalTimeSeconds: 120
-    missionCount: 10
-    minSpacing: 5
-    maxSpacing: 15
-    timeJitter: 6
-  OnNewMissionAvailable:
-    m_PersistentCalls:
-      m_Calls: []
-  OnMissionMiss:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &262862988
 GameObject:
   m_ObjectHideFlags: 0
@@ -3471,53 +3399,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10aa63cbde7feae4788e69f6580efd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &366853983
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 366853985}
-  - component: {fileID: 366853984}
-  m_Layer: 0
-  m_Name: Day Character Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &366853984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 366853983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e45dfa2faa3842947a269785ba1bef3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnCharacterChangeStatus:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!4 &366853985
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 366853983}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2027605509}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &380548703 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4764797678639219868, guid: c383e30a3985f8a4e9c4638a9d617b2f, type: 3}
@@ -10661,7 +10542,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2027605509}
+  - {fileID: 6489568331524709738}
   - {fileID: 67421944}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17453,87 +17334,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027324186}
   m_CullTransparentMesh: 1
---- !u!1 &2027605508
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2027605509}
-  - component: {fileID: 2027605510}
-  m_Layer: 0
-  m_Name: DayManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2027605509
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027605508}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 366853985}
-  - {fileID: 234456869}
-  m_Father: {fileID: 1078847515}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2027605510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027605508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b37517ec9864c5a4b88e5e69f9e3ef15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dayCharacterManager: {fileID: 366853984}
-  _missionManager: {fileID: 234456870}
-  OnDayStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDayEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTimeUpdated:
-    m_PersistentCalls:
-      m_Calls: []
-  OnMissionAvailable:
-    m_PersistentCalls:
-      m_Calls: []
-  _daySOs:
-  - {fileID: 11400000, guid: 2bed4b2471acff04095bd5ff0cd6f283, type: 2}
-  - {fileID: 11400000, guid: a8dde449e4bbb4948a6c3fab47f8c46e, type: 2}
-  - {fileID: 11400000, guid: 5abe2e31dbfd74a4599644d6ef038910, type: 2}
-  _defaultDaySO: {fileID: 11400000, guid: add298637323d074c8d10e3ace19f593, type: 2}
-  OnGamePausedChange:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1013082631}
-        m_TargetAssemblyTypeName: AnimatePathController, Assembly-CSharp
-        m_MethodName: SetPause
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _debug: 0
 --- !u!1001 &2028287979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18551,7 +18351,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -27.49997}
+  m_AnchoredPosition: {x: 0, y: -27.5}
   m_SizeDelta: {x: 416.7, y: -55.000057}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2130013196
@@ -34233,7 +34033,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 5.699997}
+  m_AnchoredPosition: {x: 0, y: 5.700012}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2919589648162720250
@@ -34491,7 +34291,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.45250002}
   m_AnchorMax: {x: 0.5, y: 0.45250002}
-  m_AnchoredPosition: {x: 0.2, y: -1.4900017}
+  m_AnchoredPosition: {x: 0.2, y: -1.4900055}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &2949334853717847182
@@ -35047,6 +34847,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3043337444541815132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7163100822001283068}
+  - component: {fileID: 8527471147134048724}
+  m_Layer: 0
+  m_Name: Day Mission Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!23 &3050724354687938050
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -35886,6 +35703,21 @@ Transform:
   - {fileID: 6036735709216573586}
   m_Father: {fileID: 5356636783591684724}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3216245266215806999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6228749703769681819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e45dfa2faa3842947a269785ba1bef3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnCharacterChangeStatus:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!224 &3219347415797676907
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38158,7 +37990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _view: {fileID: 3654733907350169139}
-  _dayManager: {fileID: 2027605510}
+  _dayManager: {fileID: 8177703924022851561}
   _missionInfoController: {fileID: 5771970299242954992}
   _animatePathController: {fileID: 1013082631}
   _baseTransform: {fileID: 274475256}
@@ -52284,7 +52116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 21.570007}
+  m_AnchoredPosition: {x: 0, y: 21.570068}
   m_SizeDelta: {x: 250, y: 45}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &5871410579945425714
@@ -54090,6 +53922,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &6228749703769681819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7277562871871927806}
+  - component: {fileID: 3216245266215806999}
+  m_Layer: 0
+  m_Name: Day Character Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &6233314991622084352
 GameObject:
   m_ObjectHideFlags: 0
@@ -55643,6 +55492,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2833177988038614798}
   m_CullTransparentMesh: 1
+--- !u!4 &6489568331524709738
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7876629866287031265}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7277562871871927806}
+  - {fileID: 7163100822001283068}
+  m_Father: {fileID: 1078847515}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &6492764863679890409
 RectTransform:
   m_ObjectHideFlags: 0
@@ -59542,6 +59408,21 @@ Transform:
   - {fileID: 5087578628136139565}
   m_Father: {fileID: 6295380315372650925}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &7163100822001283068
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3043337444541815132}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6489568331524709738}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7164441341963478015
 GameObject:
   m_ObjectHideFlags: 0
@@ -60243,6 +60124,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &7277562871871927806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6228749703769681819}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6489568331524709738}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!222 &7277958348924117628
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -63510,6 +63406,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7657555752731799889}
   m_CullTransparentMesh: 1
+--- !u!1 &7876629866287031265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6489568331524709738}
+  - component: {fileID: 8177703924022851561}
+  m_Layer: 0
+  m_Name: DayManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &7878760992411650287
 Transform:
   m_ObjectHideFlags: 0
@@ -65327,6 +65240,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7890909297278410629}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8177703924022851561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7876629866287031265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b37517ec9864c5a4b88e5e69f9e3ef15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dayCharacterManager: {fileID: 3216245266215806999}
+  _missionManager: {fileID: 8527471147134048724}
+  OnDayStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDayEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTimeUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMissionAvailable:
+    m_PersistentCalls:
+      m_Calls: []
+  _daySOs:
+  - {fileID: 11400000, guid: 2bed4b2471acff04095bd5ff0cd6f283, type: 2}
+  - {fileID: 11400000, guid: a8dde449e4bbb4948a6c3fab47f8c46e, type: 2}
+  - {fileID: 11400000, guid: 5abe2e31dbfd74a4599644d6ef038910, type: 2}
+  _defaultDaySO: {fileID: 11400000, guid: add298637323d074c8d10e3ace19f593, type: 2}
+  OnGamePausedChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1013082631}
+        m_TargetAssemblyTypeName: AnimatePathController, Assembly-CSharp
+        m_MethodName: SetPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _debug: 0
 --- !u!1 &8183104989853642666
 GameObject:
   m_ObjectHideFlags: 0
@@ -67100,6 +67060,46 @@ Transform:
   - {fileID: 5538162269723811779}
   m_Father: {fileID: 2834500271105238898}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8527471147134048724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3043337444541815132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6dfa72161095c4b8f495b994451e8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _availableNodes:
+  - {fileID: 361434612}
+  - {fileID: 317851058}
+  - {fileID: 529788207}
+  - {fileID: 4285580}
+  - {fileID: 785602272}
+  - {fileID: 1126982351}
+  - {fileID: 2104297031}
+  - {fileID: 507775223}
+  - {fileID: 1793130076}
+  - {fileID: 1788513442}
+  - {fileID: 1749539741}
+  - {fileID: 990855619}
+  - {fileID: 560877242}
+  - {fileID: 476049213}
+  _currentMissions: []
+  _missionTimeLineGenerator:
+    totalTimeSeconds: 120
+    missionCount: 10
+    minSpacing: 5
+    maxSpacing: 15
+    timeJitter: 6
+  OnNewMissionAvailable:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMissionMiss:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8535181151922065944
 GameObject:
   m_ObjectHideFlags: 0

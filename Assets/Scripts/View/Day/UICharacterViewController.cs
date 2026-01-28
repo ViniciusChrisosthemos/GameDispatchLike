@@ -15,6 +15,7 @@ public class UICharacterViewController : UIItemController
     [SerializeField] private UIRadarChartController _radarChartStatController;
     [SerializeField] private Button _btnButton;
     [SerializeField] private TextMeshProUGUI _txtName;
+    [SerializeField] private Image _imgColorBackground;
 
     private CharacterUnit _characterUnit;
 
@@ -41,6 +42,11 @@ public class UICharacterViewController : UIItemController
         {
             var values = _characterUnit.StatManager.GetValues();
             _radarChartStatController.UpdateStats(values);
+        }
+
+        if (_imgColorBackground != null)
+        {
+            _imgColorBackground.color = _characterUnit.HeroBackgroundColor;
         }
     }
 

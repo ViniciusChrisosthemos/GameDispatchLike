@@ -10,6 +10,8 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private GameStateSO DefaultGameState;
 
+    public UnityEvent OnQuitGame;
+
     private GameState _gameState;
 
     private FactoryCharacterUnit _factoryCharacterUnit;
@@ -20,8 +22,6 @@ public class GameManager : Singleton<GameManager>
         _factoryCharacterUnit = new FactoryCharacterUnit(CharacterDatabase.Instance);
         _factoryGameState = new FactoryGameState(_factoryCharacterUnit);
     }
-
-    public UnityEvent OnQuitGame;
 
     private void LoadData(string saveFile)
     {
@@ -51,6 +51,7 @@ public class GameManager : Singleton<GameManager>
     public LevelUPDescription CompleteDay(DayReport dayReport)
     {
         _gameState.IncrementDay();
+
         return _gameState.Guild.HandleDayReport(dayReport, CharacterLevelDatabase.Instance);
     }
 
@@ -91,6 +92,11 @@ public class GameManager : Singleton<GameManager>
     public void SetGameState(GameState gameState)
     {
         _gameState = gameState;
+    }
+
+    public DaySO GetCurrentDay()
+    {
+        return DayDatabase.Instance.GetDaySO(_gameState.Day);
     }
 
     public GameState GameState => _gameState;

@@ -58,7 +58,7 @@ public class DayManager : MonoBehaviour
         var missionAmount = daySO.UseAllMissions ? daySO.MissionSOs.Count : daySO.MissionAmount;
 
         _dayCharacterManager.Init(characters);
-        
+
         Debug.Log($"{daySO.name} {daySO.MissionSOs.Count} {daySO.MissionAmount} {daySO.DayDurationInSeconds} {missionAmount}");
         _missionManager.Init(daySO.MissionSOs, missionAmount, daySO.DayDurationInSeconds, HandleNewMissions);
 

@@ -334,4 +334,13 @@ public class UIRadarChartController : MonoBehaviour
     }
 
     public List<Vector3> GetPoints() => new List<Vector3>(_points);
+
+    public void Clear()
+    {
+        _canvasRenderer.Clear();
+        if (_borderRenderer != null)
+            _borderRenderer.Clear();
+        if (_circlesRenderer != null)
+            _circlesRenderer.Clear();
+    }
 }

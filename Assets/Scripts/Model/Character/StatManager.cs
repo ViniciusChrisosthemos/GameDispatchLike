@@ -100,6 +100,13 @@ public class StatManager
         return values;
     }
 
+    public List<float> GetAverageValues(int characterAmounts)
+    {
+        var values = GetValues();
+
+        return values.ConvertAll(value => value / (float)characterAmounts);
+    }
+
     public void AddBonusToStat(StatType statType, int bonus)
     {
         var stat = GetStat(statType);

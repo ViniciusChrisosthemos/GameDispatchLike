@@ -9,4 +9,6 @@ public class DaySO : ScriptableObject
     public bool UseAllMissions;
     public int MissionAmount;
     public int DayDurationInSeconds;
+
+    public List<string> Tips;
 }

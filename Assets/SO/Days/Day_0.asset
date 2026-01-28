@@ -24,3 +24,7 @@ MonoBehaviour:
   UseAllMissions: 1
   MissionAmount: 0
   DayDurationInSeconds: 10
+  Tips:
+  - Sunny Day
+  - Low activity
+  - A guy with terrifying scars sighted near the sports activity center.

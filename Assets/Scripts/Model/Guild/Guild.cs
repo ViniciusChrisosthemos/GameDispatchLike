@@ -13,6 +13,8 @@ public class Guild
     private int _currentExperience;
     private List<CharacterUnit> _allCharacters;
 
+    public int MaxScheduledCharacters => 8;
+
     public Guild(string name, int balance, int popularity, int currentLevel, int currentExperience, List<CharacterUnit> characters)
     {
         _playerName = name;
