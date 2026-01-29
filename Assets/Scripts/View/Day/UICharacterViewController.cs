@@ -14,7 +14,12 @@ public class UICharacterViewController : UIItemController
     [SerializeField] private Image _imgColorBackground;
     [SerializeField] private TextMeshProUGUI _txtIndividualityTitle;
     [SerializeField] private TextMeshProUGUI _txtIndividualityDescription;
+    [SerializeField] private TextMeshProUGUI _txtBuy;
     [SerializeField] private TextMeshProUGUI _txtSalary;
+
+    [Header("(optionl) Rank")]
+    [SerializeField] private Image _imgRankBackground;
+    [SerializeField] private TextMeshProUGUI _txtRank;
 
     private CharacterUnit _characterUnit;
 
@@ -58,9 +63,20 @@ public class UICharacterViewController : UIItemController
             _txtIndividualityDescription.text = _characterUnit.BaseCharacterSO.Individuality.IndividualityDescription;
         }
 
+        if (_txtBuy != null)
+        {
+            _txtBuy.text = _characterUnit.BaseCharacterSO.RecruitmentCost.ToString();
+        }
+
         if (_txtSalary != null)
         {
             _txtSalary.text = _characterUnit.BaseCharacterSO.Salary.ToString();
+        }
+
+        if (_imgRankBackground != null && _txtRank != null && _characterUnit.Rank != null)
+        {
+            _imgRankBackground.color = _characterUnit.Rank.BackgroundColor;
+            _txtRank.text = _characterUnit.Rank.Description;
         }
     }
 

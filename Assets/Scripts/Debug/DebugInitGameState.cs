@@ -8,13 +8,18 @@ public class DebugInitGameState : MonoBehaviour
 
     private void Awake()
     {
-        var characterUnit = Characters.Select(s => new CharacterUnit(s)).ToList();
+        int owned = 4;
 
-        var guild = new Company("temp", 10000, 15, 1, 0, characterUnit);
+        var allcharacterUnit = Characters.Select(s => new CharacterUnit(s)).ToList();
 
-        //guild.AllCharacters.ForEach(c => c.SetScheduledCharater(true));
+        var characters = allcharacterUnit.Take(owned).ToList();
+        var candidates = allcharacterUnit.Skip(owned).ToList();
 
-        var gameState = new GameState("temp", 1, guild);
+        var guild = new Company("temp", 0, 0, 1, 0, characters);
+
+        guild.AllCharacters.ForEach(c => c.SetScheduledCharater(true));
+
+        var gameState = new GameState("temp", 1, guild, candidates);
 
         GameManager.Instance.SetGameState(gameState);
     }

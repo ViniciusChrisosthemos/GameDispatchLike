@@ -17,7 +17,7 @@ public class DayMissionManager : MonoBehaviour
 
     private int _currentMissionID;
 
-    public void Init(List<MissionSO> missions, int missionAmount, int totalTimeInSeconds, Action<List<MissionUnit>> OnMissionAvailable)
+    public void Init(List<RealTimeMissionSO> missions, int missionAmount, int totalTimeInSeconds, Action<List<MissionUnit>> OnMissionAvailable)
     {
         _currentMissionID = 0;
         _currentMissions = new List<MissionUnit>();
@@ -136,11 +136,11 @@ public class DayMissionManager : MonoBehaviour
 
     private class TimelineMission
     {
-        public MissionSO MissionSO;
+        public RealTimeMissionSO MissionSO;
         public Transform Location;
         public float StartTime;
 
-        public TimelineMission(MissionSO missionSO, Transform location, float startTime)
+        public TimelineMission(RealTimeMissionSO missionSO, Transform location, float startTime)
         {
             MissionSO = missionSO;
             Location = location;
@@ -151,7 +151,7 @@ public class DayMissionManager : MonoBehaviour
     [Serializable]
     public class MissionInfo
     {
-        public MissionSO MissionSO;
+        public RealTimeMissionSO MissionSO;
         public List<Transform> PossiblePositions;
     }
 }

@@ -4,7 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static MissionSO;
+using static AbstractBaseMission;
 using static StatManager;
 
 public class UIRequirementTextViewController : MonoBehaviour

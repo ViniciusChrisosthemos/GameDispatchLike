@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a649d82c6520f4d84b597cfd9c6344, type: 3}
+  m_Name: RealTimeMission_Rank_D_3_withBattle
+  m_EditorClassIdentifier: 
+  Name: Mission 3
+  Description: Fight Dabi
+  RequirementDescriptionItems: []
+  DifficultyLevel: 1
+  RequiredStats:
+    _strengh:
+      BaseValue: 0
+      Bonus: 
+    _endurance:
+      BaseValue: 0
+      Bonus: 
+    _agility:
+      BaseValue: 3
+      Bonus: 
+    _charisma:
+      BaseValue: 2
+      Bonus: 
+    _intelligence:
+      BaseValue: 2
+      Bonus: 
+    _maxStatValue: 10
+  MaxTeamSize: 1
+  RewardExperience: 10
+  RewardGold: 200
+  RewardReputation: 0
+  ClientArt: {fileID: 21300000, guid: c555134fa0ae4a1409293271cdd1d1b1, type: 3}
+  EnvironmentArt: {fileID: 21300000, guid: 5b75c8d6fe1219741a963a1e6503b89c, type: 3}
+  Type: 0
+  TimeToAccept: 20
+  TimeToComplete: 30
+  TimeToAnswerEvent: 15
+  RandomMissionEvents: []
+  BattleEvents:
+  - EnemyTeam:
+    - {fileID: 11400000, guid: 03fc3978fc1112c4794160b3659a4ec8, type: 2}

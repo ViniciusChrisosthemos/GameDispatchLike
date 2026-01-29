@@ -4,7 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static MissionSO;
+using static RealTimeMissionSO;
 
 public class UIChoiceSelectionViewController : MonoBehaviour
 {

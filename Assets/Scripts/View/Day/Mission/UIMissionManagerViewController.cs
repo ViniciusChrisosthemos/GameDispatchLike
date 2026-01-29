@@ -5,7 +5,7 @@ using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
-using static MissionSO;
+using static RealTimeMissionSO;
 
 public class UIMissionManagerViewController: MonoBehaviour
 {

@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using static MissionSO;
+using static RealTimeMissionSO;
 using static StatManager;
 
 public class UIChoiceResultViewController : MonoBehaviour

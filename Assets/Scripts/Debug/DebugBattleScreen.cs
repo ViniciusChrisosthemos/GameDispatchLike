@@ -15,7 +15,7 @@ public class DebugBattleScreen : MonoBehaviour
 
         guild.AllCharacters.ForEach(c => c.SetScheduledCharater(true));
 
-        var gameState = new GameState("temp", 1, guild);
+        var gameState = new GameState("temp", 1, guild, new List<CharacterUnit>());
 
         GameManager.Instance.SetGameState(gameState);
     }

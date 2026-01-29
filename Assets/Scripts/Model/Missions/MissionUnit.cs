@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
-using static MissionSO;
+using static RealTimeMissionSO;
 
 [Serializable]
 public class MissionUnit
@@ -24,7 +24,7 @@ public class MissionUnit
     }
 
     [SerializeField] private int _id;
-    [SerializeField] private MissionSO _missionSO;
+    [SerializeField] private RealTimeMissionSO _missionSO;
     [SerializeField] private MissionStatus _missionStatus;
     [SerializeField] private float _startTime;
     [SerializeField] private Team _currentTeam;
@@ -40,7 +40,7 @@ public class MissionUnit
     private RandomMissionEvent _randomMissionEvent;
     private MissionChoice _choiceMade;
 
-    public MissionUnit(int id, MissionSO missionSO, Transform location, float startTime)
+    public MissionUnit(int id, RealTimeMissionSO missionSO, Transform location, float startTime)
     {
         _id = id;
         _missionSO = missionSO;
@@ -209,6 +209,6 @@ public class MissionUnit
     public RandomMissionEvent MissionEvent => _randomMissionEvent;
     public MissionChoice MissionChoice => _choiceMade;
     public Team Team => _currentTeam;
-    public MissionSO MissionSO => _missionSO;
+    public RealTimeMissionSO MissionSO => _missionSO;
     public Transform Location { get; private set; }
 }
