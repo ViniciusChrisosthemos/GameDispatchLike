@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using static Guild;
+using static Company;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -52,7 +52,7 @@ public class GameManager : Singleton<GameManager>
     {
         _gameState.IncrementDay();
 
-        return _gameState.Guild.HandleDayReport(dayReport, CharacterLevelDatabase.Instance);
+        return _gameState.Company.HandleDayReport(dayReport, CharacterLevelDatabase.Instance);
     }
 
     public void Quit()

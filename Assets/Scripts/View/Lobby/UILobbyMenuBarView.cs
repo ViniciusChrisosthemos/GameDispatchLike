@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UILobbyMenuBar : MonoBehaviour
+public class UILobbyMenuBarView : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _txtCompanyName;
     [SerializeField] private TextMeshProUGUI _txtBalance;
@@ -17,9 +17,9 @@ public class UILobbyMenuBar : MonoBehaviour
     {
         var gameState = GameManager.Instance.GameState;
 
-        _txtCompanyName.text = gameState.Guild.PlayerName;
-        _txtBalance.text = $"Balance: {gameState.Guild.Balance}";
-        _sliderReputation.value = gameState.Guild.Reputation;
+        _txtCompanyName.text = gameState.Company.PlayerName;
+        _txtBalance.text = $"Balance: {gameState.Company.Balance}";
+        _sliderReputation.value = gameState.Company.Reputation;
         
         OpenSubScreen(_defaultScreen);
     }

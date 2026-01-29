@@ -14,7 +14,7 @@ public class GameStateData
     {
         SaveFile = gameState.SaveFile;
         CurrentDay = gameState.Day;
-        GuildData = new GuildData(gameState.Guild);
+        GuildData = new GuildData(gameState.Company);
     }
 
     public GameStateData()

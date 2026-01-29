@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Guild
+public class Company
 {
     private string _playerName;
     private int _balance;
@@ -13,9 +13,17 @@ public class Guild
     private int _currentExperience;
     private List<CharacterUnit> _allCharacters;
 
+    // Statistics
+    public int TotalMissionsAccepted { get; private set; }
+    public int TotalMissionsDeclined { get; private set; }
+    public int TotalMissionsCompleted { get; private set; }
+    public int TotalMissionsFailed { get; private set; }
+    public int TotalMoneyGained { get; private set; }
+
+
     public int MaxScheduledCharacters => 8;
 
-    public Guild(string name, int balance, int popularity, int currentLevel, int currentExperience, List<CharacterUnit> characters)
+    public Company(string name, int balance, int popularity, int currentLevel, int currentExperience, List<CharacterUnit> characters)
     {
         _playerName = name;
         _balance = balance;
@@ -83,6 +91,15 @@ public class Guild
         Debug.Log($"expS={expWithSuccesPerc}  expWithoutFail={expWithoutFailuresPerc}  ExpWithoutMiss={expWithoutMissesPerc}");
 
         return new LevelUPDescription(oldExpPerc, expWithSuccesPerc, expWithoutFailuresPerc, expWithoutMissesPerc, levelGained, levelSO);
+    }
+
+    private void UpdateCompanyStatistics(DayReport dayReport)
+    {
+        TotalMissionsAccepted += dayReport.MissionsAccepted;
+        TotalMissionsDeclined += dayReport.MissionMisses;
+        TotalMissionsCompleted += dayReport.MissionSucceded;
+        TotalMissionsFailed += dayReport.MissionFailed;
+        //TotalMoneyGained += dayReport.MoneyGained;
     }
 
     public float GetCurrentExperienceNormalized(CharacterLevelDatabase characterLevelDatabse)

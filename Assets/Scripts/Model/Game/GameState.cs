@@ -3,13 +3,13 @@ using System;
 public class GameState
 {
     public string _saveFile;
-    private Guild _guild;
+    private Company _company;
     private int _currentDay;
 
-    public GameState(string saveFile, int day, Guild guild)
+    public GameState(string saveFile, int day, Company company)
     {
         _saveFile = saveFile;
-        _guild = guild;
+        _company = company;
         _currentDay = day;
     }
 
@@ -20,7 +20,7 @@ public class GameState
 
     public int Day => _currentDay;
 
-    public Guild Guild => _guild;
+    public Company Company => _company;
 
     public string SaveFile => _saveFile;
 }

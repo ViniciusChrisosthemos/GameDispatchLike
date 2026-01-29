@@ -9,7 +9,7 @@ public class UILobbyViewManager : MonoBehaviour
     [SerializeField] private Button _btnQuit;
 
     [Header("Screens")]
-    [SerializeField] private UILobbyMenuBar _uiLobbyMenuBar;
+    [SerializeField] private UILobbyMenuBarView _uiLobbyMenuBar;
     [SerializeField] private UICalendarView _uiCalendarView;
 
     [Header("Settings")]
@@ -19,7 +19,7 @@ public class UILobbyViewManager : MonoBehaviour
     [Header("Events")]
     public UnityEvent OnScreenOpened;
 
-    private Guild _guild;
+    private Company _guild;
 
     private void Start()
     {

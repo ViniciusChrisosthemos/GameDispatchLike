@@ -49,7 +49,7 @@ public class DayManager : MonoBehaviour
         _gameState = GameManager.Instance.GameState;
 
         var day = _gameState.Day;
-        var characters = _gameState.Guild.ScheduledCharacters;
+        var characters = _gameState.Company.ScheduledCharacters;
 
         characters.ForEach(c => c.SetStatusToAvailable());
 
@@ -119,14 +119,14 @@ public class DayManager : MonoBehaviour
         {
             _dayReport.HandleMissionSucceded(missionUnit.Gold);
 
-            _gameState.Guild.AddGold(missionUnit.Gold);
-            _gameState.Guild.AddReputation(missionUnit.Reputation);
+            _gameState.Company.AddGold(missionUnit.Gold);
+            _gameState.Company.AddReputation(missionUnit.Reputation);
         }
         else
         {
             _dayReport.HandleMissionFailed();
 
-            _gameState.Guild.RmvReputation(missionUnit.Reputation);
+            _gameState.Company.RmvReputation(missionUnit.Reputation);
         }
     }
 

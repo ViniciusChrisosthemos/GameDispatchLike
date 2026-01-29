@@ -2,7 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UILobbyHomeScreen : AbstractScreen
+public class UILobbyHomeScreenView : AbstractScreen
 {
     [SerializeField] private UIListDisplay _lineupListDisplay;
     [SerializeField] private UIListDisplay _availableHerosListDisplay;
@@ -26,7 +26,7 @@ public class UILobbyHomeScreen : AbstractScreen
     {
         var gameState = GameManager.Instance.GameState;
 
-        if (gameState.Guild.ScheduledCharacters.Count >= gameState.Guild.MaxScheduledCharacters) return;
+        if (gameState.Company.ScheduledCharacters.Count >= gameState.Company.MaxScheduledCharacters) return;
 
         controller.GetItem<CharacterUnit>().SetScheduledCharater(true);
 
@@ -37,10 +37,10 @@ public class UILobbyHomeScreen : AbstractScreen
     {
         var gameState = GameManager.Instance.GameState;
 
-        var lineup = gameState.Guild.ScheduledCharacters;
+        var lineup = gameState.Company.ScheduledCharacters;
         _lineupListDisplay.SetItems(lineup, HandleLineupHeroSelected);
 
-        var availableHeros = gameState.Guild.AvailableCharacters;
+        var availableHeros = gameState.Company.AvailableCharacters;
         _availableHerosListDisplay.SetItems(availableHeros, HandleAvailableHerosSelected);
 
         UpdateTeamStats(lineup);

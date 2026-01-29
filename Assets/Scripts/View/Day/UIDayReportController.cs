@@ -4,7 +4,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static Guild;
+using static Company;
 
 public class UIDayReportController : MonoBehaviour
 {

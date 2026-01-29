@@ -1,7 +1,3 @@
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +12,9 @@ public class UICharacterViewController : UIItemController
     [SerializeField] private Button _btnButton;
     [SerializeField] private TextMeshProUGUI _txtName;
     [SerializeField] private Image _imgColorBackground;
+    [SerializeField] private TextMeshProUGUI _txtIndividualityTitle;
+    [SerializeField] private TextMeshProUGUI _txtIndividualityDescription;
+    [SerializeField] private TextMeshProUGUI _txtSalary;
 
     private CharacterUnit _characterUnit;
 
@@ -47,6 +46,21 @@ public class UICharacterViewController : UIItemController
         if (_imgColorBackground != null)
         {
             _imgColorBackground.color = _characterUnit.HeroBackgroundColor;
+        }
+
+        if (_txtIndividualityTitle != null && _characterUnit.BaseCharacterSO.Individuality != null)
+        {
+            _txtIndividualityTitle.text = _characterUnit.BaseCharacterSO.Individuality.IndividualityName;
+        }
+
+        if (_txtIndividualityDescription != null && _characterUnit.BaseCharacterSO.Individuality != null)
+        {
+            _txtIndividualityDescription.text = _characterUnit.BaseCharacterSO.Individuality.IndividualityDescription;
+        }
+
+        if (_txtSalary != null)
+        {
+            _txtSalary.text = _characterUnit.BaseCharacterSO.Salary.ToString();
         }
     }
 

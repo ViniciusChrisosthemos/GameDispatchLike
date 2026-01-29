@@ -14,7 +14,7 @@ public class GuildData
     public int Reputation;
     public List<CharacterUnitData> AllCharacters;
 
-    public GuildData(Guild guild)
+    public GuildData(Company guild)
     {
         Name = guild.PlayerName;
         Balance = guild.Balance;

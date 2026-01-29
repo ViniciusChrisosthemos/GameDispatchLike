@@ -38,6 +38,10 @@ public class CharacterSO: SavebleSO
     public float BaseMoveSpeed;
     public GameObject Model;
 
+    [Header("Cost")]
+    public int RecruitmentCost;
+    public int Salary;
+
     [Header("Dices")]
     public DiceController SkillDicePrefab;
     public int BaseSkillDicesAmount;

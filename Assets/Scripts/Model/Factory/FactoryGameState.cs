@@ -25,7 +25,7 @@ public class FactoryGameState
 
         allCharacters = gameStateData.GuildData.AllCharacters.Select(c => _factoryCharacterUnit.CreateCharacterUnit(c)).ToList();
 
-        var guild = new Guild(guildName, balance, reputation, currentLevel, currentExperience, allCharacters);
+        var guild = new Company(guildName, balance, reputation, currentLevel, currentExperience, allCharacters);
 
         return new GameState(saveFile, gameStateData.CurrentDay, guild);
     }
@@ -39,7 +39,7 @@ public class FactoryGameState
 
         var allcharacters = defaultGameState.AvailableCharacters.Select(c => _factoryCharacterUnit.CreateCharacterUnit(c)).ToList();
 
-        var guild = new Guild(guildName, balance, reputation, currentLevel, currentExperience, allcharacters);
+        var guild = new Company(guildName, balance, reputation, currentLevel, currentExperience, allcharacters);
 
         return new GameState(saveFile, defaultGameState.CurrentDay, guild);
     }
