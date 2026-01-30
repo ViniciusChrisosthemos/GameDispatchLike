@@ -1,25 +1,30 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class GameState
 {
-    public string _saveFile;
+    private string _saveFile;
     private Company _company;
     private int _currentDay;
     private List<CharacterUnit> _candidates;
+    private ContractManager _contractManager;
 
-    public GameState(string saveFile, int day, Company company, List<CharacterUnit> condidates)
+    public GameState(string saveFile, int day, Company company, List<CharacterUnit> condidates, List<ContractMissionRuntime> availableContracts, List<ContractMissionRuntime> ongoingContracts)
     {
         _saveFile = saveFile;
         _company = company;
         _currentDay = day;
         _candidates = condidates;
+        _contractManager = new ContractManager(availableContracts, ongoingContracts);
     }
 
     public void IncrementDay()
     {
         _currentDay++;
+
+        _contractManager.UpdateContracts(_currentDay);
     }
 
     public int Day => _currentDay;
@@ -29,4 +34,6 @@ public class GameState
     public string SaveFile => _saveFile;
 
     public List<CharacterUnit> Candidates => _candidates;
+    
+    public ContractManager ContractManager => _contractManager;
 }

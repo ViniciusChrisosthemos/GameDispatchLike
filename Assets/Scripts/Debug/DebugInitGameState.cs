@@ -5,10 +5,11 @@ using UnityEngine;
 public class DebugInitGameState : MonoBehaviour
 {
     public List<CharacterSO> Characters;
+    public List<ContractMisionSO> Contracts;
 
     private void Awake()
     {
-        int owned = 4;
+        int owned = 14;
 
         var allcharacterUnit = Characters.Select(s => new CharacterUnit(s)).ToList();
 
@@ -19,7 +20,10 @@ public class DebugInitGameState : MonoBehaviour
 
         guild.AllCharacters.ForEach(c => c.SetScheduledCharater(true));
 
-        var gameState = new GameState("temp", 1, guild, candidates);
+        var availableContracts = Contracts.Select(c => new ContractMissionRuntime(c)).ToList();
+        var ongoingContracts = new List<ContractMissionRuntime>();
+
+        var gameState = new GameState("temp", 1, guild, candidates, availableContracts, ongoingContracts);
 
         GameManager.Instance.SetGameState(gameState);
     }

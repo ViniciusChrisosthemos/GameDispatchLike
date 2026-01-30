@@ -5,4 +5,5 @@ public class ContractMisionSO : AbstractBaseMission
 {
     [Header("Parameters")]
     public int DurationDays;
+    public int DaysToAccept;
 }
