@@ -7,6 +7,7 @@ public class UILobbyViewManager : MonoBehaviour
     [Header("Screen References")]
     [SerializeField] private GameObject _view;
     [SerializeField] private Button _btnQuit;
+    [SerializeField] private Button _btnStartDay;
 
     [Header("Screens")]
     [SerializeField] private UILobbyMenuBarView _uiLobbyMenuBar;
@@ -19,10 +20,10 @@ public class UILobbyViewManager : MonoBehaviour
     [Header("Events")]
     public UnityEvent OnScreenOpened;
 
-    private Company _guild;
-
     private void Start()
     {
+        _btnStartDay.onClick.AddListener(StartDay);
+
         Init();
     }
 

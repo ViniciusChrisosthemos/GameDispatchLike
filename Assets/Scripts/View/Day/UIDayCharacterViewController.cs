@@ -13,7 +13,7 @@ public class UIDayCharacterViewController : MonoBehaviour
     private const string STATUS_MOVING = "Moving";
     private const string STATUS_RETURNING = "Returning";
 
-    [SerializeField] private UICharacterViewController _uiCharacterViewController;
+    [SerializeField] private AbstractUICharacterView _uiCharacterViewController;
 
     [SerializeField] private GameObject _statusView;
     [SerializeField] private TextMeshProUGUI _txtStatus;

@@ -15,7 +15,7 @@ public class DebugInitGameState : MonoBehaviour
         var characters = allcharacterUnit.Take(owned).ToList();
         var candidates = allcharacterUnit.Skip(owned).ToList();
 
-        var guild = new Company("temp", 0, 0, 1, 0, characters);
+        var guild = new Company("temp", 4000, 0, 1, 0, characters);
 
         guild.AllCharacters.ForEach(c => c.SetScheduledCharater(true));
 
