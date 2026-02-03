@@ -15,8 +15,8 @@ public abstract class AbstractBaseMission : ScriptableObject
     [Header("Mission Data")]
     public string Name;
     public string Description;
+    public RankSO Rank;
     public List<MissionRequirement> RequirementDescriptionItems;
-    public int DifficultyLevel;
     public StatManager RequiredStats;
     public int MaxTeamSize;
     public int RewardExperience;

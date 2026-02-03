@@ -29,7 +29,7 @@ public class FactoryGameState
 
         var guild = new Company(guildName, balance, reputation, currentLevel, currentExperience, allCharacters);
 
-        return new GameState(saveFile, gameStateData.CurrentDay, guild, candidates);
+        return new GameState(saveFile, gameStateData.CurrentDay, guild, candidates, new List<ContractMissionRuntime>(), new List<ContractMissionRuntime>());
     }
 
     public GameState CreateGameState(string saveFile, string guildName, GameStateSO defaultGameState)
@@ -43,6 +43,6 @@ public class FactoryGameState
 
         var guild = new Company(guildName, balance, reputation, currentLevel, currentExperience, allcharacters);
 
-        return new GameState(saveFile, defaultGameState.CurrentDay, guild, new List<CharacterUnit>());
+        return new GameState(saveFile, defaultGameState.CurrentDay, guild, new List<CharacterUnit>(), new List<ContractMissionRuntime>(), new List<ContractMissionRuntime>());
     }
 }
