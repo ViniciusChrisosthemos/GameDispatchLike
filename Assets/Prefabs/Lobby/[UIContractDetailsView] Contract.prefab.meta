@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Lobby/[UIContractDetailsView] Contract.prefab.meta
 guid: 3770e82bdd9e4a24890661dfe1211384
+========
+guid: 79db5733542990a48a1dd750e51ea2d1
+>>>>>>>> parent of eff84f0 (add buy hero feature):Assets/Scenes/[BootstrapManager] Root.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

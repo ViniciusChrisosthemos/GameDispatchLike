@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Game/ScriptableObjects/Characters/Character_Green.asset.meta
+guid: 12e79ad524b71344990cc71964272cca
+========
 guid: c72c06282898ac54d80d1705cbee2214
+>>>>>>>> parent of eff84f0 (add buy hero feature):Assets/Game/ScriptableObjects/Characters/Character_Orange.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

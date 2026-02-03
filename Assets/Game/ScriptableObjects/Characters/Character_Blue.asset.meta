@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/[BootstrapManager] Root.prefab.meta
+guid: ac8b83a527da1564681a989bd0965f4e
+PrefabImporter:
+========
 guid: 1726be6266a986e44aa78651bc8d4964
 NativeFormatImporter:
+>>>>>>>> parent of eff84f0 (add buy hero feature):Assets/Game/ScriptableObjects/Characters/Character_Blue.asset.meta
   externalObjects: {}
   mainObjectFileID: 11400000
   userData: 
