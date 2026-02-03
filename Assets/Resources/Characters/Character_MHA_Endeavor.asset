@@ -38,6 +38,10 @@ MonoBehaviour:
   FullArt: {fileID: 336208030, guid: f6c15e238874c514fbb2b9cb148376bc, type: 3}
   IconArt: {fileID: 21300000, guid: c59297ea513a64e40aa00a85fc39c0cb, type: 3}
   MissionCompletedArt: {fileID: -1412017731, guid: d1e9d707db3e15d4d97066fa7762934c, type: 3}
+  BattleScreen1Art: {fileID: 0}
+  BattleScreen2Art: {fileID: 0}
+  BattleScreen3Art: {fileID: 0}
+  BattleScreen4Art: {fileID: 0}
   LevelProgression: {fileID: 11400000, guid: 4361cddeab838ea4fafc512c28dad936, type: 2}
   TimeToRest: 12
   Keywords:
@@ -48,9 +52,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 98d60af88642f654ea8fe863abfbdf97, type: 2}
   - {fileID: 11400000, guid: 64f92f86045add745abcd5a8cee12b04, type: 2}
   BaseMoveSpeed: 0.85
+  Model: {fileID: 0}
+  RecruitmentCost: 10000
+  Salary: 3000
   SkillDicePrefab: {fileID: 2562814042158323157, guid: ed0aedd4555f6204889a789af52bb190, type: 3}
   BaseSkillDicesAmount: 3
   BaseDamageDicesAmount: 0
   BaseCriticalDicesAmount: 0
   Individuality: {fileID: 11400000, guid: 9c516b23b756f0a44a48d3b5abfa58d0, type: 2}
-  IndividualityView: {fileID: 929034123188553140, guid: 3f3e2c2dcd25e0749aaf54d422f99606, type: 3}
+  CharacterTurnVoiceLines: []

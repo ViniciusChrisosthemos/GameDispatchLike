@@ -107,6 +107,22 @@ public class Company
         return _currentExperience / (float)characterLevelDatabse.GetLevel(_currentLevel).ExpToLevelUp;
     }
 
+    public void DecreaseBalance(int recruitmentCost)
+    {
+        _balance -= recruitmentCost;
+    }
+
+    public void RemoveCharacter(CharacterUnit characterUnit)
+    {
+        _allCharacters.Remove(characterUnit);
+    }
+
+    public void AddCharacter(CharacterSO character)
+    {
+        var newCharacter = new CharacterUnit(character);
+        _allCharacters.Add(newCharacter);
+    }
+
     public string PlayerName => _playerName;
     public int Balance => _balance;
     public int Reputation => _reputation;

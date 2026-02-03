@@ -52,6 +52,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 52b2d97769668f5498cbfd61df1445a1, type: 2}
   BaseMoveSpeed: 0.85
   Model: {fileID: 35593632725988322, guid: a5e3665b007b1e84abd31423571983e2, type: 3}
+  RecruitmentCost: 500
+  Salary: 400
   SkillDicePrefab: {fileID: 4393117120549140134, guid: 1141d0f9f7d88a44080ea08236a0dd87, type: 3}
   BaseSkillDicesAmount: 3
   BaseDamageDicesAmount: 0

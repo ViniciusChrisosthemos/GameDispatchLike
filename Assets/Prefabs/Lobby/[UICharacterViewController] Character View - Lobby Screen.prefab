@@ -159,8 +159,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 455480003075423040}
-  - component: {fileID: 8869233956518297576}
   - component: {fileID: 4668699737848719663}
+  - component: {fileID: 4313575831070193341}
   m_Layer: 5
   m_Name: '[UICharacterViewController] Character View - Lobby Screen'
   m_TagString: Untagged
@@ -189,24 +189,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8869233956518297576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4849864905090332125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d93d9bd89bbc2634cab885a2bc1611c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _imgCharacterView: {fileID: 4751921205382985960}
-  _characterArtType: 0
-  _radarChartStatController: {fileID: 680428861985935258}
-  _btnButton: {fileID: 4668699737848719663}
-  _txtName: {fileID: 0}
-  _imgColorBackground: {fileID: 3236301682267559306}
 --- !u!114 &4668699737848719663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +233,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4313575831070193341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4849864905090332125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bf0cb10f72f1fd409a32da113123bd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _imgCharacterView: {fileID: 4751921205382985960}
+  _characterArtType: 0
+  _btnButton: {fileID: 4668699737848719663}
+  _txtName: {fileID: 0}
+  _imgColorBackground: {fileID: 3236301682267559306}
+  _txtIndividualityTitle: {fileID: 0}
+  _txtIndividualityDescription: {fileID: 0}
+  _txtBuy: {fileID: 0}
+  _txtSalary: {fileID: 0}
+  _imgRankBackground: {fileID: 0}
+  _txtRank: {fileID: 0}
+  _uiRadarChartController: {fileID: 680428861985935258}
 --- !u!1 &5177506029436850509
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +346,7 @@ GameObject:
   - component: {fileID: 3187982413401266665}
   - component: {fileID: 4181408670389223757}
   m_Layer: 5
-  m_Name: IMG Background
+  m_Name: IMG Background Pattern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

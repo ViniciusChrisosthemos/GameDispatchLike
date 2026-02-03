@@ -9,21 +9,21 @@ public class DebugInitGameState : MonoBehaviour
 
     private void Awake()
     {
-        int owned = 14;
+        int owned = 4;
 
         var allcharacterUnit = Characters.Select(s => new CharacterUnit(s)).ToList();
 
         var characters = allcharacterUnit.Take(owned).ToList();
         var candidates = allcharacterUnit.Skip(owned).ToList();
 
-        var guild = new Company("temp", 0, 0, 1, 0, characters);
-
-        guild.AllCharacters.ForEach(c => c.SetScheduledCharater(true));
+        var guild = new Company("temp", 2000, 0, 1, 0, characters);
+        
+        //guild.AllCharacters.ForEach(c => c.SetScheduledCharater(true));
 
         var availableContracts = Contracts.Select(c => new ContractMissionRuntime(c)).ToList();
         var ongoingContracts = new List<ContractMissionRuntime>();
 
-        var gameState = new GameState("temp", 1, guild, candidates, availableContracts, ongoingContracts);
+        var gameState = new GameState("temp", 1, guild, availableContracts, ongoingContracts);
 
         GameManager.Instance.SetGameState(gameState);
     }

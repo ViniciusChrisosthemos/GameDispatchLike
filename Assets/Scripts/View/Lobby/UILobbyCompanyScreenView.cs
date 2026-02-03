@@ -6,9 +6,15 @@ using UnityEngine.UI;
 public class UILobbyCompanyScreenView : AbstractScreen
 {
     [SerializeField] private UIListDisplay _companyStatisticsListDisplay;
-    [SerializeField] private UICharacterViewController _selectedCharacterView;
+    [SerializeField] private AbstractUICharacterView _selectedCharacterView;
     [SerializeField] private UIListDisplay _allCharactersListDisplay;
     [SerializeField] private Button _btnDismiss;
+    [SerializeField] private GameObject _selectedCharacterPlaceHolder;
+
+    private void Awake()
+    {
+        _btnDismiss.onClick.AddListener(DismissCharacter);
+    }
 
     protected override void InitScreen()
     {
@@ -23,9 +29,9 @@ public class UILobbyCompanyScreenView : AbstractScreen
 
         _companyStatisticsListDisplay.SetItems(statistics, null);
 
-        _allCharactersListDisplay.SetItems(gameState.Company.AllCharacters, HandleCharacterSelected);
-
-        _btnDismiss.interactable = false;
+        _selectedCharacterPlaceHolder.SetActive(true);
+        
+        UpdateList();
     }
 
     private void HandleCharacterSelected(UIItemController controller)
@@ -33,5 +39,22 @@ public class UILobbyCompanyScreenView : AbstractScreen
         var character = controller.GetItem<CharacterUnit>();
 
         _selectedCharacterView.SetItem(character);
+
+        _selectedCharacterPlaceHolder.SetActive(false);
+    }
+
+    private void DismissCharacter()
+    {
+        var character = _selectedCharacterView.GetItem<CharacterUnit>();
+        
+        GameManager.Instance.DismissCharacter(character);
+        UpdateMainScreen();
+        _selectedCharacterPlaceHolder.SetActive(true);
+    }
+
+    private void UpdateList()
+    {
+        var gameState = GameManager.Instance.GameState;
+        _allCharactersListDisplay.SetItems(gameState.Company.AllCharacters, HandleCharacterSelected);
     }
 }

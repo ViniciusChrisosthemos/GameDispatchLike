@@ -5,9 +5,10 @@ using UnityEngine.UI;
 public class UILobbyCandidatesScreenView : AbstractScreen
 {
     [SerializeField] private UIListDisplay _candidatesListDisplay;
-    [SerializeField] private UICharacterViewController _selectedCharacterController;
+    [SerializeField] private UICharacterSOView _selectedCharacterController;
     [SerializeField] private Button _btnBuy;
     [SerializeField] private TextMeshProUGUI _txtBuyLabel;
+    [SerializeField] private GameObject _selectedCharacterPlaceHolder;
 
     private void Awake()
     {
@@ -16,25 +17,36 @@ public class UILobbyCandidatesScreenView : AbstractScreen
 
     protected override void InitScreen()
     {
-        var gameState = GameManager.Instance.GameState;
-
-        var candidates = gameState.Candidates;
-        _candidatesListDisplay.SetItems(candidates, HandleCandidateSelected);
+        UpdateList();
+        _selectedCharacterPlaceHolder.SetActive(true);
     }
 
     private void HandleCandidateSelected(UIItemController controller)
     {
-        var character = controller.GetItem<CharacterUnit>();
+        var character = controller.GetItem<CharacterSO>();
 
         _selectedCharacterController.SetItem(character);
 
-        _txtBuyLabel.text = $"Buy ({character.BaseCharacterSO.RecruitmentCost})";
+        _txtBuyLabel.text = $"Buy ({character.RecruitmentCost})";
+        _btnBuy.interactable = GameManager.Instance.CanAffordCharacter(character);
+
+        _selectedCharacterPlaceHolder.SetActive(false);
     }
 
     private void BuyCharacter()
     {
-        if (_selectedCharacterController.CharacterUnit == null) return;
-        
+        GameManager.Instance.BuyCharacter(_selectedCharacterController.CharacterSO);
 
+        UpdateMainScreen();
+
+        _selectedCharacterPlaceHolder.SetActive(true);
+        UpdateList();
+    }
+
+    private void UpdateList()
+    {
+        var availableCharacters = GameManager.Instance.GetAvailableCandidates();
+
+        _candidatesListDisplay.SetItems(availableCharacters, HandleCandidateSelected);
     }
 }

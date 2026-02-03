@@ -25,11 +25,9 @@ public class FactoryGameState
 
         allCharacters = gameStateData.GuildData.AllCharacters.Select(c => _factoryCharacterUnit.CreateCharacterUnit(c)).ToList();
 
-        var candidates = gameStateData.Candidates.Select(c => _factoryCharacterUnit.CreateCharacterUnit(c)).ToList();
-
         var guild = new Company(guildName, balance, reputation, currentLevel, currentExperience, allCharacters);
 
-        return new GameState(saveFile, gameStateData.CurrentDay, guild, candidates, new List<ContractMissionRuntime>(), new List<ContractMissionRuntime>());
+        return new GameState(saveFile, gameStateData.CurrentDay, guild, new List<ContractMissionRuntime>(), new List<ContractMissionRuntime>());
     }
 
     public GameState CreateGameState(string saveFile, string guildName, GameStateSO defaultGameState)
@@ -43,6 +41,6 @@ public class FactoryGameState
 
         var guild = new Company(guildName, balance, reputation, currentLevel, currentExperience, allcharacters);
 
-        return new GameState(saveFile, defaultGameState.CurrentDay, guild, new List<CharacterUnit>(), new List<ContractMissionRuntime>(), new List<ContractMissionRuntime>());
+        return new GameState(saveFile, defaultGameState.CurrentDay, guild, new List<ContractMissionRuntime>(), new List<ContractMissionRuntime>());
     }
 }
