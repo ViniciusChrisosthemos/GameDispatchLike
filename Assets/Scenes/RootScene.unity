@@ -119,16 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &1512377246 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1310294856163096550, guid: 79db5733542990a48a1dd750e51ea2d1, type: 3}
-  m_PrefabInstance: {fileID: 9154671199973437294}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1720449280 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3250830160730469510, guid: 79db5733542990a48a1dd750e51ea2d1, type: 3}
-  m_PrefabInstance: {fileID: 9154671199973437294}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9154671199973437294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -137,14 +127,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 658112769629633256, guid: 79db5733542990a48a1dd750e51ea2d1, type: 3}
-      propertyPath: _globalCamera
-      value: 
-      objectReference: {fileID: 1512377246}
-    - target: {fileID: 658112769629633256, guid: 79db5733542990a48a1dd750e51ea2d1, type: 3}
-      propertyPath: _globalEventSystem
-      value: 
-      objectReference: {fileID: 1720449280}
     - target: {fileID: 1339836912436447538, guid: 79db5733542990a48a1dd750e51ea2d1, type: 3}
       propertyPath: m_Name
       value: '[BootstrapManager] Root'

@@ -5,10 +5,9 @@ using UnityEngine.UI;
 public class UILobbyCandidatesScreenView : AbstractScreen
 {
     [SerializeField] private UIListDisplay _candidatesListDisplay;
-    [SerializeField] private UICharacterSOView _selectedCharacterController;
+    [SerializeField] private UICharacterViewController _selectedCharacterController;
     [SerializeField] private Button _btnBuy;
     [SerializeField] private TextMeshProUGUI _txtBuyLabel;
-    [SerializeField] private GameObject _characterSelectedPlaceHolder;
 
     private void Awake()
     {
@@ -17,38 +16,25 @@ public class UILobbyCandidatesScreenView : AbstractScreen
 
     protected override void InitScreen()
     {
-        UpdateCharacterList();
-        _characterSelectedPlaceHolder.SetActive(true);
+        var gameState = GameManager.Instance.GameState;
+
+        var candidates = gameState.Candidates;
+        _candidatesListDisplay.SetItems(candidates, HandleCandidateSelected);
     }
 
     private void HandleCandidateSelected(UIItemController controller)
     {
-        var character = controller.GetItem<CharacterSO>();
+        var character = controller.GetItem<CharacterUnit>();
 
         _selectedCharacterController.SetItem(character);
 
-        _txtBuyLabel.text = $"Buy ({character.RecruitmentCost})";
-        _characterSelectedPlaceHolder.SetActive(false);
-
-        _btnBuy.interactable = GameManager.Instance.CanAfford(character);
+        _txtBuyLabel.text = $"Buy ({character.BaseCharacterSO.RecruitmentCost})";
     }
 
     private void BuyCharacter()
     {
-        var character = _selectedCharacterController.CharacterSO;
+        if (_selectedCharacterController.CharacterUnit == null) return;
+        
 
-        GameManager.Instance.BuyCharacter(character);
-
-        _characterSelectedPlaceHolder.SetActive(true);
-
-        UpdateCharacterList();
-        UpdateMainScreen();
-    }
-
-    private void UpdateCharacterList()
-    {
-        var availableCharacters = GameManager.Instance.CharacterShopController.GetAvailableCharacters();
-
-        _candidatesListDisplay.SetItems(availableCharacters, HandleCandidateSelected);
     }
 }

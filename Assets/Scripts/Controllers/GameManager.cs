@@ -14,25 +14,13 @@ public class GameManager : Singleton<GameManager>
 
     private GameState _gameState;
 
-    private FactoryGameState _factoryGameState;
     private FactoryCharacterUnit _factoryCharacterUnit;
-
-    private CharacterShopController _characterShopController;
+    private FactoryGameState _factoryGameState;
 
     private void Start()
     {
-        _factoryGameState = new FactoryGameState(_factoryCharacterUnit);
         _factoryCharacterUnit = new FactoryCharacterUnit(CharacterDatabase.Instance);
-
-        InitCharacterShopController();
-    }
-
-    private void InitCharacterShopController()
-    {
-        var allCharacters = CharacterDatabase.Instance.AllCharacters;
-        var playerCharacters = _gameState.Company.AllCharacters.Select(characterUnit => characterUnit.BaseCharacterSO).ToList();
-
-        _characterShopController = new CharacterShopController(allCharacters, playerCharacters);
+        _factoryGameState = new FactoryGameState(_factoryCharacterUnit);
     }
 
     private void LoadData(string saveFile)
@@ -111,27 +99,5 @@ public class GameManager : Singleton<GameManager>
         return DayDatabase.Instance.GetDaySO(_gameState.Day);
     }
 
-    public void DismissCharacter(CharacterSO character)
-    {
-        _gameState.Company.RemoveCharacter(character);
-        _characterShopController.DismissCharacter(character);
-    }
-
-    public void BuyCharacter(CharacterSO character)
-    {
-        if (_gameState.Company.Balance < character.RecruitmentCost) return;
-
-        _gameState.Company.DecreaseBalance(character.RecruitmentCost);
-        _gameState.Company.AddCharacter(character);
-        _characterShopController.BuyCharacter(character);
-    }
-
-    public bool CanAfford(CharacterSO character)
-    {
-        return _gameState.Company.Balance >= character.RecruitmentCost;
-    }
-
     public GameState GameState => _gameState;
-
-    public CharacterShopController CharacterShopController => _characterShopController;
 }

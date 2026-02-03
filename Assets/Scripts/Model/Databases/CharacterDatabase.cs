@@ -26,6 +26,4 @@ public class CharacterDatabase : Singleton<CharacterDatabase>
 
         return null;
     }
-
-    public List<CharacterSO> AllCharacters => _characterSOs.Values.ToList();
 }

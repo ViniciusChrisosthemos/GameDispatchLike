@@ -107,29 +107,6 @@ public class Company
         return _currentExperience / (float)characterLevelDatabse.GetLevel(_currentLevel).ExpToLevelUp;
     }
 
-    public void RemoveCharacter(CharacterSO character)
-    {
-        var characterUnit = _allCharacters.FirstOrDefault(c => c.BaseCharacterSO == character);
-        
-        if (characterUnit != null)
-        {
-            _allCharacters.Remove(characterUnit);
-        }
-    }
-
-    public void AddCharacter(CharacterSO character)
-    {
-        var characterUnit = new CharacterUnit(character);
-        _allCharacters.Add(characterUnit);
-
-        Debug.Log($"AddCharacter {character.Name}");
-    }
-
-    public void DecreaseBalance(int value)
-    {
-        _balance -= value;
-    }
-
     public string PlayerName => _playerName;
     public int Balance => _balance;
     public int Reputation => _reputation;
