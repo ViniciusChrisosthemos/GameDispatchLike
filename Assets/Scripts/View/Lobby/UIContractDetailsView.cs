@@ -11,17 +11,21 @@ public class UIContractDetailsView : UIItemController
     [SerializeField] private Image _imgRankBackground;
     [SerializeField] private TextMeshProUGUI _txtRank;
 
+    private ContractMissionRuntime _contractRuntime;
+
     protected override void HandleInit(object obj)
     {
-        var contractRuntime = obj as ContractMissionRuntime;
+        _contractRuntime = obj as ContractMissionRuntime;
 
-        var reward = contractRuntime.GetReward();
+        var reward = _contractRuntime.GetReward();
 
-        _txtContractTitle.text = contractRuntime.ContractMisionSO.Name;
-        _txtContractDescription.text = contractRuntime.ContractMisionSO.Description;
+        _txtContractTitle.text = _contractRuntime.ContractMisionSO.Name;
+        _txtContractDescription.text = _contractRuntime.ContractMisionSO.Description;
         _txtMoneyReward.text = reward.Money.ToString();
         _txtExperienceReward.text = reward.Experience.ToString();
-        _imgRankBackground.color = contractRuntime.ContractMisionSO.Rank.BackgroundColor;
-        _txtRank.text = contractRuntime.ContractMisionSO.Rank.Description;
+        _imgRankBackground.color = _contractRuntime.ContractMisionSO.Rank.BackgroundColor;
+        _txtRank.text = _contractRuntime.ContractMisionSO.Rank.Description;
     }
+
+    public ContractMissionRuntime ContractMissionRuntime => _contractRuntime;
 }
